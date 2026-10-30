@@ -1,0 +1,16 @@
+{
+  "id": "J08",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Official statistics on emergency department use for the annual report.",
+  "question": "How many emergency visits started in 2025, by hospital?",
+  "definitions": [
+    "Emergency visit = encounter with type 'emergency'.",
+    "Count visits (not patients) whose start_date is in 2025.",
+    "Report per hospital: emergency visits."
+  ]
+}

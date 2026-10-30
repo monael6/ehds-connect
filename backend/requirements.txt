@@ -1,0 +1,9 @@
+# duckdb 2.x needs Python 3.11+; 1.5.6 is tested on Python 3.10
+duckdb==2.0.0; python_version >= "3.11"
+duckdb==1.5.6; python_version < "3.11"
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.2
+# tests
+pytest==9.2.0
+httpx==0.28.1

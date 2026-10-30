@@ -1,0 +1,18 @@
+{
+  "id": "J09",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Research on obesity among women with depression.",
+  "question": "How many women aged 18 or older with depression have a latest BMI of 30 or more, by region?",
+  "definitions": [
+    "Women = sex 'female'.",
+    "Adult = aged 18 or older on 31 December 2025.",
+    "Depression = any condition with an ICD-10 code starting with F32.",
+    "Obese = latest BMI (LOINC 39156-5) of 30 or more.",
+    "Report per region: adult women with depression, how many of them are obese and that share in %, one decimal."
+  ]
+}

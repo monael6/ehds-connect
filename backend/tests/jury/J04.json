@@ -1,0 +1,18 @@
+{
+  "id": "J04",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Research on kidney function in people with diabetes to update a teaching module.",
+  "question": "What is the mean eGFR of adults with type 2 diabetes, by age band?",
+  "definitions": [
+    "Adult = aged 18 or older on 31 December 2025.",
+    "Type 2 diabetes = any condition with an ICD-10 code starting with E11.",
+    "Age bands on 31 December 2025: 18-49, 50-64, 65-79, 80+.",
+    "Use the latest eGFR (LOINC 62238-1) per patient; patients without an eGFR are left out.",
+    "Report per band: adults with type 2 diabetes who have an eGFR value and their mean eGFR, one decimal."
+  ]
+}

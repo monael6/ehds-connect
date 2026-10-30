@@ -1,0 +1,17 @@
+{
+  "id": "J05",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Policy-making: share of patients with COPD on an inhaled therapy.",
+  "question": "Among patients with COPD, what share has an active tiotropium prescription, by hospital?",
+  "definitions": [
+    "COPD = any condition with an ICD-10 code starting with J44.",
+    "Tiotropium = ATC code starting with R03BB04.",
+    "A medication is active on 31 December 2025 if start_date is on or before that day and end_date is empty or on or after that day.",
+    "Report per hospital: patients with COPD and % with an active tiotropium prescription, one decimal."
+  ]
+}
