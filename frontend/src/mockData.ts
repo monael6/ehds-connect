@@ -145,7 +145,7 @@ export interface AccessEntry {
 }
 
 export const INITIAL_ACCESS_LOG: AccessEntry[] = [
-  { id: "a1", who: "Dr. Anna Huber", role: "Oberärztin Kardiologie", org: "Klinikum Wien Nord (synthetic)", country: "AT", patient: "P-00421", when: "2026-10-20 14:40", sections: ["Patient Summary", "Measurements"], decision: "ALLOW", rule: 2, reason: "Inpatient treatment ENC-7731", kind: "normal" },
+  { id: "a1", who: "Dr. Anna Huber", role: "Senior Doctor, Cardiology", org: "Klinikum Wien Nord (synthetic)", country: "AT", patient: "P-00421", when: "2026-10-20 14:40", sections: ["Patient Summary", "Measurements"], decision: "ALLOW", rule: 2, reason: "Inpatient treatment ENC-7731", kind: "normal" },
 ];
 
 // ---------- Secondary use ----------
@@ -345,7 +345,7 @@ export const REASONING: Record<Decision, Tr> = {
 
 export const HOSPITAL = "Klinikum Wien Nord (synthetic)";
 export const ENCOUNTER = { id: "ENC-7731", department: "Cardiology", from: "20.10.2026", to: "24.10.2026", admitted: "2026-10-20 14:15", discharged: "2026-10-24 10:30" };
-export const SIGNER = "Dr. Anna Huber, Oberärztin Kardiologie";
+export const SIGNER = "Dr. Anna Huber, Senior Doctor, Cardiology";
 
 export const HL7_ORU = [
   "MSH|^~\\&|LAB|KH_WIEN_NORD|KIS|KH_WIEN_NORD|20261021083000||ORU^R01|MSG-10007|P|2.5",
@@ -373,25 +373,25 @@ const medStmt = (id: string, atc: string, name: string, dose: string, status = "
 const cond = (id: string, code: string, display: string, role: string) =>
   fhir({ resourceType: "Condition", id, subject: { reference: "Patient/P-00421" }, encounter: { reference: "Encounter/ENC-7731" }, category: [{ text: role }], code: { coding: [{ system: "http://hl7.org/fhir/sid/icd-10", code, display }] } });
 
-const NOTE_2010 = "Dekurs 20.10.2026 14:40 – Dr. Huber\nAufnahme mit Herzrasen seit 2 Tagen; im EKG Vorhofflimmern mit einer Herzfrequenz von 138/min. RR 148/90. Bekannte Penicillin-Allergie (Exanthem). Bei einem CHA₂DS₂-VASc-Score von 3 Beginn einer Antikoagulation mit Apixaban. Bisoprolol 5 mg zur Frequenzkontrolle.";
-const NOTE_2210 = "Dekurs 22.10.2026 09:10 – Dr. Huber\nAm 22.10. Herzfrequenz 78/min, beschwerdefrei. Patientin mobil.";
-const NOTE_2310 = "Dekurs 23.10.2026 11:00 – Dr. Huber\nPantoprazol abgesetzt (keine Indikation). Ramipril unverändert fortgeführt.";
-const NOTE_2410 = "Dekurs 24.10.2026 09:30 – Dr. Huber\nEntlassung am 24.10. in gutem Allgemeinzustand. Kardiologische Kontrolle in 4–6 Wochen, Evaluierung Rhythmuskontrolle. Fortführung der Antikoagulation.";
-const NOTE_ECHO = "Echokardiographie 21.10.2026 – Befund\nLVEF 58 %, kein relevantes Vitium. Linker Vorhof leicht dilatiert.";
+const NOTE_2010 = "Progress note 20.10.2026 14:40 – Dr Huber\nAdmitted with palpitations for 2 days; ECG shows atrial fibrillation with a heart rate of 138/min. BP 148/90. Known penicillin allergy (rash). With a CHA₂DS₂-VASc score of 3, anticoagulation with apixaban started. Bisoprolol 5 mg for rate control.";
+const NOTE_2210 = "Progress note 22.10.2026 09:10 – Dr Huber\nOn 22.10. heart rate 78/min, no symptoms. Patient mobile.";
+const NOTE_2310 = "Progress note 23.10.2026 11:00 – Dr Huber\nPantoprazole stopped (no indication). Ramipril continued unchanged.";
+const NOTE_2410 = "Progress note 24.10.2026 09:30 – Dr Huber\nDischarged on 24.10. in good general condition. Cardiology check in 4–6 weeks, assess rhythm control. Continue anticoagulation.";
+const NOTE_ECHO = "Echocardiography 21.10.2026 – report\nLVEF 58 %, no relevant valve disease. Left atrium slightly dilated.";
 
 export const SOURCES: Record<string, SourceDoc> = {
-  "dek-2010": { id: "dek-2010", label: "Dekurs 20.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2010 },
-  "dek-2210": { id: "dek-2210", label: "Dekurs 22.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2210 },
-  "dek-2310": { id: "dek-2310", label: "Dekurs 23.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2310 },
-  "dek-2410": { id: "dek-2410", label: "Dekurs 24.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2410 },
-  echo: { id: "echo", label: "Echo-Befund 21.10.", kind: "note", title: "Echocardiography report", content: NOTE_ECHO },
+  "dek-2010": { id: "dek-2010", label: "Progress note 20.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2010 },
+  "dek-2210": { id: "dek-2210", label: "Progress note 22.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2210 },
+  "dek-2310": { id: "dek-2310", label: "Progress note 23.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2310 },
+  "dek-2410": { id: "dek-2410", label: "Progress note 24.10.", kind: "note", title: "Progress note (free text)", content: NOTE_2410 },
+  echo: { id: "echo", label: "Echo report 21.10.", kind: "note", title: "Echocardiography report", content: NOTE_ECHO },
   adt: { id: "adt", label: "ADT^A03 ENC-7731", kind: "hl7", title: "HL7 v2 ADT^A03 discharge", content: HL7_ADT },
-  "kis-query": { id: "kis-query", label: "KIS-Abfrage 24.10.", kind: "note", title: "KIS query result", content: "KIS query 24.10.2026 10:31 – open orders / pending results for ENC-7731\nKeine Daten im KIS." },
+  "kis-query": { id: "kis-query", label: "KIS query 24.10.", kind: "note", title: "KIS query result", content: "KIS query 24.10.2026 10:31 – open orders / pending results for ENC-7731\nNo data in the KIS." },
   ...Object.fromEntries([1, 2, 3, 4, 5].map((n) => [`obx-${n}`, { id: `obx-${n}`, label: `ORU MSG-10007 OBX-${n}`, kind: "hl7" as const, title: "HL7 v2 ORU^R01 lab result", content: HL7_ORU }])),
-  "cond-af": { id: "cond-af", label: "Condition/cond-af", kind: "fhir", title: "FHIR Condition", content: cond("cond-af", "I48.9", "Vorhofflimmern", "Hauptdiagnose") },
-  "cond-htn": { id: "cond-htn", label: "Condition/cond-htn", kind: "fhir", title: "FHIR Condition", content: cond("cond-htn", "I10", "Essentielle Hypertonie", "Nebendiagnose") },
-  "cond-z88": { id: "cond-z88", label: "Condition/cond-z88", kind: "fhir", title: "FHIR Condition", content: cond("cond-z88", "Z88.0", "Penicillin-Allergie in der Anamnese", "Nebendiagnose") },
-  "cond-hip": { id: "cond-hip", label: "Condition/cond-hip", kind: "fhir", title: "FHIR Condition", content: cond("cond-hip", "Z96.6", "Hüftprothese links seit 2019", "Nebendiagnose") },
+  "cond-af": { id: "cond-af", label: "Condition/cond-af", kind: "fhir", title: "FHIR Condition", content: cond("cond-af", "I48.9", "Atrial fibrillation", "Main diagnosis") },
+  "cond-htn": { id: "cond-htn", label: "Condition/cond-htn", kind: "fhir", title: "FHIR Condition", content: cond("cond-htn", "I10", "Essential hypertension", "Secondary diagnosis") },
+  "cond-z88": { id: "cond-z88", label: "Condition/cond-z88", kind: "fhir", title: "FHIR Condition", content: cond("cond-z88", "Z88.0", "History of penicillin allergy", "Secondary diagnosis") },
+  "cond-hip": { id: "cond-hip", label: "Condition/cond-hip", kind: "fhir", title: "FHIR Condition", content: cond("cond-hip", "Z96.6", "Left hip prosthesis since 2019", "Secondary diagnosis") },
   "allergy-pen": { id: "allergy-pen", label: "AllergyIntolerance/allergy-pen", kind: "fhir", title: "FHIR AllergyIntolerance", content: fhir({ resourceType: "AllergyIntolerance", id: "allergy-pen", patient: { reference: "Patient/P-00421" }, criticality: "high", code: { coding: [{ system: "http://snomed.info/sct", code: "91936005", display: "Allergy to penicillin" }] }, reaction: [{ manifestation: [{ text: "Hautausschlag" }] }] }) },
   "med-apixaban": { id: "med-apixaban", label: "MedicationStatement/med-apixaban", kind: "fhir", title: "FHIR MedicationStatement", content: medStmt("med-apixaban", "B01AF02", "Apixaban", "5 mg 1-0-1") },
   "med-bisoprolol": { id: "med-bisoprolol", label: "MedicationStatement/med-bisoprolol", kind: "fhir", title: "FHIR MedicationStatement", content: medStmt("med-bisoprolol", "C07AB07", "Bisoprolol", "5 mg 1-0-0") },
@@ -413,11 +413,11 @@ export const LETTER = {
   ] as LetterItem[],
   allergies: [{ id: "al1", text: "Penicillin – skin rash (SNOMED CT 91936005)", source: "allergy-pen" }] as LetterItem[],
   course: [
-    { id: "c1", text: "Admitted with palpitations for two days; ECG showed atrial fibrillation with a heart rate of 138/min.", source: "dek-2010", highlight: "Aufnahme mit Herzrasen seit 2 Tagen; im EKG Vorhofflimmern mit einer Herzfrequenz von 138/min." },
+    { id: "c1", text: "Admitted with palpitations for two days; ECG showed atrial fibrillation with a heart rate of 138/min.", source: "dek-2010", highlight: "Admitted with palpitations for 2 days; ECG shows atrial fibrillation with a heart rate of 138/min." },
     { id: "c2", text: "Bisoprolol started for rate control.", source: "med-bisoprolol" },
-    { id: "c3", text: "Anticoagulation with apixaban started with a CHA₂DS₂-VASc score of 3.", source: "dek-2010", highlight: "Bei einem CHA₂DS₂-VASc-Score von 3 Beginn einer Antikoagulation mit Apixaban." },
-    { id: "c4", text: "On 22 October, heart rate was 78/min and the patient was symptom-free.", source: "dek-2210", highlight: "Am 22.10. Herzfrequenz 78/min, beschwerdefrei." },
-    { id: "c5", text: "Discharged on 24 October in good general condition.", source: "dek-2410", highlight: "Entlassung am 24.10. in gutem Allgemeinzustand." },
+    { id: "c3", text: "Anticoagulation with apixaban started with a CHA₂DS₂-VASc score of 3.", source: "dek-2010", highlight: "With a CHA₂DS₂-VASc score of 3, anticoagulation with apixaban started." },
+    { id: "c4", text: "On 22 October, heart rate was 78/min and the patient was symptom-free.", source: "dek-2210", highlight: "On 22.10. heart rate 78/min, no symptoms." },
+    { id: "c5", text: "Discharged on 24 October in good general condition.", source: "dek-2410", highlight: "Discharged on 24.10. in good general condition." },
   ] as LetterItem[],
   labs: [
     { id: "l1", name: "Hb", loinc: "718-7", value: "13.2", unit: "g/dL", ref: "12.0–16.0", date: "21.10.2026", source: "obx-1", highlight: "OBX|1|" },
@@ -425,7 +425,7 @@ export const LETTER = {
     { id: "l3", name: "Potassium", loinc: "2823-3", value: "4.3", unit: "mmol/L", ref: "3.5–5.1", date: "21.10.2026", source: "obx-3", highlight: "OBX|3|" },
     { id: "l4", name: "TSH", loinc: "3016-3", value: "1.8", unit: "mIU/L", ref: "0.4–4.0", date: "21.10.2026", source: "obx-4", highlight: "OBX|4|" },
     { id: "l5", name: "NT-proBNP", loinc: "33762-6", value: "870", unit: "pg/mL", ref: "<300", flag: "elevated", date: "21.10.2026", source: "obx-5", highlight: "OBX|5|" },
-    { id: "l6", name: "Echo LVEF", loinc: "10230-1", value: "58", unit: "% – no significant valvular disease", ref: "≥50", date: "21.10.2026", source: "echo", highlight: "LVEF 58 %, kein relevantes Vitium." },
+    { id: "l6", name: "Echo LVEF", loinc: "10230-1", value: "58", unit: "% – no significant valvular disease", ref: "≥50", date: "21.10.2026", source: "echo", highlight: "LVEF 58 %, no relevant valve disease." },
   ] as LabRow[],
   meds: [
     { id: "m1", name: "Apixaban", atc: "B01AF02", dose: "5 mg 1-0-1", change: "NEW", source: "med-apixaban" },
@@ -434,10 +434,10 @@ export const LETTER = {
     { id: "m4", name: "Pantoprazol", atc: "A02BC02", dose: "—", change: "STOPPED", note: "no indication", source: "dek-2310" },
   ] as MedRow[],
   recommendations: [
-    { id: "r1", text: "Cardiology follow-up in 4–6 weeks; evaluate rhythm control.", source: "dek-2410", highlight: "Kardiologische Kontrolle in 4–6 Wochen, Evaluierung Rhythmuskontrolle." },
-    { id: "r2", text: "Continue anticoagulation.", source: "dek-2410", highlight: "Fortführung der Antikoagulation." },
+    { id: "r1", text: "Cardiology follow-up in 4–6 weeks; evaluate rhythm control.", source: "dek-2410", highlight: "Cardiology check in 4–6 weeks, assess rhythm control." },
+    { id: "r2", text: "Continue anticoagulation.", source: "dek-2410", highlight: "Continue anticoagulation." },
   ] as LetterItem[],
-  openPoints: [{ id: "o1", text: "No data in the KIS", source: "kis-query", highlight: "Keine Daten im KIS." }] as LetterItem[],
+  openPoints: [{ id: "o1", text: "No data in the KIS", source: "kis-query", highlight: "No data in the KIS." }] as LetterItem[],
 };
 
 export const IPS_VERSION = "Version 3 · generated 24.10.2026 10:32 from KIS data · source: Encounter ENC-7731";
@@ -486,7 +486,7 @@ export const REFERENCE_P00421 = {
     { code: "I48.9", role: "main", display: "Vorhofflimmern" },
     { code: "I10", role: "secondary", display: "Essentielle Hypertonie" },
     { code: "Z88.0", role: "secondary", display: "Penicillin-Allergie in der Anamnese" },
-    { code: "Z96.6", role: "secondary", display: "Hüftprothese links seit 2019" },
+    { code: "Z96.6", role: "secondary", display: "Left hip prosthesis since 2019" },
   ],
   allergies: [{ code: "91936005", system: "SNOMED CT", reaction: "Hautausschlag" }],
   medicationChanges: [
