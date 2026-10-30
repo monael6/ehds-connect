@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { DemoSessionProvider, useDemoSession } from "@/lib/demo-session";
 import { AppStateProvider, useAppState } from "@/lib/app-state";
 
-vi.mock("@/api", () => ({ writeAudit: vi.fn().mockResolvedValue({ source: "Synthetic fallback" }) }));
+vi.mock("@/api", () => ({ writeAudit: vi.fn().mockResolvedValue({ source: "Synthetic fallback" }), startApiSession: vi.fn().mockResolvedValue(undefined), endApiSession: vi.fn() }));
 afterEach(cleanup);
 function Probe() {
   const { user, signIn, signOut } = useDemoSession();

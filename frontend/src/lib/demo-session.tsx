@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type Context as ReactContext, type ReactNode } from "react";
 import { DEMO_ACCOUNTS, type DemoAccount } from "@/mockData";
-import { writeAudit, type AuditEvent } from "@/api";
+import { endApiSession, startApiSession, writeAudit, type AuditEvent } from "@/api";
 
 interface DemoSession {
   user: (DemoAccount & { signedInAt: string }) | null;
@@ -23,8 +23,8 @@ export function DemoSessionProvider({ children }: { children: ReactNode }) {
     void writeAudit(event);
   };
   return <Context.Provider value={{ user, audit,
-    signIn: (id) => { const a = DEMO_ACCOUNTS.find((a) => a.id === id); if (!a) return; setUser({ ...a, signedInAt: new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" }) }); record(a, "Sign in", "Demo account selected", { area: "account" }); },
-    signOut: () => { if (user) record(user, "Sign out", "Demo session ended", { area: "account" }); setUser(null); },
+    signIn: (id) => { const a = DEMO_ACCOUNTS.find((a) => a.id === id); if (!a) return; void startApiSession(a.id); setUser({ ...a, signedInAt: new Date().toLocaleTimeString("de-AT", { hour: "2-digit", minute: "2-digit" }) }); record(a, "Sign in", "Demo account selected", { area: "account" }); },
+    signOut: () => { if (user) record(user, "Sign out", "Demo session ended", { area: "account" }); endApiSession(); setUser(null); },
     log: (what, outcome, target) => { if (user) record(user, what, outcome, target); },
   }}>{children}</Context.Provider>;
 }

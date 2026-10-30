@@ -63,6 +63,8 @@ export interface Patient {
   allergies: { code: string; severity: "high" | "moderate"; reaction?: string }[];
   implants: { code: string }[];
   measurements: { code: string; value: number; unit: string; date: string }[];
+  /** Emergency information as selected by the backend (critical medication and conditions). */
+  emergency?: { type: string; text: string; code?: string }[];
 }
 
 export const PATIENTS: Patient[] = [

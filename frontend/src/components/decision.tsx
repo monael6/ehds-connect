@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ARTICLES, REASONING, OPTED_OUT_EXCLUDED, SPE_R05, type Lang, type Decision } from "@/mockData";
-import { downloadSpe, type Evaluation } from "@/api";
+import { downloadSpe, getSpeAnalysis, type Evaluation, type SpeAnalysis } from "@/api";
 import { formatCount, formatValue } from "@/lib/rules";
 import { useAppState } from "@/lib/app-state";
 import { CodeBlock } from "@/components/shell";
@@ -21,7 +21,7 @@ const STATUS: Record<Decision, string> = {
 export function DecisionView({ ev, staff }: { ev: Evaluation; staff: boolean }) {
   const [lang, setLang] = useState<Lang>("en");
   const r = ev.request;
-  const reasoning = REASONING[ev.decision][lang].replace("{p}", ev.prohibitedPurpose ?? "");
+  const reasoning = ev.explanation?.[lang] ?? REASONING[ev.decision][lang].replace("{p}", ev.prohibitedPurpose ?? "");
   return (
     <div className="space-y-5">
       <div className="rounded-2xl border p-5">
@@ -52,7 +52,7 @@ export function DecisionView({ ev, staff }: { ev: Evaluation; staff: boolean }) 
         </div>
       )}
       {ev.decision === "APPROVE_STATISTICAL" && <StatsTable ev={ev} />}
-      {ev.decision === "APPROVE_SPE" && <SpeCard />}
+      {ev.decision === "APPROVE_SPE" && <SpeCard ev={ev} />}
 
       {staff && (
         <div className="space-y-2">
@@ -93,7 +93,7 @@ function StatsTable({ ev }: { ev: Evaluation }) {
   return (
     <div className="rounded-2xl border p-5">
       <h3 className="font-semibold">Results</h3>
-      {r.results ? (
+      {ev.table ? <LiveTable table={ev.table} /> : r.results ? (
         <div className="mt-3 overflow-x-auto"><table className="w-full text-sm">
           <thead><tr className="border-b text-left text-xs text-muted-foreground"><th className="py-2 font-medium">Group</th><th className="font-medium">Patients</th>{m && <th className="font-medium">{m.label}{m.unit ? ` (${m.unit})` : ""}</th>}</tr></thead>
           <tbody>{r.results.map((row) => {
@@ -106,37 +106,43 @@ function StatsTable({ ev }: { ev: Evaluation }) {
               </tr>
             );
           })}</tbody></table></div>
-      ) : <p className="mt-2 text-sm text-muted-foreground">Results will be computed by the backend for this new request.</p>}
+      ) : <p className="mt-2 text-sm text-muted-foreground">{ev.explanation ? "The backend could not derive figures from this request. Add definitions (codes and groups) to the request." : "Results will be computed by the backend for this new request."}</p>}
       <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t pt-4 text-sm text-muted-foreground">
-        <span>Opted-out patients excluded: <strong className="text-foreground">{OPTED_OUT_EXCLUDED.toLocaleString("en-US")}</strong></span>
+        <span>Opted-out patients excluded: <strong className="text-foreground">{(ev.optedOutExcluded ?? OPTED_OUT_EXCLUDED).toLocaleString("en-US")}</strong></span>
         <span className="flex items-center gap-1.5 text-warning"><UserX className="h-4 w-4" />Frau M. is not included (opted out of research)</span>
       </div>
     </div>
   );
 }
 
-function SpeCard() {
+function SpeCard({ ev }: { ev: Evaluation }) {
   const { addAccess } = useAppState();
   const [blocked, setBlocked] = useState<string | null>(null);
   const [nb, setNb] = useState(false);
+  const [analysis, setAnalysis] = useState<SpeAnalysis | null | undefined>(undefined);
+  const spe = ev.spe ? { ...SPE_R05, ...ev.spe, idsKept: ev.spe.idsKept ? "Kept (pseudonymised)" : "Removed", created: "Just now, by the backend" } : SPE_R05;
+  // The backend addresses the environment by the request it was created for.
+  const apiId = ev.spe ? ev.request.id : spe.id;
+  const openWorkspace = async () => { setNb((v) => !v); if (ev.spe && !analysis) setAnalysis((await getSpeAnalysis(apiId)).data); };
   return (
     <div className="rounded-2xl border-2 border-primary/30 p-5">
-      <div className="flex items-center gap-2 font-semibold"><Lock className="h-5 w-5 text-primary" />Secure Processing Environment {SPE_R05.id}</div>
+      <div className="flex items-center gap-2 font-semibold"><Lock className="h-5 w-5 text-primary" />Secure Processing Environment {spe.id}</div>
       <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
-        <div><dt className="text-muted-foreground">Patients</dt><dd className="font-mono text-lg">{SPE_R05.patients.toLocaleString("en-US")}</dd></div>
-        <div><dt className="text-muted-foreground">Created</dt><dd>{SPE_R05.created}</dd></div>
-        <div><dt className="text-muted-foreground">Record types</dt><dd className="flex flex-wrap gap-1">{SPE_R05.recordTypes.map((t) => <Badge key={t} variant="outline">{t}</Badge>)}</dd></div>
-        <div><dt className="text-muted-foreground">Patient IDs</dt><dd>{SPE_R05.idsKept}</dd></div>
+        <div><dt className="text-muted-foreground">Patients</dt><dd className="font-mono text-lg">{spe.patients.toLocaleString("en-US")}</dd></div>
+        <div><dt className="text-muted-foreground">Created</dt><dd>{spe.created}</dd></div>
+        <div><dt className="text-muted-foreground">Record types</dt><dd className="flex flex-wrap gap-1">{spe.recordTypes.map((t) => <Badge key={t} variant="outline">{t}</Badge>)}</dd></div>
+        <div><dt className="text-muted-foreground">Patient IDs</dt><dd>{spe.idsKept}</dd></div>
       </dl>
       <div className="mt-5 flex flex-wrap gap-2">
         <Button variant="outline" onClick={async () => {
-          const res = await downloadSpe(SPE_R05.id);
-          addAccess({ who: "TU Wien – AI in Medicine Lab", org: SPE_R05.id, sections: ["Download attempt"], kind: "blocked-download" });
+          const res = await downloadSpe(apiId);
+          addAccess({ who: ev.spe ? ev.request.applicant : "TU Wien – AI in Medicine Lab", org: spe.id, sections: ["Download attempt"], kind: "blocked-download" });
           setBlocked(res.message);
         }}><Download className="h-4 w-4" />Download data</Button>
-        <Button onClick={() => setNb((v) => !v)}><NotebookPen className="h-4 w-4" />Open analysis workspace</Button>
+        <Button onClick={() => void openWorkspace()}><NotebookPen className="h-4 w-4" />Open analysis workspace</Button>
       </div>
-      {nb && (
+      {nb && ev.spe && <LiveWorkspace analysis={analysis} />}
+      {nb && !ev.spe && (
         <div className="mt-5 space-y-3 rounded-xl border bg-muted/40 p-4 font-mono text-xs">
           <div className="text-muted-foreground">In [1]: cohort.groupby("anticoagulant").stroke_1y.mean()</div>
           <pre className="rounded bg-background p-3">anticoagulant   stroke_1y_rate   n{"\n"}apixaban        0.021            1,184{"\n"}other DOAC      0.024            612{"\n"}none            0.058            521</pre>
@@ -151,6 +157,33 @@ function SpeCard() {
           <DialogFooter><Button onClick={() => { setBlocked(null); toast("Attempt recorded in audit log"); }}>Understood</Button></DialogFooter>
         </DialogContent>
       </Dialog>
+    </div>
+  );
+}
+
+/** Figures computed by the backend; they arrive already protected by the small-cell rule. */
+function LiveTable({ table }: { table: NonNullable<Evaluation["table"]> }) {
+  return (
+    <div className="mt-3 overflow-x-auto"><table className="w-full text-sm">
+      <thead><tr className="border-b text-left text-xs text-muted-foreground"><th className="py-2 font-medium">Group</th>{table.columns.map((c) => <th key={c.key} className="font-medium">{c.label}</th>)}</tr></thead>
+      <tbody>{table.rows.map((row) => (
+        <tr key={row.group} className="border-b last:border-0"><td className="py-2.5">{row.group}</td>
+          {row.cells.map((v, i) => <td key={table.columns[i]?.key ?? i} className="font-mono">{v === "suppressed" ? (
+            <Tooltip><TooltipTrigger asChild><span tabIndex={0} className="cursor-help italic text-muted-foreground">suppressed</span></TooltipTrigger>
+              <TooltipContent className="max-w-xs">Small-cell rule: values based on fewer than 10 patients are hidden so no individual can be identified.</TooltipContent></Tooltip>
+          ) : v === null ? "–" : typeof v === "number" ? v.toLocaleString("en-US") : v}</td>)}
+        </tr>
+      ))}</tbody></table></div>
+  );
+}
+
+/** Aggregate output from GET /api/spe/:id/analysis; row-level export stays disabled. */
+function LiveWorkspace({ analysis }: { analysis: SpeAnalysis | null | undefined }) {
+  return (
+    <div className="mt-5 space-y-3 rounded-xl border bg-muted/40 p-4 font-mono text-xs">
+      <div className="text-muted-foreground">In [1]: cohort.size(); observations.groupby("code").agg(patients, mean)</div>
+      <pre className="rounded bg-background p-3">{analysis ? [`cohort_size     ${analysis.cohort_size}`, ...(analysis.observations ?? []).map((o) => `${o.code.padEnd(15)} patients ${String(o.patients).padEnd(7)} mean ${o.mean ?? "suppressed"}`)].join("\n") : analysis === null ? "Analysis service unavailable." : "Running inside the secure processing environment…"}</pre>
+      <div className="text-muted-foreground">{analysis?.note ?? "Only aggregate output leaves the environment."}</div>
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
-import { generateDischargeDraft, type LetterDocument } from "@/api";
+import { API_BASE, generateDischargeDraft, type LetterDocument } from "@/api";
 import { ELGA_SECTIONS } from "@/mockData";
 import { canSignLetter } from "@/lib/letter-rules";
 
 const fixture = (sections = ELGA_SECTIONS): LetterDocument => ({ id: "p-4cfd3cf1", patient: "p-4cfd3cf1", sections, texts: {}, edit_history: [], version: 1, status: "DRAFT" });
 afterEach(() => vi.unstubAllGlobals());
 describe("Synthetic KIS draft creation", () => {
-  it("Creates a version from KIS statements without sending patient data to a service", async () => {
-    const fetch = vi.fn(); vi.stubGlobal("fetch", fetch);
+  it("Asks only the hospital backend for the KIS draft and otherwise assembles it locally", async () => {
+    const fetch = vi.fn().mockRejectedValue(new TypeError("Network failure")); vi.stubGlobal("fetch", fetch);
     const result = await generateDischargeDraft(fixture());
-    expect(fetch).not.toHaveBeenCalled();
+    expect(fetch.mock.calls.map(([url]) => String(url))).toEqual([`${API_BASE}/api/discharge-letters`]);
     expect(result.source).toBe("Synthetic fallback");
     expect(result.data.version).toBe(2);
     expect(result.data.texts["diagnosen"]).toBe(ELGA_SECTIONS.find((s) => s.key === "diagnosen")?.items.map((i) => i.text).join("\n"));

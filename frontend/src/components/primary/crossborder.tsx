@@ -68,7 +68,7 @@ function Portal({ next }: { next: () => void }) {
           </div>
         ) : (
           <>
-            <p className="text-sm">Signed in as <span className="font-semibold">Maria Muster</span> · born 12.03.1958</p>
+            <p className="text-sm">Signed in as <span className="font-semibold">Maria Muster</span> · born 17.03.1943</p>
             <label className="flex items-start justify-between gap-4 rounded-xl border p-4">
               <span><span className="font-medium">Allow doctors in other EU countries to access my Patient Summary (MyHealth@EU)</span><span className="mt-1 block text-xs text-muted-foreground">You can withdraw this at any time. Separate from your research opt-out.</span></span>
               <Switch checked={consent.crossBorder} onCheckedChange={(v) => setConsent((c) => ({ ...c, crossBorder: v, saved: false }))} />
@@ -99,7 +99,7 @@ function ItalyHospital({ next }: { next: () => void }) {
   const [docType, setDocType] = useState("passport");
   const [docNumber, setDocNumber] = useState("");
   const [name, setName] = useState("Maria Muster");
-  const [born, setBorn] = useState("1958-03-12");
+  const [born, setBorn] = useState("1943-03-17");
   const [checked, setChecked] = useState(false);
   const [informed, setInformed] = useState(false);
   const [btg, setBtg] = useState(false);
