@@ -1,0 +1,228 @@
+
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<title>EHDS Connect – Team Briefing</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.6; color: #1f2328; background: #fff; }
+  .page { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+
+  /* Header */
+  .header { background: #1a3c5e; color: #fff; padding: 1.5rem 2rem; border-radius: 6px; margin-bottom: 2rem; }
+  .header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: 0.02em; }
+  .header p { font-size: 0.875rem; margin-top: 0.4rem; opacity: 0.85; }
+  .warn-badge { display: inline-block; background: #f39c12; color: #000; font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 3px; margin-top: 0.6rem; }
+
+  /* Sections */
+  h2 { font-size: 1rem; font-weight: 700; color: #1a3c5e; margin: 2rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 2px solid #e5e7eb; }
+  h3 { font-size: 0.9rem; font-weight: 700; color: #2c5282; margin: 1.2rem 0 0.4rem; }
+  p { margin-bottom: 0.6rem; font-size: 0.875rem; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 0.75rem 0 1rem; }
+  th { background: #f0f4f8; color: #1a3c5e; font-weight: 700; text-align: left; padding: 0.45rem 0.65rem; border: 1px solid #dde3ea; }
+  td { padding: 0.4rem 0.65rem; border: 1px solid #e5e7eb; vertical-align: top; }
+  tr:nth-child(even) td { background: #f9fafb; }
+
+  /* Code */
+  code { font-family: "Consolas", "Courier New", monospace; font-size: 0.82rem; background: #f0f4f8; padding: 0.1rem 0.35rem; border-radius: 3px; color: #1a3c5e; }
+  pre { background: #1e2a3a; color: #d4e4f7; padding: 0.9rem 1rem; border-radius: 5px; font-size: 0.8rem; font-family: "Consolas", monospace; overflow-x: auto; margin: 0.5rem 0 1rem; line-height: 1.5; }
+  pre .comment { color: #6a9fca; }
+  pre .cmd { color: #7ec8a4; }
+
+  /* Callouts */
+  .callout { border-left: 4px solid #3b82d4; background: #eff6ff; padding: 0.6rem 0.9rem; border-radius: 0 4px 4px 0; margin: 0.75rem 0; font-size: 0.85rem; }
+  .callout.warn { border-color: #f39c12; background: #fffde7; }
+  .callout.red { border-color: #e74c3c; background: #fdecea; }
+  .callout strong { color: #1a3c5e; }
+  .callout.warn strong { color: #7d5800; }
+  .callout.red strong { color: #a93226; }
+
+  /* Pipeline steps */
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 0.6rem 0 1rem; }
+  .step { border: 1px solid #dde3ea; border-radius: 4px; padding: 0.5rem 0.7rem; font-size: 0.8rem; }
+  .step-num { display: inline-block; background: #1a3c5e; color: #fff; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 0.7rem; font-weight: 700; margin-right: 0.4rem; flex-shrink: 0; }
+  .step-title { font-weight: 700; color: #1a3c5e; }
+  .step-desc { color: #57606a; font-size: 0.78rem; margin-top: 0.1rem; }
+
+  /* Security items */
+  .sec-item { display: flex; gap: 0.5rem; align-items: flex-start; padding: 0.35rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.85rem; }
+  .sec-item:last-child { border-bottom: none; }
+  .sec-dot { width: 8px; height: 8px; border-radius: 50%; background: #27ae60; flex-shrink: 0; margin-top: 6px; }
+  .sec-dot.amber { background: #f39c12; }
+  .sec-dot.red { background: #e74c3c; }
+
+  /* Credentials */
+  .cred { display: inline-block; background: #1e2a3a; color: #7ec8a4; font-family: monospace; font-size: 0.82rem; padding: 0.15rem 0.5rem; border-radius: 3px; }
+
+  /* Footer */
+  .footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; text-align: center; font-size: 0.75rem; color: #57606a; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  
+  <div class="header">
+    <h1>EHDS Connect — KI-gestützte IPS &amp; Entlassungsbrief</h1>
+    <p>Team Briefing · Branch: <code style="background:rgba(255,255,255,0.15);color:#fff">patientSummary</code> · Repo: github.com/monael6/ehds-connect</p>
+    <span class="warn-badge">⚠ Hackathon-Demonstrator · Kein Produktionseinsatz</span>
+  </div>
+
+  
+  <h2>Was wurde gebaut</h2>
+  <p>Ein End-to-End-System das alle Krankenhausdokumente eines Patienten liest und daraus automatisch erzeugt:</p>
+  <table>
+    <tr><th>Output</th><th>Format</th><th>Status</th></tr>
+    <tr><td><strong>International Patient Summary (IPS)</strong></td><td>HL7 FHIR R4 Bundle, IPS IG 2.0.0</td><td>Immer <code>preliminary</code> bis Arzt freigibt</td></tr>
+    <tr><td><strong>Entlassungsbrief-Entwurf</strong></td><td>Markdown, Deutsch, mit Quellenreferenzen</td><td>Jeder Satz zitiert Dokument-IDs</td></tr>
+    <tr><td><strong>Evaluierungsbericht</strong></td><td>JSON (Precision/Recall)</td><td>Nur im <code>synthetic</code>-Modus</td></tr>
+  </table>
+
+  
+  <h2>Architektur</h2>
+
+  <h3>Pipeline (CLI · <code>run.py</code>)</h3>
+  <div class="steps">
+    <div class="step"><span class="step-num">1</span><span class="step-title">Datenschutz-Gate</span><div class="step-desc">Prüft Modus + DSGVO-Checkliste. Bricht ab wenn Voraussetzungen fehlen.</div></div>
+    <div class="step"><span class="step-num">2</span><span class="step-title">Pseudonymisierung</span><div class="step-desc">Ersetzt Namen/DOB/SVNr/Einrichtung durch Tokens. Mapping nur im RAM.</div></div>
+    <div class="step"><span class="step-num">3</span><span class="step-title">LLM-Extraktion</span><div class="step-desc">Sendet nur pseudonymisierten Text. Striktes JSON-Schema, Retry-Logik.</div></div>
+    <div class="step"><span class="step-num">4</span><span class="step-title">Zitat-Verifikation</span><div class="step-desc">Deterministischer Substring-Check jedes Zitats gegen Quelldokument.</div></div>
+    <div class="step"><span class="step-num">5</span><span class="step-title">Terminologie-Validierung</span><div class="step-desc">ICD-10 / ATC / SNOMED lokale Lookup-Tabellen. Unbekannte Codes → text-only.</div></div>
+    <div class="step"><span class="step-num">6</span><span class="step-title">FHIR-Mapping</span><div class="step-desc">Deterministisch. Kein LLM-FHIR-Schreiben. Re-Identifikation hier.</div></div>
+    <div class="step"><span class="step-num">7</span><span class="step-title">FHIR-Validierung</span><div class="step-desc">HL7 validator_cli.jar gegen IPS IG 2.0.0 + optional AT-APS IG.</div></div>
+    <div class="step"><span class="step-num">8</span><span class="step-title">Evaluierung</span><div class="step-desc">Nur synthetic: Vergleich mit ground_truth_ips.json. Ground Truth nie ans LLM.</div></div>
+    <div class="step"><span class="step-num">9</span><span class="step-title">Entlassungsbrief</span><div class="step-desc">Deutsch, österreichischer Stil, jeder Satz mit [P00X-D00Y] Quellen.</div></div>
+  </div>
+
+  <h3>Web-Stack (Docker Compose)</h3>
+  <table>
+    <tr><th>Service</th><th>Image</th><th>Port (Host)</th><th>Netzwerk</th></tr>
+    <tr><td><strong>React Frontend</strong></td><td>nginx + Vite build</td><td><code>5173</code></td><td>frontend</td></tr>
+    <tr><td><strong>FastAPI Backend</strong></td><td>python:3.12</td><td>intern</td><td>internal + frontend</td></tr>
+    <tr><td><strong>HAPI FHIR R4</strong></td><td>hapiproject/hapi:v7.2.0</td><td><strong>kein Host-Port</strong></td><td>internal only</td></tr>
+    <tr><td><strong>Keycloak 24</strong></td><td>quay.io/keycloak/keycloak:24.0</td><td><strong>kein Host-Port</strong></td><td>internal + frontend</td></tr>
+    <tr><td><strong>PostgreSQL 16</strong></td><td>postgres:16-alpine</td><td><strong>kein Host-Port</strong></td><td>internal only</td></tr>
+    <tr><td><strong>Seed-Job</strong></td><td>python (einmalig)</td><td>–</td><td>internal</td></tr>
+  </table>
+  <div class="callout">
+    <strong>Netzwerk-Isolation:</strong> HAPI FHIR, Postgres und Keycloak sind auf einem internen Docker-Bridge-Netz ohne Host-Port-Binding. Sie sind vom Host und Internet nicht direkt erreichbar. Nur das Backend kommuniziert mit diesen Services.
+  </div>
+
+  
+  <h2>Datenschutz &amp; Sicherheit</h2>
+
+  <h3>Implementierte Maßnahmen</h3>
+  <div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>Pseudonymisierung vor jedem LLM-Aufruf</strong> — Namen, Geburtsdatum, Versicherungsnummer, Einrichtungsname werden durch Tokens ersetzt. Mapping-Tabelle lebt nur im RAM.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>LLM schreibt nie FHIR</strong> — Das LLM gibt nur ein intermediäres JSON-Schema zurück. FHIR-Mapping ist deterministischer Code.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>Practitioner-ID nur aus OIDC-Token</strong> — Nie aus Request Body. <code>AuthenticatedPractitioner</code> ist nach Konstruktion unveränderlich (<code>__slots__ + __setattr__</code>).</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>Composition immer <code>preliminary</code></strong> — Wird erst auf <code>final</code> gesetzt wenn Arzt aktiv Checkbox ankreuzt und keine roten Items oder Validator-Fehler bestehen.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>KI ist <code>assembler</code>, nicht <code>author</code></strong> — In FHIR Provenance und Composition. Author wird erst bei Freigabe durch den Arzt gesetzt.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>AuditEvent für jede Lese-/Schreiboperation</strong> — Kein klinischer Inhalt in Audit-Logs. Nur Timestamp, Pseudonym-Token, Modus, Modellname, Erfolgsstatus.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>AES-256-GCM Verschlüsselung</strong> — Alle Outputs im <code>pseudonymized</code>/<code>real</code> Modus werden verschlüsselt geschrieben.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>DSGVO-Gate</strong> — Modi <code>pseudonymized</code>/<code>real</code> erfordern <code>deployment.yaml</code> mit vollständiger DSGVO-Checkliste (Art. 9, Art. 28, Art. 35 DPIA). Fehlendes oder unvollständiges File → Abbruch.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>Keine Secrets im Repo</strong> — <code>.env</code>, <code>deployment.yaml</code>, <code>output/</code>, <code>frontend/.env.local</code> in <code>.gitignore</code>.</div></div>
+    <div class="sec-item"><div class="sec-dot"></div><div><strong>KI-Disclaimer in jedem Output</strong> — Jede Composition und jeder Entlassungsbrief enthält: <em>"KI-generierter Entwurf, ärztliche Prüfung erforderlich"</em>.</div></div>
+  </div>
+
+  <div class="callout warn" style="margin-top:1rem">
+    <strong>Für echten klinischen Einsatz zusätzlich erforderlich:</strong> DPIA nach Art. 35 DSGVO · AVV mit LLM-Anbieter (Art. 28) · MFA für klinisches Personal · TLS 1.3 überall · Penetrationstest · ISO 27001 / IEC 27799 · MDR/EU AI Act Konformitätsbewertung
+  </div>
+
+  
+  <h2>Synthetisches Testdataset (6 Patienten, 103 Dokumente)</h2>
+  <table>
+    <tr><th>ID</th><th>Profil</th><th>Aufenthalt</th><th>Docs</th><th>Traps</th></tr>
+    <tr><td><code>P001</code></td><td>72-jährige Frau · Hüft-TEP, Pneumonie, VHF, Hypertonie</td><td>87 Tage</td><td>28</td><td>8</td></tr>
+    <tr><td><code>P002</code></td><td>54-jähriger Mann · T2DM, NSTEMI, Koronarstent, Raucher</td><td>4 Tage</td><td>15</td><td>8</td></tr>
+    <tr><td><code>P003</code></td><td>31-jährige Frau · Asthma, Penicillin-Allergie, Appendektomie</td><td>3 Tage</td><td>14</td><td>8</td></tr>
+    <tr><td><code>P004</code></td><td>83-jähriger Mann · Demenz, Herzinsuff., CKD 3b, Schrittmacher</td><td>11 Tage</td><td>16</td><td>9</td></tr>
+    <tr><td><code>P005</code></td><td>58-jährige Frau · Mammakarzinom, Port, Chemo, Levothyroxin</td><td>~10 Wochen</td><td>17</td><td>9</td></tr>
+    <tr><td><code>P006</code></td><td>24-jähriger Mann · Epilepsie, Kopftrauma, Latex-Allergie</td><td>3 Tage</td><td>13</td><td>9</td></tr>
+  </table>
+  <p style="font-size:0.82rem;color:#57606a">Jeder Patient enthält 4–9 eingebaute <strong>Traps</strong> (versteckte Allergien, ausgeschlossene Diagnosen, widersprüchliche Dokumente, Familien­anamnese-Leaks, abgekürzte Medikamentennamen etc.) um die KI-Extraktion gezielt zu testen. Vollständige Beschreibung in <code>patients/P00X/traps.md</code>.</p>
+
+  
+  <h2>Quick Start</h2>
+
+  <h3>Option A — Nur Tests (kein LLM, kein Docker)</h3>
+  <pre><code>pip install -r requirements.txt
+pytest tests/ -v
+<span class="comment"># → 47/47 passed</span></code></pre>
+
+  <h3>Option B — CLI Pipeline (braucht LLM-Key)</h3>
+  <pre><span class="comment"># 1. .env anlegen</span>
+cp .env.example .env
+<span class="comment"># LLM_PROVIDER=openai + OPENAI_API_KEY=sk-... eintragen</span>
+
+<span class="comment"># 2. Pipeline starten (synthetic = kein DSGVO-Aufwand)</span>
+<span class="cmd">python run.py --patient P001 --mode synthetic</span>
+
+<span class="comment"># Outputs in output/P001/
+#   ips_bundle.json          ← FHIR R4 Bundle
+#   discharge_summary_draft.md
+#   evaluation_report.json   ← Precision/Recall vs Ground Truth
+#   audit_log.jsonl</span></pre>
+
+  <h3>Option C — Vollständiger Docker-Stack</h3>
+  <pre><span class="comment"># Aus dem Repo-Root:</span>
+<span class="cmd">docker compose up -d</span>
+<span class="comment"># ~2 Min warten bis HAPI FHIR + Keycloak hochgefahren sind</span>
+docker compose ps
+
+<span class="comment"># Frontend:</span>
+<span class="cmd">http://localhost:5173</span></pre>
+
+  <h3>Option D — Nur Frontend entwickeln (kein Docker)</h3>
+  <pre><span class="comment"># frontend/.env.local enthält bereits VITE_DEV_SKIP_AUTH=false
+# Zum lokalen Testen ohne Docker auf true setzen:</span>
+<span class="comment"># VITE_DEV_SKIP_AUTH=true in frontend/.env.local</span>
+cd frontend
+<span class="cmd">npm install &amp;&amp; npm run dev</span></pre>
+
+  
+  <h2>Demo-Zugangsdaten (Keycloak)</h2>
+  <table>
+    <tr><th>Username</th><th>Passwort</th><th>Zugewiesene Patienten</th><th>FHIR-ID</th></tr>
+    <tr><td><span class="cred">dr.mueller</span></td><td><span class="cred">demo1234</span></td><td>P001, P002, P005</td><td><code>practitioner-mueller</code></td></tr>
+    <tr><td><span class="cred">dr.wagner</span></td><td><span class="cred">demo1234</span></td><td>P003, P005, P006</td><td><code>practitioner-wagner</code></td></tr>
+    <tr><td><span class="cred">dr.bauer</span></td><td><span class="cred">demo1234</span></td><td>P001, P004</td><td><code>practitioner-bauer</code></td></tr>
+    <tr><td><span class="cred">admin</span></td><td><span class="cred">admin</span></td><td>Keycloak Admin Console</td><td>–</td></tr>
+  </table>
+
+  
+  <h2>Wichtige Dateien im Repo</h2>
+  <table>
+    <tr><th>Pfad</th><th>Was ist das</th></tr>
+    <tr><td><code>run.py</code></td><td>CLI-Einstiegspunkt, orchestriert alle 9 Schritte</td></tr>
+    <tr><td><code>pipeline/</code></td><td>9 Pipeline-Module (gate, pseudonymize, extract, …)</td></tr>
+    <tr><td><code>backend/</code></td><td>FastAPI-App, Auth, FHIR-Client, Routers</td></tr>
+    <tr><td><code>frontend/src/</code></td><td>React/TypeScript SPA (Keycloak, ReviewScreen, …)</td></tr>
+    <tr><td><code>patients/P001–P006/</code></td><td>Synthetische Testdaten inkl. Ground Truth &amp; Traps</td></tr>
+    <tr><td><code>docker-compose.yml</code></td><td>Gesamter Stack (Root des Repos)</td></tr>
+    <tr><td><code>infra/keycloak/realm-hackathon.json</code></td><td>Keycloak Realm mit 3 Demo-Ärzten</td></tr>
+    <tr><td><code>deployment.yaml.example</code></td><td>DSGVO-Checkliste Template (für non-synthetic Modus)</td></tr>
+    <tr><td><code>docs/DATA_PROTECTION.md</code></td><td>DSGVO-Erläuterungen &amp; Produktionsanforderungen</td></tr>
+    <tr><td><code>docs/SECURITY.md</code></td><td>Sicherheitsmaßnahmen &amp; Gap-Analyse</td></tr>
+    <tr><td><code>tests/</code></td><td>47 Tests (pytest) — alle grün</td></tr>
+  </table>
+
+  
+  <h2>LLM-Provider konfigurieren (<code>.env</code>)</h2>
+  <table>
+    <tr><th>Provider</th><th>Nötige Variablen</th></tr>
+    <tr><td>OpenAI (default)</td><td><code>LLM_PROVIDER=openai</code> · <code>OPENAI_API_KEY=sk-...</code></td></tr>
+    <tr><td>Azure OpenAI</td><td><code>LLM_PROVIDER=azure_openai</code> · <code>AZURE_OPENAI_ENDPOINT</code> · <code>AZURE_OPENAI_API_KEY</code> · <code>AZURE_OPENAI_DEPLOYMENT</code></td></tr>
+    <tr><td>Lokal (Ollama)</td><td><code>LLM_PROVIDER=local_ollama</code> · <code>OLLAMA_BASE_URL=http://localhost:11434</code> · <code>OLLAMA_MODEL=llama3</code></td></tr>
+  </table>
+
+  <div class="callout red" style="margin-top:1.5rem">
+    <strong>Wichtige Einschränkung:</strong> Die <code>.env</code>-Datei wird nur von <code>run.py</code> (CLI) automatisch geladen. Im Docker-Stack werden die Variablen von Docker Compose direkt injiziert — dort ist keine <code>.env</code> im Container.
+  </div>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>

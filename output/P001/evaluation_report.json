@@ -1,0 +1,90 @@
+{
+  "patient_id": "P001",
+  "sections": [
+    {
+      "section": "problems_active",
+      "true_positives": 1,
+      "false_positives": 2,
+      "false_negatives": 2,
+      "precision": 0.333,
+      "recall": 0.333,
+      "f1": 0.333
+    },
+    {
+      "section": "past_history",
+      "true_positives": 0,
+      "false_positives": 1,
+      "false_negatives": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "section": "allergies_intolerances",
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "section": "medication_at_discharge",
+      "true_positives": 4,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "section": "medication_stopped",
+      "true_positives": 0,
+      "false_positives": 1,
+      "false_negatives": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "section": "procedures",
+      "true_positives": 0,
+      "false_positives": 2,
+      "false_negatives": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "section": "medical_devices",
+      "true_positives": 0,
+      "false_positives": 1,
+      "false_negatives": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "section": "immunizations",
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "section": "key_results",
+      "true_positives": 0,
+      "false_positives": 1,
+      "false_negatives": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "must_not_include_leaks": [],
+  "overall_precision": 0.429,
+  "overall_recall": 0.222,
+  "overall_f1": 0.293
+}

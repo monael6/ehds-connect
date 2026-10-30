@@ -1,0 +1,13 @@
+{"timestamp": "2026-10-30T06:29:04.516651+00:00", "event": "pipeline_start", "patient_token": "PT-6f3ec4", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:29:07.158482+00:00", "event": "pipeline_start", "patient_token": "PT-22c231", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:30:27.047409+00:00", "event": "pipeline_start", "patient_token": "PT-1fd16e", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:31:00.729210+00:00", "event": "pipeline_start", "patient_token": "PT-b4aacd", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:31:03.179262+00:00", "event": "pipeline_start", "patient_token": "PT-f2c9bc", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:32:57.446762+00:00", "event": "pipeline_start", "patient_token": "PT-26c144", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:33:54.669365+00:00", "event": "pipeline_start", "patient_token": "PT-bd256c", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:39.909795+00:00", "event": "pipeline_start", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:51.795432+00:00", "event": "extraction_complete", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "gpt-4o", "success": true, "detail": "items=14", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:51.801007+00:00", "event": "quote_verification", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "gpt-4o", "success": true, "detail": "failed=2", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:51.817234+00:00", "event": "fhir_mapping_complete", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "gpt-4o", "success": true, "detail": "", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:51.817234+00:00", "event": "validation_complete", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "", "success": true, "detail": "status=skipped", "runner": "run.py"}
+{"timestamp": "2026-10-30T06:41:57.433391+00:00", "event": "pipeline_complete", "patient_token": "PT-f0cd1a", "mode": "synthetic", "model": "gpt-4o", "success": true, "detail": "elapsed_s=17.5", "runner": "run.py"}

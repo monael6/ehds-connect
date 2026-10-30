@@ -1,0 +1,178 @@
+[
+  {
+    "id": "P004-D001",
+    "patient_id": "P004",
+    "datum": "2019-03-18T11:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Klinikum Linz-Nord",
+    "titel": "Entlassungsbrief Schrittmacherimplantation",
+    "text": "Sehr geehrte Damen und Herren!\nWir dürfen Ihnen über den Aufenthalt von Hrn. Rudolf Hofer, geb. 30.08.1941, vom 15.03.2019 bis 18.03.2019 berichten.\n\nAufnahmegrund: Höhergradiger AV-Block II° Typ Mobitz, symptomatische Bradykardie (HF 34/min), Synkope.\nVorerkrankungen: Chronische Herzinsuffizienz (HFrEF, EF ca. 38% 2018), ischämische Kardiomyopathie (St.p. Hinterwandinfarkt 2003), art. Hypertonie, CKD Stadium 3 (Krea ca. 1,8 mg/dl), Demenz (leichtgradig, MMSE 22/30, 2018).\n\nImplantat: Implantation eines Zweikammer-Herzschrittmachers (DDD), Medtronic Advisa DR MRI SureScan, Aggregat subklavikulär links, Sonde RA + RV. Röntgen post-OP: korrekte Lage beider Sonden.\n\nAllergien: laut Patientenangabe und Tochter: keine bekannten Allergien.\nMedikation bei Entlassung (2019): Ramipril 5mg 1-0-0, Bisoprolol 5mg 1-0-0, Furosemid 40mg 1-0-0, Spironolacton 25mg 1-0-0, ASS 100mg 1-0-0, Atorvastatin 40mg 0-0-1, Pantoprazol 40mg 1-0-0.\n\nEmpfehlung: Schrittmacherkontrolle alle 6–12 Monate. Herzinsuffizienz-Therapie fortführen.\nmfG, OA Dr. Gerhard Moser, Kardiologie Klinikum Linz-Nord"
+  },
+  {
+    "id": "P004-D002",
+    "patient_id": "P004",
+    "datum": "2023-10-05T09:30",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Gedächtnisambulanz Landesklinikum Musterstadt",
+    "titel": "Demenz-Kontrolle: Alzheimer-Demenz mäßiggradig",
+    "text": "Pat. Rudolf Hofer, *30.08.1941, m. Kontrolle im Rahmen der Gedächtnisambulanz.\nBegleitung durch Tochter Ingrid Hofer.\n\nKognition: MMSE 16/30 (Verschlechterung gegenüber 2021: 19/30). Uhrentest: schwer gestört. Deutliche Orientierungsstörung zu Zeit und Ort. Selbstversorgung: zunehmend auf Hilfe angewiesen.\nDiagnose: Alzheimer-Demenz (G30.1), mäßiggradig (ICD F00.1). Rivastigmin-Pflaster 9,5mg/24h wird bereits gut vertragen.\n\nVorerkrankungen: Chronische Herzinsuffizienz, CKD 3b, art. Hypertonie, St.p. SM-Implantation 2019.\nFamilienanamnese: Tochter mit genetisch gesicherter dilatativer Kardiomyopathie (DCM, LMNA-Mutation) – kein Zusammenhang mit der Erkrankung des Patienten.\n\nMedikation (laut Tochter, 10/2023): Ramipril 5mg, Bisoprolol 5mg, Furosemid 40mg, Spironolacton 25mg, ASS 100mg, Atorvastatin 40mg, Pantoprazol 40mg, Rivastigmin-Pflaster 9,5mg/24h, Donepezil 5mg 0-0-1 (seit 09/2022).\nAllergien: keine bekannt."
+  },
+  {
+    "id": "P004-D003",
+    "patient_id": "P004",
+    "datum": "2024-11-04T10:15",
+    "typ": "Zuweisung",
+    "fachrichtung": "Allgemeinmedizin",
+    "autor_rolle": "Hausarzt",
+    "einrichtung": "Ordination Dr. Andreas Weiss, Wels",
+    "titel": "Einweisung bei dekompensierter Herzinsuffizienz",
+    "text": "Einweisung!\nPat.: Hofer Rudolf, *30.08.1941\nZuweisungsdiagnose: Dekompensierte Herzinsuffizienz\n\nAnamnese (lt. Tochter): Pat. seit ca. 5 Tagen zunehmend dyspnoisch, Beinödeme beidseitig, Gewichtszunahme +4kg in 1 Woche. Orthopnoe seit gestern. Appetitlosigkeit.\nPat. wohnt mit Tochter, ist zunehmend dement (MMSE ca. 16), kann Anamnese nicht selbst geben.\n\nVorerkrankungen: Chron. Herzinsuffizienz (HFrEF), CKD 3b, Demenz (Alzheimer), art. Hypertonie, St.p. Schrittmacher-Impl. 2019, St.p. Hinterwandinfarkt 2003.\nMedikation (Heimmedikation lt. Tochter):\n1. Ramipril 5mg 1-0-0\n2. Bisoprolol 5mg 1-0-0\n3. Furosemid 40mg 1-0-0\n4. Spironolacton 25mg 1-0-0\n5. ASS 100mg 1-0-0\n6. Atorvastatin 40mg 0-0-1\n7. Pantoprazol 40mg 1-0-0\n8. Rivastigmin-Pflaster 9,5mg/24h\n9. Donepezil 5mg 0-0-1\n\nAllergien: keine bekannt.\nBitte um stationäre Aufnahme.\nDr. Andreas Weiss, Allgemeinmedizin"
+  },
+  {
+    "id": "P004-D004",
+    "patient_id": "P004",
+    "datum": "2024-11-04T11:30",
+    "typ": "Aufnahmebefund",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Aufnahmebefund Innere Medizin",
+    "text": "Aufnahme: 04.11.2024, 11:30 Uhr, Station IM-4\nPat.: Hofer Rudolf, *30.08.1941, m.\n\nZuweisungsdiagnose: Dekompensierte Herzinsuffizienz.\n\nAnamnese: Pat. kann wegen Demenz keine ausreichende Eigenanamnese geben. Angaben durch Tochter: Dyspnoe zunehmend seit 5 Tagen, Orthopnoe, Beinödeme, Gewichtszunahme +4kg.\n\nVorerkrankungen:\n- Chron. Herzinsuffizienz (HFrEF)\n- Ischämische Kardiomyopathie, St.p. Hinterwandinfarkt 2003\n- Art. Hypertonie\n- CKD Stadium 3b\n- Alzheimer-Demenz (mäßiggradig)\n- St.p. Schrittmacherimplantation (DDD, 2019)\nKeine bekannten Allergien.\nNikotinabusus: Exraucher seit 1985.\n\nKörperliche Untersuchung:\nAZ: red., Dyspnoe in Ruhe. KG 78kg (Tochter: Norm ca. 74kg), Gr. 171cm.\nCor: HT Schrittmacher-bedingt rhythmisch, Herzgeräusch 2/6 systolisch apical. Puls 68/min (SM-Frequenz).\nPulmo: RG basal bds. feuchte. Bds. abgeschwächter Klopfschall basal.\nExtremitäten: Beinödeme bds. bis Knie, Unterschenkel prall-ödematös.\nAbdomen: weich, Leber 2 QF unter Rippenbogen.\nNeuro: wach, desorientiert zu Zeit + Ort, kooperiert eingeschränkt.\nRR: 168/94 mmHg. SpO2: 91% RL.\n\nEKG: SM-Rhythmus 68/min, SM-Spike sichtbar, LBBB-Muster (SM-induziert), keine frische Ischämie.\n\nDiagnose (vorläufig): Dekompensierte chronische Herzinsuffizienz (I50.0).\n\nPlan:\n- Labor STAT inkl. BNP, Troponin, Nierenwerte\n- Rö-Thorax\n- Furosemid 80mg i.v. sofort\n- O2 2l/min\n- Gewichtskontrolle täglich\n- SM-Kontrolle\n- Alle Heimmedikamente vorerst weiterführen"
+  },
+  {
+    "id": "P004-D005",
+    "patient_id": "P004",
+    "datum": "2024-11-04T12:30",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Pflegebericht Aufnahmetag",
+    "text": "04.11.2024, 12:30 Uhr, DGKP Rosa Gruber\n\nPat. Hofer Rudolf, IM-4, Bett 3. Aufnahme mit Tochter. Pat. desorientiert, kooperiert mit Führung.\nTochter Ingrid Hofer gibt an: Pat. habe früher einmal auf ein Sulfonamid-Antibiotikum (sie glaubt \"Co-Trimoxazol\") reagiert – Hautausschlag. Sei aber sehr lange her (ca. 20 Jahre). Sie selbst sei unsicher, ob es Co-Trimoxazol war oder etwas anderes.\nDiese Angabe wurde dem Stationsarzt mitgeteilt.\nKeine Urininkontinenz. Stuhlgang gestern.\nO2 2l/min läuft, SpO2 aktuell 93%. Diurese nach Furosemid i.v.: 800ml in 2h.\nLagerung: Oberkörperhochlagerung 30–45°. Dekubitusprophylaxe aktiviert (Braden-Score 14).\nMedikamente: Rivastigmin-Pflaster gewechselt (frische Stelle). Donepezil abends geplant.\nPat. berichtet auf Nachfrage, er sei früher \"am Herzen operiert\" worden. Tochter bestätigt: nur der Schrittmacher, kein offener Herzeingriff."
+  },
+  {
+    "id": "P004-D006",
+    "patient_id": "P004",
+    "datum": "2024-11-04T13:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Notfalllabor Aufnahme",
+    "text": "Patient: Hofer Rudolf, *30.08.1941, m.\nAuftragsnummer: LM-2024-11-04-0214\nAbnahme: 04.11.2024, 11:45 Uhr (STAT)\n\nBlutbild:\n  Hb: 11,2 g/dl [Ref: 13,5–17,5] ↓\n  Hkt: 34%, Leuko: 9,8 G/l, Thrombo: 198 G/l\n\nHerzmarker:\n  BNP: 2.480 pg/ml [Ref: <100] ↑↑↑\n  Troponin T hs: 38 ng/l [Ref: <14] ↑ (chronisch erhöht bei HI + CKD, keine frische Ischämie)\n\nNierenfunktion:\n  Krea: 1,98 mg/dl [Ref: 0,7–1,2] ↑\n  Harnstoff: 18 mmol/l [Ref: 2,5–7,5] ↑\n  eGFR (CKD-EPI): 32 ml/min/1,73m² → CKD 3b\n  K: 5,2 mmol/l [Ref: 3,5–5,0] ↑ (Grenze!)\n  Na: 134 mmol/l [Ref: 136–145] ↓\n\nKlinische Chemie:\n  CRP: 18 mg/l [Ref: <5] ↑\n  Albumin: 32 g/l [Ref: 35–52] ↓\n  GOT: 44 U/l ↑ (Stauungsleber)\n  GPT: 38 U/l ↑\n  Bili ges.: 1,9 mg/dl ↑\n\nKommentar: Dekompensierte HI (massiv erhöhtes BNP). CKD 3b stabil. Leichte Hyperkaliämie beachten (Spironolacton + Ramipril + CKD)."
+  },
+  {
+    "id": "P004-D007",
+    "patient_id": "P004",
+    "datum": "2024-11-04T14:00",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "Röntgen Thorax bei Herzinsuffizienz",
+    "text": "Befund: Rö-Thorax ap, 04.11.2024\nPat.: Hofer Rudolf, *30.08.1941\n\nKlinische Fragestellung: Dekompensierte Herzinsuffizienz.\n\nBefund:\nHerz: Deutlich vergrößert (Kardiomegalie), kardiothorakaler Quotient >0,6.\nSchrittmacher-Aggregat links subklavikulär mit zwei Sonden (RA und RV), regelrechte Lage.\nLunge: Beidseitige basale Verschattungen, vereinbar mit Pleuraergüssen. Peribronchiale Manschettenbildung. Verstärkte Gefäßzeichnung (Lungenstauung).\nKein Pneumothorax. Keine infiltrativen Verdichtungen als Hinweis auf Pneumonie.\n\nBeurteilung:\n1. Deutliche Zeichen der Lungenstauung mit beidseitigen Pleuraergüssen bei dekompensierter Herzinsuffizienz.\n2. Schrittmacher-Aggregat mit zwei Sonden in korrekter Lage.\n3. Kein Anhalt für Pneumonie."
+  },
+  {
+    "id": "P004-D008",
+    "patient_id": "P004",
+    "datum": "2024-11-05T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Verlauf Tag 1 – Diurese gut, Spiro-Pause wegen K+",
+    "text": "05.11.2024, 08:00 Uhr, Dr. Daniela Fuchs\nTag 1 nach Aufnahme.\n\nPat. leicht gebessert. SpO2 94% unter 2l O2. Dyspnoe gering rückläufig. Ödeme: minimal gebessert.\nDiurese gestern gesamt: 2.400ml (nach Furosemid i.v. 80mg).\nGewicht heute: 76,5kg (gestern: 78kg → -1,5kg).\nRR 158/88, Puls 68/min (SM).\n\nLab-Rückruf: K+ 5,2 mmol/l → Spironolacton pausiert (Hyperkaliämie-Risiko bei CKD + Ramipril).\nRamipril vorübergehend auf 2,5mg reduziert (Nierenretentionswerte + Hyperkaliämie).\n\nKardiologie-Konsil angefordert.\n\nPflegemeldung (Tochter): Sulfonamid-Verdachtsallergie dokumentiert, noch unklar ob klinisch relevant → wird im Konsil besprochen.\n\nV.a. Pneumonie?: Rö-Thorax gestern – keine Infiltrate, kein Anhalt. CRP 18 mg/l könnte bei HI-Stauung erhöht sein. V.a. Pneumonie aktuell nicht aufrechterhalten.\n\nPlan:\n- Furosemid 80mg i.v. weiterführen\n- Spiro PAUSE\n- Ramipril 2,5mg (reduziert)\n- Labor morgen"
+  },
+  {
+    "id": "P004-D009",
+    "patient_id": "P004",
+    "datum": "2024-11-05T09:30",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Sulfonamid-Allergie Abklärung – Rücksprache",
+    "text": "05.11.2024, 09:30 Uhr, Dr. Fuchs\n\nRücksprache mit OA wegen angemeldeter Sulfonamid-Allergie (Tochter berichtet über mögliche Co-Trimoxazol-Reaktion, ca. 20 Jahre her).\nOA-Entscheidung: Allergie als unbestätigt, aber plausibel eintragen. Co-Trimoxazol in Patientenakte als Vorsichtshinweis vermerken.\nKlinische Relevanz für aktuelle Therapie: gering (kein Sulfonamid geplant). Keine weitere Abklärung (Pat. nicht abklärungsfähig wegen Demenz, Tochter unsicher).\n\nEintrag in Allergieprofil: Sulfonamide (Co-Trimoxazol) – Verdacht auf Arzneimittelexanthem, unbestätigt, Angabe durch Angehörige."
+  },
+  {
+    "id": "P004-D010",
+    "patient_id": "P004",
+    "datum": "2024-11-06T09:00",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Kardiologisches Konsil – dekompensierte HFrEF",
+    "text": "Konsilbericht Kardiologie, 06.11.2024\nKonsiliarius: OA Dr. Petra Mayr, Kardiologie\n\nAnlass: Dekompensierte HFrEF, Medikamenten-Überprüfung, Echo.\n\nEchokardiographie (06.11.2024):\n- LV: EF 35% (deutlich eingeschränkt), diffuse Hypokinese (ischämische KMP)\n- Mitralinsuffizienz: 2/4, funktionell\n- Kein Perikarderguss\n- Rechts: RV mäßig dilatiert, PA-Druck geschätzt 42 mmHg\n- SM-Sonden: regelrechte Lage RA + RV\n\nHinweis: Im Aufnahmebefund (D004) wurde EF nicht dokumentiert; bei Rückfrage an Assistenzarzt wurde dort von \"EF 30%\" gesprochen. Echobefund ergibt korrekt **EF 35%**. Echo-Befund ist maßgeblich.\n\nEmpfehlungen:\n1. Furosemid 80mg i.v. auf 40mg p.o. 1-0-0 reduzieren wenn Ödeme rückläufig (Ziel: Trockengewicht 74kg).\n2. Spironolacton-Pause beibehalten (K+ >5). Kontrolle K+ tägl.\n3. Wenn K+ normalisiert: Eplerenon 25mg 1-0-0 als Alternative (weniger Gynäkomastie, etwas besser verträglich bei CKD).\n4. Ramipril: vorerst 2,5mg, nach Nierenwertstabilisierung wieder auf 5mg erhöhen.\n5. Bisoprolol 5mg weiterführen.\n6. Herzinsuffizienz-Schulung für Tochter (Gewichts-Monitoring, Flüssigkeit).\n7. SM-Aggregat-Kontrolle durch SM-Ambulanz."
+  },
+  {
+    "id": "P004-D011",
+    "patient_id": "P004",
+    "datum": "2024-11-07T08:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Kontrolllabor Tag 3",
+    "text": "Patient: Hofer Rudolf, *30.08.1941\nAuftragsnummer: LM-2024-11-07-0301\nAbnahme: 07.11.2024, 06:30 Uhr\n\nNierenfunktion:\n  Krea: 1,88 mg/dl (leicht gebessert)\n  eGFR: 34 ml/min/1,73m²\n  K: 4,8 mmol/l [Ref: 3,5–5,0] → rückläufig, noch Grenzbereich\n  Na: 136 mmol/l (normalisiert)\n\nBNP: 1.680 pg/ml (rückläufig von 2.480)\nHb: 11,0 g/dl\nCRP: 12 mg/l (leicht rückläufig)\n\nKommentar: Gute Diurese-Ansprechen. K+ rückläufig aber noch erhöht – Spiro-Pause weiterführen. Nierenwerte stabil."
+  },
+  {
+    "id": "P004-D012",
+    "patient_id": "P004",
+    "datum": "2024-11-09T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Verlauf Tag 5 – Umstellung auf orale Diurese, Eplerenon",
+    "text": "09.11.2024, 08:00 Uhr, OA Dr. Markus Berger\n\nPat. klinisch deutl. gebessert. SpO2 96% Raumluft. Orthopnoe weg. Ödeme: deutl. rückläufig.\nGewicht heute: 74,8kg (Aufnahme 78kg → -3,2kg).\n\nLab gestern (08.11.):\n  K+: 4,5 mmol/l – normalisiert.\n  Krea: 1,82 mg/dl, eGFR 35.\n\nUmstellung Furosemid: i.v. 80mg → Furosemid p.o. 40mg 1-0-0 (lt. Kardio-Konsil).\nEplerenon 25mg 1-0-0 gestartet (K+ jetzt normal, lt. Kardio-Empfehlung).\nRamipril: auf 5mg zurück (Nierenwerte stabil).\n\nSpironolacton bleibt gestoppt (Hyperkaliämie war unter Spiro + Ramipril + CKD, Umstieg auf Eplerenon als Alternative).\n\nDonepezil: weiterführen (Demenztherapie).\nRivastigmin-Pflaster: weiterführen.\n\nPlan:\n- Weiteres Gewichtsmonitoring\n- SM-Ambulanz-Termin vereinbart: 12.11.\n- Entlassung frühestens 14–15.11."
+  },
+  {
+    "id": "P004-D013",
+    "patient_id": "P004",
+    "datum": "2024-11-12T10:00",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Schrittmacherambulanz",
+    "titel": "Schrittmacherkontrolle",
+    "text": "Schrittmacherkontrolle, 12.11.2024\nGerät: Medtronic Advisa DR MRI SureScan, implantiert 15.03.2019\nBatteriekapazität: 78% (geschätzte Restlaufzeit ca. 4 Jahre)\nModus: DDD, LRL 60/min, URL 130/min\nSensing: RA 3,2mV, RV 8,4mV – beide ok\nPacing: RA-Schwelle 0,8V/0,4ms, RV-Schwelle 0,7V/0,4ms – beide ok\nEigenrhythmus: SM-abhängig (AV-Block persistierend)\nArrhythmien in Speicher: vereinzelte SVES, keine klinisch relevanten VT-Episoden\n\nBeurteilung: SM-Funktion regelrecht. Nächste Kontrolle in 12 Monaten."
+  },
+  {
+    "id": "P004-D014",
+    "patient_id": "P004",
+    "datum": "2024-11-14T08:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Kontrolllabor vor Entlassung",
+    "text": "Patient: Hofer Rudolf, *30.08.1941\nAuftragsnummer: LM-2024-11-14-0188\nAbnahme: 14.11.2024, 06:15 Uhr\n\nNierenfunktion:\n  Krea: 1,79 mg/dl, eGFR: 36 ml/min/1,73m²\n  K: 4,6 mmol/l → normal\n  Na: 137 mmol/l\n\nBNP: 820 pg/ml (weiter rückläufig, noch erhöht bei chron. HI)\nHb: 11,1 g/dl\nCRP: 8 mg/l\n\nKommentar: Stabile Nierenfunktion, K+ normal. Klinisch gut kompensiert. Entlassung möglich."
+  },
+  {
+    "id": "P004-D015",
+    "patient_id": "P004",
+    "datum": "2024-11-14T09:00",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Pflegebericht vor Entlassung",
+    "text": "14.11.2024, 09:00 Uhr, DGKP Franz Eder\n\nPat. Hofer, Entlassung morgen geplant. AZ gut, keine Dyspnoe, SpO2 97% Raumluft.\nGewicht heute: 74,2kg (Trockengewicht ca. 74kg lt. Tochter).\nBeinödeme: kaum mehr vorhanden.\nPat. desorientiert zu Zeit, erkennt Tochter gut, kooperiert mit Körperpflege mit Führung.\nMedikamente: alle p.o., Tablettenschlucken ok mit Brei-Kost.\nRivastigmin-Pflaster: sitzt gut, keine Hautreaktion.\nTochter über Entlassung informiert, Rezepte und Entlassungsbrief morgen.\nHinweis an Arzt: Pat. berichtete wiederholt, er sei \"früher einmal am Herzen operiert\" worden. Tochter und Vorbefund (2019): ausschließlich SM-Implantation, kein offener Herzeingriff."
+  },
+  {
+    "id": "P004-D016",
+    "patient_id": "P004",
+    "datum": "2024-11-15T10:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Innere Medizin",
+    "titel": "Entlassungsbrief nach dekompensierter Herzinsuffizienz",
+    "text": "Entlassungsbrief\nLandesklinikum Musterstadt, Innere Medizin\nDatum: 15.11.2024\n\nSehr geehrter Herr Dr. Weiss!\n\nWir entlassen Hrn. Rudolf Hofer, geb. 30.08.1941, nach stationärem Aufenthalt vom 04.11.2024 bis 15.11.2024 (11 Tage).\n\nHauptdiagnosen:\n1. Dekompensierte chronische Herzinsuffizienz (HFrEF, EF 35%) (I50.0)\n2. Ischämische Kardiomyopathie, St.p. Hinterwandinfarkt 2003 (I25.2)\n3. Chronische Niereninsuffizienz Stadium 3b (eGFR 36 ml/min) (N18.3)\n4. Alzheimer-Demenz, mäßiggradig (F00.1)\n5. Arterielle Hypertonie (I10)\n6. Hyperkaliämie unter Spironolacton (E87.5) – gebessert nach Umstellung\n\nVerlauf:\nAufnahme mit dekompensierter HI (BNP 2.480, Ödeme, Orthopnoe). Gewichtszunahme +4kg. Furosemid i.v. 80mg → gute Diurese. Spironolacton pausiert wegen Hyperkaliämie (K+ 5,2). Nach K+-Normalisierung Eplerenon 25mg gestartet als Alternative. Ramipril auf 2,5mg reduziert, nach Nierenwertstabilisierung wieder 5mg. Schrittmacher-Kontrolle: regelrecht (Batterie 78%, Restlaufzeit ~4 Jahre).\n\nAllergien: CAVE Sulfonamide (Co-Trimoxazol) – Verdacht auf Arzneimittelexanthem, Angabe durch Tochter, unbestätigt (Patient nicht auskunftsfähig).\nHinweis: Kein offener Herzeingriff in der Anamnese (nur SM-Implantation 2019). Patient berichtet wiederholt \"Herzoperation\" – bezieht sich auf SM-Implantation.\n\nMedikation bei Entlassung:\n1. Ramipril 5mg (Delix) 1-0-0\n2. Bisoprolol 5mg (Concor) 1-0-0\n3. Furosemid 40mg (Lasix) 1-0-0\n4. Eplerenon 25mg (Inspra) 1-0-0 (NEU – ersetzt Spironolacton)\n5. ASS 100mg 1-0-0\n6. Atorvastatin 40mg 0-0-1\n7. Pantoprazol 40mg 1-0-0\n8. Rivastigmin-Pflaster 9,5mg/24h (Exelon)\n9. Donepezil 5mg (Aricept) 0-0-1\n\nImplantat: Zweikammer-Herzschrittmacher DDD (Medtronic Advisa DR MRI SureScan), implantiert 15.03.2019, Klinikum Linz-Nord.\n\nEmpfehlung:\n- Tägl. Gewichtskontrolle, bei Gewichtszunahme >2kg/d → sofort Hausarzt\n- Labor (K+, Krea) in 1 Woche\n- SM-Ambulanz-Kontrolle in 12 Monaten\n- Demenz: Gedächtnisambulanz-Kontrolle wie geplant\n\nBitte um Weiterbehandlung.\nmfG, OA Dr. Markus Berger, FA f. Innere Medizin\nLandesklinikum Musterstadt"
+  }
+]

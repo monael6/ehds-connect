@@ -19,7 +19,7 @@ from .config import settings
 from .datastore import get_store
 from .engine import permit, spe
 from .engine.pipeline import applicant_view, evaluate
-from .primary import crossborder, letters, summary
+from .primary import crossborder, ips_pipeline, letters, summary
 
 DEMO_HOSPITAL = "Klinikum West"
 
@@ -335,6 +335,65 @@ def patient_summary(pid: str, lang: str = "de", user: dict = Depends(auth.requir
 @app.get("/api/patients/{pid}/ips")
 def patient_ips(pid: str, lang: str = "de", user: dict = Depends(auth.require(HOSPITAL))):
     return patient_summary(pid, lang, user)
+
+
+# ------------------------------------------------------------------ IPS LLM pipeline
+
+def _own_patient_or_bundle(pid: str, user: dict) -> None:
+    """Authorization check for IPS pipeline endpoints.
+
+    Accepts patients that are either:
+    (a) registered in the KIS DuckDB (normal path — enforces data_holder rule), or
+    (b) present only as a synthetic document bundle in patients/{pid}/ (test data).
+
+    For (b) no data_holder check is performed: synthetic bundles carry no hospital
+    affiliation, so access is granted to any authenticated HOSPITAL user.
+    """
+    p = summary.patient(get_store(), pid)
+    if p:
+        # Real KIS patient — enforce treatment-relationship rule
+        if user["role"] == HOSPITAL and p["data_holder"] != user["data_holder"]:
+            state.audit(user, "primary", "patient_access_denied", patient_id=pid,
+                        outcome="no_treatment_relationship")
+            raise HTTPException(403, "No treatment relationship: patient belongs to another hospital.")
+        return
+    # Synthetic document bundle — check directory exists
+    bundle_dir = ips_pipeline._patients_dir() / pid
+    if not (bundle_dir / "patient.json").exists():
+        raise HTTPException(404, "Patient not found in KIS and no document bundle exists.")
+
+
+@app.post("/api/patients/{pid}/ips-pipeline", status_code=201)
+def run_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    """Run (or re-run) the 9-step LLM IPS pipeline for a patient document bundle.
+
+    Requires patients/{pid}/patient.json and documents.json to exist.
+    Pseudonymises before any LLM call.  Result stored as a draft in SQLite.
+    """
+    _own_patient_or_bundle(pid, user)
+    return ips_pipeline.run_pipeline(pid, user)
+
+
+@app.get("/api/patients/{pid}/ips-pipeline")
+def get_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    """Retrieve the latest IPS pipeline draft for a patient."""
+    _own_patient_or_bundle(pid, user)
+    row = ips_pipeline._latest_draft(pid)
+    if not row:
+        raise HTTPException(404, "No IPS pipeline draft found for this patient. POST to run the pipeline first.")
+    state.audit(user, "primary", "ips_draft_viewed", patient_id=pid, outcome="ok",
+                details={"draft_id": row["id"]})
+    return ips_pipeline._parse_draft(row)
+
+
+@app.post("/api/patients/{pid}/ips-pipeline/approve")
+def approve_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    """Clinician approves the latest IPS draft. Sets status=approved and records who signed."""
+    _own_patient_or_bundle(pid, user)
+    row = ips_pipeline._latest_draft(pid)
+    if not row:
+        raise HTTPException(404, "No IPS pipeline draft to approve.")
+    return ips_pipeline.approve_draft(row["id"], user)
 
 
 class LetterIn(BaseModel):

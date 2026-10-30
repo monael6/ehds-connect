@@ -1,0 +1,189 @@
+[
+  {
+    "id": "P005-D001",
+    "patient_id": "P005",
+    "datum": "2015-06-22T10:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Universitätsklinik Salzburg",
+    "titel": "Entlassungsbrief nach Thyreoidektomie",
+    "text": "Sehr geehrte Damen und Herren!\nWir dürfen Ihnen über den Aufenthalt von Fr. Monika Steinbauer, geb. 11.09.1966, vom 19.06.2015 bis 22.06.2015 berichten.\n\nDiagnose: Benigne multinodöse Struma (E04.2), Indikation zur totalen Thyreoidektomie bei progredientem Befund und lokalen Kompressionssymptomen.\n\nOperation (19.06.2015): Totale Thyreoidektomie. Histologie: Benigne multinodöse Hyperplasie, kein Malignitätsnachweis.\n\nVerlauf: Komplikationslos. Kalzium postoperativ grenzwertig (2,02 mmol/l), vorübergehend Kalziumsubstitution. Stimmbandkontrolle: HNO unauffällig.\n\nMedikation bei Entlassung:\n- Levothyroxin 100μg (Euthyrox) 1-0-0 (Hormonsubstitution, dauerhaft)\n- Kalziumkarbonat 500mg + Vit D3 200 IE, 1-0-1 (für 4 Wochen, bis TSH + Ca normalisiert)\n\nAllergien: keine bekannt.\nFamilienanamnese: Mutter verstorben an Mammakarzinom mit 64 Jahren.\nEmpfehlung: Endokrinologie-Kontrolle in 6 Wochen (TSH, fT4).\nmfG, OA Dr. Werner Pirker, Chirurgie"
+  },
+  {
+    "id": "P005-D002",
+    "patient_id": "P005",
+    "datum": "2024-02-08T09:00",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Erstvorstellung Onkologie – Mammakarzinom",
+    "text": "Erstvorstellung Onkologie, 08.02.2024\nPat.: Steinbauer Monika, *11.09.1966, w.\n\nZuweisung: Durch Gynäkologie nach Diagnose Mammakarzinom re.\n\nBiopsie (05.02.2024): Invasives Mammakarzinom re., NST-Typ (No Special Type), G2.\nIHC: ER positiv (Allred 7/8), PR positiv (Allred 6/8), HER2 3+ (FISH bestätigt) → Luminal-B/HER2-positiv.\nTNM klinisch: cT2 cN1 cM0 (Stadium IIB).\n\nVorerkrankungen:\n- St.p. Thyreoidektomie 06/2015 (benigne Struma), Levothyroxin 100μg dauerhaft\n- Art. Hypertonie (Amlodipin 5mg 1-0-0 seit 2020)\nAllergien: keine bekannt.\nFamilienanamnese: Mutter mit Mammakarzinom (verstorben mit 64a).\n\nTumordiskussion (Tumorboard 06.02.2024): Neoadjuvante Chemotherapie + Anti-HER2 empfohlen: EC × 4 (Epirubicin 90mg/m² + Cyclophosphamid 600mg/m²) → Paclitaxel + Trastuzumab × 4, danach OP.\n\nGeplantes Vorgehen:\n1. Port-Katheter-Anlage vor erstem Zyklus\n2. EC-Protokoll Zyklen 1–4\n3. Anschließend Paclitaxel + Trastuzumab × 4\n4. Operation nach Abschluss neoadjuvanter Therapie\n\nPat. aufgeklärt, Einwilligung liegt vor."
+  },
+  {
+    "id": "P005-D003",
+    "patient_id": "P005",
+    "datum": "2024-02-19T08:00",
+    "typ": "OP-Bericht",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "OP-Bericht: Port-Katheter-Anlage rechts",
+    "text": "OP-Bericht\nDatum: 19.02.2024\nOperateur: Dr. Sandra Hollinger, FA f. Chirurgie\nAnästhesie: Lokalanästhesie + Analgosedierung\n\nIndikation: Onkologische Chemotherapie, venöser Zugang erforderlich.\n\nOperation: Implantation eines vollimplantierbaren zentralen Venenkatheters (Port-a-Cath®, Modell Bard PowerPort, 8F, Titan-Reservoir) über V. subclavia rechts. Katheterlage in der V. cava superior, korrekte Position in der oberen Hohlvene.\nDurchleuchtungskontrolle intraoperativ: korrekte Katheterlage, kein Pneumothorax.\n\nKomplikationen: keine.\nPostoperativ: Röntgenkontrolle Thorax angeordnet.\n\nDiagnose: Komplikationslose Port-Katheter-Anlage re. für onkologische Therapie."
+  },
+  {
+    "id": "P005-D004",
+    "patient_id": "P005",
+    "datum": "2024-02-19T11:00",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "Röntgen Thorax post Port-Katheter-Anlage",
+    "text": "Befund: Rö-Thorax ap, 19.02.2024\nPat.: Steinbauer Monika, *11.09.1966\n\nKlinische Fragestellung: Kontrolle Port-Katheter-Lage.\n\nBefund:\nPort-Katheter-Aggregat rechts infraklavikulär. Katheterspitze in der V. cava superior, regelrechte Lage. Kein Pneumothorax. Kein Hämatothorax.\nHerz und Lunge: unauffällig. Kein Pleuraerguss.\nHiluszonen: unauffällig. Mediastinum regelrecht.\n\nBeurteilung: Regelrechte Port-Katheter-Lage. Kein Anhalt für Komplikationen."
+  },
+  {
+    "id": "P005-D005",
+    "patient_id": "P005",
+    "datum": "2024-02-26T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "EC-Zyklus 1 Tag 1 – Chemotherapie-Beginn",
+    "text": "26.02.2024, 08:00 Uhr, Dr. Beatrix Langer\nEC-Zyklus 1, Tag 1.\n\nPat. Steinbauer, 58a, Mammakarzinom re. cT2N1M0, HER2+/HR+.\nAllgemeinzustand gut. ECOG 0. KOF: 1,72 m². KG 67kg.\nAllergien: keine bekannt.\n\nVorbereitung:\n- Antiemese: Ondansetron 8mg i.v. 30min vor Chemo + Dexamethason 8mg i.v.\n- Epirubicin 90mg/m² (= 155mg) i.v. über Port, 15min-Infusion\n- Cyclophosphamid 600mg/m² (= 1032mg) i.v. über Port, 30min-Infusion\n\nVerträglichkeit: gut. Keine akute Reaktion. Geringe Übelkeit post-Infusion NRS 2.\n\nHausmedikation fortführen: Levothyroxin 100μg, Amlodipin 5mg.\nAntiemese für zuhause: Ondansetron 8mg p.o. 1-1-1 für 3 Tage.\nG-CSF-Prophylaxe: nicht angeordnet (Risiko <20% bei EC, ältere Risikoabschätzung).\n\nNächster Zyklus: 18.03.2024."
+  },
+  {
+    "id": "P005-D006",
+    "patient_id": "P005",
+    "datum": "2024-02-28T15:00",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Pflegebericht Telefonkontakt nach Zyklus 1",
+    "text": "28.02.2024, 15:00 Uhr, DGKP Karin Moser (Telefondokumentation)\n\nPat. Steinbauer meldet sich telefonisch: Übelkeit weiterhin vorhanden (NRS 3), Erbrechen 2× gestern. Ondansetron eingenommen, mäßig wirksam.\nPat. berichtet außerdem: Sie vertrage keine Ibuprofen – bekomme davon immer Magenprobleme und einmal sei sie \"ganz aufgeschwollen\". Ob dies eine echte Allergie ist oder Unverträglichkeit, weiß sie selbst nicht. Sie nehme es deswegen nie mehr.\nDiese Angabe wurde in der Patientenakte vermerkt und dem behandelnden Arzt gemeldet.\nKein Fieber. Temperatur 36,9°C.\nEmpfehlung: Ondansetron weiterführen, bei Fieber >38°C sofort Ambulanz."
+  },
+  {
+    "id": "P005-D007",
+    "patient_id": "P005",
+    "datum": "2024-03-04T09:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Ambulanzkontrolle nach Zyklus 1 – Antiemese-Umstellung",
+    "text": "04.03.2024, 09:00 Uhr, Dr. Langer\nAmbulante Kontrolle nach EC-Zyklus 1.\n\nPat. berichtet: Übelkeit war deutlich ausgeprägt, Erbrechen 2×, Ondansetron allein reichte nicht aus.\nIbuprofen-Intoleranz von Patientin gemeldet (Pflegebericht 28.02.) – aufgenommen, als Unverträglichkeit eingetragen (keine formelle Allergie, keine systemische Reaktion bestätigt, am ehesten gastrointestinale Unverträglichkeit + möglicherweise pseudoallergische Reaktion). Ibuprofen und NSAID generell in Patientenakte als CAVE-Hinweis vermerkt.\n\nAntiemese-Umstellung für Zyklus 2:\nOndansetron 8mg p.o. allein reicht nicht → Erweiterung auf TRIPLE-Antiemese:\n- Aprepitant 125mg p.o. Tag 1, 80mg Tag 2+3\n- Ondansetron 8mg i.v. (Tag 1, prä-Chemo) + Dexamethason\n- Ondansetron p.o. weiterhin bei Bedarf zuhause\n\nLabor (heute): Leukozyten 3,8 G/l (leicht erniedrigt, postchemotherapeutisch erwartet), Hb 11,9 g/dl, Thrombo 186 G/l. Krea 0,74 mg/dl, Na 138, K 3,9. TSH 1,4 mIU/l (Levothyroxin-Substitution adäquat).\n\nNächster Zyklus: 18.03.2024 wie geplant."
+  },
+  {
+    "id": "P005-D008",
+    "patient_id": "P005",
+    "datum": "2024-03-18T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "EC-Zyklus 2 Tag 1",
+    "text": "18.03.2024, 08:00 Uhr, Dr. Langer\nEC-Zyklus 2, Tag 1.\n\nAZ gut. ECOG 0. Haarausfall begonnen (erwartet). Pat. damit psychisch belastet, Gespräch geführt.\nLabor prä-Chemo (18.03.): Leuko 4,2 G/l, Hb 11,4 g/dl, Thrombo 198 G/l, Krea 0,72 mg/dl → Zyklus möglich.\n\nAntiemese TRIPLE (lt. Planung):\n- Aprepitant 125mg p.o. bereits zu Hause eingenommen.\n- Dexamethason 8mg i.v. + Ondansetron 8mg i.v. prä-Chemo.\n- Epiru 90mg/m² (= 155mg) i.v. über Port + Cyclophosphamid 600mg/m² (= 1032mg) i.v.\n\nVerträglichkeit: Übelkeit nur NRS 1–2. Wesentlich besser als Zyklus 1.\nG-CSF: weiterhin nicht angeordnet.\nNächster Zyklus: 08.04.2024."
+  },
+  {
+    "id": "P005-D009",
+    "patient_id": "P005",
+    "datum": "2024-04-08T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "EC-Zyklus 3 Tag 1 – Sono Leber auffällig",
+    "text": "08.04.2024, 08:00 Uhr, Dr. Langer\nEC-Zyklus 3, Tag 1.\n\nPat. klagte über gelegentliche Kribbeln in den Fingerkuppen seit 2–3 Wochen – sie fragt ob das eine Nervenschädigung sein könnte. Befund: Neurologie-Untersuchung im Haus nicht durchgeführt. Kein objektiver neurologischer Befund erhoben. Epirubicin gilt nicht als führendes Neurotoxin (Paclitaxel kommt später). Eintrag: Pat.-Angabe Fingerkribbling, klinisch nicht bestätigt, keine Intervention.\n\nSonographie Abdomen (Staging-Kontrolle, 05.04.):\nBefund: V.a. Leberrundherdbefund (echoarm, 1,4cm, Segment VII) → DD Metastase vs. Hämangiom. MRT-Leber empfohlen.\n\nLabor prä-Zyklus (08.04.): Leuko 3,6 G/l (grenzwertig), Hb 10,8 g/dl, Thrombo 162 G/l, Krea 0,76. → Zyklus möglich.\n\nChemo: Epirubicin 155mg + Cyclophosphamid 1032mg i.v. über Port. Antiemese triple wie Zyklus 2.\nG-CSF: weiterhin nicht angeordnet (OA-Entscheidung: Leukos >3,5 G/l → keine Notwendigkeit)."
+  },
+  {
+    "id": "P005-D010",
+    "patient_id": "P005",
+    "datum": "2024-04-15T14:00",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "MRT Leber – Abklärung Leberherd",
+    "text": "Befund: MRT Abdomen/Leber mit KM (Gadolinium), 15.04.2024\nPat.: Steinbauer Monika, *11.09.1966\n\nKlinische Fragestellung: Sono-Herd Leber Segment VII, V.a. Metastase vs. Hämangiom bei bekanntem Mammakarzinom.\n\nBefund:\nLeber: Im Segment VII Rundherd 1,4cm. Signalverhalten: T1 hypointens, T2 hyperintens, KM-Verhalten: früharterielle periphere Nodularität, im Delayed-Phase vollständige Auffüllung. Typisches Hämangiom-Muster.\nKeine weiteren fokalen Leberläsionen. Keine Lymphadenopathie.\nGallenblase, Milz, Pankreas, Nieren: unauffällig.\n\nBeurteilung:\nLeberherd Segment VII: Morphologie und Kontrastmittelverhalten eindeutig vereinbar mit **kavernösem Hämangiom**. Kein Anhalt für Lebermetastase.\n\nEmpfehlung: Keine weitere Abklärung oder Biopsie notwendig. Befund ist benigne."
+  },
+  {
+    "id": "P005-D011",
+    "patient_id": "P005",
+    "datum": "2024-04-19T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Verlauf nach Zyklus 3 – Leberherd benigne, G-CSF-Diskussion",
+    "text": "19.04.2024, 08:00 Uhr, Dr. Langer\n\nMRT-Leber Ergebnis: Hämangiom, kein Metastasenverdacht mehr → sehr erleichternd für Pat. Befund kommuniziert.\n\nPat. klagte über Fingerkribbling weiterhin – bleibt klinisch nicht objektivierbar.\n\nLaborkontrolle heute (17.04. auswärts gemacht): Leuko 0,8 G/l ↓↓↓ → schwere Neutropenie!\nRücksprache OA: Bisherige Entscheidung \"G-CSF nicht notwendig\" war basierend auf Leuko >3,5 G/l am Zyklustag → jetzt an Tag 11 post Zyklus 3 massive Neutropenie aufgetreten. G-CSF (Filgrastim 300μg s.c. tägl.) wird ab heute gestartet.\n\nPat. angewiesen: Fieber >38°C → sofort Notaufnahme."
+  },
+  {
+    "id": "P005-D012",
+    "patient_id": "P005",
+    "datum": "2024-04-22T03:30",
+    "typ": "Aufnahmebefund",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Notfallaufnahme: Neutropenisches Fieber",
+    "text": "22.04.2024, 03:30 Uhr – Notfallaufnahme\nPat.: Steinbauer Monika, *11.09.1966\n\nVorstellung: Fieber 38,9°C, Schüttelfrost, Abgeschlagenheit. Zuletzt Chemotherapie (EC Zyklus 3) am 08.04.2024. Filgrastim s.c. seit 19.04.\n\nStatus:\nTemp 38,9°C. RR 108/64 mmHg. Puls 104/min. SpO2 97%.\nAZ: red., blass, diaphoretisch.\nPulmo: VA bds., keine RG. Abdomen: weich, DS neg.\nPort: Eintrittsstelle reizlos.\nKein Fokus klinisch eruierbar.\n\nSofortmaßnahmen:\n- Labor STAT\n- Blutkulturen x2 (peripher + Port)\n- Breitbandantibiotikum: Piperacillin/Tazobactam 4,5g i.v. alle 8h, Start sofort.\n- Filgrastim weiterführen.\n- Stationäre Aufnahme.\n\nDiagnose: Neutropenisches Fieber bei Chemotherapie (EC Zyklus 3, Tag 14) (D70)."
+  },
+  {
+    "id": "P005-D013",
+    "patient_id": "P005",
+    "datum": "2024-04-22T05:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Notfalllabor neutropenisches Fieber",
+    "text": "Patient: Steinbauer Monika, *11.09.1966\nAuftragsnummer: LM-2024-04-22-0014\nAbnahme: 22.04.2024, 03:45 Uhr (STAT)\n\nBlutbild:\n  Hb: 9,8 g/dl ↓\n  Leukozyten: 0,4 G/l ↓↓↓ [Ref: 4,0–10,0]\n  Neutrophile absolut: 0,08 G/l ↓↓↓ → schwere Neutropenie\n  Thrombozyten: 88 G/l ↓\n\nKlinische Chemie:\n  CRP: 142 mg/l ↑↑\n  PCT: 1,8 ng/ml ↑ → bakterielle Infektion wahrscheinlich\n  Krea: 0,82 mg/dl, Na: 136, K: 3,5\n\nBlutkulturen: abgenommen, Ergebnis ausstehend.\n\nKommentar: Schwere Neutropenie mit Fieber – neutropenische Sepsis nicht ausgeschlossen. STAT-Befund."
+  },
+  {
+    "id": "P005-D014",
+    "patient_id": "P005",
+    "datum": "2024-04-24T09:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Verlauf Tag 2 – Fieber rückläufig, BK-Ergebnis",
+    "text": "24.04.2024, 09:00 Uhr, OA Dr. Christina Wallner\n\nPat. deutl. gebessert. Fieberfreiheit seit gestern Abend 21:00 Uhr.\nRR 118/72, Puls 88/min, Temp 37,1°C.\n\nBlutkulturen-Ergebnis (peripheral + Port): beide steril → keine Bakteriämie nachweisbar.\nPiperacillin/Tazobactam weiterführen bis 48h Fieberfreiheit (d.h. bis 25.04. Abend).\n\nLabor (23.04.):\n  Leuko 1,2 G/l (Anstieg unter G-CSF), Neutrophile 0,4 G/l\n  CRP 88 mg/l (rückläufig), PCT 0,6 ng/ml\n  Thrombo 102 G/l\n\nFilgrastim weiterführen bis Neutrophile >1,0 G/l an 2 aufeinanderfolgenden Tagen.\n\nPlan: Entlassung sobald Leuko >1,5 G/l und afebril."
+  },
+  {
+    "id": "P005-D015",
+    "patient_id": "P005",
+    "datum": "2024-04-26T10:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Verlauf Tag 4 – Entlassung",
+    "text": "26.04.2024, 10:00 Uhr, Dr. Langer\n\nLeuko 3,1 G/l, Neutrophile 2,2 G/l → ausreichend regeneriert.\nAfebril >48h. AZ gut.\nPiperacillin/Tazobactam gestern Abend beendet (48h nach letztem Fieber).\nFilgrastim: letzte Dosis heute morgen (Neutrophile >1,0 G/l an 2d).\n\nFür Zyklus 4 (geplant 29.04.): G-CSF primärprophylaktisch ab Tag 2 (Filgrastim 300μg s.c./d × 7 Tage) aufgrund dieser Neutropenie-Episode. Dosis Epirubicin bleibt unverändert (OA-Entscheidung).\n\nEntlassung nach 4 Tagen stationär.\n\nMedikation bei Entlassung (nach Neutropenie-Episode):\n- Levothyroxin 100μg 1-0-0 (Dauermedikation)\n- Amlodipin 5mg 1-0-0 (Dauermedikation)\n- Aprepitant 125mg Tag 1 / 80mg Tag 2+3 (für Zyklus 4)\n- Ondansetron 8mg bei Bedarf (Antiemese reserve)\n- Filgrastim 300μg s.c. ab Zyklus-4-Tag 2 (primärprophylaktisch, Rezept mitgegeben)"
+  },
+  {
+    "id": "P005-D016",
+    "patient_id": "P005",
+    "datum": "2024-04-29T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Onkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "EC-Zyklus 4 Tag 1 – letzter EC-Zyklus",
+    "text": "29.04.2024, 08:00 Uhr, Dr. Langer\nEC-Zyklus 4 (letzter), Tag 1.\n\nPat. erholt von Neutropenie-Episode. AZ gut. ECOG 1 (etwas reduziert durch Müdigkeit).\nLabor (29.04.): Leuko 5,2 G/l, Hb 10,2 g/dl, Thrombo 220 G/l, Krea 0,78 → Zyklus möglich.\n\nChemo: Epirubicin 155mg + Cyclophosphamid 1032mg i.v. über Port. Antiemese triple.\nG-CSF: Filgrastim 300μg s.c. ab morgen (Tag 2), 7 Tage – primärprophylaktisch lt. Plan.\n\nPat. fragt nochmals nach Kribbeln in Fingern – unverändert leicht. OA-Entscheidung: Neuropathie-Symptom weder klinisch bestätigt noch objektivierbar (Epirubicin kein typisches Neurotoxin). Kein Handlungsbedarf vor Wechsel auf Paclitaxel, wo Neuropathie erwartet werden kann.\n\nNächste Phase: Paclitaxel + Trastuzumab × 4 ab ca. Juni 2024."
+  },
+  {
+    "id": "P005-D017",
+    "patient_id": "P005",
+    "datum": "2024-04-29T16:00",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Onkologie",
+    "titel": "Pflegebericht Zyklus 4",
+    "text": "29.04.2024, 16:00 Uhr, DGKP Karin Moser\n\nPat. Steinbauer, Chemotherapie-Tagesklinik, Zyklus 4. Infusion komplikationslos über Port abgelaufen.\nPat. müde, aber kooperativ. Keine Übelkeit unter verbesserter Antiemese.\nPort-Eintrittsstelle nach Punktion: trocken, reizlos.\nKein Fieber (36,8°C). SpO2 98%.\nPat. hat Perücke. Haarausfall vollständig.\nKein weiterer Pflegebedarf."
+  }
+]

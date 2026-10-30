@@ -1,0 +1,2318 @@
+{
+  "resourceType": "Bundle",
+  "id": "a35e5235-6229-41e2-9aa5-76c8bc3ba7a2",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/uv/ips/StructureDefinition/Bundle-uv-ips"
+    ],
+    "tag": [
+      {
+        "system": "http://ips-hackathon/tags",
+        "code": "ai-draft"
+      }
+    ]
+  },
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:a35e5235-6229-41e2-9aa5-76c8bc3ba7a2"
+  },
+  "type": "document",
+  "timestamp": "2026-10-30T06:41:51.810438+00:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:c029a87a-6ef5-4e21-85d4-3fb04c6b0d25",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "c029a87a-6ef5-4e21-85d4-3fb04c6b0d25",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/ips/StructureDefinition/Composition-uv-ips"
+          ]
+        },
+        "status": "preliminary",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "60591-5",
+              "display": "Patient summary Document"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2026-10-30T06:41:51.810438+00:00",
+        "author": [
+          {
+            "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+          }
+        ],
+        "title": "Internationales Patienten-Summary – Hermine Bruckner (*1952-04-17)",
+        "confidentiality": "N",
+        "attester": [],
+        "custodian": {
+          "reference": "urn:uuid:956c8abf-692c-4611-8679-f932642caa0d"
+        },
+        "section": [
+          {
+            "title": "Problemliste",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11450-4",
+                  "display": "Problemliste"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:0642c0f7-54b7-40b5-a37f-cdb1437f1809"
+              },
+              {
+                "reference": "urn:uuid:3000bd96-d7df-4296-9425-cd0b93d7ad5b"
+              },
+              {
+                "reference": "urn:uuid:5c93a523-cc36-4adc-84ac-30722c971ee4"
+              }
+            ]
+          },
+          {
+            "title": "Allergien und Unverträglichkeiten",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48765-2",
+                  "display": "Allergien und Unverträglichkeiten"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:dc7b619a-797c-420c-bd47-4718ff8c98e3"
+              }
+            ]
+          },
+          {
+            "title": "Medikation",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "10160-0",
+                  "display": "Medikation"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:6dc8ae50-821d-4127-b505-f6a44238b2da"
+              },
+              {
+                "reference": "urn:uuid:55ed548f-c7a7-4483-8424-b625c02716b7"
+              },
+              {
+                "reference": "urn:uuid:06261630-40c1-4a64-a3d7-c55a6c89ae50"
+              },
+              {
+                "reference": "urn:uuid:a18ebb29-418d-4090-9e3b-b655e006912e"
+              }
+            ]
+          },
+          {
+            "title": "Frühere Erkrankungen",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11348-0",
+                  "display": "Frühere Erkrankungen"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:8e432e14-f56a-4cfc-84ef-5d80a8f332e1"
+              }
+            ]
+          },
+          {
+            "title": "Maßnahmen und Eingriffe",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "47519-4",
+                  "display": "Maßnahmen und Eingriffe"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:6b0875d0-c258-4b42-861f-f46a00ee319a"
+              },
+              {
+                "reference": "urn:uuid:05a83e47-40a8-498c-a365-34f8c48aeb89"
+              }
+            ]
+          },
+          {
+            "title": "Medizinische Geräte und Implantate",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "46264-8",
+                  "display": "Medizinische Geräte und Implantate"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:56c4e36c-ade1-4ece-b50f-79ce9982743b"
+              }
+            ]
+          },
+          {
+            "title": "Diagnostische Befunde",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "30954-2",
+                  "display": "Diagnostische Befunde"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf.</div>"
+            },
+            "entry": [
+              {
+                "reference": "urn:uuid:9f7b367b-2857-419f-a496-6da3d9a61a49"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/ai-generated",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/ai-notice",
+            "valueString": "HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "f14bac9c-a470-4ab7-80ef-b98adb9c5924",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/ips/StructureDefinition/Patient-uv-ips"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "http://ips-hackathon/patients",
+            "value": "P001"
+          },
+          {
+            "system": "http://ips-hackathon/versicherung",
+            "value": "FAKE-7241-170452"
+          }
+        ],
+        "name": [
+          {
+            "family": "Bruckner",
+            "given": [
+              "Hermine"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1952-04-17",
+        "address": [
+          {
+            "state": "Niederösterreich",
+            "country": "AT"
+          }
+        ],
+        "managingOrganization": {
+          "reference": "urn:uuid:956c8abf-692c-4611-8679-f932642caa0d"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:956c8abf-692c-4611-8679-f932642caa0d",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "956c8abf-692c-4611-8679-f932642caa0d",
+        "name": "Landesklinikum Musterstadt",
+        "address": [
+          {
+            "country": "AT"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975",
+      "resource": {
+        "resourceType": "Device",
+        "id": "4d44faf6-fa51-4aad-95aa-eb3216311975",
+        "deviceName": [
+          {
+            "name": "IPS-Hackathon-AI",
+            "type": "user-friendly-name"
+          }
+        ],
+        "version": [
+          {
+            "value": "0.1.0"
+          }
+        ],
+        "note": [
+          {
+            "text": "HINWEIS: Dieser Inhalt wurde durch ein KI-System generiert und erfordert ärztliche Prüfung vor klinischer Verwendung. Status: Entwurf."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:82dd20d0-771c-42a1-bb03-d31979270d28",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "82dd20d0-771c-42a1-bb03-d31979270d28",
+        "status": "current",
+        "type": {
+          "text": "Ambulanzbefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2018-03-12T09:15",
+        "description": "Ambulanzkontrolle Hypertonie",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Ambulanzkontrolle Hypertonie"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D001"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:aae850d9-e6ac-4f1e-99de-b38b04e1ce37",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "aae850d9-e6ac-4f1e-99de-b38b04e1ce37",
+        "status": "current",
+        "type": {
+          "text": "Entlassungsbrief"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2021-06-08T11:00",
+        "description": "Entlassungsbrief nach Radiusfraktur links",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Entlassungsbrief nach Radiusfraktur links"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D002"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f68aeb97-773b-4a2f-b8e9-8b97961f9372",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f68aeb97-773b-4a2f-b8e9-8b97961f9372",
+        "status": "current",
+        "type": {
+          "text": "Zuweisung"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-02T14:32",
+        "description": "Einweisung nach Sturz mit Hüftfraktur",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Einweisung nach Sturz mit Hüftfraktur"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D003"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:f2405f25-da94-46ee-8927-5854a80976be",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f2405f25-da94-46ee-8927-5854a80976be",
+        "status": "current",
+        "type": {
+          "text": "Aufnahmebefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-02T16:05",
+        "description": "Aufnahmebefund Unfallchirurgie",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Aufnahmebefund Unfallchirurgie"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D004"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9b780023-07e3-4249-9e69-c6dd46a7e15f",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "9b780023-07e3-4249-9e69-c6dd46a7e15f",
+        "status": "current",
+        "type": {
+          "text": "Pflegebericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-02T20:15",
+        "description": "Pflegebericht Aufnahmeabend",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Pflegebericht Aufnahmeabend"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D005"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:2865462d-81d6-4d46-a1e3-cccb847a34a1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "2865462d-81d6-4d46-a1e3-cccb847a34a1",
+        "status": "current",
+        "type": {
+          "text": "Laborbefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-03T07:30",
+        "description": "Präoperatives Labor",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Präoperatives Labor"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D006"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ff7789a5-6933-44aa-b056-5ebf79dd162c",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "ff7789a5-6933-44aa-b056-5ebf79dd162c",
+        "status": "current",
+        "type": {
+          "text": "Anaesthesieprotokoll"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-03T10:00",
+        "description": "Präoperative Anästhesievisite",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Präoperative Anästhesievisite"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D007"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d1b332fe-7c50-4ee5-9b74-bf311f7e85ae",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d1b332fe-7c50-4ee5-9b74-bf311f7e85ae",
+        "status": "current",
+        "type": {
+          "text": "Medikationsanordnung"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-04T08:00",
+        "description": "Medikationsanordnung präoperativ",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Medikationsanordnung präoperativ"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D008"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bceca751-9f63-4eb0-b617-8e0e2c58ca37",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "bceca751-9f63-4eb0-b617-8e0e2c58ca37",
+        "status": "current",
+        "type": {
+          "text": "OP-Bericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-04T10:15",
+        "description": "OP-Bericht: Implantation Hüft-TEP rechts",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "OP-Bericht: Implantation Hüft-TEP rechts"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D009"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3e0cfe7-a5e9-4cf4-be70-af9214f3e427",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "c3e0cfe7-a5e9-4cf4-be70-af9214f3e427",
+        "status": "current",
+        "type": {
+          "text": "Radiologiebefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-04T14:00",
+        "description": "Röntgen Hüfte rechts postoperativ",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Röntgen Hüfte rechts postoperativ"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D010"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:047a1806-dc3d-4f10-9c01-55e54ed65501",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "047a1806-dc3d-4f10-9c01-55e54ed65501",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-05T08:45",
+        "description": "Verlauf 1. postoperativer Tag",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlauf 1. postoperativer Tag"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D011"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d397ee40-c7ed-44b8-816e-68b49fecd34d",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d397ee40-c7ed-44b8-816e-68b49fecd34d",
+        "status": "current",
+        "type": {
+          "text": "Physiotherapiebericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-05T14:00",
+        "description": "Physiotherapiebericht 1. POD",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Physiotherapiebericht 1. POD"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D012"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:890f30cc-a7d6-4aac-bfc4-2c2afe92b51a",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "890f30cc-a7d6-4aac-bfc4-2c2afe92b51a",
+        "status": "current",
+        "type": {
+          "text": "Laborbefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-06T09:00",
+        "description": "Postoperatives Kontrolllabor Tag 2",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Postoperatives Kontrolllabor Tag 2"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D013"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:bbb3dcf6-c0ca-426b-8412-470611323d0b",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "bbb3dcf6-c0ca-426b-8412-470611323d0b",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-07T07:00",
+        "description": "Verlauf 3. postoperativer Tag – Verschlechterung",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlauf 3. postoperativer Tag – Verschlechterung"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D014"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:db4f056b-fa9b-452c-ba47-a692a1516f09",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "db4f056b-fa9b-452c-ba47-a692a1516f09",
+        "status": "current",
+        "type": {
+          "text": "Radiologiebefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-07T10:30",
+        "description": "Röntgen Thorax bei Fieber und Dyspnoe",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Röntgen Thorax bei Fieber und Dyspnoe"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D015"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:08ccb0b2-829f-42c2-99e1-5cfbf4325d04",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "08ccb0b2-829f-42c2-99e1-5cfbf4325d04",
+        "status": "current",
+        "type": {
+          "text": "Intensivverlegungsbericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-07T12:00",
+        "description": "Intensivverlegungsbericht – Verlegung auf ICU",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Intensivverlegungsbericht – Verlegung auf ICU"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D016"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6b10c1e3-52f6-441a-b765-f8428e2d89a0",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "6b10c1e3-52f6-441a-b765-f8428e2d89a0",
+        "status": "current",
+        "type": {
+          "text": "Radiologiebefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-08T15:00",
+        "description": "CT-Thorax mit Angiographie – Ausschluss Lungenembolie",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "CT-Thorax mit Angiographie – Ausschluss Lungenembolie"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D017"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:d7fc79bf-a9ed-42a9-9c53-770c84196089",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "d7fc79bf-a9ed-42a9-9c53-770c84196089",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-09T08:00",
+        "description": "ICU-Verlauf Tag 2 – Kardio-Konsil, AF-Management",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "ICU-Verlauf Tag 2 – Kardio-Konsil, AF-Management"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D018"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:79aef1b0-0fd3-4e05-979a-4f1fab2d5732",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "79aef1b0-0fd3-4e05-979a-4f1fab2d5732",
+        "status": "current",
+        "type": {
+          "text": "Konsiliarbefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-09T14:00",
+        "description": "Kardiologisches Konsil – Vorhofflimmern",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Kardiologisches Konsil – Vorhofflimmern"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D019"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e0976c5b-d491-433a-a0c5-14aa205c36a5",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e0976c5b-d491-433a-a0c5-14aa205c36a5",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-11T08:00",
+        "description": "ICU-Verlauf Tag 4 – klinische Besserung",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "ICU-Verlauf Tag 4 – klinische Besserung"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D020"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dd1a7557-e194-4ec8-afb2-a2c9262b0ee1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "dd1a7557-e194-4ec8-afb2-a2c9262b0ee1",
+        "status": "current",
+        "type": {
+          "text": "Intensivverlegungsbericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-13T09:00",
+        "description": "Verlegungsbericht ICU → Normalstation",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlegungsbericht ICU → Normalstation"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D021"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:056b185c-d1af-4688-8145-4a3043043db1",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "056b185c-d1af-4688-8145-4a3043043db1",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-14T08:30",
+        "description": "Verlauf nach Rückverlegung – Apixaban-Dosiskorrektur",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlauf nach Rückverlegung – Apixaban-Dosiskorrektur"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D022"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e2437d49-5b87-46d0-b468-8d88efb1da60",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "e2437d49-5b87-46d0-b468-8d88efb1da60",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-17T09:00",
+        "description": "Verlauf – Antibiose beendet, Wundnahtentfernung",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlauf – Antibiose beendet, Wundnahtentfernung"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D023"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:32756a46-3e0d-4ee1-815b-d4e1302f7217",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "32756a46-3e0d-4ee1-815b-d4e1302f7217",
+        "status": "current",
+        "type": {
+          "text": "Pflegebericht"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-09-18T11:00",
+        "description": "Pflegebericht – Verlauf Station",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Pflegebericht – Verlauf Station"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D024"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:294d51a4-73dd-4981-9ce5-9e5b4628214e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "294d51a4-73dd-4981-9ce5-9e5b4628214e",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-10-02T08:00",
+        "description": "Verlauf Anfang Oktober – Vorbereitung Reha",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Verlauf Anfang Oktober – Vorbereitung Reha"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D025"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b2e06d00-9f41-46b8-a006-cd0393e99804",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "b2e06d00-9f41-46b8-a006-cd0393e99804",
+        "status": "current",
+        "type": {
+          "text": "Konsiliarbefund"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-11-15T09:00",
+        "description": "Kardiologisches Verlaufskonsil – VHF persistierend",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Kardiologisches Verlaufskonsil – VHF persistierend"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D026"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5e09c74a-03c8-4bb1-90ec-a38db8d62587",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "5e09c74a-03c8-4bb1-90ec-a38db8d62587",
+        "status": "current",
+        "type": {
+          "text": "Verlaufseintrag"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-11-20T10:00",
+        "description": "Elektrische Kardioversion – Sinusrhythmus restauriert",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Elektrische Kardioversion – Sinusrhythmus restauriert"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D027"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "22194f7c-b676-42cb-bb66-7a7165866d0e",
+        "status": "current",
+        "type": {
+          "text": "Entlassungsbrief"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "date": "2024-11-28T11:00",
+        "description": "Entlassungsbrief nach Langzeitaufenthalt",
+        "content": [
+          {
+            "attachment": {
+              "contentType": "text/plain; charset=utf-8",
+              "language": "de-AT",
+              "title": "Entlassungsbrief nach Langzeitaufenthalt"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/source-doc-id",
+            "valueString": "P001-D028"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0642c0f7-54b7-40b5-a37f-cdb1437f1809",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "0642c0f7-54b7-40b5-a37f-cdb1437f1809",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "code": {
+          "text": "Arterielle Hypertonie",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I10",
+              "display": "Essentielle (primäre) Hypertonie"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "onsetString": "2014-01-01"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5dba148d-ef40-4944-a4c6-973605b9b0f1",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "5dba148d-ef40-4944-a4c6-973605b9b0f1",
+        "target": [
+          {
+            "reference": "urn:uuid:0642c0f7-54b7-40b5-a37f-cdb1437f1809"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:82dd20d0-771c-42a1-bb03-d31979270d28"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:aae850d9-e6ac-4f1e-99de-b38b04e1ce37"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:f68aeb97-773b-4a2f-b8e9-8b97961f9372"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:f2405f25-da94-46ee-8927-5854a80976be"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:08ccb0b2-829f-42c2-99e1-5cfbf4325d04"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3000bd96-d7df-4296-9425-cd0b93d7ad5b",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "3000bd96-d7df-4296-9425-cd0b93d7ad5b",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "code": {
+          "text": "Medialer Schenkelhalsfraktur rechts",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "S72.00",
+              "display": "Schenkelhalsfraktur, nicht näher bezeichnet"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "onsetString": "2024-09-02"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:af418595-e4ac-403d-9d01-f7d7f14cc836",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "af418595-e4ac-403d-9d01-f7d7f14cc836",
+        "target": [
+          {
+            "reference": "urn:uuid:3000bd96-d7df-4296-9425-cd0b93d7ad5b"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:f2405f25-da94-46ee-8927-5854a80976be"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:bceca751-9f63-4eb0-b617-8e0e2c58ca37"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5c93a523-cc36-4adc-84ac-30722c971ee4",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "5c93a523-cc36-4adc-84ac-30722c971ee4",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "code": {
+          "text": "Erstdiagnose Vorhofflimmern",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "I48.0",
+              "display": "Paroxysmales Vorhofflimmern"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "onsetString": "2024-09-07"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fa89a717-79bc-4c62-80f4-29a4d52ac7ac",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "fa89a717-79bc-4c62-80f4-29a4d52ac7ac",
+        "target": [
+          {
+            "reference": "urn:uuid:5c93a523-cc36-4adc-84ac-30722c971ee4"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:bbb3dcf6-c0ca-426b-8412-470611323d0b"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:08ccb0b2-829f-42c2-99e1-5cfbf4325d04"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:79aef1b0-0fd3-4e05-979a-4f1fab2d5732"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dc7b619a-797c-420c-bd47-4718ff8c98e3",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "dc7b619a-797c-420c-bd47-4718ff8c98e3",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification",
+              "code": "unconfirmed",
+              "display": "Unconfirmed"
+            }
+          ]
+        },
+        "criticality": "unable-to-assess",
+        "code": {
+          "text": "Acetylsalicylsäure (ASS)"
+        },
+        "patient": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "red"
+          }
+        ],
+        "reaction": [
+          {
+            "description": "Unverträglichkeit"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:46cb3072-cb78-449d-a211-b17e87b648f7",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "46cb3072-cb78-449d-a211-b17e87b648f7",
+        "target": [
+          {
+            "reference": "urn:uuid:dc7b619a-797c-420c-bd47-4718ff8c98e3"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:9b780023-07e3-4249-9e69-c6dd46a7e15f"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e0df6e71-eda6-4d26-969a-cb8957fe466d",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "e0df6e71-eda6-4d26-969a-cb8957fe466d",
+        "code": {
+          "text": "Ramipril"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6dc8ae50-821d-4127-b505-f6a44238b2da",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "6dc8ae50-821d-4127-b505-f6a44238b2da",
+        "status": "active",
+        "medicationReference": {
+          "reference": "urn:uuid:e0df6e71-eda6-4d26-969a-cb8957fe466d"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/medication-status",
+            "valueString": "unchanged"
+          },
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "yellow"
+          }
+        ],
+        "dosage": [
+          {
+            "text": "5mg 1-0-0"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:df34cb91-f5fa-48f1-a2f7-529cac12c3ca",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "df34cb91-f5fa-48f1-a2f7-529cac12c3ca",
+        "target": [
+          {
+            "reference": "urn:uuid:6dc8ae50-821d-4127-b505-f6a44238b2da"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e3dd13ed-4bb5-4dee-a700-92b6aa9d66eb",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "e3dd13ed-4bb5-4dee-a700-92b6aa9d66eb",
+        "code": {
+          "text": "Metoprolol"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:55ed548f-c7a7-4483-8424-b625c02716b7",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "55ed548f-c7a7-4483-8424-b625c02716b7",
+        "status": "active",
+        "medicationReference": {
+          "reference": "urn:uuid:e3dd13ed-4bb5-4dee-a700-92b6aa9d66eb"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/medication-status",
+            "valueString": "new"
+          },
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "yellow"
+          }
+        ],
+        "dosage": [
+          {
+            "text": "47,5mg 1-0-0"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3d8e258b-3a1a-4021-976a-a6f10ee79374",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "3d8e258b-3a1a-4021-976a-a6f10ee79374",
+        "target": [
+          {
+            "reference": "urn:uuid:55ed548f-c7a7-4483-8424-b625c02716b7"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ea4801af-404c-47ac-b76e-e6726a1319bf",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "ea4801af-404c-47ac-b76e-e6726a1319bf",
+        "code": {
+          "text": "Apixaban"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:06261630-40c1-4a64-a3d7-c55a6c89ae50",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "06261630-40c1-4a64-a3d7-c55a6c89ae50",
+        "status": "active",
+        "medicationReference": {
+          "reference": "urn:uuid:ea4801af-404c-47ac-b76e-e6726a1319bf"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/medication-status",
+            "valueString": "new"
+          },
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "yellow"
+          }
+        ],
+        "dosage": [
+          {
+            "text": "5mg 2-0-2"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c32d41c3-fdb4-43c3-b138-3bfb2e874e5b",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "c32d41c3-fdb4-43c3-b138-3bfb2e874e5b",
+        "target": [
+          {
+            "reference": "urn:uuid:06261630-40c1-4a64-a3d7-c55a6c89ae50"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dff3ce81-a7d1-458a-86e5-8e26588e2256",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "dff3ce81-a7d1-458a-86e5-8e26588e2256",
+        "code": {
+          "text": "Pantoprazol"
+        }
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a18ebb29-418d-4090-9e3b-b655e006912e",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "a18ebb29-418d-4090-9e3b-b655e006912e",
+        "status": "active",
+        "medicationReference": {
+          "reference": "urn:uuid:dff3ce81-a7d1-458a-86e5-8e26588e2256"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/medication-status",
+            "valueString": "unchanged"
+          },
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/code-validated",
+            "valueBoolean": false
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "yellow"
+          }
+        ],
+        "dosage": [
+          {
+            "text": "40mg 1-0-0"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b3082736-9d3d-415a-b92c-7b9c0894b433",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "b3082736-9d3d-415a-b92c-7b9c0894b433",
+        "target": [
+          {
+            "reference": "urn:uuid:a18ebb29-418d-4090-9e3b-b655e006912e"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:8e432e14-f56a-4cfc-84ef-5d80a8f332e1",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "8e432e14-f56a-4cfc-84ef-5d80a8f332e1",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "resolved",
+              "display": "Resolved"
+            }
+          ]
+        },
+        "code": {
+          "text": "Distale Radiusfraktur links",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "code": "S52.50",
+              "display": "Distale Fraktur des Radius, nicht näher bezeichnet"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "abatementString": "2021"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:dbd75cfd-53da-4a2f-9356-e0b3e706e658",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "dbd75cfd-53da-4a2f-9356-e0b3e706e658",
+        "target": [
+          {
+            "reference": "urn:uuid:8e432e14-f56a-4cfc-84ef-5d80a8f332e1"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:aae850d9-e6ac-4f1e-99de-b38b04e1ce37"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:f68aeb97-773b-4a2f-b8e9-8b97961f9372"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:f2405f25-da94-46ee-8927-5854a80976be"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6b0875d0-c258-4b42-861f-f46a00ee319a",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "6b0875d0-c258-4b42-861f-f46a00ee319a",
+        "status": "completed",
+        "code": {
+          "text": "Implantation einer zementfreien Hüft-Totalendoprothese rechts"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "performedString": "2024-09-04"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:3e511c51-f383-40cf-9438-d5784a20ddfe",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "3e511c51-f383-40cf-9438-d5784a20ddfe",
+        "target": [
+          {
+            "reference": "urn:uuid:6b0875d0-c258-4b42-861f-f46a00ee319a"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:bceca751-9f63-4eb0-b617-8e0e2c58ca37"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:05a83e47-40a8-498c-a365-34f8c48aeb89",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "05a83e47-40a8-498c-a365-34f8c48aeb89",
+        "status": "completed",
+        "code": {
+          "text": "Elektrische Kardioversion"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "performedString": "2024-11-20"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:33bed8d0-2b8b-4171-8443-9d7864d07cb7",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "33bed8d0-2b8b-4171-8443-9d7864d07cb7",
+        "target": [
+          {
+            "reference": "urn:uuid:05a83e47-40a8-498c-a365-34f8c48aeb89"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:5e09c74a-03c8-4bb1-90ec-a38db8d62587"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:08527039-a901-4832-a98c-e5d6efff931f",
+      "resource": {
+        "resourceType": "Device",
+        "id": "08527039-a901-4832-a98c-e5d6efff931f",
+        "deviceName": [
+          {
+            "name": "Zementfreie Hüft-Totalendoprothese rechts (ProJoint PJ-CeraMax)",
+            "type": "user-friendly-name"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:56c4e36c-ade1-4ece-b50f-79ce9982743b",
+      "resource": {
+        "resourceType": "DeviceUseStatement",
+        "id": "56c4e36c-ade1-4ece-b50f-79ce9982743b",
+        "status": "active",
+        "device": {
+          "reference": "urn:uuid:08527039-a901-4832-a98c-e5d6efff931f"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "timingDateTime": "2024-09-04"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a2869e05-2461-4e3a-9c8a-7d264b06f6a3",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "a2869e05-2461-4e3a-9c8a-7d264b06f6a3",
+        "target": [
+          {
+            "reference": "urn:uuid:56c4e36c-ade1-4ece-b50f-79ce9982743b"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:bceca751-9f63-4eb0-b617-8e0e2c58ca37"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:9f7b367b-2857-419f-a496-6da3d9a61a49",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "9f7b367b-2857-419f-a496-6da3d9a61a49",
+        "status": "final",
+        "code": {
+          "text": "Postoperative Pneumonie"
+        },
+        "subject": {
+          "reference": "urn:uuid:f14bac9c-a470-4ab7-80ef-b98adb9c5924"
+        },
+        "extension": [
+          {
+            "url": "http://ips-hackathon/extensions/quote-verified",
+            "valueBoolean": true
+          },
+          {
+            "url": "http://ips-hackathon/extensions/status-light",
+            "valueString": "green"
+          }
+        ],
+        "effectiveDateTime": "2024-09-07"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:101c82d7-bd26-4730-a460-b21224a3c95e",
+      "resource": {
+        "resourceType": "Provenance",
+        "id": "101c82d7-bd26-4730-a460-b21224a3c95e",
+        "target": [
+          {
+            "reference": "urn:uuid:9f7b367b-2857-419f-a496-6da3d9a61a49"
+          }
+        ],
+        "recorded": "2026-10-30T06:41:51.810438+00:00",
+        "agent": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/provenance-participant-type",
+                  "code": "assembler",
+                  "display": "Assembler"
+                }
+              ]
+            },
+            "who": {
+              "reference": "urn:uuid:4d44faf6-fa51-4aad-95aa-eb3216311975"
+            }
+          }
+        ],
+        "entity": [
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:bbb3dcf6-c0ca-426b-8412-470611323d0b"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:08ccb0b2-829f-42c2-99e1-5cfbf4325d04"
+            }
+          },
+          {
+            "role": "source",
+            "what": {
+              "reference": "urn:uuid:22194f7c-b676-42cb-bb66-7a7165866d0e"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

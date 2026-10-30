@@ -4,6 +4,13 @@ duckdb==1.5.6; python_version < "3.11"
 fastapi==0.162.0
 uvicorn[standard]==0.54.0
 pydantic==2.14.2
+# IPS pipeline (patientSummary integration) — all optional; endpoints return 500 if missing
+pyyaml>=6.0
+requests>=2.31
+cryptography>=42.0
+python-dotenv>=1.0
+openai>=1.30           # for LLM_PROVIDER=openai or azure_openai
 # tests
 pytest==9.2.0
 httpx==0.28.1
+pytest-asyncio>=0.23

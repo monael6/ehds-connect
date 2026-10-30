@@ -1,0 +1,233 @@
+{
+  "patient_token": "PT-f0cd1a",
+  "extraction_model": "gpt-4o",
+  "extraction_timestamp": "2026-10-30T06:41:51.791914Z",
+  "pseudonymized": true,
+  "included": {
+    "problems_active": [
+      {
+        "source_ids": [
+          "P001-D001",
+          "P001-D002",
+          "P001-D003",
+          "P001-D004",
+          "P001-D016",
+          "P001-D028"
+        ],
+        "quote": "Bekannte arterielle Hypertonie seit ca. 10 Jahren",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Arterielle Hypertonie",
+        "icd10_suggested": "I10",
+        "snomed_suggested": null,
+        "onset": "2014-01-01"
+      },
+      {
+        "source_ids": [
+          "P001-D004",
+          "P001-D009",
+          "P001-D028"
+        ],
+        "quote": "Medialer Schenkelhalsfraktur re. bestätigt (Garden III)",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Medialer Schenkelhalsfraktur rechts",
+        "icd10_suggested": "S72.00",
+        "snomed_suggested": null,
+        "onset": "2024-09-02"
+      },
+      {
+        "source_ids": [
+          "P001-D014",
+          "P001-D016",
+          "P001-D019",
+          "P001-D028"
+        ],
+        "quote": "Neu aufgetretenes Vorhofflimmern",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Erstdiagnose Vorhofflimmern",
+        "icd10_suggested": "I48.0",
+        "snomed_suggested": null,
+        "onset": "2024-09-07"
+      }
+    ],
+    "past_history": [
+      {
+        "source_ids": [
+          "P001-D002",
+          "P001-D003",
+          "P001-D004"
+        ],
+        "quote": "Z.n. dist. Radiusfraktur li. 06/2021",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Distale Radiusfraktur links",
+        "icd10_suggested": "S52.50",
+        "resolved": "2021"
+      }
+    ],
+    "allergies_intolerances": [
+      {
+        "source_ids": [
+          "P001-D005",
+          "P001-D028"
+        ],
+        "quote": "Pat. berichtet, sie verträge kein ASS – sei ihr 'immer schlecht geworden davon'.",
+        "quote_verified": false,
+        "code_validated": true,
+        "substance": "Acetylsalicylsäure (ASS)",
+        "reaction": "Unverträglichkeit",
+        "criticality": "unknown",
+        "verification": "unconfirmed"
+      }
+    ],
+    "medication_at_discharge": [
+      {
+        "source_ids": [
+          "P001-D028"
+        ],
+        "quote": "Ramipril 5mg (Delix) 1-0-0 – Hypertonie (unverändert)",
+        "quote_verified": true,
+        "code_validated": false,
+        "active_ingredient": "Ramipril",
+        "atc_suggested": null,
+        "dose": "5mg 1-0-0",
+        "status": "unchanged"
+      },
+      {
+        "source_ids": [
+          "P001-D028"
+        ],
+        "quote": "Metoprolol 47,5mg (Beloc) 1-0-0 – Frequenzkontrolle / Rezidivprophylaxe VHF (neu)",
+        "quote_verified": true,
+        "code_validated": false,
+        "active_ingredient": "Metoprolol",
+        "atc_suggested": null,
+        "dose": "47,5mg 1-0-0",
+        "status": "new"
+      },
+      {
+        "source_ids": [
+          "P001-D028"
+        ],
+        "quote": "Apixaban 5mg (Eliquis) 2-0-2 – Antikoagulation VHF (neu)",
+        "quote_verified": true,
+        "code_validated": false,
+        "active_ingredient": "Apixaban",
+        "atc_suggested": null,
+        "dose": "5mg 2-0-2",
+        "status": "new"
+      },
+      {
+        "source_ids": [
+          "P001-D028"
+        ],
+        "quote": "Pantoprazol 40mg 1-0-0 – Magenschutz (perioperativ gestartet, weiterverschrieben)",
+        "quote_verified": true,
+        "code_validated": false,
+        "active_ingredient": "Pantoprazol",
+        "atc_suggested": null,
+        "dose": "40mg 1-0-0",
+        "status": "unchanged"
+      }
+    ],
+    "medication_stopped": [
+      {
+        "source_ids": [
+          "P001-D021"
+        ],
+        "quote": "Heparin s.c.: gestoppt (Antikoagulation mit Apixaban)",
+        "quote_verified": true,
+        "code_validated": false,
+        "active_ingredient": "Heparin",
+        "atc_suggested": null,
+        "reason": "Antikoagulation mit Apixaban"
+      }
+    ],
+    "procedures": [
+      {
+        "source_ids": [
+          "P001-D009",
+          "P001-D028"
+        ],
+        "quote": "Implantation einer zementfreien Hüft-Totalendoprothese rechts",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Implantation einer zementfreien Hüft-Totalendoprothese rechts",
+        "date": "2024-09-04"
+      },
+      {
+        "source_ids": [
+          "P001-D027",
+          "P001-D028"
+        ],
+        "quote": "Elektive externe Kardioversion unter Sedierung",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Elektrische Kardioversion",
+        "date": "2024-11-20"
+      }
+    ],
+    "medical_devices": [
+      {
+        "source_ids": [
+          "P001-D009",
+          "P001-D028"
+        ],
+        "quote": "Zementfreie Hüft-TEP rechts (ProJoint PJ-CeraMax, Pfanne Ø52mm, Schaft Gr.5)",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Zementfreie Hüft-Totalendoprothese rechts (ProJoint PJ-CeraMax)",
+        "since": "2024-09-04"
+      }
+    ],
+    "immunizations": [],
+    "key_results": [
+      {
+        "source_ids": [
+          "P001-D014",
+          "P001-D016",
+          "P001-D028"
+        ],
+        "quote": "Postoperative Pneumonie (neu)",
+        "quote_verified": true,
+        "code_validated": true,
+        "text": "Postoperative Pneumonie",
+        "value": null,
+        "date": "2024-09-07"
+      }
+    ]
+  },
+  "excluded": [
+    {
+      "source_ids": [
+        "P001-D017"
+      ],
+      "quote": "Kein Anhalt für Lungenembolie.",
+      "quote_verified": true,
+      "code_validated": false,
+      "text": "Lungenembolie",
+      "reason": "ruled_out",
+      "detail": null
+    },
+    {
+      "source_ids": [
+        "P001-D024"
+      ],
+      "quote": "Pat. erwähnte, sie habe 'früher Magenprobleme gehabt mit einem Blutungsgeschwür' – laut Aufnahme und bisherigen Befunden nicht dokumentiert.",
+      "quote_verified": false,
+      "code_validated": false,
+      "text": "Magenprobleme mit einem Blutungsgeschwür",
+      "reason": "unconfirmed",
+      "detail": null
+    }
+  ],
+  "verification_summary": {
+    "total_items": 16,
+    "quote_verified": 14,
+    "quote_failed": 2,
+    "code_validated": 9,
+    "code_unvalidated": 0
+  }
+}
