@@ -1,0 +1,167 @@
+[
+  {
+    "id": "P002-D001",
+    "patient_id": "P002",
+    "datum": "2019-08-20T10:30",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Allgemeinmedizin",
+    "autor_rolle": "Hausarzt",
+    "einrichtung": "Ordination Dr. Petra Holzmann, Graz-Süd",
+    "titel": "Diabetes-Kontrolle und Risikofaktoren",
+    "text": "Pat. Gerald Wimmer, *23.05.1970, m. Routinekontrolle.\nDiagnosen: Typ-2-Diabetes (seit 2016, HbA1c zuletzt 7,8%), art. Hypertonie (seit 2018).\nMedikation: Metformin 1000mg 1-0-1, Ramipril 5mg 1-0-0.\nRaucher: ca. 20 Zigaretten/d seit dem 18. Lj. (ca. 36 pack-years).\nRR: 148/92, Puls 78/min. KG 94kg, Größe 178cm, BMI 29,7.\nLipide (07/2019): Gesamt-Chol 5,8 mmol/l, LDL 3,7 mmol/l, HDL 0,9 mmol/l, TG 2,4 mmol/l – Dyslipidämie!\nHbA1c 8,1% – nicht am Ziel.\nEKG: SR, LVH-Zeichen, kein Ischämiemuster.\nEmpfehlung: Metformin weiterführen, Dosisanpassung diskutiert. Ramipril weiterführen. Statin-Therapie dringend empfohlen – Pat. lehnt \"noch\" ab, will Diät versuchen. Nikotinentwöhnung empfohlen.\nFamilienanamnese: Vater verstorben an Herzinfarkt mit 61 Jahren.\nKeine bekannten Allergien."
+  },
+  {
+    "id": "P002-D002",
+    "patient_id": "P002",
+    "datum": "2022-03-05T09:00",
+    "typ": "Vorbefund",
+    "fachrichtung": "Innere Medizin",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "LKH Graz Süd-West",
+    "titel": "Belastungs-EKG bei V.a. KHK",
+    "text": "Zuweisung durch FA Holzmann wg. V.a. KHK (Belastungsschmerz re. Schulter).\nPat. Wimmer Gerald, *23.05.1970.\n\nVorerkrankungen: T2DM, art. Hypertonie, Dyslipidämie (bislang ohne Statin), Raucher.\nFamilienanamnese: Vater mit Myokardinfarkt mit 61a.\n\nBelastungs-EKG (Fahrradergometer):\nMaximale Belastung: 125 Watt (abgebrochen wg. Erschöpfung).\nHF max: 151/min. RR max: 182/100.\nEKG unter Belastung: ST-Senkung 1,2mm in V4–V6 bei 100W → V.a. belastungsinduzierte Ischämie.\nKeine Angina pectoris während Test.\n\nBeurteilung: Positiver Belastungstest. Kardiologe-Kontrolle und ggf. Koronarangiographie empfohlen.\nRauchstopp dringend empfohlen.\nEmpfehlung: ASS 100mg 1-0-0 starten (Hausarzt), Kardiologie-Überweisung."
+  },
+  {
+    "id": "P002-D003",
+    "patient_id": "P002",
+    "datum": "2024-10-14T07:45",
+    "typ": "Zuweisung",
+    "fachrichtung": "Allgemeinmedizin",
+    "autor_rolle": "Hausarzt",
+    "einrichtung": "Ordination Dr. Petra Holzmann, Graz-Süd",
+    "titel": "Notfalleinweisung bei Brustschmerz",
+    "text": "Notfall-Einweisung!\nPat.: Wimmer Gerald, *23.05.1970\nZuweisungsdiagnose: V.a. akutes Koronarsyndrom / STEMI\n\nAnamnese: Pat. klagte seit ca. 3h über starken Druckschmerz retrosternal, Ausstrahlung in li. Arm, Schwitzen, Übelkeit. Beginn ca. 04:30 Uhr.\nVorerkrankungen: T2DM, art. Hypertonie, Dyslipidämie, bekannte V.a. KHK (pos. Belastungs-EKG 03/2022, keine Koronarangiographie erfolgt).\nMedikation: Metformin 1000mg 1-0-1, Ramipril 5mg 1-0-0, ASS 100mg 1-0-0.\nRaucher (20 Zig/d).\nAllergien: keine bekannt.\n\nEKG in Ordination: Hebungen in II, III, aVF – V.a. Hinterwand-STEMI! Bitte sofortige Übernahme.\nASS 500mg bereits gegeben.\nDr. Petra Holzmann"
+  },
+  {
+    "id": "P002-D004",
+    "patient_id": "P002",
+    "datum": "2024-10-14T08:20",
+    "typ": "Aufnahmebefund",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Aufnahmebefund Chest Pain Unit",
+    "text": "Aufnahme: 14.10.2024, 08:20 Uhr, Chest Pain Unit\nPat.: Wimmer Gerald, *23.05.1970, m.\n\nZuweisungsdiagnose: V.a. STEMI Hinterwand.\n\nAnamnese:\nDruckschmerz retrosternal seit ca. 04:30 Uhr, Ausstrahlung li. Arm, Diaphorese, Übelkeit. Schmerz bei Aufnahme NRS 5/10 (nach ASS 500mg in Ordination etwas gebessert).\n\nVorerkrankungen:\n- T2DM (seit 2016)\n- Arterielle Hypertonie\n- Dyslipidämie\n- Z.n. pos. Belastungs-EKG 03/2022, keine invasive Diagnostik erfolgt\n- Nikotinabusus (20 Zig/d, ca. 36 pack-years)\nKeine bekannten Allergien. Keine bekannten Voroperationen.\n\nKörperliche Untersuchung:\nAZ: mäßig, Schmerzen, diaphoretisch. KG 96kg, Gr. 178cm.\nCor: HT rhythmisch, keine Geräusche. Puls 92/min.\nPulmo: VA bds., keine RG.\nAbdomen: weich, unauffällig.\nExtremitäten: keine Ödeme.\nRR: 156/94 mmHg.\n\nEKG bei Aufnahme (08:22 Uhr):\nST-Hebungen II, III, aVF max 1,8mm, spiegelbildliche ST-Senkungen in I, aVL → V.a. Hinterwand-STEMI?\nV4–V6: keine signifikanten ST-Hebungen.\n\nNote: EKG-Befund wird nochmals durch OA überprüft.\n\nDiagnose (vorläufig): V.a. ACS, DD STEMI Hinterwand vs. NSTEMI.\n\nPlan:\n- Troponin, CK, CK-MB, Blutbild, Gerinnung, BMP stat.\n- Kontinuierliches Monitoring\n- Heparin 5000 IE i.v. Bolus\n- Nitro s.l. bei Schmerz\n- OA-Visite sofort\n- Vorbereitung Herzkatheterlabor"
+  },
+  {
+    "id": "P002-D005",
+    "patient_id": "P002",
+    "datum": "2024-10-14T08:45",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Notfalllabor bei ACS",
+    "text": "Patient: Wimmer Gerald, *23.05.1970, m.\nAuftragsnummer: LM-2024-10-14-0031\nAbnahme: 14.10.2024, 08:30 Uhr (STAT)\n\nTroponin T hs: 1.840 ng/l [Ref: <14] ↑↑↑ → signifikant erhöht\nCK: 680 U/l [Ref: <190] ↑↑\nCK-MB: 62 U/l [Ref: <25] ↑↑\nLDH: 312 U/l [Ref: <248] ↑\n\nBlutbild:\n  Hb: 14,2 g/dl [Ref: 13,5–17,5]\n  Leukozyten: 11,8 G/l [Ref: 4,0–10,0] ↑ (Stressreaktion)\n  Thrombozyten: 188 G/l [Ref: 150–400]\n\nGerinnung:\n  INR: 1,04, aPTT: 28s\n\nKlinische Chemie:\n  Na: 140 mmol/l, K: 4,0 mmol/l\n  Krea: 1,08 mg/dl [Ref: 0,7–1,2]\n  eGFR: 74 ml/min/1,73m²\n  Glukose: 9,8 mmol/l [Ref: 3,9–6,1] ↑ (T2DM, Stress)\n  HbA1c: 8,6% ↑ [Ref: <5,7%]\n  Gesamt-Chol: 6,1 mmol/l, LDL: 4,0 mmol/l ↑\n\nKommentar: Troponin-Erhöhung vereinbar mit myokardialem Schaden. STAT-Befund."
+  },
+  {
+    "id": "P002-D006",
+    "patient_id": "P002",
+    "datum": "2024-10-14T09:15",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "OA-Beurteilung EKG – Reklassifikation NSTEMI",
+    "text": "14.10.2024, 09:15 Uhr, OA Dr. Bernhard Reithofer, Kardiologie\n\nEKG-Nachbefundung:\nNachdem das EKG bei Aufnahme von der Hausärztin als V.a. STEMI interpretiert wurde, erfolgt jetzt OA-Nachbeurteilung:\nST-Hebungen in II, III, aVF <2mm, kein komplettes STEMI-Bild, kein Lown-Ganong-Levine. Eher ST-Veränderungen bei Hinterwandischämie ohne vollständiges STEMI-Kriterium.\nTroponin T hs: 1.840 ng/l – signifikant erhöht → ACS bestätigt.\nReklassifikation: NSTEMI (Hinterwandischämie).\n\nPlan: Dringende Koronarangiographie, Zeitfenster <24h. Herzkatheterlabor für heute 14:00 Uhr angemeldet.\nSimvastatin 40mg 0-0-1 gestartet (Hochdosis-Statin als Vorladen vor Intervention).\nHeparin weiterführen (Perfusor, PTT-gesteuert).\nMetformin ab sofort PAUSIERT (KM-Gabe geplant, Kontrastmittel-Nephropathie-Prophylaxe).\nNikotinpflaster 14mg angeboten – Pat. einverstanden."
+  },
+  {
+    "id": "P002-D007",
+    "patient_id": "P002",
+    "datum": "2024-10-14T11:00",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Pflegebericht Aufnahmetag",
+    "text": "14.10.2024, 11:00 Uhr, DGKP Werner Stein\n\nPat. Wimmer, auf CPU Bett 2. Monitorüberwachung läuft. Schmerzen gebessert NRS 2/10.\nPat. berichtet im Pflegegespräch: er habe vor Jahren einmal Jod-KM bekommen und sei \"ganz rot geworden im Gesicht und kurzatmig\" geworden. Dies sei von selbst wieder weggegangen. Dieser Hinweis wurde dem Stationsarzt weitergeleitet.\nNikotinstatus: Raucher, Pflaster angelegt.\nGlukose-Monitoring: BZ 11,2 mmol/l. Insulinkorrektur lt. Schema.\nRR 148/88, Puls 88/min. SpO2 98%.\nPat. kooperativ, versteht Situation. Angst wegen bevorstehender Herzkatheter-Untersuchung.\nNüchtern ab 12:00 Uhr lt. Anordnung."
+  },
+  {
+    "id": "P002-D008",
+    "patient_id": "P002",
+    "datum": "2024-10-14T13:30",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Vorbereitung Koronarangiographie – KM-Allergie-Abklärung",
+    "text": "14.10.2024, 13:30 Uhr, Dr. Sandra Krenn\n\nPflegemeldung KM-Reaktion in Vorgeschichte: Pat. berichtet Flush und Dyspnoe nach Jod-KM (kein Datum bekannt). Reaktion spontan rückläufig. Keine Anaphylaxie-Behandlung damals erforderlich.\nRücksprache mit Radiologie und Anästhesie:\n→ V.a. leichte KM-Unverträglichkeit (pseudoallergische Reaktion, Grad I–II nach Ring/Messmer)\n→ Prämedikation vor KM-Gabe: Prednisolon 50mg p.o. jetzt + 6h vor Eingriff, Clemastin 2mg i.v. 30min vor Eingriff\n→ Iso-osmolares KM verwenden (Iodixanol)\n→ Notfallbereitschaft im Katheterlabor\n\nSimvastatin 40mg erste Dosis heute Mittag gegeben.\nHeparin Perfusor läuft, aPTT 64s (Ziel 60–80s) → Dosis ok."
+  },
+  {
+    "id": "P002-D009",
+    "patient_id": "P002",
+    "datum": "2024-10-14T14:30",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Kardiologie / Interventionskardiologe",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Herzkatheterlabor",
+    "titel": "Koronarangiographie + PCI (Stentimplantation LAD)",
+    "text": "Herzkatheter-Bericht\nDatum: 14.10.2024, 14:30–15:45 Uhr\nOperateur: OA Dr. Klaus Brandner, Interventionskardiologe\nAssistenz: Dr. Sandra Krenn\n\nIndikation: NSTEMI, dringende Koronarangiographie.\nZugang: A. radialis rechts, 6F.\nKM: Iodixanol (iso-osmolar), Prämedikation gegeben. KM-Toleranz: keine Reaktion.\n\nKoronarographie Befund:\n- LCA: RIVA (=LAD): hochgradige Stenose proximal (ca. 85%), TIMI 1-Fluss. RCX: leichtgradige Wandunregelmäßigkeiten, kein signifikanter Befund.\n- RCA: mittelgradige Stenose (ca. 50%) im mittleren Segment, nicht interventionspflichtig.\n\nEntscheidung: Intervention RIVA/LAD.\n\nPCI:\nVordehnung mit 2,5mm Ballon. Implantation eines Drug-eluting Stents (DES) proximal RIVA: Orsiro Mission 3,0 × 18mm (Fa. Biotronik, Sirolimus-beschichtet). Nachdilatation 3,5mm-Ballon. Ergebnis: TIMI 3-Fluss, kein Restbefund. Kein Dissection.\n\nKomplikationen: keine.\nBlutverlust: minimal.\nPostinterventionell:\n- Thienopyridin-Loading: Ticagrelor 180mg Loading-Dose sofort nach Intervention (Klasse I lt. ESC-Leitlinie ACS).\n- Heparin Perfusor heute Abend stoppen.\n\nDiagnose:\n1. NSTEMI bei LAD-Stenose (I21.4)\n2. KHK 2-Gefäß (LAD krit., RCA mittelgradig)\n3. St.p. PCI mit DES LAD, 14.10.2024"
+  },
+  {
+    "id": "P002-D010",
+    "patient_id": "P002",
+    "datum": "2024-10-15T07:30",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Verlauf 1. Tag nach PCI",
+    "text": "15.10.2024, 07:30 Uhr, Dr. Krenn\n1. Tag nach PCI.\n\nPat. wach, beschwerdefrei. Schmerzen 0/10. Kein Brustschmerz.\nPunktionstelle re. Handgelenk: trockener Verband, kein Hämatom.\nPuls 72/min, reg. RR 138/84. SpO2 99%.\nEKG: SR, ST-Normalisierung, Q-Zacken II/III/aVF rudimentär → Hinterwandinfarcierung bestätigt.\n\nSimvastatin 40mg gestern gestartet: Lt. Rücksprache mit OA – Umstellung auf Atorvastatin 80mg 0-0-1 empfohlen (höhere Wirksamkeit bei KHK nach ACS, Leitlinien-konform). Simvastatin gestoppt.\nAtorvastatin 80mg 0-0-1 ab heute.\n\nDuale Thrombozytenhemmung: ASS 100mg 1-0-0 + Ticagrelor 90mg 1-0-1 weiterführen.\nRamipril 5mg weiterführen.\nMetformin: Pause weiterführen (KM noch <48h her). Wiederaufnahme morgen geplant wenn Krea stabil.\nNikotinpflaster weiterführen.\n\nPlan:\n- Echo heute\n- Labor morgen\n- Raucherberatung\n- Metformin-Wiederaufnahme morgen wenn Krea ok"
+  },
+  {
+    "id": "P002-D011",
+    "patient_id": "P002",
+    "datum": "2024-10-15T11:00",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Echokardiographie nach NSTEMI",
+    "text": "Echokardiographie-Befund, 15.10.2024\nOA Dr. Reithofer\n\nIndikation: NSTEMI nach PCI – Beurteilung LV-Funktion.\n\nBefund:\n- LV: EF ca. 45% (leicht eingeschränkt). Regionale Wandbewegungsstörung: Hypokinese inferior und infero-posterior (Hinterwandischämie entsprechend).\n- RV: normal.\n- Klappenapparat: keine signifikante Pathologie.\n- Kein Perikarderguss.\n- LA: nicht wesentlich vergrößert.\n\nBeurteilung: Leicht eingeschränkte LV-Funktion nach NSTEMI mit regionaler Wandbewegungsstörung (Hinterwand). Kein Hinweis auf mechanische Komplikation (Septumdefekt, Papillarmuskelriss).\nKontroll-Echo in 6–8 Wochen empfohlen.\nACE-Hemmer wichtig (Ramipril weiterführen, ggf. Dosis erhöhen)."
+  },
+  {
+    "id": "P002-D012",
+    "patient_id": "P002",
+    "datum": "2024-10-16T07:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Kontrolllabor 2. Tag post-PCI",
+    "text": "Patient: Wimmer Gerald, *23.05.1970\nAuftragsnummer: LM-2024-10-16-0088\nAbnahme: 16.10.2024, 06:15 Uhr\n\nTroponin T hs: 5.420 ng/l ↑↑ (Peak, erwartet nach NSTEMI)\nCK: 1.840 U/l ↑↑ (Peak)\nCK-MB: 148 U/l ↑↑\n\nKlinische Chemie:\n  Krea: 1,12 mg/dl [Ref: 0,7–1,2] – ok, kein KM-Schaden\n  Na: 139 mmol/l, K: 4,2 mmol/l\n  Glukose: 8,4 mmol/l\n  LDL-Cholesterin: 3,9 mmol/l (vor Statin-Wirkung noch erhöht)\n  GOT: 68 U/l ↑ (Myokardschaden)\n  GPT: 24 U/l\n\nKommentar: Erwarteter Enzym-Peak nach NSTEMI/PCI. Krea stabil → Metformin-Wiederaufnahme möglich."
+  },
+  {
+    "id": "P002-D013",
+    "patient_id": "P002",
+    "datum": "2024-10-16T09:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Verlauf 2. Tag – Metformin-Wiederaufnahme, Raucherberatung",
+    "text": "16.10.2024, 09:00 Uhr, Dr. Krenn\n\nKrea stabil (1,12 mg/dl, >48h nach KM) → Metformin 1000mg 1-0-1 wieder gestartet.\nPat. berichtet, er habe seit der Stent-Implantation keine Brustschmerzen mehr. Weiterhin beschwerdefrei.\nEKG: SR, keine neuen Veränderungen.\n\nNikotinberatung: Psychologin Fr. Mag. Tanja Berger (Raucherberatung) hat Pat. heute besucht. Pat. sehr motiviert aufzuhören. Nikotinpflaster weiterführen, Psychologin empfiehlt ambulante Raucherberatungs-Gruppe nach Entlassung.\n\nPat. berichtet außerdem, er habe vor einigen Monaten gelegentlich Herzstolpern bemerkt, v.a. abends – sei aber nie untersucht worden, er habe es für harmlos gehalten. Kein EKG wurde dazu je gemacht.\n\nPlan:\n- Entlassung 18. oder 19.10. wenn weiter stabil\n- Schulung DAPT + Stentpflege\n- Atorvastatin-Laborkontrolle in 6 Wochen beim Hausarzt"
+  },
+  {
+    "id": "P002-D014",
+    "patient_id": "P002",
+    "datum": "2024-10-18T08:00",
+    "typ": "Medikationsanordnung",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Entlassungsmedikation – Anordnung",
+    "text": "18.10.2024, 08:00 Uhr\nOA Dr. Reithofer\n\nMedikation bei Entlassung:\n1. ASS 100mg (Aspirin Cardio) 1-0-0 – DAPT Komponente 1 (lebenslang)\n2. Tikagrelor 90mg (Brilique) 1-0-1 – DAPT Komponente 2 (mind. 12 Monate nach DES)\n   ACHTUNG: Absetzen NUR nach Rücksprache mit Kardiologe!\n3. Atorvastatin 80mg (Sortis) 0-0-1 – Hochdosisstatin nach ACS (lebenslang)\n4. Ramipril 5mg (Delix) 1-0-0 – Herzinsuffizienz-Prophylaxe nach NSTEMI (EF 45%)\n5. Metformin 1000mg (Glucophage) 1-0-1 – T2DM\n\nGestoppt während Aufenthalt:\n- Simvastatin 40mg (ersetzt durch Atorvastatin 80mg)\n- Heparin i.v.\n- Nikotinpflaster: für weitere 8 Wochen ambulant verschrieben\n\nHinweis: Metformin bei KM-Untersuchungen mind. 48h vorher pausieren."
+  },
+  {
+    "id": "P002-D015",
+    "patient_id": "P002",
+    "datum": "2024-10-18T10:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Kardiologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Kardiologie",
+    "titel": "Entlassungsbrief nach NSTEMI und PCI",
+    "text": "Entlassungsbrief\nLandesklinikum Musterstadt, Kardiologie\nDatum: 18.10.2024\n\nSehr geehrte Frau Dr. Holzmann!\n\nWir entlassen Hrn. Gerald Wimmer, geb. 23.05.1970, nach stationärem Aufenthalt vom 14.10.2024 bis 18.10.2024.\n\nHauptdiagnosen:\n1. NSTEMI (Hinterwandischämie) bei proximaler LAD-Stenose (I21.4)\n2. KHK 2-Gefäß (LAD krit., RCA mittelgradig)\n3. St.p. PCI mit DES (Orsiro Mission 3,0×18mm) in proximalem RIVA, 14.10.2024\n4. Leicht eingeschränkte LV-Funktion (EF 45%) nach NSTEMI\n5. Typ-2-Diabetes mellitus (E11)\n6. Arterielle Hypertonie (I10)\n7. Dyslipidämie (E78.5)\n8. Nikotinabusus (aktiver Raucher, Entwöhnung begonnen)\n\nVerlauf:\nAufnahme als Notfall. Erstdiagnose \"V.a. STEMI\" durch Hausärztin, nach OA-EKG-Nachbeurteilung Reklassifikation als NSTEMI. Dringende Koronarangiographie 14.10., PCI mit DES LAD problemlos. KM-Prämedikation wegen anamnestischer KM-Reaktion (Flush, Dyspnoe nach Jod-KM, unbestätigte Allergie) – Eingriff ohne Reaktion. Echo post-PCI: EF 45%, Hypokinese Hinterwand.\n\nHinweis Allergie/Intoleranz: Anamnestisch KM-Reaktion (Flush, Dyspnoe) nach jodhaltigem KM – Reaktion Grad I–II, nicht klinisch bestätigt (kein formeller Allergietest). Bei KM-Gabe: Prämedikation und iso-osmolares KM verwenden.\n\nMedikation bei Entlassung:\n1. ASS 100mg 1-0-0\n2. Ticagrelor 90mg 1-0-1 (mind. 12 Monate, NICHT ohne Kardiologie absetzen!)\n3. Atorvastatin 80mg 0-0-1\n4. Ramipril 5mg 1-0-0\n5. Metformin 1000mg 1-0-1\n\nNikotinpflaster 14mg für weitere 8 Wochen.\n\nImplantat: Drug-eluting Stent (DES) RIVA/LAD proximal: Biotronik Orsiro Mission 3,0×18mm, Sirolimus-beschichtet. Implantiert 14.10.2024.\n\nEmpfehlung:\n- Kardio-Kontrolle in 6 Wochen (Echo-Kontrolle EF, DAPT-Überprüfung)\n- HbA1c + Lipid-Kontrolle in 6 Wochen beim Hausarzt\n- Raucherberatungsgruppe\n- Körperliche Schonung 4 Wochen, dann kardiale Reha\n\nmfG, OA Dr. Bernhard Reithofer, FA f. Kardiologie\nLandesklinikum Musterstadt"
+  }
+]

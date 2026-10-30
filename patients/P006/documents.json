@@ -1,0 +1,145 @@
+[
+  {
+    "id": "P006-D001",
+    "patient_id": "P006",
+    "datum": "2017-09-14T14:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landeskrankenhaus Innsbruck",
+    "titel": "Erstdiagnose Epilepsie – Entlassungsbrief",
+    "text": "Sehr geehrte Damen und Herren!\nWir dürfen über den Aufenthalt von Hrn. Florian Kastner, geb. 07.03.2000, vom 11.09.2017 bis 14.09.2017 berichten.\n\nAufnahmegrund: Erster Grand-mal-Anfall, beobachtet durch Mitschüler in der Schule. Kein Bewusstsein während Anfall, Erinnerungslücke ca. 10 min post-iktal.\n\nDiagnostik:\n- EEG: Fokale Verlangsamung temporal links, interiktale Spikes temporoparietal links → vereinbar mit fokaler Epilepsie temporal links.\n- MRT Schädel (12.09.2017): Hippokampus bds. regelrecht, kein Tumor, kein Fokus. Kein struktureller Befund (Normalbefund).\n- Labor: o.B.\n\nVorgeschichte: Fieberkrämpfe im Kindesalter (2× im Alter von 18 und 24 Monaten, einfach, unter 5 Minuten) – wurden als benigne eingestuft, keine weitere Therapie damals.\n\nFamilienanamnese: Vater mit bekannter Epilepsie (fokal, medikamentös eingestellt).\n\nDiagnose: Fokale Epilepsie temporal links (G40.1).\n\nTherapie: Levetiracetam 500mg 1-0-1 gestartet.\nAllergien: keine bekannt (Eigenangabe und Elternangabe).\n\nEmpfehlung: Neurologische Kontrolle in 3 Monaten, EEG-Kontrolle. Autofahrverbot bis Anfallsfreiheit 1 Jahr.\nmfG, OA Dr. Klaus Mair, Neurologie LKH Innsbruck"
+  },
+  {
+    "id": "P006-D002",
+    "patient_id": "P006",
+    "datum": "2020-11-03T10:00",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Neurologische Ambulanz Landesklinikum Musterstadt",
+    "titel": "Notfallkontrolle nach anaphylaktischer Reaktion auf Latex",
+    "text": "Ambulanzkontrolle, 03.11.2020\nPat. Kastner Florian, *07.03.2000, m.\n\nAnlass: Anaphylaktische Reaktion beim Zahnarzt vor 3 Tagen (31.10.2020). Pat. berichtet: Unmittelbar nach Anlegen von Latexhandschuhen Schwellung der Hände, Nesselausschlag, Atemnot, Kreislaufreduktion. Notarzt gerufen, Adrenalin-Injektion vor Ort, Hospitalisierung auswärts 1 Tag.\n\nBisher: Epilepsie bekannt (seit 2017), unter Levetiracetam 500mg 1-0-1 gut eingestellt. Kein Anfall seit 06/2019 (letzter Anfall).\n\nNeue Allergie: Latex – BESTÄTIGT durch Allergiefacharzt (Prick-Test + IgE Latex erhöht, bereits im November 2020 dokumentiert).\n\nDiagnose: Latex-Allergie, bestätigt, anaphylaktische Reaktion (Z88.9-ähnlich / T78.1).\nCAVE Latex! In alle Akten und Notfallausweis eintragen.\n\nNotfallset: Adrenalin-Autoinjektor (Epipen 300μg) verschrieben.\nLevetiracetam: unverändert weiterführen."
+  },
+  {
+    "id": "P006-D003",
+    "patient_id": "P006",
+    "datum": "2024-01-15T09:30",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Neurologische Ambulanz Landesklinikum Musterstadt",
+    "titel": "Routinekontrolle Epilepsie",
+    "text": "15.01.2024, 09:30 Uhr\nPat.: Kastner Florian, *07.03.2000\n\nRoutinekontrolle Epilepsie, jährlich.\nPat. berichtet: letzter Anfall ca. November 2023 (vor ca. 9 Monaten lt. Pat. – nach Rückfrage: genauer ca. 05.11.2023, Zeugen vorhanden).\nSchlafentzug als möglicher Trigger identifiziert (Schichtarbeit).\n\nAllergien: Latex-Allergie bestätigt (seit 2020, Anaphylaxie), CAVE! Epipen vorhanden.\nLevetiracetam 500mg 1-0-1: weiterhin gut verträglich, keine kognitiven Nebenwirkungen.\n\nEEG (heute): Interiktale Spikes temporal links, kein iktuales Muster. Verlauf stabil.\n\nFamilienanamnese: Vater mit Epilepsie.\n\nBeurteilung: Fokale Epilepsie mit gelegentlichem Durchbruchsanfall unter Levetiracetam. Dosis reicht möglicherweise nicht aus.\nEmpfehlung: Levetiracetam-Dosis auf 750mg 1-0-1 erwägen wenn nächster Anfall. Zunächst abwarten, Schlafhygiene verbessern. Nächste Kontrolle in 6–12 Monaten.\nAutofahren: derzeit eingeschränkt (letzter Anfall 11/2023 → 1 Jahr Wartefrist bis 11/2024)."
+  },
+  {
+    "id": "P006-D004",
+    "patient_id": "P006",
+    "datum": "2024-08-12T14:20",
+    "typ": "Zuweisung",
+    "fachrichtung": "Allgemeinmedizin",
+    "autor_rolle": "Hausarzt",
+    "einrichtung": "Ordination Dr. Stefan Huber, Innsbruck",
+    "titel": "Notfalleinweisung nach Krampfanfall mit Sturz",
+    "text": "Notfall-Einweisung!\nPat.: Kastner Florian, *07.03.2000\nZuweisungsdiagnose: Epileptischer Anfall mit Sturz, Kopfverletzung\n\nAnamnese: Pat. erlitt heute Mittag (ca. 13:30 Uhr) an seinem Arbeitsplatz einen generalisierten tonisch-klonischen Anfall, beobachtet durch Kollegen. Sturz auf den Boden, Platzwunde Stirn, möglicherweise kurze Bewusstlosigkeit.\nPat. danach desorientiert, nach ca. 20 min wieder bei sich.\n\nVorerkrankungen: Epilepsie (fokal temporal li., seit 2017), Levetiracetam 500mg 1-0-1.\nLetzter Anfall lt. Pat.-Angabe: vor ca. 6 Monaten.\nAllergien: keine bekannt (lt. Pat.).\n\nBitte um stationäre Aufnahme, CCT, neurologische Abklärung.\nDr. Stefan Huber, Allgemeinmedizin"
+  },
+  {
+    "id": "P006-D005",
+    "patient_id": "P006",
+    "datum": "2024-08-12T15:00",
+    "typ": "Aufnahmebefund",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Neurologie",
+    "titel": "Aufnahmebefund Neurologie – Epilepsie mit Sturz",
+    "text": "Aufnahme: 12.08.2024, 15:00 Uhr, Station Neuro-2\nPat.: Kastner Florian, *07.03.2000, m.\n\nZuweisungsdiagnose: Epileptischer Anfall mit Sturz, Kopfverletzung.\n\nAnamnese:\nGTKA heute ca. 13:30 Uhr am Arbeitsplatz. Zeugen berichten: Anfall ca. 2–3 min, danach Erschöpfung, Desorientierung ca. 20 min. Sturz auf Betonboden, Platzwunde Stirn, keine Erinnerung an Sturz.\nVorerkrankungen: Fokale Epilepsie temporal links seit 2017. Levetiracetam 500mg 1-0-1.\nLetzter Anfall: laut Patient \"vor ca. 6 Monaten\".\nAllergien: keine bekannt.\nNikotinabusus: gelegentlich (Sozialraucher). Alkohol: gelegentlich, kein Abusus.\n\nKörperliche Untersuchung:\nAZ gut, wach, orientiert (nach postiktualer Phase). KG 78kg, Gr. 183cm.\nKopf: Platzwunde Stirn re., ca. 3cm, klaffend → chirurgische Versorgung erforderlich. Kein Hämatom, kein Einblutungszeichen am Mastoid.\nNeuro: GCS 15, Pupillen isokor 3mm bds., normale Reflexe, kein fokal-neurologisches Defizit, kein Meningismus.\nRR 132/78, Puls 82/min, SpO2 99%, Temp 36,6°C.\n\nDiagnostik:\nCCT Schädel angeordnet (Ausschluss intrakranielle Blutung).\nEKG: SR, normal.\nLabor: angeordnet.\nChirurgie-Konsil: Wundversorgung Stirn.\n\nDiagnose (vorläufig): Epileptischer Anfall (Durchbruchanfall) bei bekannter fokaler Epilepsie. Commotio cerebri V.a. (Sturz, kurze BL-Unterbrechung?). Platzwunde Stirn.\n\nPlan:\n- CCT sofort\n- Chirurgie-Konsil Wundversorgung\n- Neurologische Überwachung\n- Levetiracetam weiterführen"
+  },
+  {
+    "id": "P006-D006",
+    "patient_id": "P006",
+    "datum": "2024-08-12T15:30",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Neurologie",
+    "titel": "Pflegebericht Aufnahme",
+    "text": "12.08.2024, 15:30 Uhr, DGKP Lisa Huber\n\nPat. Kastner Florian, Neuro-2, Bett 1. Aufnahme nach epileptischem Anfall. Wach, kooperativ, postiktuell noch etwas verlangsamt.\nPat. trägt Notfallausweis: Latex-Allergie, Anaphylaxie-Risiko! Epipen vorhanden (in Tasche).\nDiese Info war im Aufnahmebefund nicht dokumentiert. Sofortmeldung an Stationsarzt: CAVE Latex-Allergie – alle latexhaltigen Materialien im Zimmer entfernen, latexfreie Handschuhe anordnen.\nWunde Stirn: Druckverband angelegt, chirurgische Versorgung geplant.\nVitale: RR 128/74, Puls 80/min, SpO2 99%.\nPat. berichtet: Er mache sich Sorgen, weil er vor einigen Wochen nochmals Kribbeln im li. Arm gespürt habe – möglicherweise ein kleiner fokaler Anfall, aber er sei sich nicht sicher und habe es nicht gemeldet. Nicht verifizierbar."
+  },
+  {
+    "id": "P006-D007",
+    "patient_id": "P006",
+    "datum": "2024-08-12T16:00",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "CCT Schädel – Ausschluss intrakranielle Blutung",
+    "text": "Befund: CCT Schädel nativ, 12.08.2024\nPat.: Kastner Florian, *07.03.2000\n\nKlinische Fragestellung: Ausschluss intrakranielle Blutung nach epileptischem Anfall mit Sturz. V.a. Kontusionsblutung.\n\nBefund:\nKein Anhalt für intrakranielle Blutung (kein epidurales, subdurales oder intraparenchymales Hämatom). Keine Mittellinienverlagerung.\nKleine hypodense Zone links temporal – DD: postiktuales Ödem vs. kortikale Kontusion. Zur Abklärung MRT empfohlen.\nKalotte: kein Frakturnachweis. Weichteile Stirn: Hämatom und Hautdefekt rechts frontal (entsprechend Anamnese).\n\nBeurteilung:\n1. Kein Anhalt für intrakranielle Blutung.\n2. Hypodense Zone temporal links: zur differentialdiagnostischen Abklärung (postiktuales Ödem vs. Kontusion) MRT empfohlen.\n3. Kein Frakturnachweis."
+  },
+  {
+    "id": "P006-D008",
+    "patient_id": "P006",
+    "datum": "2024-08-12T17:30",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Chirurgisches Konsil – Wundversorgung Stirn",
+    "text": "Chirurgisches Konsil, 12.08.2024\nDr. Tobias Winkler, Chirurgie\n\nBefund: Platzwunde Stirn rechts, ca. 3,5cm, glattrandig, Tiefe bis Faszie. Kein Fremdkörper.\nVersorgung: Wundreinigung, primärer Wundverschluss mit 5 Einzelknopfnähten (Ethilon 4-0 nichtresorbierbar).\nCAVE: Latexallergie vermerkt! Latexfreie Handschuhe und latexfreies Nahtmaterial verwendet. Kein Ereignis.\n\nEmpfehlung: Nahtentfernung in 7–10 Tagen beim Hausarzt."
+  },
+  {
+    "id": "P006-D009",
+    "patient_id": "P006",
+    "datum": "2024-08-13T08:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Neurologie",
+    "titel": "OA-Visite Tag 1 – Latex-Allergie, Anamnese-Korrektur, MRT-Plan",
+    "text": "13.08.2024, 08:00 Uhr, OA Dr. Regina Pöschl, Neurologie\n\nNachdem Pflegebericht auf Latex-Allergie hinweist: Patientenausweis kontrolliert – bestätigte Latex-Allergie (anaphylaktische Reaktion 2020). Aufnahmebefund hatte fälschlicherweise \"keine bekannten Allergien\" vermerkt. Allergie jetzt in der Akte korrekt dokumentiert.\n\nAnamnese-Klärung letzter Anfall: Hausarzt-Einweisungsbrief (D004) zitiert Pat.-Angabe \"letzter Anfall vor ca. 6 Monaten\". Eigene Rückfrage und Abgleich mit Neurologie-Ambulanz-Befund (D003, 01/2024): letzter dokumentierter Anfall war 05.11.2023 – das sind ca. 9 Monate zurück. Die Angabe im Einweisungsbrief (6 Monate) basiert auf ungenauer Pat.-Schätzung; der Ambulanzbefund vom 15.01.2024 ist die maßgebliche Quelle.\n\nMRT Schädel angeordnet (CCT mit hypodenser Zone temporal links).\nLevetiracetam: vorerst unverändert (500mg 1-0-1) bis MRT-Ergebnis.\n\nValproat als Ergänzung diskutiert (Anfallskontrolle unzureichend) – noch keine Entscheidung."
+  },
+  {
+    "id": "P006-D010",
+    "patient_id": "P006",
+    "datum": "2024-08-13T10:00",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Kontrolllabor inkl. Levetiracetam-Spiegel",
+    "text": "Patient: Kastner Florian, *07.03.2000, m.\nAuftragsnummer: LM-2024-08-13-0104\nAbnahme: 13.08.2024, 07:00 Uhr\n\nBlutbild:\n  Hb: 14,8 g/dl, Leuko 7,2 G/l, Thrombo 224 G/l – normal\n\nKlinische Chemie:\n  Na: 139 mmol/l, K: 4,0 mmol/l\n  Krea: 0,94 mg/dl, eGFR: 98 ml/min\n  CRP: 6 mg/l (leicht erhöht, Trauma)\n  GOT 28, GPT 22 – normal\n  Glukose: 5,1 mmol/l\n\nMedikamentenspiegel:\n  Levetiracetam: 8,4 mg/l [therapeutischer Bereich: 10–40 mg/l] → subtherapeutisch!\n\nKommentar: Levetiracetam-Spiegel unterhalb des therapeutischen Bereichs → Dosisanpassung empfohlen."
+  },
+  {
+    "id": "P006-D011",
+    "patient_id": "P006",
+    "datum": "2024-08-13T14:00",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "MRT Schädel – Ausschluss Kontusion",
+    "text": "Befund: MRT Schädel mit und ohne KM, 13.08.2024\nPat.: Kastner Florian, *07.03.2000\n\nKlinische Fragestellung: Hypodense Zone temporal links im CCT – Abklärung postiktuales Ödem vs. kortikale Kontusion. Bekannte fokale Epilepsie.\n\nBefund:\nDiffusionsgewichtung (DWI): Kein akutes ischämisches Areal.\nT2/FLAIR temporal links: Leichte Signalanhebung im linken Temporallappen, kein Ödem, kein Masseneffekt → vereinbar mit postiktualem Phänomen (Todd-Lähmung-Äquivalent / postiktuales FLAIR-Signal).\nKein Nachweis einer kortikalen Kontusion. Kein subdurales oder epidurales Hämatom. Kein Tumor.\nHippokampus: beidseitig regelrecht (kein Sklerose-Nachweis).\nKM: kein pathologisches Enhancement.\n\nBeurteilung:\n1. Kein Nachweis einer kortikalen Kontusion oder intrakraniellen Blutung.\n2. Leichte FLAIR-Signalanhebung temporal links – am ehesten postiktuales Phänomen, kein struktureller Befund.\n3. Kein Anhalt für Tumor oder Hippokampussklerose."
+  },
+  {
+    "id": "P006-D012",
+    "patient_id": "P006",
+    "datum": "2024-08-14T08:30",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Neurologie",
+    "titel": "Verlauf Tag 2 – MRT-Ergebnis, Valproat-Entscheidung, Levetiracetam-Dosiserhöhung",
+    "text": "14.08.2024, 08:30 Uhr, OA Dr. Pöschl\n\nMRT-Ergebnis: Kein struktureller Befund, kein Kontusionsnachweis. Postiktuales Phänomen. Sehr beruhigend.\n\nLevetiracetam-Spiegel: 8,4 mg/l (subtherapeutisch). Dosis unzureichend → Dosiserhöhung auf 1000mg 1-0-1.\n\nValproat: nach ausführlicher Diskussion – zunächst als Kombinationspartner diskutiert. Entscheidung gegen Valproat: Levetiracetam-Erhöhung sollte zunächst versucht werden. Valproat-Interaktionspotential + kognitive NW möglich. Valproat NICHT gestartet.\n\nCarbamazepin: wurde kurz erwähnt (alternativer Ansatz). OA-Entscheidung: Carbamazepin-Versuch bei Monotherapie-Versagen nach Leve-Erhöhung möglicherweise sinnvoll, aber jetzt noch kein Start. NICHT gestartet.\n\nAED-Anpassung: Levetiracetam von 500mg auf 1000mg 1-0-1 erhöht (ab heute).\n\nEEG (heute früh, 07:00 Uhr): Interiktale Spikes temporal links, kein iktuales Muster. Kein Status epilepticus.\n\nPat. über Fahrtauglichkeit informiert: Da heute neuer Anfall → Uhr beginnt neu → Fahrverbot aktuell bis 08/2025.\n\nPlan: Entlassung morgen wenn keine weiteren Anfälle."
+  },
+  {
+    "id": "P006-D013",
+    "patient_id": "P006",
+    "datum": "2024-08-15T09:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Neurologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Neurologie",
+    "titel": "Entlassungsbrief nach epileptischem Anfall mit Sturz",
+    "text": "Entlassungsbrief\nLandesklinikum Musterstadt, Neurologie\nDatum: 15.08.2024\n\nSehr geehrter Herr Dr. Huber!\n\nWir entlassen Hrn. Florian Kastner, geb. 07.03.2000, nach stationärem Aufenthalt vom 12.08.2024 bis 15.08.2024.\n\nHauptdiagnosen:\n1. Fokale Epilepsie temporal links, Durchbruchanfall (G40.1)\n2. Platzwunde Stirn rechts, chirurgisch versorgt (S01.0)\n3. Commotio cerebri (S09.9) – MRT: kein struktureller Befund\n\nVerlauf:\nAufnahme nach Anfall am Arbeitsplatz mit Sturz. CCT: kein Hämatom, hypodense Zone temporal links → MRT: postiktuales Phänomen, keine Kontusion. Levetiracetam-Spiegel subtherapeutisch (8,4 mg/l) → Dosiserhöhung auf 1000mg 1-0-1. Wundversorgung Stirn durch Chirurgie. Kein weiterer Anfall stationär.\n\nAllergien: CAVE Latex-Allergie (anaphylaktische Reaktion 2020) – war im Aufnahmebefund nicht vermerkt, wurde durch Pflegeperson und Notfallausweis identifiziert. Epipen vorhanden!\n\nMedikation bei Entlassung:\n1. Levetiracetam 1000mg (Keppra) 1-0-1 – neu erhöhte Dosis (vorher 500mg 1-0-1)\n2. Adrenalin-Autoinjektor (Epipen 300μg) – Latex-Anaphylaxie-Notfallset\n\nHinweis: Laut Neurologie-Ambulanz (01/2024) war der letzte Anfall am 05.11.2023 (9 Monate zurück). Die Eigenangabe des Patienten \"6 Monate\" im Einweisungsbrief war eine Schätzung und ist nicht korrekt.\n\nFahrtauglichkeit: Fahrverbot bis 12.08.2025 (1 Jahr nach aktuellem Anfall).\n\nEmpfehlung:\n- Neurologische Kontrolle in 3 Monaten (Levetiracetam-Spiegel, EEG)\n- Nahtentfernung Stirn beim Hausarzt in 7–10 Tagen\n- Notfallausweis immer mitführen\n- Schlaflabor / Schlafberatung (Schlafmangel als Trigger)\n\nmfG, OA Dr. Regina Pöschl, FA f. Neurologie\nLandesklinikum Musterstadt"
+  }
+]
