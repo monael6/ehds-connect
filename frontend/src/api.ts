@@ -108,6 +108,7 @@ const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 export interface ResultTable { columns: { key: string; label: string }[]; rows: { group: string; cells: (number | string | null)[] }[] }
 export interface Evaluation extends RuleOutcome {
   request: ResearchRequest;
+  staffNote?: string;
   // Only in answers from FastAPI:
   explanation?: Partial<Record<Lang, string>>;
   table?: ResultTable;

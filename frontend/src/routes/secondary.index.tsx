@@ -10,6 +10,7 @@ import { evaluateRequest, type Evaluation } from "@/api";
 import { requestType, type LiveRequest } from "@/lib/backend-mappers";
 import { DecisionView } from "@/components/decision";
 import { OwnApplications } from "@/components/secondary/own-applications";
+import { ApplicantInbox } from "@/components/secondary/applicant-inbox";
 import { PermitCriteria } from "@/components/secondary/permit-criteria";
 import { useDemoSession } from "@/lib/demo-session";
 import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
@@ -47,7 +48,7 @@ const SAMPLE = {
   text: "What share of patients with hypertension takes ramipril, by hospital?",
 };
 
-function Requests() { const { user } = useDemoSession(); return user?.role === "hdab" ? <StaffRequests /> : <OwnApplications />; }
+function Requests() { const { user } = useDemoSession(); return user?.role === "hdab" ? <><ApplicantInbox /><StaffRequests /></> : <OwnApplications />; }
 function StaffRequests() {
   const { log } = useDemoSession();
   const { data: requests } = useSuspenseQuery(queryOptions({ queryKey: ["hdab-requests"], queryFn: getRequests }));

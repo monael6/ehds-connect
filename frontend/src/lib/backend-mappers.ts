@@ -85,6 +85,7 @@ export const fromDecisionRow = (r: DecisionRowDto): Evaluation => ({
   decision: r.decision, step: STEP_OF[r.decision], articles: r.articles.map(article),
   request: { id: r.request_id, applicant: orgOf(r.applicant), purpose: r.purpose ?? "", type: requestType(r.requested_as), text: "", terms: [], sql: "" },
   ...(r.status ? { status: OWN_STATUS[r.status] ?? cap(r.status.replaceAll("_", " ")) } : {}),
+  ...(r.staff_note ? { staffNote: r.staff_note } : {}),
 });
 
 /** The wizard's answers in the backend's terms; the purpose code keeps the choice unambiguous. */
