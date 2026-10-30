@@ -11,7 +11,7 @@ from pathlib import Path
 
 from fastapi import Body, Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from . import auth, catalogue, state
 from .auth import FOREIGN_DOCTOR, HDAB, HOSPITAL, INTERESTED, PATIENT
@@ -52,7 +52,8 @@ def accounts():
 
 
 class LoginIn(BaseModel):
-    user_id: str
+    user_id: str = Field(examples=["u-novak"], description="u-novak (HDAB), u-weiss (researcher), u-huber (hospital), "
+                                                         "u-muster (patient), u-rossi (doctor in Italy), u-public")
 
 
 @app.post("/api/auth/login")
@@ -178,7 +179,8 @@ def spe_analysis(rid: str, user: dict = Depends(auth.require(HDAB, INTERESTED)))
     return {"note": "Analysis runs inside the SPE. Only aggregate output leaves it.", **out}
 
 
-@app.api_route("/api/spe/{rid}/download", methods=["GET", "POST"])
+@app.post("/api/spe/{rid}/download", operation_id="spe_download")
+@app.get("/api/spe/{rid}/download", operation_id="spe_download_get")
 def spe_download(rid: str, user: dict | None = Depends(auth.optional_user)):
     """Always blocked (Art. 73): data never leaves the secure processing environment."""
     state.audit(user, "secondary", "spe_download_attempt", request_id=rid, outcome="blocked")

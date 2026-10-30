@@ -8,7 +8,8 @@ from __future__ import annotations
 
 import secrets
 
-from fastapi import Depends, Header, HTTPException
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from . import state
 
@@ -71,10 +72,14 @@ def logout(token: str) -> None:
         c.execute("DELETE FROM sessions WHERE token = ?", (token,))
 
 
-def current_user(authorization: str | None = Header(default=None)) -> dict:
-    if not authorization or not authorization.lower().startswith("bearer "):
+# A security scheme (not a plain header parameter) so the "Authorize" button in /docs works
+bearer = HTTPBearer(auto_error=False, description="Token from POST /api/auth/login")
+
+
+def current_user(creds: HTTPAuthorizationCredentials | None = Depends(bearer)) -> dict:
+    if creds is None or not creds.credentials:
         raise HTTPException(401, "Sign in first")
-    token = authorization.split(" ", 1)[1].strip()
+    token = creds.credentials.strip()
     row = state.one("SELECT u.* FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token = ?", (token,))
     if not row:
         raise HTTPException(401, "Session expired, sign in again")
@@ -82,9 +87,9 @@ def current_user(authorization: str | None = Header(default=None)) -> dict:
     return row
 
 
-def optional_user(authorization: str | None = Header(default=None)) -> dict | None:
+def optional_user(creds: HTTPAuthorizationCredentials | None = Depends(bearer)) -> dict | None:
     try:
-        return current_user(authorization)
+        return current_user(creds)
     except HTTPException:
         return None
 

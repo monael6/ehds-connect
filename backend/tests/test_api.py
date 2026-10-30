@@ -123,3 +123,10 @@ def test_public_pages_have_no_numbers(client):
     assert reg and "answer" not in reg[0]
     assert client.get("/api/facilities-not-in-catalogue").json()
     assert client.post("/api/eligibility", json={"purpose": "set insurance premiums for customers"}).json()["result"] == "not_eligible"
+
+
+def test_docs_page_can_sign_in(client):
+    """The /docs "Authorize" button needs a security scheme; a plain Authorization header param is ignored by Swagger."""
+    schema = client.get("/openapi.json").json()
+    assert schema["components"]["securitySchemes"]["HTTPBearer"]["scheme"] == "bearer"
+    assert schema["paths"]["/api/requests"]["get"]["security"] == [{"HTTPBearer": []}]
