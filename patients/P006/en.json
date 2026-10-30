@@ -1,0 +1,243 @@
+{
+ "record": {
+  "patient_id": "P006",
+  "problems_active": [
+   {
+    "text": "Focal epilepsy, left temporal (breakthrough seizure on levetiracetam, dose increased)",
+    "icd10": "G40.1",
+    "snomed": null,
+    "onset": "2017-09-11",
+    "sources": [
+     "P006-D001",
+     "P006-D005",
+     "P006-D013"
+    ]
+   },
+   {
+    "text": "Status after laceration of the right forehead, surgically treated",
+    "icd10": "S01.0",
+    "snomed": null,
+    "onset": "2024-08-12",
+    "sources": [
+     "P006-D005",
+     "P006-D008",
+     "P006-D013"
+    ]
+   },
+   {
+    "text": "Concussion after a fall (MRI without structural finding)",
+    "icd10": "S09.9",
+    "snomed": null,
+    "onset": "2024-08-12",
+    "sources": [
+     "P006-D007",
+     "P006-D011",
+     "P006-D013"
+    ]
+   }
+  ],
+  "past_history": [
+   {
+    "text": "Febrile seizures in infancy (2 simple seizures at 18 and 24 months) – benign, no late effects",
+    "icd10": "R56.0",
+    "resolved": "2002",
+    "sources": [
+     "P006-D001"
+    ]
+   }
+  ],
+  "allergies_intolerances": [
+   {
+    "substance": "Latex",
+    "reaction": "Anaphylaxis (urticaria, angioedema, shortness of breath, circulatory reaction) – adrenaline treatment needed",
+    "criticality": "high",
+    "verification": "confirmed",
+    "sources": [
+     "P006-D002",
+     "P006-D006",
+     "P006-D008",
+     "P006-D013"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Levetiracetam",
+    "atc": "N03AX14",
+    "dose": "1000 mg 1-0-1",
+    "status": "changed",
+    "sources": [
+     "P006-D001",
+     "P006-D012",
+     "P006-D013"
+    ]
+   },
+   {
+    "active_ingredient": "Adrenaline (epinephrine) auto-injector",
+    "atc": "C01CA24",
+    "dose": "300 µg in an anaphylaxis emergency (EpiPen)",
+    "status": "unchanged",
+    "sources": [
+     "P006-D002",
+     "P006-D013"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [],
+  "procedures": [
+   {
+    "text": "Primary closure of the right forehead laceration (5 single sutures, Ethilon 4-0, latex-free)",
+    "date": "2024-08-12",
+    "sources": [
+     "P006-D008"
+    ]
+   },
+   {
+    "text": "Head CT without contrast: no haematoma, hypodense area left temporal",
+    "date": "2024-08-12",
+    "sources": [
+     "P006-D007"
+    ]
+   },
+   {
+    "text": "Head MRI with/without contrast: post-ictal phenomenon, no structural finding, no contusion",
+    "date": "2024-08-13",
+    "sources": [
+     "P006-D011"
+    ]
+   },
+   {
+    "text": "Head MRI (first epilepsy diagnosis): normal",
+    "date": "2017-09-12",
+    "sources": [
+     "P006-D001"
+    ]
+   }
+  ],
+  "medical_devices_implants": [],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "Levetiracetam level (below target before dose increase)",
+    "value": "8.4 mg/l (target 10–40 mg/l)",
+    "date": "2024-08-13",
+    "sources": [
+     "P006-D010"
+    ]
+   },
+   {
+    "text": "EEG: interictal spikes left temporal, no ictal pattern",
+    "value": "Abnormal (focal activity left temporal)",
+    "date": "2024-08-14",
+    "sources": [
+     "P006-D012"
+    ]
+   },
+   {
+    "text": "Last documented seizure (correct date)",
+    "value": "05.11.2023 (about 9 months before this stay)",
+    "date": "2024-01-15",
+    "sources": [
+     "P006-D003"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Cortical contusion / contusion bleeding",
+    "reason": "see MRI report",
+    "sources": [
+     "P006-D007",
+     "P006-D011",
+     "P006-D013"
+    ]
+   },
+   {
+    "text": "Valproate or carbamazepine as current medication",
+    "reason": "discussed only; see sources",
+    "sources": [
+     "P006-D012"
+    ]
+   },
+   {
+    "text": "Earlier focal seizure (tingling in the left arm)",
+    "reason": "reported by the patient only",
+    "sources": [
+     "P006-D006"
+    ]
+   },
+   {
+    "text": "Epilepsy of the father (family history, not the patient's own illness)",
+    "reason": "family history",
+    "sources": [
+     "P006-D001",
+     "P006-D003"
+    ]
+   },
+   {
+    "text": "Last seizure \"6 months ago\" (referral letter)",
+    "reason": "dates in the documents differ; see neurology report",
+    "sources": [
+     "P006-D003",
+     "P006-D004",
+     "P006-D009",
+     "P006-D013"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P006-D001": {
+   "title": "First epilepsy diagnosis – discharge letter",
+   "text": "Dear colleagues,\nWe report on the stay of Mr Florian Kastner, born 07.03.2000, from 11.09.2017 to 14.09.2017.\n\nReason for admission: first grand mal seizure, witnessed by classmates at school. Unconscious during the seizure, memory gap about 10 min after the seizure.\n\nDiagnostics:\n- EEG: focal slowing left temporal, interictal spikes left temporoparietal → consistent with focal epilepsy, left temporal.\n- Head MRI (12.09.2017): both hippocampi normal, no tumour, no focus. No structural finding (normal).\n- Lab: normal.\n\nHistory: febrile seizures in childhood (2 at 18 and 24 months, simple, under 5 minutes) – classed as benign, no treatment at the time.\n\nFamily history: father with known epilepsy (focal, controlled with medication).\n\nDiagnosis: focal epilepsy, left temporal (G40.1).\n\nTreatment: levetiracetam 500 mg 1-0-1 started.\nAllergies: none known (patient and parents).\n\nRecommendation: neurology check in 3 months, follow-up EEG. No driving until 1 year seizure-free.\nKind regards, Senior Dr Klaus Mair, neurology, LKH Innsbruck"
+  },
+  "P006-D002": {
+   "title": "Emergency check after anaphylactic reaction to latex",
+   "text": "Outpatient check, 03.11.2020\nPatient: Kastner Florian, born 07.03.2000, male\n\nReason: anaphylactic reaction at the dentist 3 days ago (31.10.2020). Patient reports: right after latex gloves were put on, swelling of the hands, hives, shortness of breath, drop in circulation. Emergency doctor called, adrenaline injection on site, 1 day in another hospital.\n\nSo far: known epilepsy (since 2017), well controlled on levetiracetam 500 mg 1-0-1. No seizure since 06/2019 (last seizure).\n\nNew allergy: latex – CONFIRMED by an allergy specialist (prick test + raised latex IgE, documented in November 2020).\n\nDiagnosis: latex allergy, confirmed, anaphylactic reaction (T78.1).\nCAUTION latex! Record in all files and the emergency card.\n\nEmergency kit: adrenaline auto-injector (EpiPen 300 µg) prescribed.\nLevetiracetam: continue unchanged."
+  },
+  "P006-D003": {
+   "title": "Routine epilepsy check",
+   "text": "15.01.2024, 09:30\nPatient: Kastner Florian, born 07.03.2000\n\nYearly routine epilepsy check.\nPatient reports: last seizure around November 2023 (about 9 months ago according to the patient – on asking: more precisely about 05.11.2023, witnesses present).\nSleep deprivation identified as a possible trigger (shift work).\n\nAllergies: latex allergy confirmed (since 2020, anaphylaxis), CAUTION! Has an EpiPen.\nLevetiracetam 500 mg 1-0-1: still well tolerated, no cognitive side effects.\n\nEEG (today): interictal spikes left temporal, no ictal pattern. Stable.\n\nFamily history: father with epilepsy.\n\nAssessment: focal epilepsy with occasional breakthrough seizures on levetiracetam. Dose may not be sufficient.\nRecommendation: consider increasing levetiracetam to 750 mg 1-0-1 after the next seizure. Wait for now, improve sleep hygiene. Next check in 6–12 months.\nDriving: currently restricted (last seizure 11/2023 → 1-year waiting period until 11/2024)."
+  },
+  "P006-D004": {
+   "title": "Emergency referral after seizure with fall",
+   "text": "Emergency referral!\nPatient: Kastner Florian, born 07.03.2000\nReferral diagnosis: epileptic seizure with fall, head injury\n\nHistory: today around 13:30 at work the patient had a generalised tonic-clonic seizure, witnessed by colleagues. Fell to the floor, forehead laceration, possibly brief loss of consciousness.\nDisoriented afterwards, back to normal after about 20 min.\n\nPrevious illnesses: epilepsy (focal left temporal, since 2017), levetiracetam 500 mg 1-0-1.\nLast seizure according to the patient: about 6 months ago.\nAllergies: none known (according to the patient).\n\nPlease admit for head CT and neurological assessment.\nDr Stefan Huber, general practice"
+  },
+  "P006-D005": {
+   "title": "Admission report, neurology – epilepsy with fall",
+   "text": "Admission: 12.08.2024, 15:00, ward Neuro-2\nPatient: Kastner Florian, born 07.03.2000, male\n\nReferral diagnosis: epileptic seizure with fall, head injury.\n\nHistory:\nGeneralised tonic-clonic seizure today about 13:30 at work. Witnesses: seizure about 2–3 min, then exhaustion and disorientation for about 20 min. Fell on a concrete floor, forehead laceration, no memory of the fall.\nPrevious illnesses: focal epilepsy, left temporal, since 2017. Levetiracetam 500 mg 1-0-1.\nLast seizure: according to the patient \"about 6 months ago\".\nAllergies: none known.\nSmoking: occasional (social smoker). Alcohol: occasional, no abuse.\n\nPhysical examination:\nGood general condition, awake, oriented (after the post-ictal phase). Weight 78 kg, height 183 cm.\nHead: laceration right forehead, about 3 cm, gaping → surgical treatment needed. No haematoma, no bruising behind the ear.\nNeuro: GCS 15, pupils equal 3 mm both sides, normal reflexes, no focal neurological deficit, no meningism.\nBP 132/78, pulse 82/min, SpO2 99%, temp 36.6°C.\n\nDiagnostics:\nHead CT ordered (to look for intracranial bleeding).\nECG: sinus rhythm, normal.\nLab: ordered.\nSurgery consult: wound care of the forehead.\n\nDiagnosis (provisional): epileptic seizure (breakthrough seizure) with known focal epilepsy. Suspected concussion (fall, brief loss of consciousness?). Forehead laceration.\n\nPlan:\n- Head CT now\n- Surgery consult for wound care\n- Neurological monitoring\n- Continue levetiracetam"
+  },
+  "P006-D006": {
+   "title": "Nursing report, admission",
+   "text": "12.08.2024, 15:30, registered nurse Lisa Huber\n\nPatient Kastner Florian, Neuro-2, bed 1. Admitted after an epileptic seizure. Awake, cooperative, still slightly slowed after the seizure.\nThe patient carries an emergency card: latex allergy, risk of anaphylaxis! Has an EpiPen (in his bag).\nThis was not documented in the admission report. Reported to the ward doctor immediately: CAUTION latex allergy – remove all latex materials from the room, order latex-free gloves.\nForehead wound: pressure bandage applied, surgical treatment planned.\nVital signs: BP 128/74, pulse 80/min, SpO2 99%.\nThe patient reports he is worried because a few weeks ago he again felt tingling in his left arm – possibly a small focal seizure, but he is not sure and did not report it. Cannot be verified."
+  },
+  "P006-D007": {
+   "title": "Head CT – intracranial bleeding?",
+   "text": "Report: head CT without contrast, 12.08.2024\nPatient: Kastner Florian, born 07.03.2000\n\nClinical question: intracranial bleeding after an epileptic seizure with a fall? Suspected contusion bleeding.\n\nFindings:\nNo sign of intracranial bleeding (no epidural, subdural or intraparenchymal haematoma). No midline shift.\nSmall hypodense area left temporal – differential: post-ictal oedema vs. cortical contusion. MRI recommended.\nSkull: no fracture. Soft tissue of the forehead: haematoma and skin defect right frontal (matching the history).\n\nAssessment:\n1. No sign of intracranial bleeding.\n2. Hypodense area left temporal: MRI recommended to differentiate (post-ictal oedema vs. contusion).\n3. No fracture."
+  },
+  "P006-D008": {
+   "title": "Surgery consultation – forehead wound care",
+   "text": "Surgery consultation, 12.08.2024\nDr Tobias Winkler, surgery\n\nFinding: laceration right forehead, about 3.5 cm, smooth edges, down to the fascia. No foreign body.\nTreatment: wound cleaning, primary closure with 5 single sutures (Ethilon 4-0, non-absorbable).\nCAUTION: latex allergy noted! Latex-free gloves and latex-free suture material used. No incident.\n\nRecommendation: suture removal by the GP in 7–10 days."
+  },
+  "P006-D009": {
+   "title": "Senior doctor round day 1 – latex allergy, history correction, MRI plan",
+   "text": "13.08.2024, 08:00, Senior Dr Regina Pöschl, neurology\n\nAfter the nursing report mentioned a latex allergy: emergency card checked – confirmed latex allergy (anaphylactic reaction 2020). The admission report wrongly recorded \"no known allergies\". Allergy now correctly documented in the file.\n\nClarifying the last seizure: the GP referral (D004) quotes the patient: \"last seizure about 6 months ago\". Own questioning and comparison with the neurology outpatient report (D003, 01/2024): the last documented seizure was on 05.11.2023 – about 9 months ago. The referral figure (6 months) is based on an inaccurate patient estimate; the outpatient report of 15.01.2024 is the authoritative source.\n\nHead MRI ordered (CT with a hypodense area left temporal).\nLevetiracetam: unchanged for now (500 mg 1-0-1) until the MRI result.\n\nValproate discussed as an add-on (seizure control insufficient) – no decision yet."
+  },
+  "P006-D010": {
+   "title": "Laboratory incl. levetiracetam level",
+   "text": "Patient: Kastner Florian, born 07.03.2000, male\nOrder number: LM-2024-08-13-0104\nSample taken: 13.08.2024, 07:00\n\nBlood count:\n  Hb: 14.8 g/dl, leucocytes 7.2 G/l, platelets 224 G/l – normal\n\nClinical chemistry:\n  Na: 139 mmol/l, K: 4.0 mmol/l\n  Creatinine: 0.94 mg/dl, eGFR: 98 ml/min\n  CRP: 6 mg/l (slightly raised, trauma)\n  AST 28, ALT 22 – normal\n  Glucose: 5.1 mmol/l\n\nDrug level:\n  Levetiracetam: 8.4 mg/l [therapeutic range: 10–40 mg/l] → below range!\n\nComment: levetiracetam level below the therapeutic range → dose adjustment recommended."
+  },
+  "P006-D011": {
+   "title": "Head MRI – contusion?",
+   "text": "Report: head MRI with and without contrast, 13.08.2024\nPatient: Kastner Florian, born 07.03.2000\n\nClinical question: hypodense area left temporal on CT – post-ictal oedema vs. cortical contusion. Known focal epilepsy.\n\nFindings:\nDiffusion (DWI): no acute ischaemic area.\nT2/FLAIR left temporal: mild signal increase in the left temporal lobe, no oedema, no mass effect → consistent with a post-ictal phenomenon (post-ictal FLAIR signal).\nNo cortical contusion found. No subdural or epidural haematoma. No tumour.\nHippocampus: normal on both sides (no sclerosis).\nContrast: no abnormal enhancement.\n\nAssessment:\n1. No cortical contusion or intracranial bleeding found.\n2. Mild FLAIR signal increase left temporal – most likely a post-ictal phenomenon, no structural finding.\n3. No sign of tumour or hippocampal sclerosis."
+  },
+  "P006-D012": {
+   "title": "Progress day 2 – MRI result, valproate decision, levetiracetam increase",
+   "text": "14.08.2024, 08:30, Senior Dr Pöschl\n\nMRI result: no structural finding, no contusion found. Post-ictal phenomenon. Very reassuring.\n\nLevetiracetam level: 8.4 mg/l (below range). Dose insufficient → increase to 1000 mg 1-0-1.\n\nValproate: after a detailed discussion – first discussed as an add-on. Decision against valproate: increasing levetiracetam should be tried first. Possible interactions and cognitive side effects with valproate. Valproate NOT started.\n\nCarbamazepine: briefly mentioned (alternative approach). Senior doctor decision: a carbamazepine trial may make sense if monotherapy fails after the levetiracetam increase, but not started now. NOT started.\n\nAntiepileptic adjustment: levetiracetam increased from 500 mg to 1000 mg 1-0-1 (from today).\n\nEEG (this morning, 07:00): interictal spikes left temporal, no ictal pattern. No status epilepticus.\n\nPatient informed about driving: because of the new seizure the clock restarts → no driving until 08/2025.\n\nPlan: discharge tomorrow if no further seizures."
+  },
+  "P006-D013": {
+   "title": "Discharge letter after epileptic seizure with fall",
+   "text": "Discharge letter\nMusterstadt Regional Hospital, Neurology\nDate: 15.08.2024\n\nDear Dr Huber,\n\nWe are discharging Mr Florian Kastner, born 07.03.2000, after an inpatient stay from 12.08.2024 to 15.08.2024.\n\nMain diagnoses:\n1. Focal epilepsy, left temporal, breakthrough seizure (G40.1)\n2. Laceration right forehead, surgically treated (S01.0)\n3. Concussion (S09.9) – MRI: no structural finding\n\nCourse:\nAdmitted after a seizure at work with a fall. CT: no haematoma, hypodense area left temporal → MRI: post-ictal phenomenon, no contusion. Levetiracetam level below range (8.4 mg/l) → dose increased to 1000 mg 1-0-1. Forehead wound treated by surgery. No further seizure in hospital.\n\nAllergies: CAUTION latex allergy (anaphylactic reaction 2020) – not recorded in the admission report, identified by a nurse and the emergency card. Has an EpiPen!\n\nMedication at discharge:\n1. Levetiracetam 1000 mg (Keppra) 1-0-1 – newly increased dose (before 500 mg 1-0-1)\n2. Adrenaline auto-injector (EpiPen 300 µg) – latex anaphylaxis emergency kit\n\nNote: according to the neurology outpatient report (01/2024) the last seizure was on 05.11.2023 (9 months ago). The patient's own estimate \"6 months\" in the referral was an estimate and is not correct.\n\nDriving: no driving until 12.08.2025 (1 year after this seizure).\n\nRecommendations:\n- Neurology check in 3 months (levetiracetam level, EEG)\n- Forehead suture removal by the GP in 7–10 days\n- Always carry the emergency card\n- Sleep lab / sleep advice (lack of sleep as a trigger)\n\nKind regards, Senior Dr Regina Pöschl, neurology\nMusterstadt Regional Hospital"
+  }
+ }
+}
