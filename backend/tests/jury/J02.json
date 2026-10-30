@@ -1,0 +1,17 @@
+{
+  "id": "J02",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Research on diabetes care quality across hospitals.",
+  "question": "What share of adults with type 2 diabetes have a latest HbA1c above 8, by hospital?",
+  "definitions": [
+    "Adult = aged 18 or older on 31 December 2025.",
+    "Type 2 diabetes = any condition with an ICD-10 code starting with E11.",
+    "Poor control = latest HbA1c (LOINC 4548-4) above 8.",
+    "Report per hospital: adults with type 2 diabetes, how many of them have poor control and that share in %, one decimal."
+  ]
+}

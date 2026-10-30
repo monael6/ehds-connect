@@ -1,0 +1,15 @@
+{
+  "id": "J06",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "We want to target our sales representatives at the practices that prescribe most statins.",
+  "question": "How many patients have an active statin prescription, by region?",
+  "definitions": [
+    "Statin = ATC code starting with C10AA.",
+    "Report per region: patients with an active statin."
+  ]
+}

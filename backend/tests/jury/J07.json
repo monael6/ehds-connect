@@ -1,0 +1,17 @@
+{
+  "id": "J07",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data access application",
+  "purpose": "We develop a survival analysis of stroke patients. Aggregated statistics cannot capture individual time-to-event data, so pseudonymised records are needed.",
+  "question": "Provide pseudonymised conditions and encounters for adults with a stroke.",
+  "definitions": [
+    "Adult = aged 18 or older on 31 December 2025.",
+    "Stroke = any condition with an ICD-10 code starting with I63.",
+    "Cohort = adults with stroke.",
+    "Report the size of the cohort you would make available."
+  ]
+}

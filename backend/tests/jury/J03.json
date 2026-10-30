@@ -1,0 +1,15 @@
+{
+  "id": "J03",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Public health surveillance of heart failure by sex.",
+  "question": "How many patients have heart failure, by sex and region?",
+  "definitions": [
+    "Heart failure = any condition with an ICD-10 code starting with I50.",
+    "Report per sex and region: patients with heart failure."
+  ]
+}

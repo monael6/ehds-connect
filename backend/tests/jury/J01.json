@@ -1,0 +1,16 @@
+{
+  "id": "J01",
+  "applicant": {
+    "name": "Jury test",
+    "organisation": "University test group",
+    "country": "AT"
+  },
+  "requested_as": "health data request",
+  "purpose": "Hospital planning: we study hip fractures in older people to plan orthogeriatric care.",
+  "question": "How many inpatient stays with a main diagnosis of hip fracture started in 2024 or 2025, by hospital?",
+  "definitions": [
+    "Hip fracture stay = inpatient stay with primary_icd10 starting with S72.",
+    "Count stays (not patients) whose start_date is between 2024 and 2025.",
+    "Report per hospital: hip fracture stays."
+  ]
+}
