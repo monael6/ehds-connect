@@ -133,18 +133,18 @@ export const fromAudit = (e: AuditDto): AuditEvent => ({
 
 // ---------- Primary use ----------
 
-export interface PatientRowDto { patient_id: string; sex: string; birth_year: number; age: number; region: string; data_holder: string; opted_out: boolean; last_stay_from?: string | null; last_stay_to?: string | null }
+export interface PatientRowDto { patient_id: string; name?: string | null; sex: string; birth_year: number; age: number; region: string; data_holder: string; opted_out: boolean; last_stay_from?: string | null; last_stay_to?: string | null }
 type RolePatient = (typeof ROLE_PATIENTS)[number];
 /** List entry only; the clinical details come from the Patient Summary when it is opened. */
 export const fromPatientRow = (p: PatientRowDto): RolePatient => ({
-  id: p.patient_id, legacyId: p.patient_id, name: patientName(p.patient_id), born: String(p.birth_year), age: p.age, sex: p.sex === "female" ? "F" : "M", city: p.region,
+  id: p.patient_id, legacyId: p.patient_id, name: p.name ?? patientName(p.patient_id), born: String(p.birth_year), age: p.age, sex: p.sex === "female" ? "F" : "M", city: p.region,
   dataHolder: p.data_holder, optedOut: p.opted_out, crossBorderOptIn: false, problems: [], medications: [], allergies: [], implants: [], measurements: [],
   // Latest inpatient stay, shown in the list.
   stays: p.last_stay_from ? [{ id: "", department: "", from: deDate(p.last_stay_from), to: deDate(p.last_stay_to ?? ""), admitted: p.last_stay_from, discharged: p.last_stay_to ?? "" }] : [],
 });
 
 export interface SummaryDto {
-  patient: { id: string; sex: string; birth_date: string; age: number; region: string; data_holder: string; opted_out_of_secondary_use: boolean };
+  patient: { id: string; name?: string | null; sex: string; birth_date: string; age: number; region: string; data_holder: string; opted_out_of_secondary_use: boolean };
   emergency?: { type: string; code?: string; text: string }[];
   problems?: { code: string; label: string; since?: string | null }[];
   medications?: { code: string; label: string; dose?: string | null }[];
@@ -161,7 +161,7 @@ export function fromSummary(s: SummaryDto, lang: Lang, base: { name: string; cro
   const allergies = (s.allergies?.items ?? []).filter((a) => a.code);
   allergies.forEach((a) => a.code && a.label && learn(a.code, a.label, lang));
   return {
-    id: s.patient.id, name: base.name, born: s.patient.birth_date, age: s.patient.age, sex: s.patient.sex === "female" ? "F" : "M", city: s.patient.region,
+    id: s.patient.id, name: s.patient.name ?? base.name, born: s.patient.birth_date, age: s.patient.age, sex: s.patient.sex === "female" ? "F" : "M", city: s.patient.region,
     dataHolder: s.patient.data_holder, optedOut: s.patient.opted_out_of_secondary_use, crossBorderOptIn: base.crossBorderOptIn,
     problems: (s.problems ?? []).map((p) => ({ code: p.code, since: p.since ?? "" })),
     medications: (s.medications ?? []).map((m) => ({ code: m.code, dose: { en: m.dose ?? "", de: m.dose ?? "", it: m.dose ?? "" }, ...(m.code.startsWith("B01A") ? { anticoagulant: true } : {}) })),

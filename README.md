@@ -183,3 +183,12 @@ Demo accounts: `u-novak` (HDAB staff), `u-weiss` (researcher), `u-public`, `u-hu
 - Works: all five metrics on the 10 requests, the jury-style requests above, roles, audit log, SPE with blocked download, discharge-letter workflow, cross-border flow, and the frontend on top of all of it.
 - Simulated: ELGA, MyHealth@EU / NCPeH, ID Austria and the second factor (any 6 digits).
 - Limits: the parser understands the definition style of the Track-3 requests; a request written very differently is answered with the parts it recognises and lists unrecognised definitions in the staff view (`spec.notes`). The data has no allergies, doses or progress notes, so the letter marks those sections as missing.
+
+## Patient records (P001–P006)
+
+`patients/Pxxx/` holds six synthetic patients with their clinical documents (`documents.json`) and the structured record taken from them (`ground_truth_ips.json`). At startup the backend adds them as patients of the demo hospital (Klinikum West) in the KIS view only, so they never reach secondary-use statistics and the Track 3 metrics are unchanged.
+
+- Hospital care → patient list shows them by name (e.g. Hermine Bruckner, P001).
+- **Documents** tab: every clinical document, newest first (`GET /api/patients/{pid}/documents`, clinicians only).
+- **Discharge letter** and **Patient Summary** are filled from the record; each entry names its source documents (e.g. `P001-D028 Entlassungsbrief`). Ruled-out diagnoses are left out, unconfirmed allergies are marked, stopped medication is listed as stopped. Recommendations stay for the doctor to write.
+- Another folder can be used with `EHDS_PATIENTS_DIR`.

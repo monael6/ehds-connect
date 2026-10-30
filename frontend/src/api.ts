@@ -132,6 +132,11 @@ export async function getPatientIps(id: string, lang: Lang = "en") {
   return { patient: res.data, lang, bundle: buildFhirBundle(res.data, lang), source: res.source };
 }
 
+export interface PatientDocument { id: string; date: string; type: string; specialty: string; author_role: string; facility: string; title: string; text: string }
+/** GET /api/patients/:id/documents — clinical documents of the patient's record */
+export const getPatientDocuments = (id: string) =>
+  live<{ documents: PatientDocument[] }, PatientDocument[]>(`/api/patients/${encodeURIComponent(id)}/documents`, (d) => d.documents, []);
+
 /** GET /api/audit-log — served from in-app state in this demo */
 export async function getAuditLog(local: AccessEntry[]) {
   return local;

@@ -19,7 +19,7 @@ from .config import settings
 from .datastore import get_store
 from .engine import permit, spe
 from .engine.pipeline import applicant_status_view, applicant_view, evaluate
-from .primary import crossborder, letters, signature, summary
+from .primary import crossborder, letters, records, signature, summary
 
 DEMO_HOSPITAL = "Klinikum West"
 
@@ -29,7 +29,10 @@ async def lifespan(app: FastAPI):
     state.connect()
     store = get_store()
     holders = store.data_holders()
-    auth.seed_users(DEMO_HOSPITAL if DEMO_HOSPITAL in holders else (holders[0] if holders else None))
+    hospital = DEMO_HOSPITAL if DEMO_HOSPITAL in holders else (holders[0] if holders else None)
+    auth.seed_users(hospital)
+    if hospital:
+        records.add_to_kis(store, hospital, settings.reference_date)
     yield
 
 
@@ -371,6 +374,9 @@ def my_audit(user: dict = Depends(auth.current_user)):
 @app.get("/api/patients")
 def patients(search: str = "", user: dict = Depends(auth.require(HOSPITAL))):
     rows = summary.search(get_store(), search, user["data_holder"])
+    for r in rows:
+        rec = records.get(r["patient_id"])
+        r["name"] = records.name(rec) if rec else None
     state.audit(user, "primary", "patient_search", outcome=str(len(rows)), details={"search": search})
     return rows
 
@@ -391,6 +397,15 @@ def patient_summary(pid: str, lang: str = "de", user: dict = Depends(auth.requir
     out = summary.build(get_store(), pid, lang)
     state.audit(user, "primary", "patient_summary_viewed", patient_id=pid, outcome="ALLOW", details={"rule": 2, "lang": lang})
     return out
+
+
+@app.get("/api/patients/{pid}/documents")
+def patient_documents(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    _own_patient(pid, user)
+    rec = records.get(pid)
+    docs = records.documents(rec) if rec else []
+    state.audit(user, "primary", "patient_documents_viewed", patient_id=pid, outcome=str(len(docs)))
+    return {"patient_id": pid, "name": records.name(rec) if rec else None, "documents": docs}
 
 
 @app.get("/api/patients/{pid}/ips")

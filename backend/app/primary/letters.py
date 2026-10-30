@@ -11,11 +11,13 @@ from __future__ import annotations
 
 import json
 import uuid
+from datetime import date
 
 from fastapi import HTTPException
 
 from .. import state
 from ..datastore import DataStore
+from . import records
 from . import terminology as T
 
 NO_DATA = "No data in the KIS – please complete"
@@ -47,6 +49,9 @@ def _section(key: str, items: list[dict] | None = None, text: str = "") -> dict:
 
 
 def draft_from_kis(store: DataStore, pid: str, encounter_id: str | None = None) -> dict:
+    rec = records.get(pid)
+    if rec and rec["stay"]:
+        return draft_from_record(store, rec)
     stays = store.sql("""SELECT * FROM kis.encounters WHERE patient_id = ? AND type = 'inpatient'
                          AND (? IS NULL OR encounter_id = ?) ORDER BY start_date DESC""", [pid, encounter_id, encounter_id])
     if not stays:
@@ -119,6 +124,58 @@ def draft_from_kis(store: DataStore, pid: str, encounter_id: str | None = None) 
         "sections": sections,
         "not_written_by_system": ["no doses that are not in the data", "no diagnoses inferred from lab values",
                                   "no prognosis statements"],
+    }
+
+
+def draft_from_record(store: DataStore, rec: dict) -> dict:
+    """Draft from a patient's clinical documents; each statement names its source documents."""
+    pid, r, stay = rec["patient"]["patient_id"], rec["record"], rec["stay"]
+    p = store.sql("SELECT * FROM kis.patients WHERE patient_id = ?", [pid])[0]
+    src = lambda x: records.sources(rec, x.get("sources", []))  # noqa: E731
+    adm = next(d for d in rec["documents"] if d["id"] == stay["admission_doc"])
+    problems = r.get("problems_active", [])
+    diag = [{"role": "Hauptdiagnose" if i == 0 else "Nebendiagnose", "code": x.get("icd10"), "system": "ICD-10", "text": x["text"],
+             "source": src(x)} for i, x in enumerate(problems)]
+    meds = r.get("medication_at_discharge", [])
+    rec_meds = [{"code": m.get("atc"), "system": "ATC", "text": f"{m['active_ingredient']} {m.get('dose') or ''}".strip(),
+                 "dose": m.get("dose"), "status": m.get("status"), "source": src(m)} for m in meds]
+    stopped = [{"code": m.get("atc"), "system": "ATC", "text": f"{m['active_ingredient']}: abgesetzt ({m.get('reason') or 'während des Aufenthalts'})",
+                "status": "stopped", "source": src(m)} for m in r.get("medication_stopped_during_stay", [])]
+    on_admission = [{"code": m.get("atc"), "system": "ATC", "text": m["active_ingredient"], "source": src(m)}
+                    for m in meds if m.get("status") in ("unchanged", "changed")]
+    procedures = [{"text": f"{x.get('date') or ''} {x['text']}".strip(), "source": src(x)} for x in r.get("procedures", [])]
+    devices = [{"text": f"Implantat/Medizinprodukt: {x['text']}", "source": src(x)} for x in r.get("medical_devices_implants", [])]
+    allergies = [{"text": f"{a['substance']}: {a.get('reaction') or ''}"
+                          + (" (unbestätigt)" if a.get("verification") == "unconfirmed" else ""), "source": src(a)}
+                 for a in r.get("allergies_intolerances", [])]
+    findings = [{"text": f"{k['text']}: {k['value']}", "value": k["value"], "unit": None, "date": k.get("date"), "abnormal": False,
+                 "source": src(k)} for k in r.get("key_results", [])]
+    earlier = [{"code": x.get("icd10"), "system": "ICD-10", "text": x["text"], "source": src(x)} for x in r.get("past_history", [])]
+    days = (date.fromisoformat(stay["end_date"]) - date.fromisoformat(stay["start_date"])).days
+    sections = [
+        _section("brieftext"),
+        _section("aufnahmegrund", [{"text": f"Stationäre Aufnahme am {stay['start_date']}: {adm['titel']}.",
+                                    "source": records.sources(rec, [adm["id"]])}]),
+        _section("diagnosen", diag),
+        _section("massnahmen", procedures),
+        _section("medikation", rec_meds + stopped),
+        _section("empfehlungen"),
+        _section("zusammenfassung", [{"text": f"Stationärer Aufenthalt vom {stay['start_date']} bis {stay['end_date']} ({days} Tage), "
+                                              f"{stay['department']}.", "source": records.sources(rec, [adm["id"]])}]),
+        _section("allergien", allergies),
+        _section("befunde", findings),
+        _section("anamnese"),
+        _section("fruehere", earlier),
+        _section("medikation_einweisung", on_admission),
+        _section("bemerkungen", devices),
+    ]
+    return {
+        "header": {"patient_id": pid, "patient_name": records.name(rec), "sex": p["sex"], "birth_date": str(p["birth_date"]),
+                   "stay": {"encounter_id": stay["encounter_id"], "from": stay["start_date"], "to": stay["end_date"]},
+                   "hospital": p["data_holder"], "author": None, "signing_physician": None, "contact_person": None},
+        "sections": sections,
+        "not_written_by_system": ["only statements found in the patient's documents", "ruled-out diagnoses are left out",
+                                  "recommendations are written by the doctor"],
     }
 
 
