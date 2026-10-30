@@ -1,11 +1,11 @@
 """
-evaluate.py – Step 8: Evaluation against ground truth (synthetic mode only).
+evaluate.py – Step 8: Evaluation against the reference record (synthetic mode only).
 
-Compares the intermediate JSON with ground_truth_ips.json and reports:
+Compares the intermediate JSON with the reference record and reports:
   - Precision and recall per section
   - Whether any must_not_include item leaked into the IPS
 
-GROUND TRUTH IS NEVER PASSED TO THE LLM.
+REFERENCE DATA IS NEVER PASSED TO THE LLM.
 It is only loaded here, after the LLM has run, for offline evaluation.
 """
 
@@ -61,6 +61,7 @@ class EvaluationReport:
     patient_id: str
     sections: list[SectionMetrics] = field(default_factory=list)
     must_not_include_leaks: list[dict] = field(default_factory=list)
+    must_not_include_total: int = 0
     overall_precision: float = 0.0
     overall_recall: float = 0.0
     overall_f1: float = 0.0
@@ -70,6 +71,7 @@ class EvaluationReport:
             "patient_id": self.patient_id,
             "sections": [s.to_dict() for s in self.sections],
             "must_not_include_leaks": self.must_not_include_leaks,
+            "must_not_include_total": self.must_not_include_total,
             "overall_precision": round(self.overall_precision, 3),
             "overall_recall": round(self.overall_recall, 3),
             "overall_f1": round(self.overall_f1, 3),
@@ -158,19 +160,21 @@ SECTIONS = [
 
 def evaluate(
     intermediate: ExtractionIntermediate,
-    ground_truth_path: Path,
+    ground_truth_source: dict | Path,
 ) -> EvaluationReport:
     """
-    Compare intermediate extraction against ground truth.
+    Compare intermediate extraction against a reference record.
 
-    ground_truth_path must NOT be passed to any LLM — this is called
-    after all LLM steps have completed.
+    Reference data must NOT be passed to any LLM — this is called after
+    all LLM steps have completed.
     """
-    if not ground_truth_path.exists():
-        logger.warning("Ground truth file not found: %s", ground_truth_path)
-        return EvaluationReport(patient_id="unknown")
-
-    ground_truth: dict = json.loads(ground_truth_path.read_text(encoding="utf-8"))
+    if isinstance(ground_truth_source, Path):
+        if not ground_truth_source.exists():
+            logger.warning("Reference file not found: %s", ground_truth_source)
+            return EvaluationReport(patient_id="unknown")
+        ground_truth: dict = json.loads(ground_truth_source.read_text(encoding="utf-8"))
+    else:
+        ground_truth = ground_truth_source
     patient_id = ground_truth.get("patient_id", "unknown")
     report = EvaluationReport(patient_id=patient_id)
 
@@ -208,6 +212,7 @@ def evaluate(
 
     # Must-not-include leaks
     must_not = ground_truth.get("must_not_include", [])
+    report.must_not_include_total = len(must_not)
     report.must_not_include_leaks = _check_must_not_include(intermediate, must_not)
 
     if report.must_not_include_leaks:

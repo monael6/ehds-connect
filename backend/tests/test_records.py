@@ -35,6 +35,7 @@ def test_summary_from_documents_keeps_traps(client):
     assert "embolism" not in labels.lower() and "Lungenembolie" not in labels
     assert any("P001-D015" in c["source"] for c in s["checks"])
     assert not any("ruled out" in c["text"] for c in s["checks"])
+    assert any(": mentioned in the source documents, not included in this summary." in c["text"] for c in s["checks"])
     assert "B01AB01" not in {m["code"] for m in s["medications"]}  # heparin was stopped
     assert all(p["source"].startswith("P001-D") for p in s["problems"])
 

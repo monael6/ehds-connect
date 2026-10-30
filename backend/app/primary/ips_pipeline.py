@@ -12,8 +12,11 @@ Endpoints added to main.py:
 from __future__ import annotations
 
 import json
+import logging
 import sys
 import uuid
+import unicodedata
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -21,6 +24,8 @@ from fastapi import HTTPException
 
 from .. import state
 from . import records
+
+logger = logging.getLogger(__name__)
 
 
 # ── Schema extension for state.sqlite ───────────────────────────────────────
@@ -100,6 +105,68 @@ def _mapped(items: list[Any], fields: dict[str, str]) -> list[dict]:
     return [{target: _field(item, source) for target, source in fields.items()} for item in items]
 
 
+def _normalize_ingredient(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value).casefold()
+    return "".join(ch for ch in normalized if not unicodedata.combining(ch)).strip()
+
+
+@lru_cache(maxsize=1)
+def _atc_name_lookup() -> dict[str, str]:
+    path = Path(__file__).resolve().parents[3] / "terminology" / "atc_lookup.json"
+    try:
+        codes = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        logger.warning("ATC lookup file unavailable: %s", path)
+        return {}
+    lookup: dict[str, str] = {}
+    for code, name in codes.items():
+        normalized = _normalize_ingredient(name)
+        lookup[normalized] = code
+        first_word = normalized.split()[0].strip("()[]{}.,;:") if normalized.split() else ""
+        if first_word:
+            lookup.setdefault(first_word, code)
+    return lookup
+
+
+_ATC_NAME_ALIASES = {
+    "pantoprazole": "pantoprazol",
+    "budesonide": "budesonid",
+    "budesonide/formoterol": "budesonid/formoterol",
+    "furosemide": "furosemid",
+    "levothyroxine": "levothyroxin",
+    "amlodipine": "amlodipin",
+    "acetylsalicylic": "acetylsalicylsaure",
+    "acetylsalicylic acid": "acetylsalicylsaure",
+    "aspirin": "acetylsalicylsaure",
+    "epinephrine": "epinephrin",
+    "adrenaline": "epinephrin",
+    "adrenalin": "epinephrin",
+}
+
+
+def _atc_for_ingredient(ingredient: str | None) -> str | None:
+    if not ingredient:
+        return None
+    normalized = _normalize_ingredient(ingredient)
+    candidates = [normalized]
+    if normalized.split():
+        candidates.append(normalized.split()[0].strip("()[]{}.,;:"))
+    lookup = _atc_name_lookup()
+    for candidate in candidates:
+        candidate = _ATC_NAME_ALIASES.get(candidate, candidate)
+        if candidate in lookup:
+            return lookup[candidate]
+    return None
+
+
+def _mapped_medications(items: list[Any], fields: dict[str, str]) -> list[dict]:
+    medications = _mapped(items, fields)
+    for medication in medications:
+        if not medication.get("atc"):
+            medication["atc"] = _atc_for_ingredient(medication.get("active_ingredient"))
+    return medications
+
+
 def to_record(intermediate: Any) -> dict:
     """Convert a validated extraction into the record shape used by summary and letters."""
     included = intermediate.included
@@ -122,6 +189,7 @@ def to_record(intermediate: Any) -> dict:
         excluded.append({
             "text": text + suffixes.get(reason, ""),
             "reason": reason,
+            "detail": _field(item, "detail"),
             "sources": _field(item, "source_ids") or [],
         })
 
@@ -137,11 +205,11 @@ def to_record(intermediate: Any) -> dict:
             "substance": "substance", "reaction": "reaction", "criticality": "criticality",
             "verification": "verification", "sources": "source_ids",
         }),
-        "medication_at_discharge": _mapped(included.medication_at_discharge, {
+        "medication_at_discharge": _mapped_medications(included.medication_at_discharge, {
             "active_ingredient": "active_ingredient", "atc": "atc_suggested", "dose": "dose",
             "status": "status", "sources": "source_ids",
         }),
-        "medication_stopped_during_stay": _mapped(included.medication_stopped, {
+        "medication_stopped_during_stay": _mapped_medications(included.medication_stopped, {
             "active_ingredient": "active_ingredient", "atc": "atc_suggested", "reason": "reason",
             "sources": "source_ids",
         }),
@@ -173,14 +241,12 @@ def record_with_latest_draft(rec: dict) -> tuple[dict, dict]:
 
     intermediate = ExtractionIntermediate.model_validate(draft["intermediate"])
     eval_report = draft.get("eval_report") or {}
-    eval_metadata = {
-        key: eval_report[key]
-        for key in ("overall_precision", "overall_recall", "overall_f1")
-        if key in eval_report
-    }
+    eval_metadata: dict[str, Any] = {}
     leaks = eval_report.get("must_not_include_leaks")
     if leaks is not None:
         eval_metadata["must_not_include_leaks"] = len(leaks) if isinstance(leaks, list) else leaks
+    if "must_not_include_total" in eval_report:
+        eval_metadata["must_not_include_total"] = eval_report["must_not_include_total"]
     generated = {
         "by": "ai",
         "model": intermediate.extraction_model,
@@ -250,14 +316,17 @@ def run_pipeline(pid: str, user: dict) -> dict:
     # Step 7: FHIR validation — skipped (no validator_cli.jar in this setup)
     warnings.append("FHIR structural validation skipped (validator_cli.jar not present in this deployment).")
 
-    # Step 8: evaluation against ground truth (if available)
+    # Step 8: evaluation against the English reference record (if available)
     eval_report: dict[str, Any] | None = None
-    gt_path = _patients_dir() / pid / "ground_truth_ips.json"
-    if gt_path.exists():
+    en_path = _patients_dir() / pid / "en.json"
+    if en_path.exists():
         try:
             from pipeline.evaluate import evaluate as eval_pipeline
-            report = eval_pipeline(intermediate, gt_path)
-            eval_report = report.to_dict()
+            english_bundle = json.loads(en_path.read_text(encoding="utf-8"))
+            reference_record = english_bundle.get("record")
+            if isinstance(reference_record, dict):
+                report = eval_pipeline(intermediate, reference_record)
+                eval_report = report.to_dict()
         except Exception as exc:  # noqa: BLE001
             warnings.append(f"Evaluation skipped: {exc}")
 

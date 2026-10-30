@@ -81,11 +81,16 @@ describe("Clinical data from the backend", () => {
       patient: { id: "p-4cfd3cf1", sex: "female", birth_date: "1943-03-17", age: 82, region: "Vorarlberg", data_holder: "Klinikum West", opted_out_of_secondary_use: true },
       emergency: [{ type: "medication", code: "B01AF02", text: "Apixaban: anticoagulante" }],
       problems: [{ code: "I48.2", label: "Fibrillazione atriale cronica", since: "1995-06-03" }],
-      medications: [{ code: "B01AF02", label: "Apixaban", dose: null }],
+      medications: [
+        { code: "B01AF02", label: "Apixaban", dose: null },
+        { code: "P001-med-0", label: "Unlisted medicine", dose: null },
+      ],
       allergies: { items: [] },
     }, "it", { name: "Ms M.", crossBorderOptIn: true });
     expect(TERMS["I48.2"]?.it).toBe("Fibrillazione atriale cronica");
     expect(p.medications[0]).toMatchObject({ code: "B01AF02", anticoagulant: true });
+    expect(p.medications[1]).toMatchObject({ code: "P001-med-0" });
+    expect(p.medications[1]).not.toHaveProperty("anticoagulant");
     expect(p.emergency).toEqual([{ type: "medication", code: "B01AF02", text: "Apixaban: anticoagulante" }]);
     expect(p).toMatchObject({ name: "Ms M.", sex: "F", optedOut: true, allergies: [], implants: [] });
   });

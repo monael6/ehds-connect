@@ -1,6 +1,7 @@
 """Tests for document-based Patient Summary generation without live LLM calls."""
 from __future__ import annotations
 
+import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -23,7 +24,10 @@ from pipeline.models import (
     ExtractionIntermediate,
     IncludedSection,
     KeyResult,
+    MedicationAtDischarge,
 )
+from pipeline.evaluate import evaluate as evaluate_reference
+from pipeline.verify_quotes import _normalize, verify_quotes
 
 
 @pytest.fixture
@@ -61,11 +65,19 @@ def _intermediate() -> ExtractionIntermediate:
                     quote_verified=False,
                 )
             ],
+            medication_at_discharge=[
+                MedicationAtDischarge(active_ingredient="Ramipril", dose="5 mg", quote_verified=True),
+                MedicationAtDischarge(active_ingredient="Metoprolol", dose="47.5 mg", quote_verified=True),
+                MedicationAtDischarge(active_ingredient="Apixaban", dose="5 mg", quote_verified=True),
+                MedicationAtDischarge(active_ingredient="Pantoprazole", dose="40 mg", quote_verified=True),
+                MedicationAtDischarge(active_ingredient="Unlisted medicine", dose="1 tablet", quote_verified=True),
+            ],
         ),
         excluded=[
             ExcludedItem(
-                text="Heart disease",
+                text="Heart disease in the patient's father",
                 reason=ExclusionReason.family_history,
+                detail="Reported in a cardiology family history note",
                 source_ids=["P001-D004"],
                 quote="Herzerkrankung des Vaters",
             )
@@ -79,10 +91,12 @@ def _pipeline_patches(intermediate: ExtractionIntermediate):
     pseudo_mapping = MagicMock(patient_token="PT-test")
     llm = MagicMock()
     report = MagicMock(to_dict=MagicMock(return_value={
+        "sections": [{"section": "problems_active", "true_positives": 1, "false_positives": 0, "false_negatives": 0}],
         "overall_precision": 0.91,
         "overall_recall": 0.82,
         "overall_f1": 0.86,
         "must_not_include_leaks": [],
+        "must_not_include_total": len(json.loads((_REPO_ROOT / "patients/P001/en.json").read_text())["record"]["must_not_include"]),
     }))
     extract = patch("pipeline.extract.extract", return_value=intermediate)
     return (
@@ -102,6 +116,39 @@ def _pipeline_patches(intermediate: ExtractionIntermediate):
     ), pseudo_docs, llm
 
 
+def test_quote_verification_normalizes_quote_variants():
+    for character in "'\"„“”‚‘’«»‹›`":
+        assert _normalize(f"{character}quote{character}") == _normalize('"quote"')
+
+    intermediate = ExtractionIntermediate(
+        patient_token="PT-test",
+        extraction_model="mock-model",
+        extraction_timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        included=IncludedSection(
+            problems_active=[
+                ActiveProblem(
+                    text="Patient-reported intolerance",
+                    source_ids=["P001-D005"],
+                    quote="'immer schlecht geworden davon'",
+                )
+            ]
+        ),
+    )
+    result, failed = verify_quotes(
+        intermediate,
+        [{"id": "P001-D005", "text": 'Patient said: "immer schlecht geworden davon".'}],
+    )
+    assert result.included.problems_active[0].quote_verified is True
+    assert failed == []
+
+
+def test_evaluation_accepts_english_reference_record():
+    reference = json.loads((_REPO_ROOT / "patients/P001/en.json").read_text(encoding="utf-8"))["record"]
+    report = evaluate_reference(_intermediate(), reference)
+    assert report.patient_id == "P001"
+    assert report.to_dict()["must_not_include_total"] == len(reference["must_not_include"])
+
+
 def test_hospital_it_cannot_access_any_ips_pipeline_endpoint(client):
     headers = _headers(client, "u-gruber")
     assert client.post("/api/patients/P001/ips-pipeline", headers=headers).status_code == 403
@@ -119,8 +166,9 @@ def test_pipeline_returns_503_without_openai_key(client, monkeypatch):
 
 def test_mocked_run_drives_summary_letter_and_approval(client):
     headers = _headers(client, "u-berger")
-    patches, pseudo_docs, llm = _pipeline_patches(_intermediate())
-    with patches[0], patches[1], patches[2] as extract, patches[3], patches[4], patches[5], patches[6], patches[7]:
+    intermediate = _intermediate()
+    patches, pseudo_docs, llm = _pipeline_patches(intermediate)
+    with patches[0], patches[1], patches[2] as extract, patches[3], patches[4], patches[5], patches[6] as evaluate_mock, patches[7]:
         response = client.post("/api/patients/P001/ips-pipeline", headers=headers)
     assert response.status_code == 201, response.text
     draft = response.json()
@@ -128,6 +176,12 @@ def test_mocked_run_drives_summary_letter_and_approval(client):
     assert draft["summary_md"] is None
     assert draft["fhir_bundle"]["resourceType"] == "Bundle"
     assert extract.call_args.args == ("PT-test", pseudo_docs, llm)
+    english_record = json.loads((_REPO_ROOT / "patients/P001/en.json").read_text(encoding="utf-8"))["record"]
+    assert evaluate_mock.call_args.args == (intermediate, english_record)
+    assert draft["eval_report"]["must_not_include_total"] == len(english_record["must_not_include"])
+    pipeline_get = client.get("/api/patients/P001/ips-pipeline", headers=headers).json()
+    assert pipeline_get["eval_report"] == draft["eval_report"]
+    assert "overall_precision" in pipeline_get["eval_report"] and pipeline_get["eval_report"]["sections"]
 
     summary_response = client.get("/api/patients/P001/summary?lang=en", headers=headers)
     assert summary_response.status_code == 200
@@ -135,15 +189,25 @@ def test_mocked_run_drives_summary_letter_and_approval(client):
     assert summary["generated"]["by"] == "ai"
     assert summary["generated"]["status"] == "draft"
     assert summary["generated"]["eval"] == {
-        "overall_precision": 0.91,
-        "overall_recall": 0.82,
-        "overall_f1": 0.86,
         "must_not_include_leaks": 0,
+        "must_not_include_total": len(english_record["must_not_include"]),
     }
     assert any(p["label"] == "Acute ankle sprain" and p["code"] == "P001-problem-0"
                for p in summary["problems"])
+    medication_codes = {m["label"]: m["code"] for m in summary["medications"]}
+    assert medication_codes == {
+        "Ramipril": "C09AA05",
+        "Metoprolol": "C07AB02",
+        "Apixaban": "B01AF02",
+        "Pantoprazole": "A02BC02",
+        "Unlisted medicine": "P001-med-4",
+    }
     check_texts = [check["text"] for check in summary["checks"]]
-    assert any("Heart disease (family history, not the patient's own illness)" in text for text in check_texts)
+    assert any(
+        text == "Heart disease in the patient's father (family history, not the patient's own illness) – "
+        "Reported in a cardiology family history note. Please review the sources."
+        for text in check_texts
+    )
     assert any(
         text == "Potassium: the AI could not find this statement word-for-word in the source documents. Please review the sources."
         for text in check_texts

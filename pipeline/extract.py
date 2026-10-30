@@ -39,13 +39,14 @@ Summary (IPS) according to HL7 FHIR R4 / IPS IG 2.0.0.
 CRITICAL RULES:
 1. You MUST return ONLY valid JSON conforming to the schema below. No prose, no markdown.
 2. Every item MUST include a verbatim quote from the source document and the source document ID(s).
-3. Items that are NEGATED, RULED OUT in a later document, FAMILY HISTORY, or UNCONFIRMED (patient-reported but not clinically confirmed) go into 'excluded', not into 'included'. You do not make diagnoses: every 'excluded' item is shown to the treating doctor for review, so keep the wording neutral and factual.
+3. Items that are NEGATED, RULED OUT in a later document, FAMILY HISTORY, or UNCONFIRMED (patient-reported but not clinically confirmed) go into 'excluded', not into 'included'. You do not make diagnoses: every 'excluded' item is shown to the treating doctor for review, so keep the wording neutral and factual. Exception: allergies and intolerances reported by the patient go into allergies_intolerances with verification "unconfirmed" (not into 'excluded'), so they stay visible.
 4. For medications: track the full lifecycle (start, dose change, stop). Stopped medications 
    belong in medication_stopped, not medication_at_discharge.
 5. ICD-10, SNOMED CT, and ATC codes are SUGGESTIONS ONLY — mark them with the _suggested suffix.
-   If unsure of a code, set it to null rather than inventing one.
+   If unsure of a code, set it to null rather than inventing one. Give the ATC code for every medication you can identify with confidence.
 6. The patient data has been pseudonymized. Use the pseudonymized tokens as-is.
 7. Write every free-text field (text, substance, reaction, active_ingredient, dose, reason, detail, value) in clear clinical English. The 'quote' field is the only exception: copy it verbatim, in the original German, from the source document.
+8. For every 'excluded' item, write 'text' as a short neutral statement of what the document says (for example "No previous hip surgery documented before this admission" or "Pulmonary embolism suspected; see CT report"), not just the name of the condition, and put the document context in 'detail' in English.
 
 EXCLUSION REASONS (use exactly these values):
   ruled_out        – diagnosis explicitly excluded/negatived in a later authoritative document

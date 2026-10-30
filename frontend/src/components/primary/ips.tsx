@@ -99,13 +99,10 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
     }
   };
 
-  const evaluateLine = pipeline?.eval_report
-      ? [
-        ["precision", pipeline.eval_report["overall_precision"]],
-        ["recall", pipeline.eval_report["overall_recall"]],
-        ["F1", pipeline.eval_report["overall_f1"]],
-        ["must-not-include leaks", pipeline.eval_report["must_not_include_leaks"]],
-      ].filter(([, value]) => value !== undefined).map(([label, value]) => `${label} ${value}`).join(" · ")
+  const leakCount = pipeline?.eval_report?.must_not_include_leaks?.length;
+  const leakTotal = pipeline?.eval_report?.must_not_include_total;
+  const evaluateLine = leakCount !== undefined && leakTotal !== undefined
+    ? `Reference check: ${leakCount} of ${leakTotal} statements from the reference "do not include" list appear in the AI summary.`
     : "";
 
   return (
@@ -125,12 +122,12 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
                 <Badge variant="outline">AI draft – doctor review required</Badge>
                 {pipeline.created_at && <span className="text-sm text-muted-foreground">Generated {displayDate(pipeline.created_at)} · {String(pipeline.intermediate?.["extraction_model"] ?? "model unavailable")}</span>}
               </div>
-              {evaluateLine && <p className="text-sm text-muted-foreground">Checked against reference record: {evaluateLine}</p>}
+              {evaluateLine && <p className="text-sm text-muted-foreground">{evaluateLine}</p>}
               <div className="flex flex-wrap gap-2">
                 <Button onClick={approve} disabled={busy || pipelineQuery.isLoading}>Approve summary</Button>
                 <Button variant="outline" onClick={generateFromDocuments} disabled={busy || pipelineQuery.isLoading}>
                   {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                  {generating ? "Reading the documents… this takes about a minute." : "Regenerate"}
+                  {generating ? "Reading the documents… this takes up to a minute." : "Regenerate"}
                 </Button>
               </div>
             </>
@@ -139,7 +136,7 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
               <p className="text-sm"><Badge variant="outline">Approved by {pipeline.approved_by ?? "clinician"} on {pipeline.approved_at ? displayDate(pipeline.approved_at) : "date unavailable"}</Badge></p>
               <Button variant="outline" onClick={generateFromDocuments} disabled={busy}>
                 {generating ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                {generating ? "Reading the documents… this takes about a minute." : "Regenerate"}
+                {generating ? "Reading the documents… this takes up to a minute." : "Regenerate"}
               </Button>
             </>
           ) : (
@@ -148,7 +145,7 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
               <div className="flex flex-wrap items-center gap-3">
                 <Button onClick={generateFromDocuments} disabled={busy || pipelineQuery.isLoading}>
                   {busy || pipelineQuery.isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileText className="h-4 w-4" />}
-                  {busy ? "Reading the documents… this takes about a minute." : pipelineQuery.isLoading ? "Checking for an AI draft…" : "Generate from documents (AI)"}
+                  {busy ? "Reading the documents… this takes up to a minute." : pipelineQuery.isLoading ? "Checking for an AI draft…" : "Generate from documents (AI)"}
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground">Documents are pseudonymised before they are sent to OpenAI. The doctor reviews and approves the result.</p>

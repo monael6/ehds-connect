@@ -143,7 +143,15 @@ export interface IpsPipelineDraftDto {
   status: "draft" | "approved";
   intermediate: Record<string, unknown> | null;
   summary_md: string | null;
-  eval_report: Record<string, number> | null;
+  eval_report: {
+    patient_id: string;
+    sections?: { section: string; true_positives: number; false_positives: number; false_negatives: number; precision: number; recall: number; f1: number }[];
+    must_not_include_leaks?: { forbidden_text?: string; reason?: string | null; matched_in_ips: string }[];
+    must_not_include_total?: number;
+    overall_precision?: number;
+    overall_recall?: number;
+    overall_f1?: number;
+  } | null;
   created_at: string;
   approved_by: string | null;
   approved_at: string | null;

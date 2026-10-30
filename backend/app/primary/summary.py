@@ -105,8 +105,13 @@ def _from_record(p: dict, rec: dict, lang: str, sections: set[str] | None) -> di
     problems = [{"code": x.get("icd10") or f"{p['patient_id']}-problem-{i}", "system": "ICD-10",
                  "label": x["text"], "since": x.get("onset"), "source": src(x)}
                 for i, x in enumerate(r.get("problems_active", []))]
-    medications = [{"code": m["atc"], "system": "ATC", "label": m["active_ingredient"], "since": None, "dose": m.get("dose"),
-                    "status": m.get("status"), "source": src(m)} for m in r.get("medication_at_discharge", []) if m.get("atc")]
+    medications = [
+        {"code": m.get("atc") or f"{p['patient_id']}-med-{i}",
+         "system": "ATC" if m.get("atc") else "local",
+         "label": m["active_ingredient"], "since": None, "dose": m.get("dose"),
+         "status": m.get("status"), "source": src(m)}
+        for i, m in enumerate(r.get("medication_at_discharge", []))
+    ]
     allergies = [{"code": f"{p['patient_id']}-A{i + 1}",
                   "label": a["substance"] + (" (unconfirmed)" if a.get("verification") == "unconfirmed" else ""),
                   "severity": a.get("criticality"), "reaction": a.get("reaction"), "verification": a.get("verification"),

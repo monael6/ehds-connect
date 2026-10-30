@@ -22,10 +22,13 @@ from pipeline.models import BaseItem, ExtractionIntermediate
 
 logger = logging.getLogger(__name__)
 
+_QUOTE_CHARACTERS = "'\"„“”‚‘’«»‹›`"
+_QUOTE_TRANSLATION = str.maketrans({character: '"' for character in _QUOTE_CHARACTERS})
+
 
 def _normalize(text: str) -> str:
     """Normalize whitespace and unicode for loose matching."""
-    text = unicodedata.normalize("NFC", text)
+    text = unicodedata.normalize("NFC", text).translate(_QUOTE_TRANSLATION)
     # Collapse whitespace
     return " ".join(text.split())
 
