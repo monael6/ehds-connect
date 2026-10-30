@@ -146,10 +146,21 @@ export const fromPatientRow = (p: PatientRowDto): RolePatient => ({
 export interface SummaryDto {
   patient: { id: string; name?: string | null; sex: string; birth_date: string; age: number; region: string; data_holder: string; opted_out_of_secondary_use: boolean };
   emergency?: { type: string; code?: string; text: string }[];
-  problems?: { code: string; label: string; since?: string | null }[];
-  medications?: { code: string; label: string; dose?: string | null }[];
-  allergies?: { items: { code?: string | null; label?: string | null; severity?: string | null; reaction?: string | null }[] };
+  problems?: { code: string; label: string; since?: string | null; source?: string }[];
+  medications?: { code: string; label: string; dose?: string | null; source?: string }[];
+  allergies?: { items: { code?: string | null; label?: string | null; severity?: string | null; reaction?: string | null; source?: string }[] };
+  devices?: { label: string; since?: string | null; source?: string }[];
+  procedures?: { label: string; date?: string | null; source?: string }[];
   results?: { code: string; label: string; value: number; unit?: string | null; date?: string | null }[];
+}
+/** Implants and procedures from a patient's documents; codes are local keys for the term lookup. */
+function recordItems(s: SummaryDto, lang: Lang): Patient["implants"] {
+  const items = [...(s.devices ?? []).map((d) => ({ label: d.label, source: d.source })), ...(s.procedures ?? []).map((x) => ({ label: x.date ? `${x.date} ${x.label}` : x.label, source: x.source }))];
+  return items.map((x, i) => {
+    const code = `${s.patient.id}-item-${i + 1}`;
+    learn(code, x.label, lang);
+    return { code, source: x.source ?? "" };
+  });
 }
 /** Backend labels arrive translated; registering them lets the existing term() lookups show them. */
 function learn(code: string, label: string, lang: Lang) {
@@ -163,10 +174,10 @@ export function fromSummary(s: SummaryDto, lang: Lang, base: { name: string; cro
   return {
     id: s.patient.id, name: s.patient.name ?? base.name, born: s.patient.birth_date, age: s.patient.age, sex: s.patient.sex === "female" ? "F" : "M", city: s.patient.region,
     dataHolder: s.patient.data_holder, optedOut: s.patient.opted_out_of_secondary_use, crossBorderOptIn: base.crossBorderOptIn,
-    problems: (s.problems ?? []).map((p) => ({ code: p.code, since: p.since ?? "" })),
-    medications: (s.medications ?? []).map((m) => ({ code: m.code, dose: { en: m.dose ?? "", de: m.dose ?? "", it: m.dose ?? "" }, ...(m.code.startsWith("B01A") ? { anticoagulant: true } : {}) })),
-    allergies: allergies.map((a) => ({ code: a.code ?? "", severity: a.severity === "high" ? "high" : "moderate", ...(a.reaction ? { reaction: a.reaction } : {}) })),
-    implants: [],
+    problems: (s.problems ?? []).map((p) => ({ code: p.code, since: p.since ?? "", ...(p.source ? { source: p.source } : {}) })),
+    medications: (s.medications ?? []).map((m) => ({ code: m.code, dose: { en: m.dose ?? "", de: m.dose ?? "", it: m.dose ?? "" }, ...(m.code.startsWith("B01A") ? { anticoagulant: true } : {}), ...(m.source ? { source: m.source } : {}) })),
+    allergies: allergies.map((a) => ({ code: a.code ?? "", severity: a.severity === "high" ? "high" : "moderate", ...(a.reaction ? { reaction: a.reaction } : {}), ...(a.source ? { source: a.source } : {}) })),
+    implants: recordItems(s, lang),
     measurements: (s.results ?? []).map((r) => ({ code: r.code, value: r.value, unit: r.unit ?? "", date: r.date ?? "" })),
     ...(s.emergency?.length ? { emergency: s.emergency.map((e) => ({ type: e.type, text: e.text, ...(e.code ? { code: e.code } : {}) })) } : {}),
   };

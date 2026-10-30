@@ -58,10 +58,11 @@ export interface Patient {
   dataHolder: string;
   optedOut: boolean;
   crossBorderOptIn: boolean;
-  problems: { code: string; since: string }[];
-  medications: { code: string; dose: Tr; anticoagulant?: boolean }[];
-  allergies: { code: string; severity: "high" | "moderate"; reaction?: string }[];
-  implants: { code: string }[];
+  /** `source` names the clinical documents an entry was taken from (patient record bundles). */
+  problems: { code: string; since: string; source?: string }[];
+  medications: { code: string; dose: Tr; anticoagulant?: boolean; source?: string }[];
+  allergies: { code: string; severity: "high" | "moderate"; reaction?: string; source?: string }[];
+  implants: { code: string; source?: string }[];
   measurements: { code: string; value: number; unit: string; date: string }[];
   /** Emergency information as selected by the backend (critical medication and conditions). */
   emergency?: { type: string; text: string; code?: string }[];

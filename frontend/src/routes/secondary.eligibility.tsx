@@ -69,7 +69,7 @@ function RequestWizard() {
         <label className="flex items-start gap-3 text-sm"><Checkbox checked={safeguards} onCheckedChange={(v) => setSafeguards(v === true)} />I will only use the minimum data needed, inside the secure environment, and will not try to identify anyone.</label></>}</section>}
     {step === 3 && <section className="space-y-4"><h2 className="font-semibold">Your question</h2>
       <label className="block space-y-1 text-sm">What exactly do you want to know?<Textarea value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="How many patients with … aged … have …, by …?" /></label>
-      <label className="block space-y-1 text-sm">Definitions (optional, one per line)<Textarea value={definitions} onChange={(e) => setDefinitions(e.target.value)} placeholder={"Diabetes = ICD-10 code starting with E11\nAge on 31 December 2025"} /></label></section>}
+      <label className="block space-y-1 text-sm">Definitions (one per line)<Textarea value={definitions} onChange={(e) => setDefinitions(e.target.value)} placeholder={"Type 2 diabetes = any condition with an ICD-10 code starting with E11.\nReport per hospital (data holder): number of patients."} /><span className="block text-xs text-muted-foreground">Numbers are calculated only from what you define here: name each condition with its ICD-10 code and say what to report per group.</span></label></section>}
     {step === 4 && <section className="space-y-3 rounded-lg border bg-card p-5 text-sm"><h2 className="font-semibold">Check and submit</h2>
       <p><CheckCircle2 className="mr-2 inline h-4 w-4 text-success" />Purpose (Art. 53): {chosen?.label} – {description}</p>
       <p><CheckCircle2 className="mr-2 inline h-4 w-4 text-success" />No prohibited use (Art. 54)</p>

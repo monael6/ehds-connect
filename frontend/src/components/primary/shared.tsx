@@ -18,17 +18,17 @@ export function IpsCards({ p, lang, labelLang = lang, showCodes = true, hidden =
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {show("problems") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("problems")}</CardTitle></CardHeader><CardContent className="space-y-2">
-        {p.problems.length ? p.problems.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)} <span className="text-muted-foreground">({x.since})</span></span>{showCodes && <CodeTag c={x.code} sys={CODE_SYSTEM.problems} />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
+        {p.problems.length ? p.problems.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)}{x.since && <span className="text-muted-foreground"> ({x.since})</span>}{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && <CodeTag c={x.code} sys={CODE_SYSTEM.problems} />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
       {show("medications") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("medications")}</CardTitle></CardHeader><CardContent className="space-y-2">
-        {p.medications.length ? p.medications.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang).replace(/ \(.*\)$/, "")} · <span className="text-muted-foreground">{x.dose[lang]}</span></span>{showCodes && <CodeTag c={x.code} sys="ATC" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
+        {p.medications.length ? p.medications.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang).replace(/ \(.*\)$/, "")} · <span className="text-muted-foreground">{x.dose[lang]}</span>{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && <CodeTag c={x.code} sys="ATC" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
       {show("allergies") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("allergies")}</CardTitle></CardHeader><CardContent className="space-y-2">
-        {p.allergies.length ? p.allergies.map((x) => <div key={x.code} className={row}><span className="flex items-center gap-2">{term(x.code, lang)}{x.severity === "high" && <Badge variant="outline" className="border-destructive/30 bg-destructive-soft text-destructive">high</Badge>}</span>{showCodes && <CodeTag c={x.code} sys="SNOMED" />}</div>)
+        {p.allergies.length ? p.allergies.map((x) => <div key={x.code} className={row}><span className="flex flex-wrap items-center gap-2">{term(x.code, lang)}{x.source && <span className="w-full text-xs text-muted-foreground">Source: {x.source}</span>}{x.severity === "high" && <Badge variant="outline" className="border-destructive/30 bg-destructive-soft text-destructive">high</Badge>}</span>{showCodes && <CodeTag c={x.code} sys="SNOMED" />}</div>)
           : <p className="text-sm font-medium">{UI.noAllergies[labelLang]}</p>}
       </CardContent></Card>}
       {show("implants") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("implants")}</CardTitle></CardHeader><CardContent className="space-y-2">
-        {p.implants.length ? p.implants.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)}</span>{showCodes && <CodeTag c={x.code} sys="SNOMED" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
+        {p.implants.length ? p.implants.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)}{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && !x.source && <CodeTag c={x.code} sys="SNOMED" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
       {show("measurements") && p.measurements.length > 0 && <Card className="md:col-span-2"><CardHeader className="pb-3"><CardTitle className="text-base">{sec("measurements")}</CardTitle></CardHeader><CardContent>
         <div className="overflow-x-auto"><table className="w-full text-sm">
