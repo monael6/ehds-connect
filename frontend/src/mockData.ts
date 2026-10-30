@@ -503,7 +503,7 @@ export const REFERENCE_P00421 = {
 };
 
 // Role-based synthetic fixtures. No real identity or credential is represented.
-export interface DemoAccount { id: string; name: string; role: import("./lib/role-rules").DemoRole; roleLabel: string; organisation: string; method: string; email?: string; hospitalRole?: "senior_doctor" | "doctor" | "it_admin"; permissions?: string[] }
+export interface DemoAccount { id: string; name: string; role: import("./lib/role-rules").DemoRole; roleLabel: string; organisation: string; method: string; email?: string | undefined; hospitalRole?: "senior_doctor" | "doctor" | "it_admin" | undefined; permissions?: string[] | undefined }
 export const DEMO_ACCOUNTS: DemoAccount[] = [
   { id: "anna", name: "Dr. Anna Huber", role: "hospital", roleLabel: "Senior Doctor", organisation: "Klinikum West", method: "Hospital account + security key", email: "anna.huber@klinikum-west.at", hospitalRole: "senior_doctor", permissions: ["release_letters"] },
   { id: "markus", name: "Dr. Markus Berger", role: "hospital", roleLabel: "Doctor", organisation: "Klinikum West", method: "Hospital account + security key", email: "markus.berger@klinikum-west.at", hospitalRole: "doctor", permissions: [] },
