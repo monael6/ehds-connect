@@ -155,7 +155,7 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
       )}
       {error && <p role="alert" className="text-destructive">{error}</p>}
       {summaryQuery.isLoading && hasDocuments && <p className="text-sm text-muted-foreground">Loading the Patient Summary…</p>}
-      {visibleSummary && <><EmergencyPanel p={visibleSummary} lang="en" showCodes={false} /><IpsCards p={visibleSummary} lang="en" showCodes={false} /><Provenance source={`${visibleSource} · hospital source system · generated on demand`} /></>}
+      {visibleSummary && <><EmergencyPanel p={visibleSummary} lang="en" showCodes={false} /><IpsCards p={visibleSummary} lang="en" showCodes={false} showMedicationCodes /><Provenance source={`${visibleSource} · hospital source system · generated on demand`} /></>}
     </div>
   );
 }

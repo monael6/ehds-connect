@@ -108,13 +108,18 @@ def checks(rec: dict) -> list[dict]:
     """Statements the documents mention but the record does not take over; the doctor decides."""
     record = rec["record"]
     ai_record = "unverified" in record
+    ai_labels = {
+        "negated": "Negative statement in the documents",
+        "ruled_out": "Suspicion discussed in the documents",
+        "family_history": "Family history",
+        "unconfirmed": "Reported, not confirmed in the documents",
+    }
     checks = []
     for item in record.get("must_not_include", []):
         if ai_record:
-            item_text = item.get("text", "").rstrip(" .")
-            item_detail = (item.get("detail") or "").rstrip(" .")
-            detail = f" – {item_detail}" if item_detail else ""
-            text = f"{item_text}{detail}. Please review the sources."
+            label = ai_labels.get(item.get("reason"), "Mentioned in the documents")
+            item_text = (item.get("text") or "").rstrip(" .")
+            text = f"{label}: {item_text}. Please review the sources."
         else:
             text = f"{item['text']}: mentioned in the source documents, not included in this summary. Please review the sources."
         checks.append({"text": text, "source": sources(rec, item.get("sources", []))})

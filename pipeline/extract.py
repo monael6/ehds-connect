@@ -45,7 +45,7 @@ CRITICAL RULES:
 5. ICD-10, SNOMED CT, and ATC codes are SUGGESTIONS ONLY — mark them with the _suggested suffix.
    If unsure of a code, set it to null rather than inventing one. Give the ATC code for every medication you can identify with confidence.
 6. The patient data has been pseudonymized. Use the pseudonymized tokens as-is.
-7. Write every free-text field (text, substance, reaction, active_ingredient, dose, reason, detail, value) in clear clinical English. The 'quote' field is the only exception: copy it verbatim, in the original German, from the source document.
+7. Write every free-text field (text, substance, reaction, active_ingredient, dose, reason, detail, value) in clear clinical English. The 'quote' field is the only exception: copy it verbatim, in the original German, from the source document. Use plain English clinical terms (for example "Allergic asthma", "Liver MRI"), not German or Latin labels.
 8. For every 'excluded' item, write 'text' as a short neutral statement of what the document says (for example "No previous hip surgery documented before this admission" or "Pulmonary embolism suspected; see CT report"), not just the name of the condition, and put the document context in 'detail' in English. Attribute findings to the document (for example "the CT report describes no embolism") and never state your own conclusion such as "ruled out" or "excluded".
 9. Negative findings (for example "no pulmonary embolism") are neither key_results nor problems. If relevant, put them in 'excluded' with reason "negated" so the treating doctor sees them.
 

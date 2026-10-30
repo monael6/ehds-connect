@@ -186,15 +186,11 @@ def to_record(intermediate: Any) -> dict:
             unverified.append({"text": text, "sources": _field(item, "source_ids") or []})
 
     excluded = []
-    suffixes = {
-        "family_history": " (family history, not the patient's own illness)",
-        "unconfirmed": " (patient-reported, not confirmed)",
-    }
     for item in intermediate.excluded:
         reason = _field(item, "reason")
         text = _field(item, "text")
         excluded.append({
-            "text": text + suffixes.get(reason, ""),
+            "text": text,
             "reason": reason,
             "detail": _field(item, "detail"),
             "sources": _field(item, "source_ids") or [],

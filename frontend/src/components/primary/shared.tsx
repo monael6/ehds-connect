@@ -11,7 +11,7 @@ const CodeTag = ({ c, sys }: { c: string; sys: string }) => (
 );
 
 /** IPS cards. `lang` = clinical terms, `labelLang` = section headings. Hidden sections are omitted. */
-export function IpsCards({ p, lang, labelLang = lang, showCodes = true, hidden = [] }: { p: Patient; lang: Lang; labelLang?: Lang; showCodes?: boolean; hidden?: string[] }) {
+export function IpsCards({ p, lang, labelLang = lang, showCodes = true, showMedicationCodes = showCodes, hidden = [] }: { p: Patient; lang: Lang; labelLang?: Lang; showCodes?: boolean; showMedicationCodes?: boolean; hidden?: string[] }) {
   const sec = (k: keyof typeof UI) => UI[k][labelLang];
   const show = (k: string) => !hidden.includes(k);
   const row = "flex flex-wrap items-center justify-between gap-2 text-sm";
@@ -21,7 +21,7 @@ export function IpsCards({ p, lang, labelLang = lang, showCodes = true, hidden =
         {p.problems.length ? p.problems.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)}{x.since && <span className="text-muted-foreground"> ({x.since})</span>}{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && <CodeTag c={x.code} sys={CODE_SYSTEM.problems} />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
       {show("medications") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("medications")}</CardTitle></CardHeader><CardContent className="space-y-2">
-        {p.medications.length ? p.medications.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang).replace(/ \(.*\)$/, "")} · <span className="text-muted-foreground">{x.dose[lang]}</span>{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && <CodeTag c={x.code} sys="ATC" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
+        {p.medications.length ? p.medications.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang).replace(/ \(.*\)$/, "")} · <span className="text-muted-foreground">{x.dose[lang]}</span>{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showMedicationCodes && x.system === "ATC" && <CodeTag c={x.code} sys="ATC" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
       {show("allergies") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("allergies")}</CardTitle></CardHeader><CardContent className="space-y-2">
         {p.allergies.length ? p.allergies.map((x) => <div key={x.code} className={row}><span className="flex flex-wrap items-center gap-2">{term(x.code, lang)}{x.source && <span className="w-full text-xs text-muted-foreground">Source: {x.source}</span>}{x.severity === "high" && <Badge variant="outline" className="border-destructive/30 bg-destructive-soft text-destructive">high</Badge>}</span>{showCodes && <CodeTag c={x.code} sys="SNOMED" />}</div>)

@@ -217,13 +217,13 @@ def test_negated_key_results_become_review_checks():
         ],
     })
     assert checks[0]["text"] == (
-        "No pulmonary embolism – finding as described in the report; see the source document. "
-        "Please review the sources."
+        "Negative statement in the documents: No pulmonary embolism. Please review the sources."
     )
     assert checks[1]["text"] == (
-        "MRT liver: Cavernous hemangioma, no evidence of liver metastasis – "
-        "finding as described in the report; see the source document. Please review the sources."
+        "Negative statement in the documents: MRT liver: Cavernous hemangioma, "
+        "no evidence of liver metastasis. Please review the sources."
     )
+    assert checks[2]["text"] == "Negative statement in the documents: Liver metastasis. Please review the sources."
 
 
 def test_evaluation_accepts_english_reference_record():
@@ -288,8 +288,7 @@ def test_mocked_run_drives_summary_letter_and_approval(client):
     }
     check_texts = [check["text"] for check in summary["checks"]]
     assert any(
-        text == "Heart disease in the patient's father (family history, not the patient's own illness) – "
-        "Reported in a cardiology family history note. Please review the sources."
+        text == "Family history: Heart disease in the patient's father. Please review the sources."
         for text in check_texts
     )
     assert any(

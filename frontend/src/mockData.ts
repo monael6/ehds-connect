@@ -60,7 +60,7 @@ export interface Patient {
   crossBorderOptIn: boolean;
   /** `source` names the clinical documents an entry was taken from (patient record bundles). */
   problems: { code: string; since: string; source?: string }[];
-  medications: { code: string; dose: Tr; anticoagulant?: boolean; source?: string }[];
+  medications: { code: string; system?: string; dose: Tr; anticoagulant?: boolean; source?: string }[];
   allergies: { code: string; severity: "high" | "moderate"; reaction?: string; source?: string }[];
   implants: { code: string; source?: string }[];
   measurements: { code: string; value: number | string | null; unit: string; date: string }[];

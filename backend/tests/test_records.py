@@ -20,11 +20,21 @@ def test_ai_checks_trim_trailing_periods_before_joining():
     rec = {
         "record": {
             "unverified": [],
-            "must_not_include": [{
-                "text": "The CT report mentions no embolism..  ",
-                "detail": "Radiology report D005..  ",
-                "sources": ["P001-D005"],
-            }],
+            "must_not_include": [
+                {
+                    "text": "The CT report mentions no embolism..  ",
+                    "detail": "Radiology report D005..  ",
+                    "reason": "negated",
+                    "sources": ["P001-D005"],
+                },
+                {
+                    "text": "Asthma in mother.  ",
+                    "detail": "The patient's mother has asthma, not the patient.",
+                    "reason": "family_history",
+                    "sources": ["P001-D005"],
+                },
+                {"text": "A previous test.  ", "sources": ["P001-D005"]},
+            ],
         },
         "documents": [{"id": "P001-D005", "typ": "Radiologiebefund"}],
     }
@@ -32,7 +42,11 @@ def test_ai_checks_trim_trailing_periods_before_joining():
     checks = records.checks(rec)
 
     assert checks[0]["text"] == (
-        "The CT report mentions no embolism – Radiology report D005. Please review the sources."
+        "Negative statement in the documents: The CT report mentions no embolism. Please review the sources."
+    )
+    assert checks[1]["text"] == "Family history: Asthma in mother. Please review the sources."
+    assert checks[2]["text"] == (
+        "Mentioned in the documents: A previous test. Please review the sources."
     )
 
 
