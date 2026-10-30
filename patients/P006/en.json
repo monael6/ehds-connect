@@ -25,7 +25,7 @@
     ]
    },
    {
-    "text": "Concussion after a fall (MRI without structural finding)",
+    "text": "Concussion after a fall",
     "icd10": "S09.9",
     "snomed": null,
     "onset": "2024-08-12",
@@ -93,14 +93,14 @@
     ]
    },
    {
-    "text": "Head CT without contrast: no haematoma, hypodense area left temporal",
+    "text": "Head CT without contrast: see report P006-D007 (hypodense area left temporal)",
     "date": "2024-08-12",
     "sources": [
      "P006-D007"
     ]
    },
    {
-    "text": "Head MRI with/without contrast: post-ictal phenomenon, no structural finding, no contusion",
+    "text": "Head MRI with/without contrast: report describes a post-ictal phenomenon; see P006-D011",
     "date": "2024-08-13",
     "sources": [
      "P006-D011"

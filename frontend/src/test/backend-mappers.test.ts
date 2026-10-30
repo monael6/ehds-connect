@@ -83,11 +83,11 @@ describe("Clinical data from the backend", () => {
       problems: [{ code: "I48.2", label: "Fibrillazione atriale cronica", since: "1995-06-03" }],
       medications: [{ code: "B01AF02", label: "Apixaban", dose: null }],
       allergies: { items: [] },
-    }, "it", { name: "Frau M.", crossBorderOptIn: true });
+    }, "it", { name: "Ms M.", crossBorderOptIn: true });
     expect(TERMS["I48.2"]?.it).toBe("Fibrillazione atriale cronica");
     expect(p.medications[0]).toMatchObject({ code: "B01AF02", anticoagulant: true });
     expect(p.emergency).toEqual([{ type: "medication", code: "B01AF02", text: "Apixaban: anticoagulante" }]);
-    expect(p).toMatchObject({ name: "Frau M.", sex: "F", optedOut: true, allergies: [], implants: [] });
+    expect(p).toMatchObject({ name: "Ms M.", sex: "F", optedOut: true, allergies: [], implants: [] });
   });
 
   it("Stores the portal consent with the backend's section names", () => {

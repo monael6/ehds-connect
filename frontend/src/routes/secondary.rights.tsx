@@ -29,7 +29,7 @@ function Rights() {
   const optedOut = simulated ?? data.data.optedOut;
   return (
     <div className="space-y-6">
-      <div><p className="text-sm text-muted-foreground">Signed in as</p><h1 className="text-2xl font-semibold">Maria Muster (Frau M.) · {data.data.patient}</h1></div>
+      <div><p className="text-sm text-muted-foreground">Signed in as</p><h1 className="text-2xl font-semibold">Maria Muster (Ms M.) · {data.data.patient}</h1></div>
 
       <section className="flex flex-wrap items-center gap-4 rounded-2xl border p-5">
         <ShieldCheck className="h-7 w-7 text-primary" aria-hidden />
@@ -56,7 +56,7 @@ function Rights() {
           ))}
         </ul> : <p className="mt-3 text-sm text-muted-foreground">No approved data uses yet.</p>}
       </section>
-      <Provenance source={`${data.source} · patient portal of Frau M.`} />
+      <Provenance source={`${data.source} · patient portal of Ms M.`} />
     </div>
   );
 }

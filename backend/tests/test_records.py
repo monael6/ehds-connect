@@ -60,5 +60,5 @@ def test_all_bundles_english_and_no_system_diagnosis(client):
         docs = client.get(f"/api/patients/{pid}/documents", headers=hd).json()["documents"]
         assert not any(re.search(r"\b(und|mit|nach|der|die)\b", d["text"]) for d in docs), pid
         s = client.get(f"/api/patients/{pid}/summary", headers=hd).json()
-        assert s["checks"] and all("Please check the sources" in c["text"] for c in s["checks"])
+        assert s["checks"] and all("Please review the sources" in c["text"] for c in s["checks"])
         assert "ruled out" not in str(s["checks"]).lower()

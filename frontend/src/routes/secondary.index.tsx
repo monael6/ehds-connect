@@ -143,7 +143,7 @@ function StaffRequests() {
         </div>
       </div>
 
-      {jsonErr && <p role="alert" className="text-destructive">{jsonErr}</p>}<Provenance source="FastAPI request service · synthetic fallback when unavailable" />
+      {jsonErr && <p role="alert" className="text-destructive">{jsonErr}</p>}<Provenance source="FastAPI request service" />
       <Dialog open={editor} onOpenChange={setEditor}>
         <DialogContent className="max-w-2xl">
           <DialogHeader><DialogTitle>New request</DialogTitle><DialogDescription>Edit the JSON, or paste a Track-3 request file (with requested_as, question and definitions). Use type "health data request" or "health data access application" (add "whyNotStatistics" for record-level access).</DialogDescription></DialogHeader>

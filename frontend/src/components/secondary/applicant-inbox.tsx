@@ -38,10 +38,16 @@ function Row({ row, onDone }: { row: InboxRow; onDone: (what: string) => Promise
     <div className="flex flex-wrap items-start gap-3"><div className="min-w-0 flex-1"><p className="text-xs text-muted-foreground">{row.request_id} · {org(row.applicant)} · {row.requested_as === "health data access application" ? "Records (Art. 67)" : "Statistics (Art. 69)"}</p><p className="mt-1 font-medium">{row.purpose}</p><p className="mt-1 text-xs">Automatic check: {RECOMMENDATION[row.decision]}</p>{row.staff_note && <p className="mt-1 text-xs text-muted-foreground">Note: {row.staff_note}</p>}</div><Badge variant="outline" className={s.tone}>{s.label}</Badge></div>
     <Button variant="ghost" size="sm" className="mt-2 px-0" onClick={() => setOpen((o) => !o)}>{open ? "Hide details" : "Review"}</Button>
     {open && <div className="mt-2 space-y-3 border-t pt-3">
-      {detail.data ? <><p className="text-muted-foreground"><span className="font-medium text-foreground">Automatic recommendation: </span>{detail.data.explanation?.en}</p><p className="text-xs">Articles: {detail.data.articles.map((a) => `Art. ${a}`).join(", ")}</p></> : <p className="text-muted-foreground">{detail.error?.message ?? "Loading…"}</p>}
+      {detail.data ? <><p className="text-muted-foreground"><span className="font-medium text-foreground">Automatic recommendation: </span>{recommendation(detail.data.explanation?.en)}</p><p className="text-xs">Articles: {detail.data.articles.map((a) => `Art. ${a}`).join(", ")}</p></> : <p className="text-muted-foreground">{detail.error?.message ?? "Loading…"}</p>}
       {pending && <><Textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="Note to the applicant (required to reject or ask for information)" aria-label="Note to the applicant" />
         <div className="flex flex-wrap gap-2"><Button size="sm" disabled={busy || row.decision === "REJECT"} onClick={() => act("confirm", "Request approved")}>Approve</Button><Button size="sm" variant="outline" disabled={busy || !note.trim()} onClick={() => act("ask-info", "Asked for more information")}>Ask for information</Button><Button size="sm" variant="destructive" disabled={busy || !note.trim()} onClick={() => act("reject", "Request rejected")}>Reject</Button></div>
         {row.decision === "REJECT" && <p className="text-xs text-destructive">Prohibited purpose under Art. 54. This request cannot be approved.</p>}</>}
     </div>}
   </article>;
+}
+
+/** The engine writes to the applicant; staff see it as a recommendation until they decide. */
+function recommendation(text?: string) {
+  if (!text) return "";
+  return text.replace(/^Your (health data )?request is approved\.\s*You receive/, "Eligible for approval. HDAB approval is still required. If approved, the applicant receives").replace(/^Your (health data )?request is (denied|rejected)\.\s*/, "Recommended: reject. ");
 }

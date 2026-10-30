@@ -69,6 +69,7 @@ def build(store: DataStore, pid: str, lang: str = "en", sections: set[str] | Non
             if m["code"].startswith(prefix):
                 emergency.append({"type": "medication", "code": m["code"],
                                   "text": f"{T.label(m['code'], lang, m['description'])}: {text.get(lang, text['en'])}"})
+                break
     for c in cond:
         if c["code"].startswith(T.EMERGENCY_ICD):
             emergency.append({"type": "condition", "code": c["code"], "text": T.label(c["code"], lang, c["description"])})
@@ -113,6 +114,7 @@ def _from_record(p: dict, rec: dict, lang: str, sections: set[str] | None) -> di
         for prefix, text in T.EMERGENCY_ATC.items():
             if m["code"].startswith(prefix):
                 emergency.append({"type": "medication", "code": m["code"], "text": f"{m['label']}: {text.get(lang, text['en'])}"})
+                break
     for x in problems:
         if x["code"].startswith(T.EMERGENCY_ICD):
             emergency.append({"type": "condition", "code": x["code"], "text": x["label"]})

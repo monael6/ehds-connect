@@ -106,7 +106,7 @@ def documents(rec: dict) -> list[dict]:
 
 def checks(rec: dict) -> list[dict]:
     """Statements the documents mention but the record does not take over; the doctor decides."""
-    return [{"text": f"{x['text']}: mentioned in the documents, not taken over. Please check the sources.", "source": sources(rec, x.get("sources", []))}
+    return [{"text": f"{x['text']}: mentioned in the source documents, not included in this summary. Please review the sources.", "source": sources(rec, x.get("sources", []))}
             for x in rec["record"].get("must_not_include", [])]
 
 

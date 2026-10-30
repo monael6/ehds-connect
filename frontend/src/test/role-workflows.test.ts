@@ -29,7 +29,7 @@ describe("Role boundaries", () => {
     expect(canOpen("interested", "/audit")).toBe(false);
   });
   it("Signed-out users have no data area access", () => expect(canOpen(undefined, "/primary")).toBe(false));
-  it("Frau M. is listed first under the requested pseudonym", () => expect(ROLE_PATIENTS[0]?.id).toBe("p-4cfd3cf1"));
+  it("Ms M. is listed first under the requested pseudonym", () => expect(ROLE_PATIENTS[0]?.id).toBe("p-4cfd3cf1"));
   it("Hospital fixture includes only approved Klinikum West requests", () => expect(HOSPITAL_REQUESTS.every((r) => r.approved && r.hospital === "Klinikum West")).toBe(true));
 });
 describe("Clinical safeguards", () => {

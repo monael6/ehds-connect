@@ -62,7 +62,7 @@ DEMO_USERS = [
      "sign_in_method": "ID Austria"},
     {"id": "u-public", "name": "Public visitor", "role": INTERESTED,
      "organisation": "-", "data_holder": None, "sign_in_method": "browse without account"},
-    {"id": "u-muster", "name": "Frau M. (patient)", "role": PATIENT, "organisation": "-", "data_holder": None,
+    {"id": "u-muster", "name": "Ms M. (patient)", "role": PATIENT, "organisation": "-", "data_holder": None,
      "sign_in_method": "ID Austria", "patient_id": "p-4cfd3cf1"},
     {"id": "u-rossi", "name": "Dr. Giulia Rossi", "role": FOREIGN_DOCTOR,
      "organisation": "Ospedale di Firenze (IT)", "data_holder": None,

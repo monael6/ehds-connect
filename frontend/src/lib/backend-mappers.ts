@@ -8,7 +8,7 @@ import type { AuditEvent, Evaluation, LetterDocument, LetterEdit, ResultTable } 
 
 /** Preset demo accounts sign in as the backend's demo user for the same person and role. */
 export const BACKEND_USERS: Record<string, string> = { anna: "u-huber", markus: "u-berger", thomas: "u-gruber", petra: "u-novak", lena: "u-weiss", visitor: "u-public" };
-/** People the cross-border walkthrough acts for: Frau M. in her portal and the doctor in Italy. */
+/** People the cross-border walkthrough acts for: Ms M. in her portal and the doctor in Italy. */
 export const PATIENT_USER = "u-muster";
 export const FOREIGN_DOCTOR_USER = "u-rossi";
 export const FRAU_M = "p-4cfd3cf1";
@@ -22,7 +22,7 @@ type Org = { name?: string | null; organisation?: string | null } | string | nul
 const orgOf = (a: Org) => (typeof a === "string" ? a : a?.organisation ?? a?.name ?? "Applicant");
 const article = (a: string | number) => `Art. ${a}`;
 export const requestType = (t: unknown): ResearchRequest["type"] => (t === "health data access application" ? t : "health data request");
-export const patientName = (id: string) => (id === FRAU_M ? "Frau M." : `Patient ${id}`);
+export const patientName = (id: string) => (id === FRAU_M ? "Ms M." : `Patient ${id}`);
 
 // ---------- Secondary use ----------
 
@@ -176,7 +176,7 @@ export function fromSummary(s: SummaryDto, lang: Lang, base: { name: string; cro
     id: s.patient.id, name: s.patient.name ?? base.name, born: s.patient.birth_date, age: s.patient.age, sex: s.patient.sex === "female" ? "F" : "M", city: s.patient.region,
     dataHolder: s.patient.data_holder, optedOut: s.patient.opted_out_of_secondary_use, crossBorderOptIn: base.crossBorderOptIn,
     problems: (s.problems ?? []).map((p) => ({ code: p.code, since: p.since ?? "", ...(p.source ? { source: p.source } : {}) })),
-    medications: (s.medications ?? []).map((m) => ({ code: m.code, dose: { en: m.dose ?? "", de: m.dose ?? "", it: m.dose ?? "" }, ...(m.code.startsWith("B01A") ? { anticoagulant: true } : {}), ...(m.source ? { source: m.source } : {}) })),
+    medications: (s.medications ?? []).map((m) => ({ code: m.code, dose: { en: m.dose ?? "", de: m.dose ?? "", it: m.dose ?? "" }, ...(m.code.startsWith("B01A") && !m.code.startsWith("B01AC") ? { anticoagulant: true } : {}), ...(m.source ? { source: m.source } : {}) })),
     allergies: allergies.map((a) => ({ code: a.code ?? "", severity: a.severity === "high" ? "high" : "moderate", ...(a.reaction ? { reaction: a.reaction } : {}), ...(a.source ? { source: a.source } : {}) })),
     implants: recordItems(s, lang),
     measurements: (s.results ?? []).map((r) => ({ code: r.code, value: r.value, unit: r.unit ?? "", date: r.date ?? "" })),

@@ -29,7 +29,7 @@ describe("HL7 v2 OBX-5 → FHIR Observation", () => {
   });
 });
 
-describe("Frau M. profile", () => {
+describe("Ms M. profile", () => {
   const m = PATIENTS.find((p) => p.id === "P-00421")!;
   it("is Maria Muster, opted out of research but in for cross-border", () => {
     expect([m.name, m.born, m.optedOut, m.crossBorderOptIn]).toEqual(["Maria Muster", "1958-03-12", true, true]);

@@ -50,6 +50,7 @@ LABELS: dict[str, dict[str, str]] = {
 
 # drug classes that belong in the emergency strip
 EMERGENCY_ATC = {
+    "B01AC": {"en": "Antiplatelet medicine – bleeding risk", "de": "Thrombozytenaggregationshemmer – Blutungsrisiko", "it": "Antiaggregante piastrinico – rischio emorragico"},
     "B01A": {"en": "Anticoagulant – bleeding risk", "de": "Gerinnungshemmer – Blutungsrisiko", "it": "Anticoagulante – rischio emorragico"},
     "A10A": {"en": "Insulin – risk of hypoglycaemia", "de": "Insulin – Hypoglykämie-Risiko", "it": "Insulina – rischio di ipoglicemia"},
 }

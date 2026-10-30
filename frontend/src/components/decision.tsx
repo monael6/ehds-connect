@@ -109,7 +109,7 @@ function StatsTable({ ev }: { ev: Evaluation }) {
       ) : <p className="mt-2 text-sm text-muted-foreground">{ev.explanation ? "The backend could not derive figures from this request. Add definitions (codes and groups) to the request." : "Results will be computed by the backend for this new request."}</p>}
       <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t pt-4 text-sm text-muted-foreground">
         <span>Opted-out patients excluded: <strong className="text-foreground">{(ev.optedOutExcluded ?? OPTED_OUT_EXCLUDED).toLocaleString("en-US")}</strong></span>
-        <span className="flex items-center gap-1.5 text-warning"><UserX className="h-4 w-4" />Frau M. is not included (opted out of research)</span>
+        <span className="flex items-center gap-1.5 text-warning"><UserX className="h-4 w-4" />Ms M. is not included (opted out of research)</span>
       </div>
     </div>
   );

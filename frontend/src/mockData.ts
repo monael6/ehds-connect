@@ -515,7 +515,7 @@ export const DEMO_ACCOUNTS: DemoAccount[] = [
   { id: "lena", name: "Dr. Lena Weiss", role: "interested", roleLabel: "Applicant", organisation: "University of Graz", method: "ID Austria", email: "lena.weiss@uni-graz.at" },
   { id: "visitor", name: "Public visitor", role: "visitor", roleLabel: "Visitor", organisation: "Public catalogue", method: "Browse without account" },
 ];
-export const ROLE_PATIENTS = PATIENTS.map((p, i) => ({ ...p, id: i === 0 ? "p-4cfd3cf1" : p.id.toLowerCase(), legacyId: p.id, name: i === 0 ? "Frau M." : p.name, dataHolder: i === 0 ? "Klinikum West" : p.dataHolder, stays: i === 0 ? [{ ...ENCOUNTER }] : [] }));
+export const ROLE_PATIENTS = PATIENTS.map((p, i) => ({ ...p, id: i === 0 ? "p-4cfd3cf1" : p.id.toLowerCase(), legacyId: p.id, name: i === 0 ? "Ms M." : p.name, dataHolder: i === 0 ? "Klinikum West" : p.dataHolder, stays: i === 0 ? [{ ...ENCOUNTER }] : [] }));
 export const ELGA_SECTIONS: import("./lib/letter-rules").ClinicalSection[] = [
   { key: "brieftext", title: "Letter narrative", items: [] },
   { key: "aufnahmegrund", title: "Reason for admission", required: true, items: [LETTER.course[0]].filter((i): i is LetterItem => !!i).map((i) => ({ text: i.text, source: "from KIS: progress note 20.10.2026", sourceText: NOTE_2010 })) },
@@ -533,7 +533,7 @@ export const ELGA_SECTIONS: import("./lib/letter-rules").ClinicalSection[] = [
   { key: "anamnese", title: "Medical history", items: [] },
   { key: "fruehere", title: "Previous conditions", items: [] },
   { key: "einweisung", title: "Medication on admission", items: [] },
-  { key: "bemerkungen", title: "Closing remarks", items: [] },
+  { key: "bemerkungen", title: "Notes for the doctor", items: [] },
 ];
 export const HOSPITAL_REQUESTS = [
   { id: "R01", applicant: "Univ. Graz – Public Health", purpose: "Prevalence of type 2 diabetes", recordTypes: ["Diagnoses", "Medications", "Laboratory results"], patients: 742, hospital: "Klinikum West", approved: true, permitDate: "29.10.2026", kind: "Statistics" },

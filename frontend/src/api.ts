@@ -302,9 +302,9 @@ export const signChallenge = (letterId: string) => strict<{ challenge: string; k
 export const getOwnRequests = (userId: string) => live<DecisionRowDto[], Evaluation[]>("/api/requests", (rows) => rows.map(fromDecisionRow), [] as Evaluation[]);
 /** POST /api/eligibility — the backend's preliminary check; the local rules answer only when it is unavailable */
 export const checkEligibility = (a: EligibilityInput, label: string) => live<EligibilityDto, EligibilityOutcome>("/api/eligibility", fromEligibility, { ...eligibility(a), records: a.records }, { method: "POST", body: JSON.stringify(toEligibility(a, label)) });
-/** GET /api/portal/me — as Frau M.: her opt-out status from the KIS and the public register */
+/** GET /api/portal/me — as Ms M.: her opt-out status from the KIS and the public register */
 export const getPortal = () => live<PortalDto, ReturnType<typeof fromPortal>>("/api/portal/me", fromPortal, { patient: FRAU_M, optedOut: true, uses: PUBLIC_USES }, undefined, PATIENT_USER);
-/** PUT /api/portal/consent — as Frau M. in her patient portal */
+/** PUT /api/portal/consent — as Ms M. in her patient portal */
 export const saveCrossBorderConsent = (consent: { crossBorder: boolean; hidden: string[] }, date: string) => live<unknown, { crossBorder: boolean; hidden: string[]; since: string }>("/api/portal/consent", () => ({ ...consent, since: date }), { ...consent, since: date }, { method: "PUT", body: JSON.stringify(toConsent(consent)) }, PATIENT_USER);
 
 /** POST /api/cross-border/patient-summary — as the doctor in Italy; the backend decides again and releases only allowed sections */
