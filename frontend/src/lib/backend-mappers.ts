@@ -7,7 +7,7 @@ import { PROHIBITED_PURPOSES, type EligibilityInput } from "@/lib/role-rules";
 import type { AuditEvent, Evaluation, LetterDocument, LetterEdit, ResultTable } from "@/api";
 
 /** Preset demo accounts sign in as the backend's demo user for the same person and role. */
-export const BACKEND_USERS: Record<string, string> = { anna: "u-huber", petra: "u-novak", lena: "u-weiss", visitor: "u-public" };
+export const BACKEND_USERS: Record<string, string> = { anna: "u-huber", markus: "u-berger", thomas: "u-gruber", petra: "u-novak", lena: "u-weiss", visitor: "u-public" };
 /** People the cross-border walkthrough acts for: Frau M. in her portal and the doctor in Italy. */
 export const PATIENT_USER = "u-muster";
 export const FOREIGN_DOCTOR_USER = "u-rossi";
@@ -78,9 +78,9 @@ export function fromEvaluation(d: EvaluationDto, req: ResearchRequest): Evaluati
   };
 }
 
-export interface DecisionRowDto { request_id: string; applicant?: Org; purpose?: string | null; requested_as?: string | null; decision: Decision; articles: (string | number)[]; status?: string }
+export interface DecisionRowDto { request_id: string; applicant?: Org; purpose?: string | null; requested_as?: string | null; decision: Decision; articles: (string | number)[]; status?: string; staff_note?: string | null }
 const STEP_OF: Record<Decision, 1 | 2 | 3> = { REJECT: 1, APPROVE_STATISTICAL: 2, APPROVE_SPE: 3 };
-const OWN_STATUS: Record<string, string> = { automatic: "Automatic decision · HDAB review pending", confirmed: "Confirmed by the HDAB", more_information_requested: "The HDAB asked for more information" };
+const OWN_STATUS: Record<string, string> = { automatic: "Automatic decision", submitted: "Waiting for HDAB review", confirmed: "Approved by the HDAB", rejected: "Rejected by the HDAB", more_information_requested: "The HDAB asked for more information" };
 export const fromDecisionRow = (r: DecisionRowDto): Evaluation => ({
   decision: r.decision, step: STEP_OF[r.decision], articles: r.articles.map(article),
   request: { id: r.request_id, applicant: orgOf(r.applicant), purpose: r.purpose ?? "", type: requestType(r.requested_as), text: "", terms: [], sql: "" },

@@ -12,6 +12,11 @@ describe("Role boundaries", () => {
     expect(canOpen("hospital", "/secondary")).toBe(false);
     expect(canOpen("hospital", "/audit")).toBe(false);
   });
+  it("Hospital IT admin manages accounts only and sees no patients", () => {
+    expect(canOpen("it_admin", "/admin")).toBe(true);
+    expect(canOpen("it_admin", "/primary")).toBe(false);
+    expect(canOpen("it_admin", "/secondary")).toBe(false);
+  });
   it("HDAB can use secondary tools and audit but not primary", () => {
     expect(canOpen("hdab", "/secondary/metrics")).toBe(true);
     expect(canOpen("hdab", "/audit")).toBe(true);
@@ -40,12 +45,12 @@ describe("Clinical safeguards", () => {
   });
   it("Empty required sections block signing", () => {
     expect(missingRequired(ELGA_SECTIONS, { aufnahmegrund: "" })).toEqual([ELGA_SECTIONS.find((section) => section.key === "aufnahmegrund")?.title]);
-    expect(canSignLetter(ELGA_SECTIONS, { aufnahmegrund: "" }, true, "123456")).toBe(false);
+    expect(canSignLetter(ELGA_SECTIONS, { aufnahmegrund: "" }, true, true)).toBe(false);
   });
   it("Signing requires acknowledgement and exactly six factor digits", () => {
-    expect(canSignLetter(ELGA_SECTIONS, {}, true, "123456")).toBe(true);
-    expect(canSignLetter(ELGA_SECTIONS, {}, false, "123456")).toBe(false);
-    expect(canSignLetter(ELGA_SECTIONS, {}, true, "12345")).toBe(false);
+    expect(canSignLetter(ELGA_SECTIONS, {}, true, true)).toBe(true);
+    expect(canSignLetter(ELGA_SECTIONS, {}, false, true)).toBe(false);
+    expect(canSignLetter(ELGA_SECTIONS, {}, true, false)).toBe(false);
   });
   it("Only signed letters can be sent", () => {
     expect(canSendLetter("DRAFT")).toBe(false);

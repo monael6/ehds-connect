@@ -503,11 +503,13 @@ export const REFERENCE_P00421 = {
 };
 
 // Role-based synthetic fixtures. No real identity or credential is represented.
-export interface DemoAccount { id: string; name: string; role: import("./lib/role-rules").DemoRole; roleLabel: string; organisation: string; method: string }
+export interface DemoAccount { id: string; name: string; role: import("./lib/role-rules").DemoRole; roleLabel: string; organisation: string; method: string; email?: string; hospitalRole?: "senior_doctor" | "doctor" | "it_admin"; permissions?: string[] }
 export const DEMO_ACCOUNTS: DemoAccount[] = [
-  { id: "anna", name: "Dr. Anna Huber", role: "hospital", roleLabel: "Oberärztin Kardiologie", organisation: "Klinikum West", method: "Hospital single sign-on + second factor" },
-  { id: "petra", name: "Mag. Petra Novak", role: "hdab", roleLabel: "HDAB staff", organisation: "Health Data Access Body", method: "ID Austria / authority account" },
-  { id: "lena", name: "Dr. Lena Weiss", role: "interested", roleLabel: "Researcher", organisation: "University of Graz", method: "ID Austria" },
+  { id: "anna", name: "Dr. Anna Huber", role: "hospital", roleLabel: "Senior Doctor", organisation: "Klinikum West", method: "Hospital account + security key", email: "anna.huber@klinikum-west.at", hospitalRole: "senior_doctor", permissions: ["release_letters"] },
+  { id: "markus", name: "Dr. Markus Berger", role: "hospital", roleLabel: "Doctor", organisation: "Klinikum West", method: "Hospital account + security key", email: "markus.berger@klinikum-west.at", hospitalRole: "doctor", permissions: [] },
+  { id: "thomas", name: "Thomas Gruber", role: "it_admin", roleLabel: "IT Admin", organisation: "Klinikum West", method: "Hospital account", email: "thomas.gruber@klinikum-west.at", hospitalRole: "it_admin", permissions: [] },
+  { id: "petra", name: "Mag. Petra Novak", role: "hdab", roleLabel: "HDAB Staff", organisation: "Health Data Access Body", method: "ID Austria / authority account", email: "petra.novak@hdab.gv.at" },
+  { id: "lena", name: "Dr. Lena Weiss", role: "interested", roleLabel: "Applicant", organisation: "University of Graz", method: "ID Austria", email: "lena.weiss@uni-graz.at" },
   { id: "visitor", name: "Public visitor", role: "visitor", roleLabel: "Visitor", organisation: "Public catalogue", method: "Browse without account" },
 ];
 export const ROLE_PATIENTS = PATIENTS.map((p, i) => ({ ...p, id: i === 0 ? "p-4cfd3cf1" : p.id.toLowerCase(), legacyId: p.id, name: i === 0 ? "Frau M." : p.name, dataHolder: i === 0 ? "Klinikum West" : p.dataHolder, stays: i === 0 ? [{ ...ENCOUNTER }] : [] }));

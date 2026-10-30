@@ -19,7 +19,7 @@ describe("Synthetic KIS draft creation", () => {
   it("Does not invent missing KIS data or bypass signing gates", async () => {
     const result = await generateDischargeDraft(fixture(ELGA_SECTIONS.map((s) => ({ ...s, items: [] }))));
     expect(Object.values(result.data.texts).every((text) => text === "")).toBe(true);
-    expect(canSignLetter(result.data.sections, result.data.texts, true, "123456")).toBe(false);
+    expect(canSignLetter(result.data.sections, result.data.texts, true, true)).toBe(false);
   });
   it("Does not overwrite a signed or already generated letter", async () => {
     await expect(generateDischargeDraft({ ...fixture(), status: "SIGNED" })).rejects.toThrow("unsigned");

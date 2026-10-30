@@ -23,18 +23,45 @@ let token: string | null = null;
 let session: Promise<void> = Promise.resolve();
 let sessionId = 0;
 const actorTokens = new Map<string, Promise<string | null>>();
-async function login(userId: string): Promise<string | null> {
+async function loginAs(userId: string): Promise<SessionDto | null> {
   try {
     const response = await fetch(`${API_BASE}/api/auth/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user_id: userId }), signal: AbortSignal.timeout(1500) });
-    return response.ok ? ((await response.json()) as { token: string }).token : null;
+    return response.ok ? ((await response.json()) as SessionDto) : null;
   } catch { return null; }
 }
-export function startApiSession(accountId: string): Promise<void> {
+const login = async (userId: string) => (await loginAs(userId))?.token ?? null;
+export interface BackendUser { id: string; name: string; email?: string | null; role: string; hospital_role?: string | null; hospital_role_label?: string | null; organisation: string; status?: string; permissions: string[]; sign_in_method?: string | null; keys?: SecurityKey[] }
+export interface SessionDto { token: string; user: BackendUser }
+/** Signs a preset demo account in; resolves with the backend user (null when the service is unavailable). */
+export function startApiSession(accountId: string): Promise<BackendUser | null> {
   const id = ++sessionId; token = null; actorTokens.clear();
   const user = BACKEND_USERS[accountId];
-  session = user ? login(user).then((t) => { if (id === sessionId) token = t; }) : Promise.resolve();
-  return session;
+  const started = user ? loginAs(user).then((s) => { if (id === sessionId) token = s?.token ?? null; return s?.user ?? null; }) : Promise.resolve(null);
+  session = started.then(() => undefined);
+  return started;
 }
+async function authPost<T>(path: string, body: unknown): Promise<T> {
+  let response: Response;
+  try { response = await fetch(`${API_BASE}${path}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(5000) }); }
+  catch { throw new Error("The sign-in service is not reachable. Start the backend or use a demo account."); }
+  if (!response.ok) throw new Error((await reason(response)).replace(/^ \(|\)$/g, "") || "Request failed");
+  return (await response.json()) as T;
+}
+/** Email + password sign-in; the token is kept in memory only. */
+export async function loginWithPassword(email: string, password: string): Promise<BackendUser> {
+  const s = await authPost<SessionDto>("/api/auth/login", { email, password });
+  ++sessionId; actorTokens.clear(); token = s.token; session = Promise.resolve();
+  return s.user;
+}
+export interface RegistrationInput { name: string; email: string; password: string; category: string; role: string; organisation: string; hospital?: string }
+export type RegistrationResult = { status: "pending"; message: string } | { status: "active"; user: BackendUser };
+export async function registerAccount(input: RegistrationInput): Promise<RegistrationResult> {
+  const r = await authPost<{ status: string; message?: string; token?: string; user: BackendUser }>("/api/auth/register", input);
+  if (r.status === "active" && r.token) { ++sessionId; actorTokens.clear(); token = r.token; session = Promise.resolve(); return { status: "active", user: r.user }; }
+  return { status: "pending", message: r.message ?? "Account created. Waiting for activation." };
+}
+export interface RegistrationCategory { category: string; label: string; description: string; roles: { id: string; label: string }[]; needs_activation: boolean; hospitals?: string[] }
+export const getRegistrationOptions = async () => (await requestApi<RegistrationCategory[]>("/api/auth/registration-options", [])).data;
 export function endApiSession() {
   const ended = token; sessionId++; token = null; session = Promise.resolve(); actorTokens.clear();
   if (ended) void fetch(`${API_BASE}/api/auth/logout`, { method: "POST", headers: { Authorization: `Bearer ${ended}` } }).catch(() => undefined);
@@ -205,7 +232,8 @@ export async function saveClinicalSection(id: string, key: string, texts: string
   return live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letterId)}/sections/${encodeURIComponent(key)}`, fromLetter, fallback, { method: "PUT", body: JSON.stringify({ text: texts, reason: reason || null }) });
 }
 /** POST /api/discharge-letters/:id/sign — confirmation and second factor are checked again by the backend */
-export const signClinicalLetter = (letter: LetterDocument, editor: { name: string; role: string }, code: string) => live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/sign`, fromLetter, letter, { method: "POST", body: JSON.stringify({ confirmed: true, second_factor: code }) });
+export interface SignatureProof { key_id: string; challenge: string; signature?: string; assertion?: unknown }
+export const signClinicalLetter = (letter: LetterDocument, proof: SignatureProof) => live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/sign`, fromLetter, letter, { method: "POST", body: JSON.stringify({ confirmed: true, ...proof }) });
 /** POST /api/discharge-letters/:id/correct — new draft version; the signed one is kept as superseded */
 export const correctClinicalLetter = (letter: LetterDocument) => live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/correct`, fromLetter, letter, { method: "POST" });
 /** POST /api/discharge-letters/:id/send — only signed letters; ELGA and the GP are simulated */
@@ -223,6 +251,47 @@ export const getUnregisteredFacilities = () => live<FacilityDto[], typeof UNREGI
 export const getSecondaryMetrics = () => live<MetricsDto, SecondaryMetric[]>("/api/metrics", fromMetrics, METRICS, { signal: AbortSignal.timeout(30000) });
 /** POST /api/requests/:id/confirm or /ask-info — HDAB staff action on an automatic decision */
 export const recordPermitAction = (id: string, action: string, criteria: unknown) => requestApi(`/api/requests/${encodeURIComponent(id)}/${action === "confirm" ? "confirm" : "ask-info"}`, { status: action }, { method: "POST", body: JSON.stringify({ note: JSON.stringify(criteria) }) });
+/** HDAB staff decision on an applicant's request: approve, reject (reason required) or ask for more information */
+export async function decideRequest(id: string, action: "confirm" | "reject" | "ask-info", note: string) {
+  await strict(`/api/requests/${encodeURIComponent(id)}/${action}`, { method: "POST", body: JSON.stringify({ note: note || null }) });
+}
+export interface InboxRow { request_id: string; submitted_by: string | null; applicant: { name?: string; organisation?: string } | string | null; purpose: string | null; requested_as: string | null; decision: "REJECT" | "APPROVE_STATISTICAL" | "APPROVE_SPE"; articles: (string | number)[]; status: string; staff_note: string | null; created_at: string }
+export const getRequestInbox = () => strict<InboxRow[]>("/api/requests");
+export interface RequestDetail { request_id: string; decision: InboxRow["decision"]; articles: (string | number)[]; article_titles?: Record<string, string>; explanation?: Partial<Record<Lang, string>>; answer?: unknown; statistics?: { id?: string; label?: string; rows?: unknown[] }[]; spe?: { id: string; patient_count: number }; status: string; staff_note: string | null; results_released?: boolean; question?: string }
+export const getRequestDetail = (id: string) => strict<RequestDetail>(`/api/requests/${encodeURIComponent(id)}`);
+/** The applicant's guided request in the Track-3 request format; HDAB staff review it before results are released. */
+export interface TrackRequest { id: string; applicant: { name: string; organisation: string; country: string }; requested_as: string; requested_format: string; purpose: string; question: string; definitions: string[]; why_not_statistics?: string; purpose_category?: string }
+export const submitTrackRequest = (r: TrackRequest) => strict<RequestDetail>("/api/requests/evaluate", { method: "POST", body: JSON.stringify(r), signal: AbortSignal.timeout(30000) });
+
+/** Calls FastAPI without a synthetic fallback: account, permission and signature actions must never be simulated. */
+export async function strict<T>(path: string, init?: RequestInit): Promise<T> {
+  await session;
+  let response: Response;
+  try { response = await fetch(`${API_BASE}${path}`, { ...init, headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...init?.headers }, signal: init?.signal ?? AbortSignal.timeout(5000) }); }
+  catch { throw new Error("The backend is not reachable. Start it with: uvicorn app.main:app --port 8000"); }
+  if (!response.ok) {
+    let detail: unknown = null; try { detail = ((await response.json()) as { detail?: unknown }).detail; } catch { /* no body */ }
+    const message = typeof detail === "string" ? detail : (detail as { message?: string } | null)?.message ?? `Request failed (${response.status})`;
+    throw Object.assign(new Error(message), { status: response.status, detail });
+  }
+  return (await response.json()) as T;
+}
+
+// ---------- Hospital staff, permissions and security keys ----------
+export interface SecurityKey { id: string; kind: "webauthn" | "software"; label: string; credential_id: string; status: "active" | "lost"; created_at: string; status_changed_at?: string | null }
+export const getHospitalStaff = () => strict<BackendUser[]>("/api/hospital/staff");
+export const activateAccount = (id: string) => strict<BackendUser>(`/api/admin/users/${encodeURIComponent(id)}/activate`, { method: "POST" });
+export const setHospitalRole = (id: string, role: string) => strict<BackendUser>(`/api/admin/users/${encodeURIComponent(id)}/role`, { method: "PUT", body: JSON.stringify({ hospital_role: role }) });
+export const grantRelease = (id: string) => strict<BackendUser>(`/api/hospital/staff/${encodeURIComponent(id)}/release-permission`, { method: "POST" });
+export const revokeRelease = (id: string) => strict<BackendUser>(`/api/hospital/staff/${encodeURIComponent(id)}/release-permission`, { method: "DELETE" });
+export const markKeyLostFor = (userId: string, keyId: string) => strict<SecurityKey>(`/api/admin/users/${encodeURIComponent(userId)}/keys/${encodeURIComponent(keyId)}/lost`, { method: "POST" });
+export const issueRecoveryCode = (id: string) => strict<{ code: string; expires_at: string; note: string }>(`/api/admin/users/${encodeURIComponent(id)}/recovery-code`, { method: "POST", body: JSON.stringify({ identity_checked: true }) });
+export const getMyKeys = () => strict<SecurityKey[]>("/api/security-keys");
+export const getMe = () => strict<{ user: BackendUser }>("/api/me");
+export const keyRegistrationOptions = (recoveryCode?: string) => strict<{ challenge: string; mode: string; webauthn: Record<string, unknown> }>("/api/security-keys/register/options", { method: "POST", body: JSON.stringify({ recovery_code: recoveryCode || null }) });
+export const registerKey = (body: Record<string, unknown>) => strict<SecurityKey>("/api/security-keys", { method: "POST", body: JSON.stringify(body) });
+export const reportKeyLost = (id: string) => strict<SecurityKey>(`/api/security-keys/${encodeURIComponent(id)}/lost`, { method: "POST" });
+export const signChallenge = (letterId: string) => strict<{ challenge: string; keys: SecurityKey[]; webauthn: Record<string, unknown> | null }>(`/api/discharge-letters/${encodeURIComponent(letterId)}/sign/challenge`, { method: "POST" });
 /** GET /api/requests — an applicant sees only their own requests */
 export const getOwnRequests = (userId: string) => live<DecisionRowDto[], Evaluation[]>("/api/requests", (rows) => rows.map(fromDecisionRow), [] as Evaluation[]);
 /** POST /api/eligibility — the backend's preliminary check; the local rules answer only when it is unavailable */

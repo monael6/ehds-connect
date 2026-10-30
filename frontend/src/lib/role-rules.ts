@@ -1,11 +1,12 @@
-export type DemoRole = "hospital" | "hdab" | "interested" | "visitor";
+export type DemoRole = "hospital" | "it_admin" | "hdab" | "interested" | "visitor";
 
 /** Presentation boundaries for synthetic demo accounts; real authorisation belongs to FastAPI. */
 export function canOpen(role: DemoRole | undefined, path: string): boolean {
   if (path === "/") return true;
   if (!role) return false;
   if (path === "/activity") return true;
-  if (role === "hospital") return path === "/primary" || path === "/hospital";
+  if (role === "hospital") return path === "/primary" || path === "/hospital" || path === "/admin";
+  if (role === "it_admin") return path === "/admin";
   if (role === "hdab") return path.startsWith("/secondary") || path === "/audit";
   return path === "/secondary" || path === "/secondary/catalog" || path === "/secondary/register" || path === "/secondary/eligibility" || path === "/secondary/facilities";
 }
