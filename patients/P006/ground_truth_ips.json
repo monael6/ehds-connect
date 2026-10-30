@@ -1,0 +1,131 @@
+{
+  "patient_id": "P006",
+  "problems_active": [
+    {
+      "text": "Fokale Epilepsie temporal links (Durchbruchanfall unter Levetiracetam, Dosis erhöht)",
+      "icd10": "G40.1",
+      "snomed": null,
+      "onset": "2017-09-11",
+      "sources": ["P006-D001", "P006-D005", "P006-D013"]
+    },
+    {
+      "text": "Zustand nach Platzwunde Stirn rechts, chirurgisch versorgt",
+      "icd10": "S01.0",
+      "snomed": null,
+      "onset": "2024-08-12",
+      "sources": ["P006-D005", "P006-D008", "P006-D013"]
+    },
+    {
+      "text": "Commotio cerebri nach Sturz (MRT ohne strukturellen Befund)",
+      "icd10": "S09.9",
+      "snomed": null,
+      "onset": "2024-08-12",
+      "sources": ["P006-D007", "P006-D011", "P006-D013"]
+    }
+  ],
+  "past_history": [
+    {
+      "text": "Fieberkrämpfe im Säuglingsalter (2× einfach, Alter 18 und 24 Monate) – benigne, keine Spätfolgen",
+      "icd10": "R56.0",
+      "resolved": "2002",
+      "sources": ["P006-D001"]
+    }
+  ],
+  "allergies_intolerances": [
+    {
+      "substance": "Latex",
+      "reaction": "Anaphylaxie (Urtikaria, Angioödem, Dyspnoe, Kreislaufreaktion) – Adrenalin-Behandlung erforderlich",
+      "criticality": "high",
+      "verification": "confirmed",
+      "sources": ["P006-D002", "P006-D006", "P006-D008", "P006-D013"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Levetiracetam",
+      "atc": "N03AX14",
+      "dose": "1000mg 1-0-1",
+      "status": "changed",
+      "sources": ["P006-D001", "P006-D012", "P006-D013"]
+    },
+    {
+      "active_ingredient": "Adrenalin (Epinephrin) Autoinjektor",
+      "atc": "C01CA24",
+      "dose": "300μg s.c. bei Anaphylaxie-Notfall (Epipen)",
+      "status": "unchanged",
+      "sources": ["P006-D002", "P006-D013"]
+    }
+  ],
+  "medication_stopped_during_stay": [],
+  "procedures": [
+    {
+      "text": "Primärer Wundverschluss Platzwunde Stirn rechts (5 Einzelknopfnähte, Ethilon 4-0, latexfrei)",
+      "date": "2024-08-12",
+      "sources": ["P006-D008"]
+    },
+    {
+      "text": "CCT Schädel nativ: kein Hämatom, hypodense Zone temporal links",
+      "date": "2024-08-12",
+      "sources": ["P006-D007"]
+    },
+    {
+      "text": "MRT Schädel mit/ohne KM: postiktuales Phänomen, kein struktureller Befund, keine Kontusion",
+      "date": "2024-08-13",
+      "sources": ["P006-D011"]
+    },
+    {
+      "text": "MRT Schädel (Erstdiagnose Epilepsie): Normalbefund",
+      "date": "2017-09-12",
+      "sources": ["P006-D001"]
+    }
+  ],
+  "medical_devices_implants": [],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "Levetiracetam-Spiegel (subtherapeutisch vor Dosiserhöhung)",
+      "value": "8,4 mg/l (Ziel 10–40 mg/l)",
+      "date": "2024-08-13",
+      "sources": ["P006-D010"]
+    },
+    {
+      "text": "EEG: interiktale Spikes temporal links, kein iktuales Muster",
+      "value": "Pathologisch (fokale Aktivität li. temporal)",
+      "date": "2024-08-14",
+      "sources": ["P006-D012"]
+    },
+    {
+      "text": "Letzter dokumentierter Anfall (korrekte Angabe)",
+      "value": "05.11.2023 (ca. 9 Monate vor aktuellem Aufenthalt)",
+      "date": "2024-01-15",
+      "sources": ["P006-D003"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "Kortikale Kontusion / Kontusionsblutung",
+      "reason": "ruled out – CCT zeigte hypodense Zone, MRT eindeutig als postiktuales Phänomen klassifiziert, keine Kontusion",
+      "sources": ["P006-D007", "P006-D011", "P006-D013"]
+    },
+    {
+      "text": "Valproat oder Carbamazepin als aktuelle Medikation",
+      "reason": "ruled out – beide wurden diskutiert, aber explizit nicht gestartet",
+      "sources": ["P006-D012"]
+    },
+    {
+      "text": "Fokaler Anfall (Kribbeln li. Arm) in der Vorgeschichte",
+      "reason": "unconfirmed – nur vom Patienten berichtet, nicht verifizierbar, kein klinischer oder EEG-Befund",
+      "sources": ["P006-D006"]
+    },
+    {
+      "text": "Familienanamnese: Vater mit Epilepsie",
+      "reason": "family history – Erkrankung des Vaters, nicht des Patienten",
+      "sources": ["P006-D001", "P006-D003"]
+    },
+    {
+      "text": "Letzter Anfall 'vor 6 Monaten' (laut Einweisungsbrief)",
+      "reason": "ruled out / contradicted – die Eigenangabe des Patienten war ungenau; laut Neurologie-Ambulanzbefund (D003) war der letzte Anfall am 05.11.2023, also ca. 9 Monate zurück",
+      "sources": ["P006-D003", "P006-D004", "P006-D009", "P006-D013"]
+    }
+  ]
+}

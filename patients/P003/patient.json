@@ -1,0 +1,9 @@
+{
+  "patient_id": "P003",
+  "vorname": "Sabine",
+  "nachname": "Gruber",
+  "geburtsdatum": "1993-02-14",
+  "geschlecht": "weiblich",
+  "fiktive_versicherungsnummer": "FAKE-5512-140293",
+  "wohnort_bundesland": "Wien"
+}

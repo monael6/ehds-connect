@@ -1,0 +1,156 @@
+[
+  {
+    "id": "P003-D001",
+    "patient_id": "P003",
+    "datum": "2009-04-03T14:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Pädiatrie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Kinderkrankenhaus Musterstadt",
+    "titel": "Entlassungsbrief nach Status asthmaticus",
+    "text": "Sehr geehrte Damen und Herren!\nWir dürfen Ihnen über den stationären Aufenthalt von Sabine Gruber, geb. 14.02.1993, vom 01.04.2009 bis 03.04.2009 berichten.\n\nAufnahmegrund: Status asthmaticus bei vorbekanntem Asthma bronchiale (allergisch, seit ca. 7. Lj.).\nVorbehandlung: Budesonid-Inhalat + Salbutamol bei Bedarf.\n\nTherapie stationär: Salbutamol-Inhalationen, systemische Kortikosteroide (Prednisolon i.v.), O2-Gabe. Rasche Besserung.\n\nAllergien: Penicillin – bestätigte Allergie (Urtikaria nach Amoxicillin im Alter von 5 Jahren, dokumentiert durch Hausärztin). CAVE Pen-Allergie!\nFamilienanamnese: Mutter mit Asthma bronchiale.\n\nEntlassung in gutem AZ. Weiterführung des Inhalationsschemas empfohlen.\nDiagnosen: Asthma bronchiale, allergisch (J45.0). Status asthmaticus (J46).\nmfG, OA Dr. Petra Salzmann, Pädiatrie"
+  },
+  {
+    "id": "P003-D002",
+    "patient_id": "P003",
+    "datum": "2023-05-10T10:00",
+    "typ": "Ambulanzbefund",
+    "fachrichtung": "Pneumologie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Ambulatorium Atemwegszentrum Wien-Nord",
+    "titel": "Pneumologische Kontrolluntersuchung Asthma",
+    "text": "Pat. Sabine Gruber, *14.02.1993, w. Kontrolluntersuchung bei Asthma bronchiale.\n\nAnamnese: Asthma seit Kindheit, zuletzt gut kontrolliert unter Budesonid/Formoterol (Symbicort Turbohaler 160/4,5μg) 2x tgl. + Salbutamol bei Bedarf. Letzter Asthmaanfall vor ca. 2 Jahren (keine stat. Aufnahme).\nNikotinstatus: Nichtraucherin.\nAllergien: Penicillin-Allergie (Urtikaria), dokumentiert.\n\nSpirometrie:\n  FEV1: 82% Soll (leicht eingeschränkt)\n  FEV1/FVC: 76% (leicht obstruktiv)\n  Reversibilität: FEV1 +14% nach Salbutamol → signifikante Reversibilität → Asthma bestätigt.\n\nBeurteilung: Asthma bronchiale Stufe 3 (GINA), mäßig persistierend, gut kontrolliert.\nEmpfehlung: Budesonid/Formoterol 2x tgl. weiterführen, Salbutamol-Spray als Notfallmedikation. Kontrolle in 12 Monaten.\nFamilienanamnese: Mutter ebenfalls Asthmatikerin.\nKeine anderen Vorerkrankungen."
+  },
+  {
+    "id": "P003-D003",
+    "patient_id": "P003",
+    "datum": "2024-07-08T21:45",
+    "typ": "Zuweisung",
+    "fachrichtung": "Allgemeinmedizin",
+    "autor_rolle": "Hausarzt",
+    "einrichtung": "Ärztlicher Bereitschaftsdienst Wien 22",
+    "titel": "Notfalleinweisung akuter Unterbauchschmerz",
+    "text": "Notfall-Einweisung!\nPat.: Gruber Sabine, *14.02.1993\nZuweisungsdiagnose: Akuter Unterbauchschmerz re., V.a. Appendizitis\n\nAnamnese: Pat. seit ca. 6h Schmerzen re. Unterbauch, zunehmend, Übelkeit, Temp 37,9°C. Kein Erbrechen.\nVorerkrankungen: Asthma bronchiale.\nMedikation: Budesonid/Formoterol Inhalat 2x/d, Salbutamol bei Bedarf.\nAllergien: keine bekannt (lt. Pat.-Angabe).\n\nStatus: Abdomen: McBurney pos., Loslassschmerz pos.\n\nBitte um stationäre Aufnahme und chirurgische Abklärung.\nDr. Klaus Pfeifer, Bereitschaftsdienst"
+  },
+  {
+    "id": "P003-D004",
+    "patient_id": "P003",
+    "datum": "2024-07-08T22:30",
+    "typ": "Aufnahmebefund",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Aufnahmebefund Chirurgie – Appendizitisverdacht",
+    "text": "Aufnahme: 08.07.2024, 22:30 Uhr\nStation: Chirurgie C-3\nPat.: Gruber Sabine, *14.02.1993, w.\n\nZuweisungsdiagnose: V.a. Appendizitis\n\nAnamnese:\nSeit ca. 18:00 Uhr zunehmende Schmerzen re. Unterbauch, NRS 6/10. Übelkeit ohne Erbrechen. Temp 37,9°C zuhause gemessen. Letzte Mahlzeit ca. 17:00 Uhr. Menstruationsanamnese: Regelblutung vor 10 Tagen, derzeit keine.\nVorerkrankungen: Asthma bronchiale (Inhalationstherapie).\nKeine bekannten Allergien. Keine Voroperationen.\nNikotinabusus: keine. Alkohol: gelegentlich.\n\nKörperl. Untersuchung:\nAZ gut, wach, Schmerzen. KG 62kg, Gr. 168cm.\nAbdomen: Druckschmerz McBurney re., Loslassschmerz pos., Rovsing-Zeichen pos. Peristaltik erhalten.\nTemp axillär 38,1°C. RR 118/72, Puls 96/min. SpO2 99%.\n\nDiagnostik:\nLabor STAT angeordnet.\nUltaschall Abdomen/Becken angeordnet.\n\nDiagnose (vorläufig): V.a. akute Appendizitis (K37).\n\nPlan:\n- Nüchtern ab sofort (OP-Vorbereitung)\n- Labor STAT\n- Sono Abdomen\n- Chirurgen-OA informiert\n- Analgesie: Metamizol 1g i.v. bei NRS >5"
+  },
+  {
+    "id": "P003-D005",
+    "patient_id": "P003",
+    "datum": "2024-07-08T23:00",
+    "typ": "Pflegebericht",
+    "fachrichtung": "Pflege",
+    "autor_rolle": "Pflege",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Pflegebericht Aufnahmenacht",
+    "text": "08.07.2024, 23:00 Uhr, DGKP Maria Holzer\n\nPat. Gruber Sabine, C-3, Bett 2. Aufnahme aus Notaufnahme. Schmerzen Unterbauch NRS 6/10, nach Metamizol 1g i.v. gebessert auf NRS 3.\nPat. berichtet im Gespräch ausdrücklich: sie sei ALLERGISCH auf Penicillin – habe als Kind nach einem Antibiotikum einen Ausschlag bekommen. Besteht auf Dokumentation. Diese Info wurde an Stationsarzt weitergegeben.\nPat. erwähnt außerdem, sie vertrage keine Milchprodukte (Laktoseintoleranz, selbst diagnostiziert) – ob klinisch bestätigt unklar.\nVitale: RR 116/70, Puls 94/min, Temp 38,2°C, SpO2 99%.\nNüchternheit: Pat. angewiesen, ab jetzt nüchtern zu bleiben.\nInhalation: Budesonid/Formoterol lt. Anordnung verabreicht.\nEMotionaler Zustand: Pat. ängstlich wegen OP, beruhigt."
+  },
+  {
+    "id": "P003-D006",
+    "patient_id": "P003",
+    "datum": "2024-07-08T23:30",
+    "typ": "Laborbefund",
+    "fachrichtung": "Labor",
+    "autor_rolle": "Labor",
+    "einrichtung": "Landesklinikum Musterstadt – Zentrallabor",
+    "titel": "Notfalllabor Aufnahmenacht",
+    "text": "Patient: Gruber Sabine, *14.02.1993, w.\nAuftragsnummer: LM-2024-07-08-0891\nAbnahme: 08.07.2024, 22:45 Uhr (STAT)\n\nBlutbild:\n  Hb: 13,1 g/dl [Ref: 12,0–16,0]\n  Leukozyten: 14,2 G/l [Ref: 4,0–10,0] ↑↑\n  Thrombozyten: 212 G/l [Ref: 150–400]\n\nGerinnung:\n  INR: 1,01, aPTT: 27s\n\nKlinische Chemie:\n  CRP: 48 mg/l [Ref: <5] ↑↑\n  Krea: 0,72 mg/dl, Na: 138, K: 3,8\n  Lipase: 22 U/l [Ref: <60] → kein Hinweis auf Pankreatitis\n  β-hCG: negativ (Schwangerschaftsausschluss)\n\nKommentar: Leukozytose und CRP-Erhöhung vereinbar mit akut-entzündlichem Geschehen (Appendizitis). Schwangerschaft ausgeschlossen."
+  },
+  {
+    "id": "P003-D007",
+    "patient_id": "P003",
+    "datum": "2024-07-09T00:15",
+    "typ": "Radiologiebefund",
+    "fachrichtung": "Radiologie",
+    "autor_rolle": "Radiologie",
+    "einrichtung": "Landesklinikum Musterstadt – Institut für Radiologie",
+    "titel": "Sonographie Abdomen/Becken",
+    "text": "Befund: Sonographie Abdomen und kleines Becken, 09.07.2024, 00:15 Uhr\nPat.: Gruber Sabine, *14.02.1993\n\nKlinische Fragestellung: V.a. Appendizitis. Ausschluss gynäkologische Ursache.\n\nBefund:\nAppendix: Darstellbar, Außendurchmesser 9mm, Wandverdickung, Kompressibilität aufgehoben, umgebende Echogenitätserhöhung (perifokale Entzündung) → vereinbar mit akuter Appendizitis.\nKein freies Gas. Geringe Menge freier Flüssigkeit periappendizeal → DD beginnende Perforation nicht sicher ausgeschlossen.\nOvarien: Linkes Ovar mit echoarmem Befund ca. 2,5cm, V.a. Follikelzyste. Rechtes Ovar: unauffällig.\nUterus: unauffällig.\nMilz, Leber, Niere: unauffällig.\n\nBeurteilung:\n1. Akute Appendizitis (Appendixdurchmesser 9mm, Wandverdickung). Freie Flüssigkeit periappendizeal – DD Perforation möglich, intraoperative Beurteilung.\n2. Befund linkes Ovar (echoarme Raumforderung 2,5cm) – am ehesten Follikelzyste, DD Ovarialzyste. Gynäkologische Kontrolle post-OP empfohlen.\n3. Kein Hinweis auf Pankreatitis oder Harnwegspathologie."
+  },
+  {
+    "id": "P003-D008",
+    "patient_id": "P003",
+    "datum": "2024-07-09T01:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "OA-Entscheidung: OP-Indikation, Allergie-Hinweis",
+    "text": "09.07.2024, 01:00 Uhr, OA Dr. Franz Kern, Allgemeinchirurgie\n\nNach Sichtung Sono + Labor: Appendizitis bestätigt, OP-Indikation gegeben.\nFreie Flüssigkeit periappendizeal – V.a. beginnende Perforation kann nicht ausgeschlossen werden. Laparoskopische Appendektomie heute Nacht geplant.\n\nPflegeinformation eingegangen: Pat. gibt Penicillin-Allergie an (Urtikaria nach Amoxicillin als Kind). Aufnahmebefund fehlerhaft – dort steht \"keine bekannten Allergien\". ACHTUNG: Pen-Allergie dokumentiert und in Patientenakte vermerkt!\n\nAnästhesie verständigt (Notfall, Nacht).\nAntibiotika-Prophylaxe: KEIN Amoxicillin/Clavulansäure (Pen-Allergie)! Alternative: Metronidazol 500mg i.v. + Cefuroxim 1,5g i.v. (Cephalosporin – Kreuzallergie niedrig, OA Entscheidung nach Rücksprache mit Anästhesie: Cefuroxim mit Vorsicht ok bei reiner Amoxicillin/Urtikariareaktion, kein Anaphylaxie-Risiko lt. Allergologieprotokoll).\n\nMetamizol Analgesie beibehalten bis OP."
+  },
+  {
+    "id": "P003-D009",
+    "patient_id": "P003",
+    "datum": "2024-07-09T02:30",
+    "typ": "Anaesthesieprotokoll",
+    "fachrichtung": "Anästhesiologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt",
+    "titel": "Anästhesieprotokoll – Laparoskopische Appendektomie",
+    "text": "Anästhesieprotokoll, 09.07.2024\nPat.: Gruber Sabine, *14.02.1993\nEingriff: Laparoskopische Appendektomie (Notfall)\nAnästhesist: Dr. Norbert Gasser\n\nPräoperative Kurz-Visite:\nASA II (Asthma bronchiale, gut kontrolliert). Keine aktuelle Exazerbation, SpO2 99%.\nAllergien: Penicillin (Urtikaria)! Cephalosporin-Prophylaxe nach OA-Entscheidung ok.\nAtemwegsstatus: Mallampati I, kein Zahnersatz.\n\nEinleitung: Propofol 180mg i.v., Fentanyl 0,1mg, Rocuronium 50mg.\nAtemweg: Videolaryngoskopie-gestützte Intubation (Vorsichtsmaßnahme Asthma), Tubus 7,0 problemlos.\nSugammadex 200mg zur Aufhebung am OP-Ende.\n\nIntraoperativ: Stabile Vitalparameter. SpO2 99%. Kein Bronchospasmus.\nDauer: 55 Minuten.\nBlutverlust: minimal (<50ml).\n\nProbleme: keine.\nWachraum: Pat. problemlos erwacht, SpO2 99%, keine Bronchospastik."
+  },
+  {
+    "id": "P003-D010",
+    "patient_id": "P003",
+    "datum": "2024-07-09T03:45",
+    "typ": "OP-Bericht",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "OP-Bericht: Laparoskopische Appendektomie",
+    "text": "OP-Bericht\nDatum: 09.07.2024, 02:15–03:10 Uhr\nOperateur: OA Dr. Franz Kern\nAssistenz: Dr. Tobias Winkler\nAnästhesie: Dr. N. Gasser (ITN)\n\nDiagnose: Akute Appendizitis (K37)\n\nIndikation: Klinisch, laborchemisch und sonographisch gesicherte akute Appendizitis. Freie Flüssigkeit periappendizeal im Sono → OP-Indikation gegeben.\n\nVorgehen: Lagerung Rückenlage. Desinfektion, steriles Abdecken. Drei-Trokar-Technik (Nabel 10mm, re. UB 5mm, li. UB 5mm). Pneumoperitoneum CO2, Druck 12mmHg. Inspektion Abdomen:\n- Appendix: entzündlich verändert, Durchmesser ca. 10mm, Fibrinbelag, KEINE Perforation. Geringe Menge klares Exsudat periappendizeal.\n- Linkes Ovar: Follikelzyste ca. 2,5cm, reizlos, keine Intervention notwendig.\n- Restliches Abdomen: unauffällig.\n\nAppendektomie: Mesoappendix mit LigaSure koaguliert und durchtrennt. Appendixbasis mit Endoloop (2×) gesichert. Appendix abgesetzt und in Bergebeutel geborgen. Spülung mit NaCl 0,9% (500ml). Kein Anhalt für Peritonitis.\n\nHämostase: gestillt. Trokarwunden: Faszienverschluss 10mm-Trokar mit PDS 0, Haut Intrakutannaht + Metallclips (Wundverschlussklammern).\n\nIntraoperativer Befund: Akute phlegmonöse Appendizitis, nicht perforiert.\n\nHistologie: Appendix zur histologischen Aufarbeitung eingeschickt.\n\nKomplikationen: keine intraoperativ.\n\nPostoperative Anordnung:\n- Metamizol stopp → Paracetamol 1g i.v./p.o. alle 6h (bessere GI-Verträglichkeit)\n- Cefuroxim 1,5g i.v. einmalig post-OP (perioperative Prophylaxe beendet)\n- Kostaufbau ab morgen früh\n- Inhalationstherapie fortführen (Budesonid/Formoterol + Salbutamol bei Bedarf)\n- Histologie-Ergebnis abwarten"
+  },
+  {
+    "id": "P003-D011",
+    "patient_id": "P003",
+    "datum": "2024-07-09T09:00",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Verlauf 1. postoperativer Tag",
+    "text": "09.07.2024, 09:00 Uhr, Dr. T. Winkler\n1. POD nach laparoskopischer Appendektomie.\n\nPat. wach, orientiert, AZ gut. Schmerzen Bauch NRS 2/10 unter Paracetamol.\nTemp 37,4°C. RR 112/68, Puls 80/min. SpO2 99%.\nAbdomen: weich, leicht druckschmerzhaft periumbilikal, Peristaltik wiederhergestellt.\nPneumoperitoneum-Restbeschwerden Schulter re.: rückläufig.\nLaporoskopieeintrittsstellen: reizlos, trocken.\nPulmo: VA bds., keine RG. Kein Bronchospasmus.\n\nKost: Schlucken von Flüssigkeit problemlos, Brei-Kost begonnen.\nInhalation: Budesonid/Formoterol verabreicht, Pat. führt gut durch.\n\nLaborkontrolle (09.07., 07:00):\n  Hb 12,8 g/dl, Leuko 10,4 G/l (rückläufig), CRP 62 mg/l (postoperativ reaktiv erwartet).\n\nPlan:\n- Kostaufbau\n- Entlassung morgen wenn Befund gut\n- Gynäkologie-Konsil wegen Ovarialzyste links angefragt"
+  },
+  {
+    "id": "P003-D012",
+    "patient_id": "P003",
+    "datum": "2024-07-09T14:00",
+    "typ": "Konsiliarbefund",
+    "fachrichtung": "Gynäkologie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Gynäkologie",
+    "titel": "Gynäkologisches Konsil – Ovarialzyste links",
+    "text": "Konsilbericht Gynäkologie, 09.07.2024\nKonsiliarius: Dr. Eva Steinbauer, GYN\n\nAnlass: Sonographisch und intraoperativ beschriebene echoarme Raumforderung linkes Ovar ca. 2,5cm.\n\nBefund:\nGynäkologische Untersuchung: unauffällig. Transvaginale Sonographie (TVUS): Linkes Ovar: echoarme, dünnwandige, glatt begrenzte Struktur ca. 2,4cm, kein Binnenecho, kein Septum → morphologisch eindeutige Follikelzyste.\nRechtes Ovar: unauffällig.\nUterus: unauffällig.\n\nBeurteilung: Morphologisch benigne Follikelzyste links, kein Hinweis auf Ovarialkarzinom oder Endometriose. Keine Intervention notwendig.\nEmpfehlung: Kontrolle per TVUS nach nächster Menstruation (ca. 4–6 Wochen). Follikelzysten bilden sich meist spontan zurück.\n\nDiagnose: Follikelzyste linkes Ovar – kein operativer Handlungsbedarf."
+  },
+  {
+    "id": "P003-D013",
+    "patient_id": "P003",
+    "datum": "2024-07-10T08:30",
+    "typ": "Verlaufseintrag",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Assistenzarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Verlauf 2. postoperativer Tag – Entlassungsvorbereitung",
+    "text": "10.07.2024, 08:30 Uhr, Dr. Winkler\n2. POD, Entlassungsvorbereitung.\n\nPat. beschwerdefrei, AZ gut. Schmerzen 0–1/10 unter Paracetamol oral.\nTemp 36,8°C, afebril. Puls 72/min, RR 110/66.\nWunden: reizlos. Metallclips an Eintrittsstellen in situ (werden bei Hausarzt in 7–10 Tagen entfernt).\nKost: normal, Pat. isst gut.\nPulmo: frei.\n\nGynäkologie-Konsil: Follikelzyste – keine Intervention, Kontrolle ambulant.\n\nEntlassung heute geplant.\nEntlassungsbrief wird vorbereitet.\n\nHinweis Allergie: Penicillin-Allergie in der Patientenakte korrekt vermerkt (Aufnahmebefund hatte fälschlicherweise \"keine bekannten Allergien\" – korrigiert)."
+  },
+  {
+    "id": "P003-D014",
+    "patient_id": "P003",
+    "datum": "2024-07-10T11:00",
+    "typ": "Entlassungsbrief",
+    "fachrichtung": "Allgemeinchirurgie",
+    "autor_rolle": "Oberarzt",
+    "einrichtung": "Landesklinikum Musterstadt – Chirurgie",
+    "titel": "Entlassungsbrief nach Appendektomie",
+    "text": "Entlassungsbrief\nLandesklinikum Musterstadt, Allgemeinchirurgie\nDatum: 10.07.2024\n\nSehr geehrte Damen und Herren!\n\nWir entlassen Fr. Sabine Gruber, geb. 14.02.1993, nach stationärem Aufenthalt vom 08.07.2024 bis 10.07.2024.\n\nHauptdiagnosen:\n1. Akute phlegmonöse Appendizitis, nicht perforiert (K37)\n2. Zustand nach laparoskopischer Appendektomie (09.07.2024)\n3. Asthma bronchiale (J45.0) – vorbekannt, perioperativ komplikationslos\n\nNebendiagnosen:\n4. Follikelzyste linkes Ovar (N83.0) – kein Handlungsbedarf, ambulante Kontrolle\n\nVerlauf:\nAufnahme 08.07.2024 mit akutem Unterbauchschmerz. Labor und Sonographie vereinbar mit akuter Appendizitis. Laparoskopische Appendektomie in der Nacht auf den 09.07.2024, intraoperativ nicht perforiert (Sono hatte Perforation nicht sicher ausgeschlossen). Komplikationsloser postoperativer Verlauf. Gynäkologisches Konsil wegen Follikelzyste links – keine Intervention erforderlich.\n\nAllergien: CAVE Penicillin-Allergie (Urtikaria nach Amoxicillin als Kind, bestätigt durch Vorbefund Kinderkrankenhaus 2009). Aufnahmebefund hatte fälschlicherweise \"keine bekannten Allergien\" vermerkt – in der Nacht durch Pflegeperson aufgedeckt und korrigiert.\n\nMedikation bei Entlassung:\n1. Budesonid/Formoterol 160/4,5μg (Symbicort) Inhalat 2x tgl. – Asthma (unverändert)\n2. Salbutamol 100μg (Ventolin) Inhalat bei Bedarf – Asthma Notfallmedikation (unverändert)\n3. Paracetamol 500mg bei Bedarf (max. 4x/d) – Schmerztherapie für 5 Tage\n\nEmpfehlung:\n- Clips-Entfernung beim Hausarzt in 7–10 Tagen\n- Gynäkologie-Kontrolle (TVUS) in 4–6 Wochen\n- Pneumologie: nächste Routinekontrolle Asthma wie geplant\n- Körperliche Schonung 2 Wochen\n\nmfG, OA Dr. Franz Kern, Allgemeinchirurgie\nLandesklinikum Musterstadt"
+  }
+]

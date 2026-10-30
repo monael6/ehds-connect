@@ -1,0 +1,173 @@
+{
+  "patient_id": "P005",
+  "problems_active": [
+    {
+      "text": "Invasives Mammakarzinom rechts, NST-Typ G2, HER2 3+/HR+, cT2N1M0 (Stadium IIB), neoadjuvante Chemotherapie laufend",
+      "icd10": "C50.9",
+      "snomed": null,
+      "onset": "2024-02",
+      "sources": ["P005-D002", "P005-D005", "P005-D016"]
+    },
+    {
+      "text": "Zustand nach Thyreoidektomie (benigne Struma), dauerhafte Levothyroxin-Substitution",
+      "icd10": "E89.0",
+      "snomed": null,
+      "onset": "2015",
+      "sources": ["P005-D001", "P005-D002", "P005-D015"]
+    },
+    {
+      "text": "Arterielle Hypertonie",
+      "icd10": "I10",
+      "snomed": null,
+      "onset": "2020",
+      "sources": ["P005-D002", "P005-D015"]
+    }
+  ],
+  "past_history": [
+    {
+      "text": "Benigne multinodöse Struma, total thyreoidektomiert 06/2015 (histologisch keine Malignität)",
+      "icd10": "E04.2",
+      "resolved": "2015",
+      "sources": ["P005-D001"]
+    },
+    {
+      "text": "Neutropenisches Fieber nach EC-Zyklus 3 (April 2024), stationär behandelt, Piperacillin/Tazobactam, G-CSF",
+      "icd10": "D70",
+      "resolved": "2024",
+      "sources": ["P005-D012", "P005-D013", "P005-D014", "P005-D015"]
+    }
+  ],
+  "allergies_intolerances": [
+    {
+      "substance": "Ibuprofen / NSAID",
+      "reaction": "Gastrointestinale Unverträglichkeit, mögliche pseudoallergische Reaktion (Schwellung)",
+      "criticality": "low",
+      "verification": "unconfirmed",
+      "sources": ["P005-D006", "P005-D007"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Levothyroxin",
+      "atc": "H03AA01",
+      "dose": "100μg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P005-D001", "P005-D005", "P005-D015"]
+    },
+    {
+      "active_ingredient": "Amlodipin",
+      "atc": "C08CA01",
+      "dose": "5mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P005-D002", "P005-D015"]
+    },
+    {
+      "active_ingredient": "Aprepitant",
+      "atc": "A04AD12",
+      "dose": "125mg Tag 1, 80mg Tag 2+3 (zyklusgebunden)",
+      "status": "new",
+      "sources": ["P005-D007", "P005-D015"]
+    },
+    {
+      "active_ingredient": "Ondansetron",
+      "atc": "A04AA01",
+      "dose": "8mg p.o. bei Bedarf (Antiemese-Reserve)",
+      "status": "changed",
+      "sources": ["P005-D005", "P005-D007", "P005-D015"]
+    },
+    {
+      "active_ingredient": "Filgrastim",
+      "atc": "L03AA02",
+      "dose": "300μg s.c. tägl. ab Zyklus-Tag 2 (primärprophylaktisch, 7 Tage)",
+      "status": "new",
+      "sources": ["P005-D011", "P005-D015", "P005-D016"]
+    }
+  ],
+  "medication_stopped_during_stay": [
+    {
+      "active_ingredient": "Ondansetron (als alleinige Antiemese-Basistherapie, 3×/d fest)",
+      "atc": "A04AA01",
+      "reason": "Unzureichende Wirksamkeit nach Zyklus 1; ersetzt durch Triple-Antiemese (Aprepitant + Ondansetron + Dexamethason)",
+      "sources": ["P005-D005", "P005-D007"]
+    },
+    {
+      "active_ingredient": "Piperacillin/Tazobactam",
+      "atc": "J01CR05",
+      "reason": "Behandlung neutropenisches Fieber, beendet nach 48h Fieberfreiheit",
+      "sources": ["P005-D012", "P005-D015"]
+    },
+    {
+      "active_ingredient": "Filgrastim (therapeutisch bei Neutropenie-Episode)",
+      "atc": "L03AA02",
+      "reason": "Therapeutisch bei Neutropenie-Episode, beendet nach Erholung; danach primärprophylaktisch ab Zyklus 4 neu angeordnet",
+      "sources": ["P005-D011", "P005-D014", "P005-D015"]
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Implantation Port-Katheter rechts (Bard PowerPort, 8F, Titan), V. subclavia rechts",
+      "date": "2024-02-19",
+      "sources": ["P005-D003"]
+    },
+    {
+      "text": "Totale Thyreoidektomie (benigne Struma)",
+      "date": "2015-06-19",
+      "sources": ["P005-D001"]
+    },
+    {
+      "text": "EC-Chemotherapie Zyklus 1–4 (Epirubicin 90mg/m² + Cyclophosphamid 600mg/m²)",
+      "date": "2024-02-26",
+      "sources": ["P005-D005", "P005-D008", "P005-D009", "P005-D016"]
+    },
+    {
+      "text": "MRT Leber mit KM: Leberherd Segment VII als kavernöses Hämangiom klassifiziert",
+      "date": "2024-04-15",
+      "sources": ["P005-D010"]
+    }
+  ],
+  "medical_devices_implants": [
+    {
+      "text": "Vollimplantierbarer zentraler Venenkatheter (Port-a-Cath®, Bard PowerPort, 8F, Titan-Reservoir), V. subclavia rechts, Spitze V. cava superior",
+      "since": "2024-02-19",
+      "sources": ["P005-D003", "P005-D004"]
+    }
+  ],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "Histologie Mammakarzinom: ER+/PR+/HER2 3+ (FISH bestätigt), G2",
+      "value": "Luminal-B/HER2-positiv",
+      "date": "2024-02-05",
+      "sources": ["P005-D002"]
+    },
+    {
+      "text": "TSH unter Levothyroxin-Substitution",
+      "value": "1,4 mIU/l (adequat)",
+      "date": "2024-03-04",
+      "sources": ["P005-D007"]
+    },
+    {
+      "text": "Leukozyten Nadir (neutropenisches Fieber)",
+      "value": "0,4 G/l (schwere Neutropenie)",
+      "date": "2024-04-22",
+      "sources": ["P005-D013"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "Lebermetastase",
+      "reason": "ruled out – Leberherd per MRT eindeutig als kavernöses Hämangiom klassifiziert, kein Metastasenverdacht",
+      "sources": ["P005-D009", "P005-D010", "P005-D011"]
+    },
+    {
+      "text": "Periphere Polyneuropathie / Fingerneuropathie",
+      "reason": "unconfirmed – von Patientin berichtet (Kribbeln in Fingerkuppen), klinisch nie objektiviert, kein neurologischer Befund erhoben",
+      "sources": ["P005-D009", "P005-D011", "P005-D016"]
+    },
+    {
+      "text": "Familienanamnese: Mutter mit Mammakarzinom",
+      "reason": "family history – Erkrankung der Mutter, nicht der Patientin",
+      "sources": ["P005-D001", "P005-D002"]
+    }
+  ]
+}

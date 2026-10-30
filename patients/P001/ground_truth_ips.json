@@ -1,0 +1,201 @@
+{
+  "patient_id": "P001",
+  "problems_active": [
+    {
+      "text": "Zustand nach Schenkelhalsfraktur rechts, operativ versorgt mit zementfreier Hüft-TEP",
+      "icd10": "S72.00",
+      "snomed": null,
+      "onset": "2024-09-02",
+      "sources": ["P001-D004", "P001-D009", "P001-D028"]
+    },
+    {
+      "text": "Vorhofflimmern, nach Kardioversion in Sinusrhythmus, Antikoagulation erforderlich",
+      "icd10": "I48.0",
+      "snomed": null,
+      "onset": "2024-09-07",
+      "sources": ["P001-D014", "P001-D019", "P001-D027", "P001-D028"]
+    },
+    {
+      "text": "Arterielle Hypertonie",
+      "icd10": "I10",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P001-D001", "P001-D004", "P001-D028"]
+    }
+  ],
+  "past_history": [
+    {
+      "text": "Zustand nach distaler Radiusfraktur links, geschlossene Reposition 06/2021",
+      "icd10": "S52.50",
+      "resolved": "2021",
+      "sources": ["P001-D002", "P001-D003", "P001-D004"]
+    },
+    {
+      "text": "Postoperative Pneumonie rechts (ausgeheilt während dieses Aufenthalts)",
+      "icd10": "J18.1",
+      "resolved": "2024",
+      "sources": ["P001-D016", "P001-D017", "P001-D023", "P001-D028"]
+    },
+    {
+      "text": "Postoperative Anämie (in Besserung, Hb bei Entlassung 10,4 g/dl)",
+      "icd10": "D64.9",
+      "resolved": null,
+      "sources": ["P001-D006", "P001-D013", "P001-D023", "P001-D025"]
+    }
+  ],
+  "allergies_intolerances": [
+    {
+      "substance": "Acetylsalicylsäure (ASS)",
+      "reaction": "gastrointestinale Unverträglichkeit (Übelkeit)",
+      "criticality": "low",
+      "verification": "unconfirmed",
+      "sources": ["P001-D005", "P001-D028"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Ramipril",
+      "atc": "C09AA05",
+      "dose": "5mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P001-D001", "P001-D011", "P001-D028"]
+    },
+    {
+      "active_ingredient": "Metoprolol",
+      "atc": "C07AB02",
+      "dose": "47,5mg 1-0-0",
+      "status": "new",
+      "sources": ["P001-D016", "P001-D019", "P001-D028"]
+    },
+    {
+      "active_ingredient": "Apixaban",
+      "atc": "B01AF02",
+      "dose": "5mg 2-0-2",
+      "status": "new",
+      "sources": ["P001-D019", "P001-D020", "P001-D022", "P001-D028"]
+    },
+    {
+      "active_ingredient": "Pantoprazol",
+      "atc": "A02BC02",
+      "dose": "40mg 1-0-0",
+      "status": "new",
+      "sources": ["P001-D008", "P001-D025", "P001-D028"]
+    }
+  ],
+  "medication_stopped_during_stay": [
+    {
+      "active_ingredient": "Heparin (unfraktioniert, i.v. Perfusor)",
+      "atc": "B01AB01",
+      "reason": "Umstellung auf Apixaban p.o. nach Stabilitätseintritt (11.09.2024)",
+      "sources": ["P001-D016", "P001-D020", "P001-D021"]
+    },
+    {
+      "active_ingredient": "Heparin (unfraktioniert, s.c. Thromboseprophylaxe)",
+      "atc": "B01AB01",
+      "reason": "Gestoppt nach Beginn therapeutischer Antikoagulation mit Apixaban",
+      "sources": ["P001-D008", "P001-D021"]
+    },
+    {
+      "active_ingredient": "Metamizol",
+      "atc": "N02BB02",
+      "reason": "Perioperative Analgesie, im Verlauf nicht mehr benötigt",
+      "sources": ["P001-D004", "P001-D008", "P001-D011"]
+    },
+    {
+      "active_ingredient": "Ampicillin/Sulbactam",
+      "atc": "J01CR01",
+      "reason": "Antibiose Pneumonie, nach 4 Tagen auf orales Amoxicillin/Clavulansäure umgestellt",
+      "sources": ["P001-D016", "P001-D020"]
+    },
+    {
+      "active_ingredient": "Amoxicillin/Clavulansäure",
+      "atc": "J01CR02",
+      "reason": "Antibiose Pneumonie, 10 Tage gesamt, beendet 17.09.2024",
+      "sources": ["P001-D020", "P001-D021", "P001-D023"]
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Implantation zementfreier Hüft-Totalendoprothese rechts (Spinalanästhesie, Watson-Jones-Zugang)",
+      "date": "2024-09-04",
+      "sources": ["P001-D009"]
+    },
+    {
+      "text": "Elektrische Kardioversion (150J biphasisch) – Sinusrhythmus wiederhergestellt",
+      "date": "2024-11-20",
+      "sources": ["P001-D027"]
+    },
+    {
+      "text": "CT-Thorax mit Pulmonalisangiographie – Lungenembolie ausgeschlossen",
+      "date": "2024-09-08",
+      "sources": ["P001-D017"]
+    },
+    {
+      "text": "Echokardiographie (TTE) – EF 55%, LA gering dilatiert, kein Thrombus",
+      "date": "2024-09-09",
+      "sources": ["P001-D019"]
+    },
+    {
+      "text": "Geschlossene Reposition und Gipsanlage distale Radiusfraktur links (Voraufenthalt 2021)",
+      "date": "2021-06-06",
+      "sources": ["P001-D002"]
+    }
+  ],
+  "medical_devices_implants": [
+    {
+      "text": "Zementfreie Hüft-Totalendoprothese rechts (ProJoint GmbH, Modell PJ-CeraMax, Pfanne Ø52mm, Schaft Gr.5, Keramik-Keramik-Gleitpaarung)",
+      "since": "2024-09-04",
+      "sources": ["P001-D009", "P001-D010", "P001-D028"]
+    }
+  ],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "Hb bei Entlassung (letzter Wert 01.10.2024)",
+      "value": "10,4 g/dl",
+      "date": "2024-10-01",
+      "sources": ["P001-D025"]
+    },
+    {
+      "text": "CHA₂DS₂-VASc Score (VHF-Antikoagulation)",
+      "value": "4 Punkte",
+      "date": "2024-09-09",
+      "sources": ["P001-D019"]
+    },
+    {
+      "text": "EF (Echokardiographie)",
+      "value": "55–58%",
+      "date": "2024-09-09",
+      "sources": ["P001-D019", "P001-D026"]
+    },
+    {
+      "text": "TSH (Ausschluss thyreogenes VHF)",
+      "value": "1,8 mIU/l (normal)",
+      "date": "2024-09-11",
+      "sources": ["P001-D020"]
+    },
+    {
+      "text": "Kreatinin bei Entlassung",
+      "value": "0,88 mg/dl",
+      "date": "2024-10-01",
+      "sources": ["P001-D025"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "Lungenembolie",
+      "reason": "ruled out",
+      "sources": ["P001-D015", "P001-D017", "P001-D018", "P001-D028"]
+    },
+    {
+      "text": "Ulcus pepticum / Magenblutung in der Anamnese",
+      "reason": "unconfirmed – nur von Patientin berichtet, nie klinisch dokumentiert oder bestätigt",
+      "sources": ["P001-D024"]
+    },
+    {
+      "text": "ASS-Allergie als bestätigte Allergie",
+      "reason": "unconfirmed – nur als Intoleranz/Patientinnenangabe, nicht klinisch getestet",
+      "sources": ["P001-D005", "P001-D028"]
+    }
+  ]
+}
