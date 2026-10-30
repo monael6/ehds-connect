@@ -1,0 +1,325 @@
+{
+ "record": {
+  "patient_id": "P005",
+  "problems_active": [
+   {
+    "text": "Invasive breast cancer, right, NST type G2, HER2 3+/HR+, cT2N1M0 (stage IIB), neoadjuvant chemotherapy ongoing",
+    "icd10": "C50.9",
+    "snomed": null,
+    "onset": "2024-02",
+    "sources": [
+     "P005-D002",
+     "P005-D005",
+     "P005-D016"
+    ]
+   },
+   {
+    "text": "Status after thyroidectomy (benign goitre), permanent levothyroxine replacement",
+    "icd10": "E89.0",
+    "snomed": null,
+    "onset": "2015",
+    "sources": [
+     "P005-D001",
+     "P005-D002",
+     "P005-D015"
+    ]
+   },
+   {
+    "text": "Arterial hypertension",
+    "icd10": "I10",
+    "snomed": null,
+    "onset": "2020",
+    "sources": [
+     "P005-D002",
+     "P005-D015"
+    ]
+   }
+  ],
+  "past_history": [
+   {
+    "text": "Benign multinodular goitre, total thyroidectomy 06/2015 (histology: no malignancy)",
+    "icd10": "E04.2",
+    "resolved": "2015",
+    "sources": [
+     "P005-D001"
+    ]
+   },
+   {
+    "text": "Neutropenic fever after EC cycle 3 (April 2024), treated in hospital with piperacillin/tazobactam and G-CSF",
+    "icd10": "D70",
+    "resolved": "2024",
+    "sources": [
+     "P005-D012",
+     "P005-D013",
+     "P005-D014",
+     "P005-D015"
+    ]
+   }
+  ],
+  "allergies_intolerances": [
+   {
+    "substance": "Ibuprofen / NSAIDs",
+    "reaction": "Gastrointestinal intolerance, possible pseudo-allergic reaction (swelling)",
+    "criticality": "low",
+    "verification": "unconfirmed",
+    "sources": [
+     "P005-D006",
+     "P005-D007"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Levothyroxine",
+    "atc": "H03AA01",
+    "dose": "100 µg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P005-D001",
+     "P005-D005",
+     "P005-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Amlodipine",
+    "atc": "C08CA01",
+    "dose": "5 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P005-D002",
+     "P005-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Aprepitant",
+    "atc": "A04AD12",
+    "dose": "125 mg day 1, 80 mg days 2+3 (with each cycle)",
+    "status": "new",
+    "sources": [
+     "P005-D007",
+     "P005-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Ondansetron",
+    "atc": "A04AA01",
+    "dose": "8 mg orally as needed (reserve antiemetic)",
+    "status": "changed",
+    "sources": [
+     "P005-D005",
+     "P005-D007",
+     "P005-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Filgrastim",
+    "atc": "L03AA02",
+    "dose": "300 µg subcutaneously daily from cycle day 2 (primary prophylaxis, 7 days)",
+    "status": "new",
+    "sources": [
+     "P005-D011",
+     "P005-D015",
+     "P005-D016"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [
+   {
+    "active_ingredient": "Ondansetron (as sole fixed antiemetic, 3x/day)",
+    "atc": "A04AA01",
+    "reason": "Not effective enough after cycle 1; replaced by triple antiemetic therapy (aprepitant + ondansetron + dexamethasone)",
+    "sources": [
+     "P005-D005",
+     "P005-D007"
+    ]
+   },
+   {
+    "active_ingredient": "Piperacillin/Tazobactam",
+    "atc": "J01CR05",
+    "reason": "Treatment of neutropenic fever, stopped after 48 h without fever",
+    "sources": [
+     "P005-D012",
+     "P005-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Filgrastim (therapeutic for the neutropenia episode)",
+    "atc": "L03AA02",
+    "reason": "Therapeutic for the neutropenia episode, stopped after recovery; then newly ordered as primary prophylaxis from cycle 4",
+    "sources": [
+     "P005-D011",
+     "P005-D014",
+     "P005-D015"
+    ]
+   }
+  ],
+  "procedures": [
+   {
+    "text": "Port catheter implanted, right (Bard PowerPort, 8F, titanium), right subclavian vein",
+    "date": "2024-02-19",
+    "sources": [
+     "P005-D003"
+    ]
+   },
+   {
+    "text": "Total thyroidectomy (benign goitre)",
+    "date": "2015-06-19",
+    "sources": [
+     "P005-D001"
+    ]
+   },
+   {
+    "text": "EC chemotherapy cycles 1–4 (epirubicin 90 mg/m² + cyclophosphamide 600 mg/m²)",
+    "date": "2024-02-26",
+    "sources": [
+     "P005-D005",
+     "P005-D008",
+     "P005-D009",
+     "P005-D016"
+    ]
+   },
+   {
+    "text": "MRI liver with contrast: liver lesion in segment VII classified as cavernous haemangioma",
+    "date": "2024-04-15",
+    "sources": [
+     "P005-D010"
+    ]
+   }
+  ],
+  "medical_devices_implants": [
+   {
+    "text": "Fully implantable central venous catheter (Port-a-Cath®, Bard PowerPort, 8F, titanium reservoir), right subclavian vein, tip in the superior vena cava",
+    "since": "2024-02-19",
+    "sources": [
+     "P005-D003",
+     "P005-D004"
+    ]
+   }
+  ],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "Breast cancer histology: ER+/PR+/HER2 3+ (FISH confirmed), G2",
+    "value": "Luminal B / HER2-positive",
+    "date": "2024-02-05",
+    "sources": [
+     "P005-D002"
+    ]
+   },
+   {
+    "text": "TSH on levothyroxine",
+    "value": "1.4 mIU/l (adequate)",
+    "date": "2024-03-04",
+    "sources": [
+     "P005-D007"
+    ]
+   },
+   {
+    "text": "Leucocyte nadir (neutropenic fever)",
+    "value": "0.4 G/l (severe neutropenia)",
+    "date": "2024-04-22",
+    "sources": [
+     "P005-D013"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Liver metastasis",
+    "reason": "see MRI report",
+    "sources": [
+     "P005-D009",
+     "P005-D010",
+     "P005-D011"
+    ]
+   },
+   {
+    "text": "Peripheral polyneuropathy (tingling in the fingertips)",
+    "reason": "reported by the patient only",
+    "sources": [
+     "P005-D009",
+     "P005-D011",
+     "P005-D016"
+    ]
+   },
+   {
+    "text": "Breast cancer of the mother (family history, not the patient's own illness)",
+    "reason": "family history",
+    "sources": [
+     "P005-D001",
+     "P005-D002"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P005-D001": {
+   "title": "Discharge letter after thyroidectomy",
+   "text": "Dear colleagues,\nWe report on the stay of Mrs Monika Steinbauer, born 11.09.1966, from 19.06.2015 to 22.06.2015.\n\nDiagnosis: benign multinodular goitre (E04.2), total thyroidectomy indicated because of progression and local compression symptoms.\n\nOperation (19.06.2015): total thyroidectomy. Histology: benign multinodular hyperplasia, no malignancy.\n\nCourse: no complications. Calcium borderline after surgery (2.02 mmol/l), temporary calcium replacement. Vocal cord check: ENT normal.\n\nMedication at discharge:\n- Levothyroxine 100 µg (Euthyrox) 1-0-0 (hormone replacement, permanent)\n- Calcium carbonate 500 mg + vitamin D3 200 IU, 1-0-1 (for 4 weeks, until TSH and calcium are normal)\n\nAllergies: none known.\nFamily history: mother died of breast cancer at 64.\nRecommendation: endocrinology check in 6 weeks (TSH, fT4).\nKind regards, Senior Dr Werner Pirker, surgery"
+  },
+  "P005-D002": {
+   "title": "First oncology visit – breast cancer",
+   "text": "First oncology visit, 08.02.2024\nPatient: Steinbauer Monika, born 11.09.1966, female\n\nReferral: from gynaecology after diagnosis of right breast cancer.\n\nBiopsy (05.02.2024): invasive breast cancer, right, NST type (no special type), G2.\nIHC: ER positive (Allred 7/8), PR positive (Allred 6/8), HER2 3+ (FISH confirmed) → luminal B / HER2-positive.\nClinical TNM: cT2 cN1 cM0 (stage IIB).\n\nPrevious illnesses:\n- Thyroidectomy 06/2015 (benign goitre), levothyroxine 100 µg permanently\n- Arterial hypertension (amlodipine 5 mg 1-0-0 since 2020)\nAllergies: none known.\nFamily history: mother with breast cancer (died at 64).\n\nTumour board (06.02.2024): neoadjuvant chemotherapy + anti-HER2 recommended: EC × 4 (epirubicin 90 mg/m² + cyclophosphamide 600 mg/m²) → paclitaxel + trastuzumab × 4, then surgery.\n\nPlanned approach:\n1. Port catheter before the first cycle\n2. EC protocol cycles 1–4\n3. Then paclitaxel + trastuzumab × 4\n4. Surgery after neoadjuvant therapy\n\nPatient informed, consent obtained."
+  },
+  "P005-D003": {
+   "title": "Surgery report: port catheter, right",
+   "text": "Surgery report\nDate: 19.02.2024\nSurgeon: Dr Sandra Hollinger, surgeon\nAnaesthesia: local anaesthesia + sedation\n\nIndication: cancer chemotherapy, venous access needed.\n\nOperation: implantation of a fully implantable central venous catheter (Port-a-Cath®, model Bard PowerPort, 8F, titanium reservoir) via the right subclavian vein. Catheter tip in the superior vena cava, correct position.\nFluoroscopy during surgery: correct catheter position, no pneumothorax.\n\nComplications: none.\nAfter surgery: chest X-ray ordered.\n\nDiagnosis: uncomplicated right port catheter placement for cancer therapy."
+  },
+  "P005-D004": {
+   "title": "Chest X-ray after port catheter placement",
+   "text": "Report: chest X-ray AP, 19.02.2024\nPatient: Steinbauer Monika, born 11.09.1966\n\nClinical question: check port catheter position.\n\nFindings:\nPort generator right infraclavicular. Catheter tip in the superior vena cava, correct position. No pneumothorax. No haemothorax.\nHeart and lungs: normal. No pleural effusion.\nHila: normal. Mediastinum normal.\n\nAssessment: correct port catheter position. No sign of complications."
+  },
+  "P005-D005": {
+   "title": "EC cycle 1 day 1 – start of chemotherapy",
+   "text": "26.02.2024, 08:00, Dr Beatrix Langer\nEC cycle 1, day 1.\n\nMrs Steinbauer, 58 years, right breast cancer cT2N1M0, HER2+/HR+.\nGood general condition. ECOG 0. Body surface area 1.72 m². Weight 67 kg.\nAllergies: none known.\n\nPreparation:\n- Antiemetics: ondansetron 8 mg IV 30 min before chemo + dexamethasone 8 mg IV\n- Epirubicin 90 mg/m² (= 155 mg) IV via port, 15 min infusion\n- Cyclophosphamide 600 mg/m² (= 1032 mg) IV via port, 30 min infusion\n\nTolerance: good. No acute reaction. Mild nausea after the infusion NRS 2.\n\nContinue home medication: levothyroxine 100 µg, amlodipine 5 mg.\nAntiemetics at home: ondansetron 8 mg orally 1-1-1 for 3 days.\nG-CSF prophylaxis: not ordered (risk <20% with EC, older risk assessment).\n\nNext cycle: 18.03.2024."
+  },
+  "P005-D006": {
+   "title": "Nursing report: phone call after cycle 1",
+   "text": "28.02.2024, 15:00, registered nurse Karin Moser (phone documentation)\n\nMrs Steinbauer calls: still nauseous (NRS 3), vomited twice yesterday. Took ondansetron, moderately effective.\nShe also reports: she does not tolerate ibuprofen – it always gives her stomach problems and once she was \"all swollen up\". She does not know whether it is a real allergy or an intolerance. She never takes it any more.\nRecorded in the patient file and reported to the treating doctor.\nNo fever. Temperature 36.9°C.\nAdvice: continue ondansetron; with fever >38°C come to the clinic immediately."
+  },
+  "P005-D007": {
+   "title": "Outpatient check after cycle 1 – antiemetic change",
+   "text": "04.03.2024, 09:00, Dr Langer\nOutpatient check after EC cycle 1.\n\nPatient reports: nausea was marked, vomited twice, ondansetron alone was not enough.\nIbuprofen intolerance reported by the patient (nursing report 28.02.) – recorded as an intolerance (no formal allergy, no systemic reaction confirmed, most likely gastrointestinal intolerance + possibly a pseudo-allergic reaction). Ibuprofen and NSAIDs in general noted in the patient file as a caution.\n\nAntiemetic change for cycle 2:\nOndansetron 8 mg orally alone is not enough → extend to TRIPLE antiemetic therapy:\n- Aprepitant 125 mg orally day 1, 80 mg days 2+3\n- Ondansetron 8 mg IV (day 1, before chemo) + dexamethasone\n- Ondansetron orally as needed at home\n\nLab (today): leucocytes 3.8 G/l (slightly low, expected after chemotherapy), Hb 11.9 g/dl, platelets 186 G/l. Creatinine 0.74 mg/dl, Na 138, K 3.9. TSH 1.4 mIU/l (levothyroxine replacement adequate).\n\nNext cycle: 18.03.2024 as planned."
+  },
+  "P005-D008": {
+   "title": "EC cycle 2 day 1",
+   "text": "18.03.2024, 08:00, Dr Langer\nEC cycle 2, day 1.\n\nGood general condition. ECOG 0. Hair loss started (expected). The patient is distressed by it; conversation held.\nLab before chemo (18.03.): leucocytes 4.2 G/l, Hb 11.4 g/dl, platelets 198 G/l, creatinine 0.72 mg/dl → cycle possible.\n\nTRIPLE antiemetics (as planned):\n- Aprepitant 125 mg orally already taken at home.\n- Dexamethasone 8 mg IV + ondansetron 8 mg IV before chemo.\n- Epirubicin 90 mg/m² (= 155 mg) IV via port + cyclophosphamide 600 mg/m² (= 1032 mg) IV.\n\nTolerance: nausea only NRS 1–2. Much better than cycle 1.\nG-CSF: still not ordered.\nNext cycle: 08.04.2024."
+  },
+  "P005-D009": {
+   "title": "EC cycle 3 day 1 – liver ultrasound abnormal",
+   "text": "08.04.2024, 08:00, Dr Langer\nEC cycle 3, day 1.\n\nThe patient reports occasional tingling in her fingertips for 2–3 weeks and asks whether this could be nerve damage. No in-house neurology examination done. No objective neurological finding. Epirubicin is not a leading neurotoxin (paclitaxel comes later). Entry: patient reports finger tingling, not clinically confirmed, no intervention.\n\nAbdominal ultrasound (staging check, 05.04.):\nFinding: round liver lesion (hypoechoic, 1.4 cm, segment VII) → differential metastasis vs. haemangioma. Liver MRI recommended.\n\nLab before the cycle (08.04.): leucocytes 3.6 G/l (borderline), Hb 10.8 g/dl, platelets 162 G/l, creatinine 0.76 → cycle possible.\n\nChemo: epirubicin 155 mg + cyclophosphamide 1032 mg IV via port. Triple antiemetics as in cycle 2.\nG-CSF: still not ordered (senior doctor decision: leucocytes >3.5 G/l → not needed)."
+  },
+  "P005-D010": {
+   "title": "Liver MRI – liver lesion work-up",
+   "text": "Report: MRI abdomen/liver with contrast (gadolinium), 15.04.2024\nPatient: Steinbauer Monika, born 11.09.1966\n\nClinical question: liver lesion segment VII on ultrasound, metastasis vs. haemangioma with known breast cancer.\n\nFindings:\nLiver: round lesion 1.4 cm in segment VII. Signal: T1 hypointense, T2 hyperintense; contrast: early arterial peripheral nodular enhancement, complete fill-in in the delayed phase. Typical haemangioma pattern.\nNo other focal liver lesions. No lymphadenopathy.\nGallbladder, spleen, pancreas, kidneys: normal.\n\nAssessment:\nLiver lesion segment VII: morphology and contrast behaviour clearly consistent with a **cavernous haemangioma**. No sign of a liver metastasis.\n\nRecommendation: no further work-up or biopsy needed. The finding is benign."
+  },
+  "P005-D011": {
+   "title": "Progress after cycle 3 – liver lesion benign, G-CSF discussion",
+   "text": "19.04.2024, 08:00, Dr Langer\n\nLiver MRI result: haemangioma, no longer suspicious for metastasis → very relieving for the patient. Result communicated.\n\nThe patient still reports finger tingling – still not clinically objectifiable.\n\nLab today (done externally on 17.04.): leucocytes 0.8 G/l ↓↓↓ → severe neutropenia!\nDiscussed with the senior doctor: the earlier decision \"G-CSF not needed\" was based on leucocytes >3.5 G/l on the cycle day → now massive neutropenia on day 11 after cycle 3. G-CSF (filgrastim 300 µg subcutaneously daily) started today.\n\nPatient instructed: fever >38°C → go to the emergency department immediately."
+  },
+  "P005-D012": {
+   "title": "Emergency admission: neutropenic fever",
+   "text": "22.04.2024, 03:30 – emergency admission\nPatient: Steinbauer Monika, born 11.09.1966\n\nPresentation: fever 38.9°C, chills, exhaustion. Last chemotherapy (EC cycle 3) on 08.04.2024. Filgrastim subcutaneously since 19.04.\n\nStatus:\nTemp 38.9°C. BP 108/64 mmHg. Pulse 104/min. SpO2 97%.\nGeneral condition reduced, pale, sweating.\nLungs: vesicular both sides, no crackles. Abdomen: soft, not tender.\nPort: entry site calm.\nNo clinical focus found.\n\nImmediate measures:\n- Lab STAT\n- Blood cultures x2 (peripheral + port)\n- Broad-spectrum antibiotic: piperacillin/tazobactam 4.5 g IV every 8 h, start now.\n- Continue filgrastim.\n- Admit.\n\nDiagnosis: neutropenic fever during chemotherapy (EC cycle 3, day 14) (D70)."
+  },
+  "P005-D013": {
+   "title": "Emergency laboratory, neutropenic fever",
+   "text": "Patient: Steinbauer Monika, born 11.09.1966\nOrder number: LM-2024-04-22-0014\nSample taken: 22.04.2024, 03:45 (STAT)\n\nBlood count:\n  Hb: 9.8 g/dl ↓\n  Leucocytes: 0.4 G/l ↓↓↓ [ref: 4.0–10.0]\n  Absolute neutrophils: 0.08 G/l ↓↓↓ → severe neutropenia\n  Platelets: 88 G/l ↓\n\nClinical chemistry:\n  CRP: 142 mg/l ↑↑\n  PCT: 1.8 ng/ml ↑ → bacterial infection likely\n  Creatinine: 0.82 mg/dl, Na: 136, K: 3.5\n\nBlood cultures: taken, result pending.\n\nComment: severe neutropenia with fever – neutropenic sepsis not excluded. STAT result."
+  },
+  "P005-D014": {
+   "title": "Progress day 2 – fever falling, blood culture result",
+   "text": "24.04.2024, 09:00, Senior Dr Christina Wallner\n\nPatient much better. No fever since yesterday evening 21:00.\nBP 118/72, pulse 88/min, temp 37.1°C.\n\nBlood culture result (peripheral + port): both sterile → no bacteraemia found.\nContinue piperacillin/tazobactam until 48 h without fever (i.e. until the evening of 25.04.).\n\nLab (23.04.):\n  Leucocytes 1.2 G/l (rising on G-CSF), neutrophils 0.4 G/l\n  CRP 88 mg/l (falling), PCT 0.6 ng/ml\n  Platelets 102 G/l\n\nContinue filgrastim until neutrophils >1.0 G/l on 2 consecutive days.\n\nPlan: discharge once leucocytes >1.5 G/l and no fever."
+  },
+  "P005-D015": {
+   "title": "Progress day 4 – discharge",
+   "text": "26.04.2024, 10:00, Dr Langer\n\nLeucocytes 3.1 G/l, neutrophils 2.2 G/l → sufficiently recovered.\nNo fever for >48 h. Good general condition.\nPiperacillin/tazobactam stopped yesterday evening (48 h after the last fever).\nFilgrastim: last dose this morning (neutrophils >1.0 G/l on 2 days).\n\nFor cycle 4 (planned 29.04.): G-CSF as primary prophylaxis from day 2 (filgrastim 300 µg subcutaneously/day × 7 days) because of this neutropenia episode. Epirubicin dose unchanged (senior doctor decision).\n\nDischarged after 4 days in hospital.\n\nMedication at discharge (after the neutropenia episode):\n- Levothyroxine 100 µg 1-0-0 (long-term)\n- Amlodipine 5 mg 1-0-0 (long-term)\n- Aprepitant 125 mg day 1 / 80 mg days 2+3 (for cycle 4)\n- Ondansetron 8 mg as needed (reserve antiemetic)\n- Filgrastim 300 µg subcutaneously from cycle 4 day 2 (primary prophylaxis, prescription given)"
+  },
+  "P005-D016": {
+   "title": "EC cycle 4 day 1 – last EC cycle",
+   "text": "29.04.2024, 08:00, Dr Langer\nEC cycle 4 (last), day 1.\n\nRecovered from the neutropenia episode. Good general condition. ECOG 1 (slightly reduced by tiredness).\nLab (29.04.): leucocytes 5.2 G/l, Hb 10.2 g/dl, platelets 220 G/l, creatinine 0.78 → cycle possible.\n\nChemo: epirubicin 155 mg + cyclophosphamide 1032 mg IV via port. Triple antiemetics.\nG-CSF: filgrastim 300 µg subcutaneously from tomorrow (day 2), 7 days – primary prophylaxis as planned.\n\nThe patient asks again about tingling in her fingers – unchanged, mild. Senior doctor decision: the neuropathy symptom is neither clinically confirmed nor objectifiable (epirubicin is not a typical neurotoxin). No action needed before switching to paclitaxel, where neuropathy can be expected.\n\nNext phase: paclitaxel + trastuzumab × 4 from about June 2024."
+  },
+  "P005-D017": {
+   "title": "Nursing report, cycle 4",
+   "text": "29.04.2024, 16:00, registered nurse Karin Moser\n\nMrs Steinbauer, chemotherapy day clinic, cycle 4. Infusion via port without complications.\nTired but cooperative. No nausea with the improved antiemetics.\nPort entry site after puncture: dry, calm.\nNo fever (36.8°C). SpO2 98%.\nWears a wig. Complete hair loss.\nNo further nursing needs."
+  }
+ }
+}
