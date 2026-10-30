@@ -17,6 +17,7 @@ if str(_REPO_ROOT) not in sys.path:
 from app import datastore
 from app.main import app
 from app import state
+from app.primary import ips_pipeline, records
 from pipeline.models import (
     ActiveProblem,
     ExcludedItem,
@@ -140,6 +141,89 @@ def test_quote_verification_normalizes_quote_variants():
     )
     assert result.included.problems_active[0].quote_verified is True
     assert failed == []
+
+
+def test_negated_key_results_become_review_checks():
+    intermediate = ExtractionIntermediate(
+        patient_token="PT-test",
+        extraction_model="mock-model",
+        extraction_timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        included=IncludedSection(
+            key_results=[
+                KeyResult(
+                    text="No pulmonary embolism",
+                    source_ids=["P001-D015"],
+                    quote="Keine Lungenembolie",
+                    quote_verified=True,
+                ),
+                KeyResult(
+                    text="MRT liver: Cavernous hemangioma, no evidence of liver metastasis",
+                    source_ids=["P005-D020"],
+                    quote="Kein Hinweis auf Lebermetastasen",
+                    quote_verified=True,
+                ),
+                KeyResult(
+                    text="Liver metastasis",
+                    value="absent",
+                    source_ids=["P005-D020"],
+                    quote="Kein Hinweis auf Lebermetastasen",
+                    quote_verified=True,
+                ),
+                KeyResult(
+                    text="Hb at discharge",
+                    value="10.4 g/dl",
+                    source_ids=["P005-D028"],
+                    quote="Hb 10,4 g/dl",
+                    quote_verified=True,
+                ),
+            ]
+        ),
+    )
+
+    record = ips_pipeline.to_record(intermediate)
+    assert record["key_results"] == [{
+        "text": "Hb at discharge",
+        "value": "10.4 g/dl",
+        "date": None,
+        "sources": ["P005-D028"],
+    }]
+    assert record["must_not_include"] == [
+        {
+            "text": "No pulmonary embolism",
+            "reason": "negated",
+            "detail": "finding as described in the report; see the source document",
+            "sources": ["P001-D015"],
+        },
+        {
+            "text": "MRT liver: Cavernous hemangioma, no evidence of liver metastasis",
+            "reason": "negated",
+            "detail": "finding as described in the report; see the source document",
+            "sources": ["P005-D020"],
+        },
+        {
+            "text": "Liver metastasis",
+            "reason": "negated",
+            "detail": "finding as described in the report; see the source document",
+            "sources": ["P005-D020"],
+        },
+    ]
+
+    checks = records.checks({
+        "record": record,
+        "documents": [
+            {"id": "P001-D015", "typ": "Radiologiebefund"},
+            {"id": "P005-D020", "typ": "Radiologiebefund"},
+            {"id": "P005-D028", "typ": "Entlassungsbrief"},
+        ],
+    })
+    assert checks[0]["text"] == (
+        "No pulmonary embolism – finding as described in the report; see the source document. "
+        "Please review the sources."
+    )
+    assert checks[1]["text"] == (
+        "MRT liver: Cavernous hemangioma, no evidence of liver metastasis – "
+        "finding as described in the report; see the source document. Please review the sources."
+    )
 
 
 def test_evaluation_accepts_english_reference_record():

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import sys
 import uuid
 import unicodedata
@@ -26,6 +27,12 @@ from .. import state
 from . import records
 
 logger = logging.getLogger(__name__)
+
+_NEGATED_RESULT_PATTERN = re.compile(
+    r"\b(?:no|none|not|without|negative|absent|excluded|ruled\s+out|kein|keine|ohne|ausgeschlossen)\b",
+    re.IGNORECASE,
+)
+_NEGATED_RESULT_DETAIL = "finding as described in the report; see the source document"
 
 
 # ── Schema extension for state.sqlite ───────────────────────────────────────
@@ -193,6 +200,20 @@ def to_record(intermediate: Any) -> dict:
             "sources": _field(item, "source_ids") or [],
         })
 
+    key_results = []
+    for item in _mapped(included.key_results, {
+        "text": "text", "value": "value", "date": "date", "sources": "source_ids",
+    }):
+        if any(_NEGATED_RESULT_PATTERN.search(str(item.get(field) or "")) for field in ("text", "value")):
+            excluded.append({
+                "text": item["text"],
+                "reason": "negated",
+                "detail": _NEGATED_RESULT_DETAIL,
+                "sources": item.get("sources") or [],
+            })
+        else:
+            key_results.append(item)
+
     return {
         "problems_active": _mapped(included.problems_active, {
             "text": "text", "icd10": "icd10_suggested", "snomed": "snomed_suggested",
@@ -222,9 +243,7 @@ def to_record(intermediate: Any) -> dict:
         "immunizations": _mapped(included.immunizations, {
             "vaccine": "vaccine", "date": "date", "sources": "source_ids",
         }),
-        "key_results": _mapped(included.key_results, {
-            "text": "text", "value": "value", "date": "date", "sources": "source_ids",
-        }),
+        "key_results": key_results,
         "must_not_include": excluded,
         "unverified": unverified,
     }
