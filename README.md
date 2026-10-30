@@ -185,8 +185,9 @@ Demo accounts: `u-novak` (HDAB staff), `u-weiss` (researcher), `u-public`, `u-hu
 ### What works and what does not
 
 - Works: all five metrics on the 10 requests, the jury-style requests above, roles, audit log, SPE with blocked download, discharge-letter workflow, cross-border flow, and the frontend on top of all of it.
-- Simulated: ELGA, MyHealth@EU / NCPeH, ID Austria and the second factor (any 6 digits).
-- Limits: the parser understands the definition style of the Track-3 requests; a request written very differently is answered with the parts it recognises and lists unrecognised definitions in the staff view (`spec.notes`). The data has no allergies, doses or progress notes, so the letter marks those sections as missing.
+- Simulated: ELGA, MyHealth@EU / NCPeH and ID Austria. Letter signing uses WebAuthn security keys (NFC badge, USB key, Touch ID); the demo offers a clearly labelled simulated key, and no real NFC/USB key has been tested.
+- AI Patient Summary (P001–P006 only): the documents are pseudonymised before they are sent to OpenAI (gpt-4o by default). The AI lists key points with their source and draws no conclusions; the output can differ between runs, so it stays a draft until a doctor approves it. The FHIR validator step is skipped unless `validator_cli.jar` is present. The research dataset (20,000 patients) is never sent to an LLM.
+- Limits: the parser understands the definition style of the Track-3 requests; a request written very differently is answered with the parts it recognises and lists unrecognised definitions in the staff view (`spec.notes`). The Track-3 research data has no allergies, doses or progress notes, so letters for those patients mark the sections as missing; P001–P006 have full document bundles.
 
 ## Patient records (P001–P006)
 
