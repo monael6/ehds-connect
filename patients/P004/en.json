@@ -1,0 +1,345 @@
+{
+ "record": {
+  "patient_id": "P004",
+  "problems_active": [
+   {
+    "text": "Chronic heart failure (HFrEF, EF 35%), ischaemic cardiomyopathy, decompensated – now recompensated",
+    "icd10": "I50.0",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P004-D001",
+     "P004-D004",
+     "P004-D010",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Chronic kidney disease stage 3b (eGFR 36 ml/min)",
+    "icd10": "N18.3",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P004-D001",
+     "P004-D006",
+     "P004-D014",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Alzheimer's dementia, moderate (MMSE 16/30)",
+    "icd10": "F00.1",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P004-D002",
+     "P004-D004",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Arterial hypertension",
+    "icd10": "I10",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P004-D001",
+     "P004-D004",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Ischaemic cardiomyopathy, status after inferior myocardial infarction 2003",
+    "icd10": "I25.2",
+    "snomed": null,
+    "onset": "2003",
+    "sources": [
+     "P004-D001",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Second-degree AV block (pacemaker indication, pacemaker-dependent)",
+    "icd10": "I44.1",
+    "snomed": null,
+    "onset": "2019",
+    "sources": [
+     "P004-D001",
+     "P004-D013"
+    ]
+   }
+  ],
+  "past_history": [],
+  "allergies_intolerances": [
+   {
+    "substance": "Sulfonamides (co-trimoxazole)",
+    "reaction": "Suspected drug rash",
+    "criticality": "unknown",
+    "verification": "unconfirmed",
+    "sources": [
+     "P004-D005",
+     "P004-D009",
+     "P004-D016"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Ramipril",
+    "atc": "C09AA05",
+    "dose": "5 mg 1-0-0",
+    "status": "changed",
+    "sources": [
+     "P004-D001",
+     "P004-D008",
+     "P004-D012",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Bisoprolol",
+    "atc": "C07AB07",
+    "dose": "5 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P004-D001",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Furosemide",
+    "atc": "C03CA01",
+    "dose": "40 mg 1-0-0 orally",
+    "status": "changed",
+    "sources": [
+     "P004-D001",
+     "P004-D012",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Eplerenone",
+    "atc": "C03DA04",
+    "dose": "25 mg 1-0-0",
+    "status": "new",
+    "sources": [
+     "P004-D010",
+     "P004-D012",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Acetylsalicylic acid (aspirin, ASS)",
+    "atc": "B01AC06",
+    "dose": "100 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P004-D001",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Atorvastatin",
+    "atc": "C10AA05",
+    "dose": "40 mg 0-0-1",
+    "status": "unchanged",
+    "sources": [
+     "P004-D001",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Pantoprazole",
+    "atc": "A02BC02",
+    "dose": "40 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P004-D001",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Rivastigmine",
+    "atc": "N06DA03",
+    "dose": "9.5 mg/24 h transdermal patch",
+    "status": "unchanged",
+    "sources": [
+     "P004-D002",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Donepezil",
+    "atc": "N06DA02",
+    "dose": "5 mg 0-0-1",
+    "status": "unchanged",
+    "sources": [
+     "P004-D002",
+     "P004-D016"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [
+   {
+    "active_ingredient": "Spironolactone",
+    "atc": "C03DA01",
+    "reason": "Hyperkalaemia (K+ 5.2 mmol/l) with CKD 3b and ramipril; replaced by eplerenone 25 mg",
+    "sources": [
+     "P004-D001",
+     "P004-D008",
+     "P004-D010",
+     "P004-D012",
+     "P004-D016"
+    ]
+   },
+   {
+    "active_ingredient": "Furosemide IV (higher dose 80 mg)",
+    "atc": "C03CA01",
+    "reason": "Switched to oral maintenance dose 40 mg after clinical recompensation",
+    "sources": [
+     "P004-D004",
+     "P004-D012"
+    ]
+   }
+  ],
+  "procedures": [
+   {
+    "text": "Dual-chamber pacemaker DDD implanted (Medtronic Advisa DR), Klinikum Linz-Nord",
+    "date": "2019-03-15",
+    "sources": [
+     "P004-D001"
+    ]
+   },
+   {
+    "text": "Pacemaker check: normal, battery 78%, about 4 years remaining",
+    "date": "2024-11-12",
+    "sources": [
+     "P004-D013"
+    ]
+   },
+   {
+    "text": "Echocardiography: EF 35%, mitral regurgitation 2/4, RV dilated",
+    "date": "2024-11-06",
+    "sources": [
+     "P004-D010"
+    ]
+   }
+  ],
+  "medical_devices_implants": [
+   {
+    "text": "Dual-chamber pacemaker DDD (Medtronic Advisa DR MRI SureScan), generator left subclavian, leads RA + RV",
+    "since": "2019-03-15",
+    "sources": [
+     "P004-D001",
+     "P004-D007",
+     "P004-D013",
+     "P004-D016"
+    ]
+   }
+  ],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "BNP at admission",
+    "value": "2,480 pg/ml (strongly raised)",
+    "date": "2024-11-04",
+    "sources": [
+     "P004-D006"
+    ]
+   },
+   {
+    "text": "BNP at discharge",
+    "value": "820 pg/ml (falling)",
+    "date": "2024-11-14",
+    "sources": [
+     "P004-D014"
+    ]
+   },
+   {
+    "text": "LV-EF (echo)",
+    "value": "35% (reduced)",
+    "date": "2024-11-06",
+    "sources": [
+     "P004-D010"
+    ]
+   },
+   {
+    "text": "eGFR (CKD-EPI) at discharge",
+    "value": "36 ml/min/1.73m² (CKD 3b)",
+    "date": "2024-11-14",
+    "sources": [
+     "P004-D014"
+    ]
+   },
+   {
+    "text": "MMSE (dementia severity)",
+    "value": "16/30 (moderate)",
+    "date": "2023-10-05",
+    "sources": [
+     "P004-D002"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Pneumonia",
+    "reason": "see sources",
+    "sources": [
+     "P004-D007",
+     "P004-D008"
+    ]
+   },
+   {
+    "text": "Open heart surgery in the history",
+    "reason": "reported by the patient; see sources",
+    "sources": [
+     "P004-D005",
+     "P004-D015",
+     "P004-D016"
+    ]
+   },
+   {
+    "text": "Dilated cardiomyopathy of the daughter (family history, not the patient's own illness)",
+    "reason": "family history",
+    "sources": [
+     "P004-D002"
+    ]
+   },
+   {
+    "text": "Hyperkalaemia as an active problem at discharge",
+    "reason": "see latest potassium value",
+    "sources": [
+     "P004-D006",
+     "P004-D011",
+     "P004-D014"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P004-D001": {
+   "title": "Discharge letter after pacemaker implantation",
+   "text": "Dear colleagues,\nWe report on the stay of Mr Rudolf Hofer, born 30.08.1941, from 15.03.2019 to 18.03.2019.\n\nReason for admission: high-grade second-degree AV block, Mobitz type, symptomatic bradycardia (HR 34/min), syncope.\nPrevious illnesses: chronic heart failure (HFrEF, EF about 38% in 2018), ischaemic cardiomyopathy (inferior myocardial infarction 2003), arterial hypertension, CKD stage 3 (creatinine about 1.8 mg/dl), dementia (mild, MMSE 22/30, 2018).\n\nImplant: dual-chamber pacemaker (DDD), Medtronic Advisa DR MRI SureScan, generator left subclavian, leads RA + RV. X-ray after surgery: both leads correctly placed.\n\nAllergies: according to the patient and his daughter: no known allergies.\nMedication at discharge (2019): ramipril 5 mg 1-0-0, bisoprolol 5 mg 1-0-0, furosemide 40 mg 1-0-0, spironolactone 25 mg 1-0-0, aspirin 100 mg 1-0-0, atorvastatin 40 mg 0-0-1, pantoprazole 40 mg 1-0-0.\n\nRecommendation: pacemaker check every 6–12 months. Continue heart failure therapy.\nKind regards, Senior Dr Gerhard Moser, cardiology, Klinikum Linz-Nord"
+  },
+  "P004-D002": {
+   "title": "Dementia check: moderate Alzheimer's dementia",
+   "text": "Patient Rudolf Hofer, born 30.08.1941, male. Check at the memory clinic.\nAccompanied by his daughter Ingrid Hofer.\n\nCognition: MMSE 16/30 (worse than 2021: 19/30). Clock test: severely impaired. Clearly disoriented to time and place. Self-care: increasingly dependent on help.\nDiagnosis: Alzheimer's dementia (G30.1), moderate (ICD F00.1). Rivastigmine patch 9.5 mg/24 h already well tolerated.\n\nPrevious illnesses: chronic heart failure, CKD 3b, arterial hypertension, pacemaker 2019.\nFamily history: daughter with genetically confirmed dilated cardiomyopathy (DCM, LMNA mutation) – not related to the patient's illness.\n\nMedication (according to daughter, 10/2023): ramipril 5 mg, bisoprolol 5 mg, furosemide 40 mg, spironolactone 25 mg, aspirin 100 mg, atorvastatin 40 mg, pantoprazole 40 mg, rivastigmine patch 9.5 mg/24 h, donepezil 5 mg 0-0-1 (since 09/2022).\nAllergies: none known."
+  },
+  "P004-D003": {
+   "title": "Referral for decompensated heart failure",
+   "text": "Referral!\nPatient: Hofer Rudolf, born 30.08.1941\nReferral diagnosis: decompensated heart failure\n\nHistory (from daughter): increasing shortness of breath for about 5 days, swelling of both legs, weight gain +4 kg in 1 week. Orthopnoea since yesterday. Loss of appetite.\nLives with his daughter, increasingly demented (MMSE about 16), cannot give his own history.\n\nPrevious illnesses: chronic heart failure (HFrEF), CKD 3b, Alzheimer's dementia, arterial hypertension, pacemaker 2019, inferior myocardial infarction 2003.\nMedication (home medication according to daughter):\n1. Ramipril 5 mg 1-0-0\n2. Bisoprolol 5 mg 1-0-0\n3. Furosemide 40 mg 1-0-0\n4. Spironolactone 25 mg 1-0-0\n5. Aspirin 100 mg 1-0-0\n6. Atorvastatin 40 mg 0-0-1\n7. Pantoprazole 40 mg 1-0-0\n8. Rivastigmine patch 9.5 mg/24 h\n9. Donepezil 5 mg 0-0-1\n\nAllergies: none known.\nPlease admit.\nDr Andreas Weiss, general practice"
+  },
+  "P004-D004": {
+   "title": "Admission report, internal medicine",
+   "text": "Admission: 04.11.2024, 11:30, ward IM-4\nPatient: Hofer Rudolf, born 30.08.1941, male\n\nReferral diagnosis: decompensated heart failure.\n\nHistory: because of dementia the patient cannot give an adequate history. From his daughter: increasing shortness of breath for 5 days, orthopnoea, leg swelling, weight gain +4 kg.\n\nPrevious illnesses:\n- Chronic heart failure (HFrEF)\n- Ischaemic cardiomyopathy, inferior myocardial infarction 2003\n- Arterial hypertension\n- CKD stage 3b\n- Alzheimer's dementia (moderate)\n- Pacemaker implantation (DDD, 2019)\nNo known allergies.\nSmoking: ex-smoker since 1985.\n\nPhysical examination:\nGeneral condition reduced, short of breath at rest. Weight 78 kg (daughter: usually about 74 kg), height 171 cm.\nHeart: paced regular rhythm, systolic murmur 2/6 at the apex. Pulse 68/min (pacemaker rate).\nLungs: moist crackles at both bases. Dull percussion at both bases.\nLimbs: swelling of both legs up to the knees, lower legs tense with oedema.\nAbdomen: soft, liver 2 finger-breadths below the costal margin.\nNeuro: awake, disoriented to time and place, limited cooperation.\nBP 168/94 mmHg. SpO2 91% on room air.\n\nECG: paced rhythm 68/min, pacing spikes visible, LBBB pattern (pacemaker-induced), no acute ischaemia.\n\nDiagnosis (provisional): decompensated chronic heart failure (I50.0).\n\nPlan:\n- Lab STAT incl. BNP, troponin, kidney values\n- Chest X-ray\n- Furosemide 80 mg IV now\n- Oxygen 2 l/min\n- Daily weight\n- Pacemaker check\n- Continue all home medication for now"
+  },
+  "P004-D005": {
+   "title": "Nursing report, day of admission",
+   "text": "04.11.2024, 12:30, registered nurse Rosa Gruber\n\nPatient Hofer Rudolf, IM-4, bed 3. Admitted with his daughter. Disoriented, cooperates with guidance.\nDaughter Ingrid Hofer reports: the patient once reacted to a sulfonamide antibiotic (she thinks \"co-trimoxazole\") – rash. That was very long ago (about 20 years). She is unsure whether it was co-trimoxazole or something else.\nPassed on to the ward doctor.\nNo urinary incontinence. Bowels opened yesterday.\nOxygen 2 l/min running, SpO2 now 93%. Urine output after IV furosemide: 800 ml in 2 h.\nPositioning: upper body raised 30–45°. Pressure ulcer prevention activated (Braden score 14).\nMedication: rivastigmine patch changed (new site). Donepezil planned for the evening.\nWhen asked, the patient says he \"had heart surgery\" in the past. Daughter confirms: only the pacemaker, no open heart surgery."
+  },
+  "P004-D006": {
+   "title": "Emergency laboratory at admission",
+   "text": "Patient: Hofer Rudolf, born 30.08.1941, male\nOrder number: LM-2024-11-04-0214\nSample taken: 04.11.2024, 11:45 (STAT)\n\nBlood count:\n  Hb: 11.2 g/dl [ref: 13.5–17.5] ↓\n  Hct: 34%, leucocytes: 9.8 G/l, platelets: 198 G/l\n\nCardiac markers:\n  BNP: 2,480 pg/ml [ref: <100] ↑↑↑\n  Troponin T hs: 38 ng/l [ref: <14] ↑ (chronically raised with heart failure + CKD, no acute ischaemia)\n\nKidney function:\n  Creatinine: 1.98 mg/dl [ref: 0.7–1.2] ↑\n  Urea: 18 mmol/l [ref: 2.5–7.5] ↑\n  eGFR (CKD-EPI): 32 ml/min/1.73m² → CKD 3b\n  K: 5.2 mmol/l [ref: 3.5–5.0] ↑ (borderline!)\n  Na: 134 mmol/l [ref: 136–145] ↓\n\nClinical chemistry:\n  CRP: 18 mg/l [ref: <5] ↑\n  Albumin: 32 g/l [ref: 35–52] ↓\n  AST: 44 U/l ↑ (congested liver)\n  ALT: 38 U/l ↑\n  Total bilirubin: 1.9 mg/dl ↑\n\nComment: decompensated heart failure (massively raised BNP). CKD 3b stable. Note mild hyperkalaemia (spironolactone + ramipril + CKD)."
+  }
+ }
+}

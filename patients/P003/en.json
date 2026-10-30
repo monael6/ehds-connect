@@ -1,0 +1,260 @@
+{
+ "record": {
+  "patient_id": "P003",
+  "problems_active": [
+   {
+    "text": "Status after acute phlegmonous appendicitis, laparoscopic appendectomy",
+    "icd10": "K37",
+    "snomed": null,
+    "onset": "2024-07-08",
+    "sources": [
+     "P003-D004",
+     "P003-D010",
+     "P003-D014"
+    ]
+   },
+   {
+    "text": "Allergic bronchial asthma, moderate persistent (GINA step 3), well controlled",
+    "icd10": "J45.0",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P003-D001",
+     "P003-D002",
+     "P003-D014"
+    ]
+   }
+  ],
+  "past_history": [
+   {
+    "text": "Status asthmaticus with hospital admission (paediatrics, 2009)",
+    "icd10": "J46",
+    "resolved": "2009",
+    "sources": [
+     "P003-D001"
+    ]
+   }
+  ],
+  "allergies_intolerances": [
+   {
+    "substance": "Penicillin (amoxicillin)",
+    "reaction": "Urticaria",
+    "criticality": "high",
+    "verification": "confirmed",
+    "sources": [
+     "P003-D001",
+     "P003-D005",
+     "P003-D008",
+     "P003-D014"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Budesonide/formoterol",
+    "atc": "R03AK07",
+    "dose": "160/4.5 µg inhaled twice daily",
+    "status": "unchanged",
+    "sources": [
+     "P003-D002",
+     "P003-D003",
+     "P003-D014"
+    ]
+   },
+   {
+    "active_ingredient": "Salbutamol",
+    "atc": "R03AC02",
+    "dose": "100 µg inhaled as needed",
+    "status": "unchanged",
+    "sources": [
+     "P003-D002",
+     "P003-D003",
+     "P003-D014"
+    ]
+   },
+   {
+    "active_ingredient": "Paracetamol",
+    "atc": "N02BE01",
+    "dose": "500 mg as needed, max. 4x/day (for 5 days)",
+    "status": "new",
+    "sources": [
+     "P003-D010",
+     "P003-D014"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [
+   {
+    "active_ingredient": "Metamizole",
+    "atc": "N02BB02",
+    "reason": "Switched to paracetamol after surgery (better GI tolerance, per surgery report)",
+    "sources": [
+     "P003-D004",
+     "P003-D010"
+    ]
+   },
+   {
+    "active_ingredient": "Cefuroxime",
+    "atc": "J01DC02",
+    "reason": "Single-dose antibiotic prophylaxis around surgery, finished after surgery",
+    "sources": [
+     "P003-D008",
+     "P003-D010"
+    ]
+   }
+  ],
+  "procedures": [
+   {
+    "text": "Laparoscopic appendectomy (three-trocar technique, not perforated, histology sent)",
+    "date": "2024-07-09",
+    "sources": [
+     "P003-D010"
+    ]
+   },
+   {
+    "text": "Ultrasound abdomen/pelvis: appendicitis confirmed, follicular cyst on the left",
+    "date": "2024-07-09",
+    "sources": [
+     "P003-D007"
+    ]
+   },
+   {
+    "text": "Transvaginal ultrasound: left follicular cyst confirmed, benign",
+    "date": "2024-07-09",
+    "sources": [
+     "P003-D012"
+    ]
+   }
+  ],
+  "medical_devices_implants": [
+   {
+    "text": "Metal skin staples at the laparoscopy sites (removal by the GP planned in 7–10 days)",
+    "since": "2024-07-09",
+    "sources": [
+     "P003-D010",
+     "P003-D013"
+    ]
+   }
+  ],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "Leucocytes at admission",
+    "value": "14.2 G/l (raised)",
+    "date": "2024-07-08",
+    "sources": [
+     "P003-D006"
+    ]
+   },
+   {
+    "text": "β-hCG (pregnancy test)",
+    "value": "negative",
+    "date": "2024-07-08",
+    "sources": [
+     "P003-D006"
+    ]
+   },
+   {
+    "text": "FEV1 (spirometry, asthma control)",
+    "value": "82% predicted, FEV1/FVC 76%, reversible",
+    "date": "2023-05-10",
+    "sources": [
+     "P003-D002"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Ovarian cyst / ovarian tumour on the left as an active diagnosis",
+    "reason": "see sources",
+    "sources": [
+     "P003-D007",
+     "P003-D012",
+     "P003-D014"
+    ]
+   },
+   {
+    "text": "Perforated appendicitis",
+    "reason": "see sources",
+    "sources": [
+     "P003-D007",
+     "P003-D010",
+     "P003-D014"
+    ]
+   },
+   {
+    "text": "Lactose intolerance",
+    "reason": "reported by the patient only",
+    "sources": [
+     "P003-D005"
+    ]
+   },
+   {
+    "text": "Asthma of the mother (family history, not the patient's own illness)",
+    "reason": "family history",
+    "sources": [
+     "P003-D001",
+     "P003-D002"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P003-D001": {
+   "title": "Discharge letter after status asthmaticus",
+   "text": "Dear colleagues,\nWe report on the inpatient stay of Sabine Gruber, born 14.02.1993, from 01.04.2009 to 03.04.2009.\n\nReason for admission: status asthmaticus with known allergic bronchial asthma (since about age 7).\nPrevious treatment: budesonide inhaler and salbutamol as needed.\n\nInpatient treatment: salbutamol inhalations, systemic corticosteroids (prednisolone IV), oxygen. Rapid improvement.\n\nAllergies: penicillin – confirmed allergy (urticaria after amoxicillin at age 5, documented by the GP). CAUTION penicillin allergy!\nFamily history: mother with bronchial asthma.\n\nDischarged in good general condition. Continue the inhaler plan.\nDiagnoses: allergic bronchial asthma (J45.0). Status asthmaticus (J46).\nKind regards, Senior Dr Petra Salzmann, paediatrics"
+  },
+  "P003-D002": {
+   "title": "Pulmonology check-up for asthma",
+   "text": "Patient Sabine Gruber, born 14.02.1993, female. Check-up for bronchial asthma.\n\nHistory: asthma since childhood, recently well controlled on budesonide/formoterol (Symbicort Turbohaler 160/4.5 µg) twice daily and salbutamol as needed. Last asthma attack about 2 years ago (no admission).\nSmoking: non-smoker.\nAllergies: penicillin allergy (urticaria), documented.\n\nSpirometry:\n  FEV1: 82% predicted (slightly reduced)\n  FEV1/FVC: 76% (mildly obstructive)\n  Reversibility: FEV1 +14% after salbutamol → significant reversibility → asthma confirmed.\n\nAssessment: bronchial asthma GINA step 3, moderate persistent, well controlled.\nRecommendation: continue budesonide/formoterol twice daily, salbutamol spray as emergency medication. Check in 12 months.\nFamily history: mother also has asthma.\nNo other previous illnesses."
+  },
+  "P003-D003": {
+   "title": "Emergency referral for acute lower abdominal pain",
+   "text": "Emergency referral!\nPatient: Gruber Sabine, born 14.02.1993\nReferral diagnosis: acute right lower abdominal pain, suspected appendicitis\n\nHistory: pain in the right lower abdomen for about 6 h, increasing, nausea, temp 37.9°C. No vomiting.\nPrevious illnesses: bronchial asthma.\nMedication: budesonide/formoterol inhaler twice daily, salbutamol as needed.\nAllergies: none known (according to the patient).\n\nStatus: abdomen: McBurney positive, rebound tenderness positive.\n\nPlease admit for surgical assessment.\nDr Klaus Pfeifer, out-of-hours service"
+  },
+  "P003-D004": {
+   "title": "Admission report, surgery – suspected appendicitis",
+   "text": "Admission: 08.07.2024, 22:30\nWard: surgery C-3\nPatient: Gruber Sabine, born 14.02.1993, female\n\nReferral diagnosis: suspected appendicitis\n\nHistory:\nIncreasing pain in the right lower abdomen since about 18:00, NRS 6/10. Nausea without vomiting. Temp 37.9°C at home. Last meal about 17:00. Menstrual history: period 10 days ago, none now.\nPrevious illnesses: bronchial asthma (inhaler therapy).\nNo known allergies. No previous surgery.\nSmoking: none. Alcohol: occasionally.\n\nPhysical examination:\nGood general condition, awake, in pain. Weight 62 kg, height 168 cm.\nAbdomen: tenderness at McBurney's point, rebound tenderness positive, Rovsing sign positive. Bowel sounds present.\nAxillary temp 38.1°C. BP 118/72, pulse 96/min. SpO2 99%.\n\nDiagnostics:\nLab STAT ordered.\nUltrasound abdomen/pelvis ordered.\n\nDiagnosis (provisional): suspected acute appendicitis (K37).\n\nPlan:\n- Nil by mouth from now (surgery preparation)\n- Lab STAT\n- Abdominal ultrasound\n- Senior surgeon informed\n- Pain relief: metamizole 1 g IV if NRS >5"
+  },
+  "P003-D005": {
+   "title": "Nursing report, night of admission",
+   "text": "08.07.2024, 23:00, registered nurse Maria Holzer\n\nPatient Gruber Sabine, C-3, bed 2. Admitted from the emergency department. Lower abdominal pain NRS 6/10, better after metamizole 1 g IV (NRS 3).\nThe patient states clearly: she is ALLERGIC to penicillin – had a rash as a child after an antibiotic. Insists that this is documented. Passed on to the ward doctor.\nShe also mentions that she does not tolerate dairy products (lactose intolerance, self-diagnosed) – unclear whether clinically confirmed.\nVital signs: BP 116/70, pulse 94/min, temp 38.2°C, SpO2 99%.\nNil by mouth: patient told to stay fasting from now.\nInhaler: budesonide/formoterol given as ordered.\nEmotional state: anxious about surgery, reassured."
+  },
+  "P003-D006": {
+   "title": "Emergency laboratory, night of admission",
+   "text": "Patient: Gruber Sabine, born 14.02.1993, female\nOrder number: LM-2024-07-08-0891\nSample taken: 08.07.2024, 22:45 (STAT)\n\nBlood count:\n  Hb: 13.1 g/dl [ref: 12.0–16.0]\n  Leucocytes: 14.2 G/l [ref: 4.0–10.0] ↑↑\n  Platelets: 212 G/l [ref: 150–400]\n\nCoagulation:\n  INR: 1.01, aPTT: 27 s\n\nClinical chemistry:\n  CRP: 48 mg/l [ref: <5] ↑↑\n  Creatinine: 0.72 mg/dl, Na: 138, K: 3.8\n  Lipase: 22 U/l [ref: <60] → no sign of pancreatitis\n  β-hCG: negative (pregnancy test)\n\nComment: leucocytosis and raised CRP consistent with acute inflammation (appendicitis). Pregnancy test negative."
+  },
+  "P003-D007": {
+   "title": "Ultrasound abdomen/pelvis",
+   "text": "Report: ultrasound of the abdomen and pelvis, 09.07.2024, 00:15\nPatient: Gruber Sabine, born 14.02.1993\n\nClinical question: suspected appendicitis. Gynaecological cause?\n\nFindings:\nAppendix: visible, outer diameter 9 mm, wall thickening, not compressible, surrounding increased echogenicity (local inflammation) → consistent with acute appendicitis.\nNo free gas. Small amount of free fluid around the appendix → early perforation cannot be safely excluded.\nOvaries: left ovary with a hypoechoic lesion about 2.5 cm, suspected follicular cyst. Right ovary: normal.\nUterus: normal.\nSpleen, liver, kidneys: normal.\n\nAssessment:\n1. Acute appendicitis (appendix diameter 9 mm, wall thickening). Free fluid around the appendix – perforation possible, assess during surgery.\n2. Lesion of the left ovary (hypoechoic, 2.5 cm) – most likely a follicular cyst, differential ovarian cyst. Gynaecological check after surgery recommended.\n3. No sign of pancreatitis or urinary tract disease."
+  },
+  "P003-D008": {
+   "title": "Senior doctor decision: surgery indicated, allergy note",
+   "text": "09.07.2024, 01:00, Senior Dr Franz Kern, general surgery\n\nAfter reviewing ultrasound and lab: appendicitis confirmed, surgery indicated.\nFree fluid around the appendix – early perforation cannot be excluded. Laparoscopic appendectomy planned tonight.\n\nNursing information received: the patient reports a penicillin allergy (urticaria after amoxicillin as a child). Admission report incorrect – it says \"no known allergies\". CAUTION: penicillin allergy documented and recorded in the patient file!\n\nAnaesthesia informed (emergency, night).\nAntibiotic prophylaxis: NO amoxicillin/clavulanic acid (penicillin allergy)! Alternative: metronidazole 500 mg IV and cefuroxime 1.5 g IV (cephalosporin – low cross-allergy; senior doctor decision after discussion with anaesthesia: cefuroxime acceptable with caution for a pure amoxicillin/urticaria reaction, no anaphylaxis risk according to the allergy protocol).\n\nKeep metamizole for pain until surgery."
+  },
+  "P003-D009": {
+   "title": "Anaesthesia record – laparoscopic appendectomy",
+   "text": "Anaesthesia record, 09.07.2024\nPatient: Gruber Sabine, born 14.02.1993\nProcedure: laparoscopic appendectomy (emergency)\nAnaesthetist: Dr Norbert Gasser\n\nShort pre-operative visit:\nASA II (bronchial asthma, well controlled). No current exacerbation, SpO2 99%.\nAllergies: penicillin (urticaria)! Cephalosporin prophylaxis OK per senior doctor decision.\nAirway: Mallampati I, no dentures.\n\nInduction: propofol 180 mg IV, fentanyl 0.1 mg, rocuronium 50 mg.\nAirway: video laryngoscope intubation (precaution for asthma), tube 7.0 without problems.\nSugammadex 200 mg for reversal at the end of surgery.\n\nDuring surgery: stable vital signs. SpO2 99%. No bronchospasm.\nDuration: 55 minutes.\nBlood loss: minimal (<50 ml).\n\nProblems: none.\nRecovery room: woke up without problems, SpO2 99%, no bronchospasm."
+  },
+  "P003-D010": {
+   "title": "Surgery report: laparoscopic appendectomy",
+   "text": "Surgery report\nDate: 09.07.2024, 02:15–03:10\nSurgeon: Senior Dr Franz Kern\nAssistant: Dr Tobias Winkler\nAnaesthesia: Dr N. Gasser (general anaesthesia)\n\nDiagnosis: acute appendicitis (K37)\n\nIndication: acute appendicitis confirmed clinically, by lab and by ultrasound. Free fluid around the appendix on ultrasound → surgery indicated.\n\nProcedure: supine position. Disinfection, sterile draping. Three-trocar technique (umbilicus 10 mm, right lower abdomen 5 mm, left lower abdomen 5 mm). CO2 pneumoperitoneum, pressure 12 mmHg. Inspection of the abdomen:\n- Appendix: inflamed, diameter about 10 mm, fibrin coating, NO perforation. Small amount of clear fluid around the appendix.\n- Left ovary: follicular cyst about 2.5 cm, calm, no intervention needed.\n- Rest of the abdomen: normal.\n\nAppendectomy: mesoappendix coagulated and divided with LigaSure. Appendix base secured with Endoloop (2×). Appendix removed in a retrieval bag. Irrigation with NaCl 0.9% (500 ml). No sign of peritonitis.\n\nHaemostasis: achieved. Trocar wounds: fascia of the 10 mm trocar closed with PDS 0, skin intracutaneous suture and metal staples.\n\nFinding during surgery: acute phlegmonous appendicitis, not perforated.\n\nHistology: appendix sent for histology.\n\nComplications: none during surgery.\n\nPost-operative orders:\n- Stop metamizole → paracetamol 1 g IV/orally every 6 h (better GI tolerance)\n- Cefuroxime 1.5 g IV once after surgery (prophylaxis then finished)\n- Start eating from tomorrow morning\n- Continue inhaler therapy (budesonide/formoterol and salbutamol as needed)\n- Await histology result"
+  },
+  "P003-D011": {
+   "title": "Progress note, day 1 after surgery",
+   "text": "09.07.2024, 09:00, Dr T. Winkler\nDay 1 after laparoscopic appendectomy.\n\nPatient awake, oriented, good general condition. Abdominal pain NRS 2/10 on paracetamol.\nTemp 37.4°C. BP 112/68, pulse 80/min. SpO2 99%.\nAbdomen: soft, slightly tender around the navel, bowel sounds back.\nRight shoulder pain from the pneumoperitoneum: decreasing.\nLaparoscopy sites: calm, dry.\nLungs: vesicular both sides, no crackles. No bronchospasm.\n\nDiet: drinking without problems, soft diet started.\nInhaler: budesonide/formoterol given, good technique.\n\nLab (09.07., 07:00):\n  Hb 12.8 g/dl, leucocytes 10.4 G/l (falling), CRP 62 mg/l (expected reactive rise after surgery).\n\nPlan:\n- Build up diet\n- Discharge tomorrow if all well\n- Gynaecology consult requested for the left ovarian cyst"
+  },
+  "P003-D012": {
+   "title": "Gynaecology consultation – left ovarian cyst",
+   "text": "Gynaecology consultation report, 09.07.2024\nConsultant: Dr Eva Steinbauer, gynaecology\n\nReason: hypoechoic lesion of the left ovary, about 2.5 cm, described on ultrasound and during surgery.\n\nFindings:\nGynaecological examination: normal. Transvaginal ultrasound (TVUS): left ovary: hypoechoic, thin-walled, smoothly outlined structure about 2.4 cm, no internal echoes, no septum → morphologically a clear follicular cyst.\nRight ovary: normal.\nUterus: normal.\n\nAssessment: morphologically benign follicular cyst on the left, no sign of ovarian cancer or endometriosis. No intervention needed.\nRecommendation: TVUS check after the next period (about 4–6 weeks). Follicular cysts usually resolve on their own.\n\nDiagnosis: follicular cyst of the left ovary – no surgery needed."
+  },
+  "P003-D013": {
+   "title": "Progress note day 2 – preparing discharge",
+   "text": "10.07.2024, 08:30, Dr Winkler\nDay 2 after surgery, preparing discharge.\n\nNo symptoms, good general condition. Pain 0–1/10 on oral paracetamol.\nTemp 36.8°C, no fever. Pulse 72/min, BP 110/66.\nWounds: calm. Metal staples in place (to be removed by the GP in 7–10 days).\nDiet: normal, eats well.\nLungs: clear.\n\nGynaecology consult: follicular cyst – no intervention, outpatient check.\n\nDischarge planned today.\nDischarge letter being prepared.\n\nAllergy note: penicillin allergy correctly recorded in the patient file (admission report wrongly said \"no known allergies\" – corrected)."
+  },
+  "P003-D014": {
+   "title": "Discharge letter after appendectomy",
+   "text": "Discharge letter\nMusterstadt Regional Hospital, General Surgery\nDate: 10.07.2024\n\nDear colleagues,\n\nWe are discharging Mrs Sabine Gruber, born 14.02.1993, after an inpatient stay from 08.07.2024 to 10.07.2024.\n\nMain diagnoses:\n1. Acute phlegmonous appendicitis, not perforated (K37)\n2. Status after laparoscopic appendectomy (09.07.2024)\n3. Bronchial asthma (J45.0) – known, no complications around surgery\n\nSecondary diagnoses:\n4. Follicular cyst of the left ovary (N83.0) – no action needed, outpatient check\n\nCourse:\nAdmitted on 08.07.2024 with acute lower abdominal pain. Lab and ultrasound consistent with acute appendicitis. Laparoscopic appendectomy in the night to 09.07.2024, not perforated during surgery (ultrasound had not safely excluded perforation). Uneventful course after surgery. Gynaecology consult for the left follicular cyst – no intervention needed.\n\nAllergies: CAUTION penicillin allergy (urticaria after amoxicillin as a child, confirmed by the children's hospital report 2009). The admission report wrongly recorded \"no known allergies\" – discovered by a nurse during the night and corrected.\n\nMedication at discharge:\n1. Budesonide/formoterol 160/4.5 µg (Symbicort) inhaled twice daily – asthma (unchanged)\n2. Salbutamol 100 µg (Ventolin) inhaled as needed – asthma emergency medication (unchanged)\n3. Paracetamol 500 mg as needed (max. 4x/day) – pain relief for 5 days\n\nRecommendations:\n- Staple removal by the GP in 7–10 days\n- Gynaecology check (TVUS) in 4–6 weeks\n- Pulmonology: next routine asthma check as planned\n- Avoid physical strain for 2 weeks\n\nKind regards, Senior Dr Franz Kern, general surgery\nMusterstadt Regional Hospital"
+  }
+ }
+}

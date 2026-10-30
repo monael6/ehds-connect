@@ -1,0 +1,343 @@
+{
+ "record": {
+  "patient_id": "P002",
+  "problems_active": [
+   {
+    "text": "NSTEMI (inferior wall ischaemia) with proximal LAD stenosis",
+    "icd10": "I21.4",
+    "snomed": null,
+    "onset": "2024-10-14",
+    "sources": [
+     "P002-D006",
+     "P002-D009",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Two-vessel coronary artery disease (LAD critical, RCA moderate), status after PCI",
+    "icd10": "I25.10",
+    "snomed": null,
+    "onset": "2024-10-14",
+    "sources": [
+     "P002-D009",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Mildly reduced LV function (EF 45%) after NSTEMI",
+    "icd10": "I50.1",
+    "snomed": null,
+    "onset": "2024-10-15",
+    "sources": [
+     "P002-D011",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Type 2 diabetes mellitus",
+    "icd10": "E11",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P002-D001",
+     "P002-D004",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Arterial hypertension",
+    "icd10": "I10",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P002-D001",
+     "P002-D004",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Dyslipidaemia",
+    "icd10": "E78.5",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P002-D001",
+     "P002-D005",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Nicotine dependence (active smoker, cessation started)",
+    "icd10": "F17.2",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P002-D001",
+     "P002-D004",
+     "P002-D015"
+    ]
+   }
+  ],
+  "past_history": [],
+  "allergies_intolerances": [
+   {
+    "substance": "Iodinated contrast medium",
+    "reaction": "Flushing, shortness of breath (grade I–II Ring/Messmer, pseudo-allergic reaction)",
+    "criticality": "low",
+    "verification": "unconfirmed",
+    "sources": [
+     "P002-D007",
+     "P002-D008",
+     "P002-D015"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Acetylsalicylic acid (aspirin, ASS)",
+    "atc": "B01AC06",
+    "dose": "100 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P002-D002",
+     "P002-D009",
+     "P002-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Ticagrelor",
+    "atc": "B01AC24",
+    "dose": "90 mg 1-0-1",
+    "status": "new",
+    "sources": [
+     "P002-D009",
+     "P002-D014",
+     "P002-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Atorvastatin",
+    "atc": "C10AA05",
+    "dose": "80 mg 0-0-1",
+    "status": "new",
+    "sources": [
+     "P002-D010",
+     "P002-D014",
+     "P002-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Ramipril",
+    "atc": "C09AA05",
+    "dose": "5 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P002-D001",
+     "P002-D004",
+     "P002-D015"
+    ]
+   },
+   {
+    "active_ingredient": "Metformin",
+    "atc": "A10BA02",
+    "dose": "1000 mg 1-0-1",
+    "status": "unchanged",
+    "sources": [
+     "P002-D001",
+     "P002-D012",
+     "P002-D013",
+     "P002-D015"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [
+   {
+    "active_ingredient": "Simvastatin",
+    "atc": "C10AA01",
+    "reason": "Replaced by atorvastatin 80 mg (high-dose statin after ACS, guideline-based switch)",
+    "sources": [
+     "P002-D006",
+     "P002-D010",
+     "P002-D014"
+    ]
+   },
+   {
+    "active_ingredient": "Heparin (unfractionated, IV)",
+    "atc": "B01AB01",
+    "reason": "Stopped after completed PCI",
+    "sources": [
+     "P002-D008",
+     "P002-D009",
+     "P002-D014"
+    ]
+   },
+   {
+    "active_ingredient": "Metformin (temporary pause)",
+    "atc": "A10BA02",
+    "reason": "Paused around the procedure because of contrast medium (kidney protection), restarted after 48 h",
+    "sources": [
+     "P002-D006",
+     "P002-D012",
+     "P002-D013"
+    ]
+   }
+  ],
+  "procedures": [
+   {
+    "text": "Coronary angiography and PCI with a drug-eluting stent in the proximal LAD",
+    "date": "2024-10-14",
+    "sources": [
+     "P002-D009"
+    ]
+   },
+   {
+    "text": "Echocardiography: EF 45%, inferior wall hypokinesia",
+    "date": "2024-10-15",
+    "sources": [
+     "P002-D011"
+    ]
+   },
+   {
+    "text": "Exercise ECG (positive, ST depression at 100 W)",
+    "date": "2022-03-05",
+    "sources": [
+     "P002-D002"
+    ]
+   }
+  ],
+  "medical_devices_implants": [
+   {
+    "text": "Drug-eluting stent (DES) in the proximal LAD: Biotronik Orsiro Mission 3.0×18 mm, sirolimus-coated",
+    "since": "2024-10-14",
+    "sources": [
+     "P002-D009",
+     "P002-D015"
+    ]
+   }
+  ],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "Troponin T hs (peak after NSTEMI)",
+    "value": "5,420 ng/l",
+    "date": "2024-10-16",
+    "sources": [
+     "P002-D012"
+    ]
+   },
+   {
+    "text": "LV-EF (echo after NSTEMI)",
+    "value": "45% (mildly reduced)",
+    "date": "2024-10-15",
+    "sources": [
+     "P002-D011"
+    ]
+   },
+   {
+    "text": "HbA1c at admission",
+    "value": "8.6%",
+    "date": "2024-10-14",
+    "sources": [
+     "P002-D005"
+    ]
+   },
+   {
+    "text": "LDL cholesterol at admission (before statin)",
+    "value": "4.0 mmol/l",
+    "date": "2024-10-14",
+    "sources": [
+     "P002-D005"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Inferior wall STEMI",
+    "reason": "see sources",
+    "sources": [
+     "P002-D003",
+     "P002-D004",
+     "P002-D006",
+     "P002-D015"
+    ]
+   },
+   {
+    "text": "Palpitations in the history",
+    "reason": "reported by the patient only",
+    "sources": [
+     "P002-D013"
+    ]
+   },
+   {
+    "text": "Myocardial infarction of the father (family history, not the patient's own illness)",
+    "reason": "family history",
+    "sources": [
+     "P002-D001",
+     "P002-D002"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P002-D001": {
+   "title": "Diabetes check and risk factors",
+   "text": "Patient Gerald Wimmer, born 23.05.1970, male. Routine check.\nDiagnoses: type 2 diabetes (since 2016, last HbA1c 7.8%), arterial hypertension (since 2018).\nMedication: metformin 1000 mg 1-0-1, ramipril 5 mg 1-0-0.\nSmoker: about 20 cigarettes/day since age 18 (about 36 pack-years).\nBP 148/92, pulse 78/min. Weight 94 kg, height 178 cm, BMI 29.7.\nLipids (07/2019): total cholesterol 5.8 mmol/l, LDL 3.7 mmol/l, HDL 0.9 mmol/l, TG 2.4 mmol/l – dyslipidaemia!\nHbA1c 8.1% – not at target.\nECG: sinus rhythm, signs of LVH, no ischaemia pattern.\nRecommendation: continue metformin, dose adjustment discussed. Continue ramipril. Statin therapy strongly recommended – patient declines \"for now\", wants to try diet. Smoking cessation recommended.\nFamily history: father died of a heart attack at 61.\nNo known allergies."
+  },
+  "P002-D002": {
+   "title": "Exercise ECG for suspected coronary artery disease",
+   "text": "Referred by Dr Holzmann for suspected coronary artery disease (exertional pain in the right shoulder).\nPatient Wimmer Gerald, born 23.05.1970.\n\nPrevious illnesses: type 2 diabetes, arterial hypertension, dyslipidaemia (no statin so far), smoker.\nFamily history: father with myocardial infarction at 61.\n\nExercise ECG (bicycle):\nMaximum load: 125 W (stopped because of exhaustion).\nMax HR: 151/min. Max BP: 182/100.\nECG under load: ST depression 1.2 mm in V4–V6 at 100 W → suspected exercise-induced ischaemia.\nNo angina during the test.\n\nAssessment: positive exercise test. Cardiology check and possibly coronary angiography recommended.\nStopping smoking strongly recommended.\nRecommendation: start aspirin 100 mg 1-0-0 (GP), refer to cardiology."
+  },
+  "P002-D003": {
+   "title": "Emergency referral for chest pain",
+   "text": "Emergency referral!\nPatient: Wimmer Gerald, born 23.05.1970\nReferral diagnosis: suspected acute coronary syndrome / STEMI\n\nHistory: severe pressing chest pain for about 3 h, radiating to the left arm, sweating, nausea. Onset about 04:30.\nPrevious illnesses: type 2 diabetes, arterial hypertension, dyslipidaemia, suspected coronary artery disease (positive exercise ECG 03/2022, no coronary angiography done).\nMedication: metformin 1000 mg 1-0-1, ramipril 5 mg 1-0-0, aspirin 100 mg 1-0-0.\nSmoker (20 cigarettes/day).\nAllergies: none known.\n\nECG in the practice: ST elevation in II, III, aVF – suspected inferior wall STEMI! Please admit immediately.\nAspirin 500 mg already given.\nDr Petra Holzmann"
+  },
+  "P002-D004": {
+   "title": "Admission report, chest pain unit",
+   "text": "Admission: 14.10.2024, 08:20, chest pain unit\nPatient: Wimmer Gerald, born 23.05.1970, male\n\nReferral diagnosis: suspected inferior wall STEMI.\n\nHistory:\nPressing chest pain since about 04:30, radiating to the left arm, sweating, nausea. Pain at admission NRS 5/10 (somewhat better after aspirin 500 mg in the practice).\n\nPrevious illnesses:\n- Type 2 diabetes (since 2016)\n- Arterial hypertension\n- Dyslipidaemia\n- Positive exercise ECG 03/2022, no invasive tests done\n- Smoking (20 cigarettes/day, about 36 pack-years)\nNo known allergies. No known previous surgery.\n\nPhysical examination:\nGeneral condition: moderate, in pain, sweating. Weight 96 kg, height 178 cm.\nHeart: sounds regular, no murmurs. Pulse 92/min.\nLungs: vesicular both sides, no crackles.\nAbdomen: soft, normal.\nLimbs: no oedema.\nBP 156/94 mmHg.\n\nECG at admission (08:22):\nST elevation II, III, aVF max 1.8 mm, reciprocal ST depression in I, aVL → inferior wall STEMI?\nV4–V6: no significant ST elevation.\n\nNote: ECG will be reviewed again by the senior doctor.\n\nDiagnosis (provisional): suspected ACS, differential: inferior wall STEMI vs NSTEMI.\n\nPlan:\n- Troponin, CK, CK-MB, blood count, coagulation, basic chemistry stat\n- Continuous monitoring\n- Heparin 5,000 IU IV bolus\n- Nitroglycerin sublingual for pain\n- Senior doctor review immediately\n- Prepare cardiac catheter lab"
+  },
+  "P002-D005": {
+   "title": "Emergency laboratory for ACS",
+   "text": "Patient: Wimmer Gerald, born 23.05.1970, male\nOrder number: LM-2024-10-14-0031\nSample taken: 14.10.2024, 08:30 (STAT)\n\nTroponin T hs: 1,840 ng/l [ref: <14] ↑↑↑ → significantly raised\nCK: 680 U/l [ref: <190] ↑↑\nCK-MB: 62 U/l [ref: <25] ↑↑\nLDH: 312 U/l [ref: <248] ↑\n\nBlood count:\n  Hb: 14.2 g/dl [ref: 13.5–17.5]\n  Leucocytes: 11.8 G/l [ref: 4.0–10.0] ↑ (stress reaction)\n  Platelets: 188 G/l [ref: 150–400]\n\nCoagulation:\n  INR: 1.04, aPTT: 28 s\n\nClinical chemistry:\n  Na: 140 mmol/l, K: 4.0 mmol/l\n  Creatinine: 1.08 mg/dl [ref: 0.7–1.2]\n  eGFR: 74 ml/min/1.73m²\n  Glucose: 9.8 mmol/l [ref: 3.9–6.1] ↑ (diabetes, stress)\n  HbA1c: 8.6% ↑ [ref: <5.7%]\n  Total cholesterol: 6.1 mmol/l, LDL: 4.0 mmol/l ↑\n\nComment: troponin rise consistent with myocardial damage. STAT result."
+  },
+  "P002-D006": {
+   "title": "Senior doctor ECG review – reclassified as NSTEMI",
+   "text": "14.10.2024, 09:15, Senior Dr Bernhard Reithofer, cardiology\n\nECG review:\nThe admission ECG was interpreted by the GP as suspected STEMI; senior doctor review now:\nST elevation in II, III, aVF <2 mm, not a complete STEMI picture. Rather ST changes from inferior wall ischaemia without full STEMI criteria.\nTroponin T hs: 1,840 ng/l – significantly raised → ACS confirmed.\nReclassification: NSTEMI (inferior wall ischaemia).\n\nPlan: urgent coronary angiography within 24 h. Cardiac catheter lab booked for 14:00 today.\nSimvastatin 40 mg 0-0-1 started (statin loading before the procedure).\nContinue heparin (infusion, aPTT-guided).\nMetformin PAUSED from now (contrast medium planned, kidney protection).\nNicotine patch 14 mg offered – patient agrees."
+  },
+  "P002-D007": {
+   "title": "Nursing report, day of admission",
+   "text": "14.10.2024, 11:00, registered nurse Werner Stein\n\nMr Wimmer, chest pain unit bed 2. Monitoring running. Pain better, NRS 2/10.\nIn the nursing talk the patient reports that years ago he received iodinated contrast medium and became \"all red in the face and short of breath\". It went away by itself. This was passed on to the ward doctor.\nSmoking: smoker, patch applied.\nGlucose monitoring: 11.2 mmol/l. Insulin correction according to protocol.\nBP 148/88, pulse 88/min. SpO2 98%.\nPatient cooperative, understands the situation. Anxious about the upcoming cardiac catheter procedure.\nNil by mouth from 12:00 as ordered."
+  },
+  "P002-D008": {
+   "title": "Preparation for coronary angiography – contrast allergy check",
+   "text": "14.10.2024, 13:30, Dr Sandra Krenn\n\nNursing report of a previous contrast reaction: the patient reports flushing and shortness of breath after iodinated contrast (date unknown). Resolved spontaneously. No anaphylaxis treatment needed at the time.\nDiscussed with radiology and anaesthesia:\n→ Suspected mild contrast intolerance (pseudo-allergic reaction, grade I–II Ring/Messmer)\n→ Premedication before contrast: prednisolone 50 mg orally now and 6 h before the procedure, clemastine 2 mg IV 30 min before\n→ Use iso-osmolar contrast (iodixanol)\n→ Emergency readiness in the catheter lab\n\nFirst dose of simvastatin 40 mg given at noon.\nHeparin infusion running, aPTT 64 s (target 60–80 s) → dose OK."
+  },
+  "P002-D009": {
+   "title": "Coronary angiography + PCI (LAD stent)",
+   "text": "Cardiac catheter report\nDate: 14.10.2024, 14:30–15:45\nOperator: Senior Dr Klaus Brandner, interventional cardiologist\nAssistant: Dr Sandra Krenn\n\nIndication: NSTEMI, urgent coronary angiography.\nAccess: right radial artery, 6F.\nContrast: iodixanol (iso-osmolar), premedication given. Contrast tolerance: no reaction.\n\nCoronary angiography findings:\n- Left coronary artery: LAD: severe proximal stenosis (about 85%), TIMI 1 flow. LCX: minor wall irregularities, nothing significant.\n- RCA: moderate stenosis (about 50%) in the middle segment, no intervention needed.\n\nDecision: intervention on the LAD.\n\nPCI:\nPre-dilatation with a 2.5 mm balloon. Drug-eluting stent (DES) in the proximal LAD: Orsiro Mission 3.0 × 18 mm (Biotronik, sirolimus-coated). Post-dilatation with a 3.5 mm balloon. Result: TIMI 3 flow, no residual stenosis. No dissection.\n\nComplications: none.\nBlood loss: minimal.\nAfter the procedure:\n- P2Y12 loading: ticagrelor 180 mg loading dose immediately after the procedure (class I, ESC ACS guideline).\n- Stop heparin infusion this evening.\n\nDiagnosis:\n1. NSTEMI with LAD stenosis (I21.4)\n2. Two-vessel coronary artery disease (LAD critical, RCA moderate)\n3. Status after PCI with DES in the LAD, 14.10.2024"
+  },
+  "P002-D010": {
+   "title": "Progress note, day 1 after PCI",
+   "text": "15.10.2024, 07:30, Dr Krenn\nDay 1 after PCI.\n\nPatient awake, no symptoms. Pain 0/10. No chest pain.\nPuncture site right wrist: dressing dry, no haematoma.\nPulse 72/min regular, BP 138/84, SpO2 99%.\nECG: sinus rhythm, ST normalised, small Q waves II/III/aVF → inferior infarction confirmed.\n\nSimvastatin 40 mg started yesterday: after discussion with the senior doctor, switch to atorvastatin 80 mg 0-0-1 recommended (more effective in coronary disease after ACS, guideline-based). Simvastatin stopped.\nAtorvastatin 80 mg 0-0-1 from today.\n\nDual antiplatelet therapy: continue aspirin 100 mg 1-0-0 and ticagrelor 90 mg 1-0-1.\nContinue ramipril 5 mg.\nMetformin: keep paused (contrast <48 h ago). Restart planned tomorrow if creatinine is stable.\nContinue nicotine patch.\n\nPlan:\n- Echo today\n- Lab tomorrow\n- Smoking cessation advice\n- Restart metformin tomorrow if creatinine OK"
+  },
+  "P002-D011": {
+   "title": "Echocardiography after NSTEMI",
+   "text": "Echocardiography report, 15.10.2024\nSenior Dr Reithofer\n\nIndication: NSTEMI after PCI – assessment of LV function.\n\nFindings:\n- LV: EF about 45% (mildly reduced). Regional wall motion abnormality: hypokinesia inferior and infero-posterior (matching inferior ischaemia).\n- RV: normal.\n- Valves: no significant pathology.\n- No pericardial effusion.\n- LA: not significantly enlarged.\n\nAssessment: mildly reduced LV function after NSTEMI with regional wall motion abnormality (inferior wall). No sign of mechanical complication (septal defect, papillary muscle rupture).\nRepeat echo recommended in 6–8 weeks.\nACE inhibitor important (continue ramipril, consider increasing the dose)."
+  },
+  "P002-D012": {
+   "title": "Laboratory, day 2 after PCI",
+   "text": "Patient: Wimmer Gerald, born 23.05.1970\nOrder number: LM-2024-10-16-0088\nSample taken: 16.10.2024, 06:15\n\nTroponin T hs: 5,420 ng/l ↑↑ (peak, expected after NSTEMI)\nCK: 1,840 U/l ↑↑ (peak)\nCK-MB: 148 U/l ↑↑\n\nClinical chemistry:\n  Creatinine: 1.12 mg/dl [ref: 0.7–1.2] – OK, no contrast damage\n  Na: 139 mmol/l, K: 4.2 mmol/l\n  Glucose: 8.4 mmol/l\n  LDL cholesterol: 3.9 mmol/l (still raised before statin effect)\n  AST: 68 U/l ↑ (myocardial damage)\n  ALT: 24 U/l\n\nComment: expected enzyme peak after NSTEMI/PCI. Creatinine stable → metformin can be restarted."
+  },
+  "P002-D013": {
+   "title": "Progress note day 2 – metformin restarted, smoking advice",
+   "text": "16.10.2024, 09:00, Dr Krenn\n\nCreatinine stable (1.12 mg/dl, >48 h after contrast) → metformin 1000 mg 1-0-1 restarted.\nThe patient reports no chest pain since the stent. Still free of symptoms.\nECG: sinus rhythm, no new changes.\n\nSmoking advice: psychologist Tanja Berger (smoking cessation service) saw the patient today. Patient very motivated to stop. Continue nicotine patch; the psychologist recommends an outpatient smoking cessation group after discharge.\n\nThe patient also reports that a few months ago he sometimes noticed palpitations, mainly in the evening – never examined, he thought it was harmless. No ECG was ever done for this.\n\nPlan:\n- Discharge on 18 or 19.10. if still stable\n- Teaching on dual antiplatelet therapy and stent care\n- Lab check for atorvastatin in 6 weeks at the GP"
+  },
+  "P002-D014": {
+   "title": "Discharge medication – order",
+   "text": "18.10.2024, 08:00\nSenior Dr Reithofer\n\nMedication at discharge:\n1. Aspirin 100 mg (Aspirin Cardio) 1-0-0 – dual antiplatelet therapy part 1 (lifelong)\n2. Ticagrelor 90 mg (Brilique) 1-0-1 – dual antiplatelet therapy part 2 (at least 12 months after DES)\n   WARNING: stop ONLY after talking to a cardiologist!\n3. Atorvastatin 80 mg (Sortis) 0-0-1 – high-dose statin after ACS (lifelong)\n4. Ramipril 5 mg (Delix) 1-0-0 – heart failure prevention after NSTEMI (EF 45%)\n5. Metformin 1000 mg (Glucophage) 1-0-1 – type 2 diabetes\n\nStopped during the stay:\n- Simvastatin 40 mg (replaced by atorvastatin 80 mg)\n- Heparin IV\n- Nicotine patch: prescribed for another 8 weeks as an outpatient\n\nNote: pause metformin at least 48 h before any contrast examination."
+  },
+  "P002-D015": {
+   "title": "Discharge letter after NSTEMI and PCI",
+   "text": "Discharge letter\nMusterstadt Regional Hospital, Cardiology\nDate: 18.10.2024\n\nDear Dr Holzmann,\n\nWe are discharging Mr Gerald Wimmer, born 23.05.1970, after an inpatient stay from 14.10.2024 to 18.10.2024.\n\nMain diagnoses:\n1. NSTEMI (inferior wall ischaemia) with proximal LAD stenosis (I21.4)\n2. Two-vessel coronary artery disease (LAD critical, RCA moderate)\n3. Status after PCI with DES (Orsiro Mission 3.0×18 mm) in the proximal LAD, 14.10.2024\n4. Mildly reduced LV function (EF 45%) after NSTEMI\n5. Type 2 diabetes mellitus (E11)\n6. Arterial hypertension (I10)\n7. Dyslipidaemia (E78.5)\n8. Nicotine dependence (active smoker, cessation started)\n\nCourse:\nEmergency admission. Initial diagnosis \"suspected STEMI\" by the GP; after senior doctor ECG review reclassified as NSTEMI. Urgent coronary angiography on 14.10., PCI with DES in the LAD without problems. Contrast premedication because of a reported contrast reaction (flushing, shortness of breath after iodinated contrast, unconfirmed allergy) – procedure without reaction. Echo after PCI: EF 45%, inferior wall hypokinesia.\n\nAllergy/intolerance note: reported contrast reaction (flushing, shortness of breath) after iodinated contrast – grade I–II, not clinically confirmed (no formal allergy test). For contrast: use premedication and iso-osmolar contrast.\n\nMedication at discharge:\n1. Aspirin 100 mg 1-0-0\n2. Ticagrelor 90 mg 1-0-1 (at least 12 months, do NOT stop without cardiology!)\n3. Atorvastatin 80 mg 0-0-1\n4. Ramipril 5 mg 1-0-0\n5. Metformin 1000 mg 1-0-1\n\nNicotine patch 14 mg for another 8 weeks.\n\nImplant: drug-eluting stent (DES) in the proximal LAD: Biotronik Orsiro Mission 3.0×18 mm, sirolimus-coated. Implanted 14.10.2024.\n\nRecommendations:\n- Cardiology check in 6 weeks (echo for EF, review of antiplatelet therapy)\n- HbA1c and lipids in 6 weeks at the GP\n- Smoking cessation group\n- Avoid physical strain for 4 weeks, then cardiac rehabilitation\n\nKind regards, Senior Dr Bernhard Reithofer, cardiologist\nMusterstadt Regional Hospital"
+  }
+ }
+}
