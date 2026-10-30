@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
+from app.primary import records
 from tests.test_api import login
 
 
@@ -13,6 +14,26 @@ def client():
 
 def h(c, uid):
     return login(c, uid)
+
+
+def test_ai_checks_trim_trailing_periods_before_joining():
+    rec = {
+        "record": {
+            "unverified": [],
+            "must_not_include": [{
+                "text": "The CT report mentions no embolism..  ",
+                "detail": "Radiology report D005..  ",
+                "sources": ["P001-D005"],
+            }],
+        },
+        "documents": [{"id": "P001-D005", "typ": "Radiologiebefund"}],
+    }
+
+    checks = records.checks(rec)
+
+    assert checks[0]["text"] == (
+        "The CT report mentions no embolism – Radiology report D005. Please review the sources."
+    )
 
 
 def test_bundle_patients_listed_with_names_for_their_hospital(client):

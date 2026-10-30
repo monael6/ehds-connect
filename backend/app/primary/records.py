@@ -111,8 +111,10 @@ def checks(rec: dict) -> list[dict]:
     checks = []
     for item in record.get("must_not_include", []):
         if ai_record:
-            detail = f" – {item['detail']}" if item.get("detail") else ""
-            text = f"{item['text']}{detail}. Please review the sources."
+            item_text = item.get("text", "").rstrip(" .")
+            item_detail = (item.get("detail") or "").rstrip(" .")
+            detail = f" – {item_detail}" if item_detail else ""
+            text = f"{item_text}{detail}. Please review the sources."
         else:
             text = f"{item['text']}: mentioned in the source documents, not included in this summary. Please review the sources."
         checks.append({"text": text, "source": sources(rec, item.get("sources", []))})
