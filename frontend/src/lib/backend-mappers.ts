@@ -152,6 +152,7 @@ export interface SummaryDto {
   devices?: { label: string; since?: string | null; source?: string }[];
   procedures?: { label: string; date?: string | null; source?: string }[];
   results?: { code: string; label: string; value: number; unit?: string | null; date?: string | null }[];
+  checks?: { text: string; source: string }[];
 }
 /** Implants and procedures from a patient's documents; codes are local keys for the term lookup. */
 function recordItems(s: SummaryDto, lang: Lang): Patient["implants"] {
@@ -179,6 +180,7 @@ export function fromSummary(s: SummaryDto, lang: Lang, base: { name: string; cro
     allergies: allergies.map((a) => ({ code: a.code ?? "", severity: a.severity === "high" ? "high" : "moderate", ...(a.reaction ? { reaction: a.reaction } : {}), ...(a.source ? { source: a.source } : {}) })),
     implants: recordItems(s, lang),
     measurements: (s.results ?? []).map((r) => ({ code: r.code, value: r.value, unit: r.unit ?? "", date: r.date ?? "" })),
+    ...(s.checks?.length ? { checks: s.checks } : {}),
     ...(s.emergency?.length ? { emergency: s.emergency.map((e) => ({ type: e.type, text: e.text, ...(e.code ? { code: e.code } : {}) })) } : {}),
   };
 }

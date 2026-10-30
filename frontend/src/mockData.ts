@@ -66,6 +66,8 @@ export interface Patient {
   measurements: { code: string; value: number; unit: string; date: string }[];
   /** Emergency information as selected by the backend (critical medication and conditions). */
   emergency?: { type: string; text: string; code?: string }[];
+  /** Points the documents mention but the summary does not take over; the doctor decides. */
+  checks?: { text: string; source: string }[];
 }
 
 export const PATIENTS: Patient[] = [

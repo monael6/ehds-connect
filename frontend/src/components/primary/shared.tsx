@@ -30,6 +30,9 @@ export function IpsCards({ p, lang, labelLang = lang, showCodes = true, hidden =
       {show("implants") && <Card><CardHeader className="pb-3"><CardTitle className="text-base">{sec("implants")}</CardTitle></CardHeader><CardContent className="space-y-2">
         {p.implants.length ? p.implants.map((x) => <div key={x.code} className={row}><span>{term(x.code, lang)}{x.source && <span className="block text-xs text-muted-foreground">Source: {x.source}</span>}</span>{showCodes && !x.source && <CodeTag c={x.code} sys="SNOMED" />}</div>) : <p className="text-sm text-muted-foreground">{UI.none[labelLang]}</p>}
       </CardContent></Card>}
+      {p.checks?.length ? <Card className="border-warning/40 md:col-span-2"><CardHeader className="pb-3"><CardTitle className="text-base">For the doctor to review</CardTitle><p className="text-sm text-muted-foreground">Mentioned in the documents but not taken into this summary. The system makes no diagnosis – please check the sources and decide.</p></CardHeader><CardContent className="space-y-2">
+        {p.checks.map((c) => <div key={c.text} className="text-sm"><span className="font-medium">{c.text.split(":")[0]}</span><span className="block text-xs text-muted-foreground">Source: {c.source}</span></div>)}
+      </CardContent></Card> : null}
       {show("measurements") && p.measurements.length > 0 && <Card className="md:col-span-2"><CardHeader className="pb-3"><CardTitle className="text-base">{sec("measurements")}</CardTitle></CardHeader><CardContent>
         <div className="overflow-x-auto"><table className="w-full text-sm">
           <thead><tr className="text-left text-xs text-muted-foreground"><th className="py-1.5 font-medium">Test</th>{showCodes && <th className="font-medium">LOINC</th>}<th className="font-medium">Value</th><th className="font-medium">Date</th></tr></thead>

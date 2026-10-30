@@ -51,3 +51,14 @@ def test_letter_draft_from_documents(client):
 def test_bundle_patients_not_in_secondary_use(client):
     from app.datastore import get_store
     assert get_store().scalar("SELECT count(*) FROM hdab.patients WHERE patient_id LIKE 'P00%'") == 0
+
+
+def test_all_bundles_english_and_no_system_diagnosis(client):
+    import re
+    hd = h(client, "u-huber")
+    for pid in ["P001", "P002", "P003", "P004", "P005", "P006"]:
+        docs = client.get(f"/api/patients/{pid}/documents", headers=hd).json()["documents"]
+        assert not any(re.search(r"\b(und|mit|nach|der|die)\b", d["text"]) for d in docs), pid
+        s = client.get(f"/api/patients/{pid}/summary", headers=hd).json()
+        assert s["checks"] and all("Please check the sources" in c["text"] for c in s["checks"])
+        assert "ruled out" not in str(s["checks"]).lower()
