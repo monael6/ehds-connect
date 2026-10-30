@@ -55,6 +55,22 @@ CREATE TABLE IF NOT EXISTS letter_edits (
     id INTEGER PRIMARY KEY AUTOINCREMENT, letter_id TEXT NOT NULL, section TEXT NOT NULL,
     before TEXT, after TEXT, reason TEXT, editor_id TEXT, editor_name TEXT, ts TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS permissions (
+    user_id TEXT NOT NULL, permission TEXT NOT NULL, granted_by TEXT, granted_by_name TEXT,
+    granted_at TEXT NOT NULL, PRIMARY KEY (user_id, permission)
+);
+CREATE TABLE IF NOT EXISTS security_keys (
+    id TEXT PRIMARY KEY, user_id TEXT NOT NULL, kind TEXT NOT NULL, label TEXT,
+    credential_id TEXT NOT NULL, public_key BLOB NOT NULL, sign_count INTEGER NOT NULL DEFAULT 0,
+    status TEXT NOT NULL DEFAULT 'active', created_at TEXT NOT NULL, status_changed_at TEXT
+);
+CREATE TABLE IF NOT EXISTS key_challenges (
+    challenge TEXT PRIMARY KEY, user_id TEXT NOT NULL, purpose TEXT NOT NULL, ref TEXT,
+    created_at TEXT NOT NULL, used INTEGER NOT NULL DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS recovery_codes (
+    code_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL, issued_by TEXT, expires_at TEXT NOT NULL, used_at TEXT
+);
 CREATE TABLE IF NOT EXISTS catalogue_entries (
     data_holder TEXT PRIMARY KEY, entry TEXT NOT NULL, updated_by TEXT, updated_at TEXT NOT NULL
 );
@@ -77,7 +93,24 @@ def connect(path: Path | str | None = None) -> sqlite3.Connection:
             _conn.execute("PRAGMA journal_mode=WAL") if p != ":memory:" else None
             _conn.execute("PRAGMA foreign_keys=ON")
             _conn.executescript(SCHEMA)
+            _migrate(_conn)
         return _conn
+
+
+# Columns added after the first release; existing state.sqlite files get them on start.
+MIGRATIONS = {
+    "users": {"email": "TEXT", "password_hash": "TEXT", "hospital_role": "TEXT",
+              "status": "TEXT NOT NULL DEFAULT 'active'"},
+    "letters": {"signature": "TEXT"},
+}
+
+
+def _migrate(c: sqlite3.Connection) -> None:
+    for table, cols in MIGRATIONS.items():
+        have = {r[1] for r in c.execute(f"PRAGMA table_info({table})")}
+        for col, decl in cols.items():
+            if col not in have:
+                c.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
 
 
 @contextmanager

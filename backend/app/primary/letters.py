@@ -136,6 +136,7 @@ def _row(letter_id: str) -> dict:
     if not row:
         raise HTTPException(404, "Letter not found")
     row["content"] = json.loads(row["content"])
+    row["signature"] = json.loads(row["signature"]) if row.get("signature") else None
     row["edit_history"] = state.query("SELECT * FROM letter_edits WHERE letter_id = ? ORDER BY id", (letter_id,))
     row["versions"] = state.query("SELECT id, version, status, signed_by, signed_at, created_at FROM letters "
                                   "WHERE patient_id = ? AND encounter_id IS ? ORDER BY version",
@@ -197,29 +198,33 @@ def edit_section(letter_id: str, key: str, text: str | None, items: list[dict] |
     return _row(letter_id)
 
 
-def sign(letter_id: str, confirmed: bool, second_factor: str | None, user: dict) -> dict:
+def sign(letter_id: str, confirmed: bool, user: dict, verify_signature) -> dict:
+    """verify_signature() checks the security-key signature and returns its details (see signature.py)."""
     row = _row(letter_id)
     if row["status"] != "draft":
         raise HTTPException(409, f"Letter is already {row['status']}")
     if not confirmed:
         raise HTTPException(400, "Confirm that you reviewed the letter and take medical responsibility")
-    if not second_factor or not second_factor.isdigit() or len(second_factor) != 6:
-        state.audit(user, "primary", "letter_sign_failed", patient_id=row["patient_id"], outcome="second_factor",
-                    details={"letter_id": letter_id})
-        raise HTTPException(401, "Second factor required (6 digits)")
     missing = row["missing_required"]
     if missing:
         state.audit(user, "primary", "letter_sign_blocked", patient_id=row["patient_id"], outcome="required_missing",
                     details={"letter_id": letter_id, "missing": missing})
         raise HTTPException(422, {"message": "Required sections are empty", "missing": missing})
+    try:
+        sig = verify_signature()
+    except HTTPException:
+        state.audit(user, "primary", "letter_sign_failed", patient_id=row["patient_id"], outcome="signature_invalid",
+                    details={"letter_id": letter_id})
+        raise
     content = row["content"]
     content["header"]["signing_physician"] = user["name"]
     with state.tx() as c:
         now = state.now()
-        c.execute("UPDATE letters SET status='signed', signed_by=?, signed_at=?, content=?, updated_at=? WHERE id=?",
-                  (user["name"], now, json.dumps(content, ensure_ascii=False, default=str), now, letter_id))
+        c.execute("UPDATE letters SET status='signed', signed_by=?, signed_at=?, content=?, signature=?, updated_at=? "
+                  "WHERE id=?", (user["name"], now, json.dumps(content, ensure_ascii=False, default=str),
+                                 json.dumps(sig), now, letter_id))
         state.audit(user, "primary", "letter_signed", patient_id=row["patient_id"], outcome="signed",
-                    details={"letter_id": letter_id, "method": "personal login + second factor"}, conn=c)
+                    details={"letter_id": letter_id, "method": sig["method"], "key_id": sig["key_id"]}, conn=c)
     return _row(letter_id)
 
 

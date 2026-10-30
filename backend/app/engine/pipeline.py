@@ -44,15 +44,17 @@ def evaluate(request: dict, store: DataStore, user: dict | None = None, persist:
     result["seconds"] = round(time.perf_counter() - t0, 3)
 
     if persist:
+        # Applicant submissions wait for HDAB staff; anonymous / staff evaluations are automatic.
+        status = "submitted" if (user or {}).get("role") == "interested_party" else "automatic"
         with state.tx() as c:
             now = state.now()
             c.execute("""INSERT INTO decisions (request_id, submitted_by, applicant, purpose, requested_as, decision,
                          articles, status, result, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)
                          ON CONFLICT(request_id) DO UPDATE SET decision=excluded.decision, articles=excluded.articles,
-                         result=excluded.result, status='automatic', updated_at=excluded.updated_at""",
+                         result=excluded.result, status=excluded.status, staff_note=NULL, updated_at=excluded.updated_at""",
                       (rid, (user or {}).get("id"), json.dumps(request.get("applicant"), ensure_ascii=False),
                        request.get("purpose"), request.get("requested_as"), d.decision, json.dumps(d.articles),
-                       "automatic", json.dumps(result, ensure_ascii=False, default=str), now, now))
+                       status, json.dumps(result, ensure_ascii=False, default=str), now, now))
             if d.decision != REJECT:
                 for dh in store.data_holders():
                     c.execute("INSERT OR IGNORE INTO provisions (request_id, data_holder, status) VALUES (?,?,?)",
@@ -73,4 +75,17 @@ def applicant_view(result: dict) -> dict:
         s = result["spe"]
         out["spe"] = {"id": s["id"], "patient_count": s["patient_count"], "record_types": s["record_types"],
                       "download": "blocked"}
+    return out
+
+
+RELEASED = ("confirmed", "automatic")
+
+
+def applicant_status_view(result: dict, status: str, staff_note: str | None) -> dict:
+    """Applicant view of a stored request: numbers and SPE access only once HDAB staff approved it."""
+    out = {**applicant_view(result), "status": status, "staff_note": staff_note,
+           "results_released": status in RELEASED}
+    if status not in RELEASED:
+        for k in ("answer", "statistics", "spe"):
+            out.pop(k, None)
     return out

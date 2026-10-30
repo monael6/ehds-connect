@@ -1,5 +1,11 @@
 """API: roles, SPE download block, discharge letter workflow, cross-border rules, audit."""
+import base64
+
 import pytest
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import ec
+from cryptography.hazmat.primitives.asymmetric.utils import decode_dss_signature
+from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 from fastapi.testclient import TestClient
 
 from app import datastore
@@ -15,6 +21,35 @@ def client(store):
 
 def login(c, uid):
     return {"Authorization": "Bearer " + c.post("/api/auth/login", json={"user_id": uid}).json()["token"]}
+
+
+def enrol_key(c, h, recovery_code=None):
+    """Register a simulated P-256 security key, like the browser does with WebCrypto."""
+    priv = ec.generate_private_key(ec.SECP256R1())
+    spki = priv.public_key().public_bytes(Encoding.DER, PublicFormat.SubjectPublicKeyInfo)
+    opts = c.post("/api/security-keys/register/options", json={"recovery_code": recovery_code}, headers=h)
+    if opts.status_code != 200:
+        return None, opts
+    ch = opts.json()["challenge"]
+    r = c.post("/api/security-keys", headers=h, json={"kind": "software", "label": "Demo key", "challenge": ch,
+                                                       "public_key": b64(spki), "signature": raw_sign(priv, ch),
+                                                       "recovery_code": recovery_code})
+    return priv, r
+
+
+def b64(b: bytes) -> str:
+    return base64.urlsafe_b64encode(b).rstrip(b"=").decode()
+
+
+def raw_sign(priv, challenge: str) -> str:
+    r, s = decode_dss_signature(priv.sign(challenge.encode(), ec.ECDSA(hashes.SHA256())))
+    return b64(r.to_bytes(32, "big") + s.to_bytes(32, "big"))
+
+
+def sign_body(c, h, lid, priv, kid, tamper=False):
+    ch = c.post(f"/api/discharge-letters/{lid}/sign/challenge", headers=h).json()["challenge"]
+    sig = raw_sign(priv, ch + ("x" if tamper else ""))
+    return {"confirmed": True, "key_id": kid, "challenge": ch, "signature": sig}
 
 
 def test_roles_are_enforced(client):
@@ -53,21 +88,26 @@ def test_reject_has_no_answer(client):
 
 def test_discharge_letter_workflow(client):
     h = login(client, "u-huber")
+    priv, key = enrol_key(client, h)
+    kid = key.json()["id"]
     letter = client.post("/api/discharge-letters", json={"patient_id": "p-4cfd3cf1"}, headers=h).json()
     lid = letter["id"]
     assert "Weitere empfohlene Maßnahmen" in letter["missing_required"]
     assert client.post(f"/api/discharge-letters/{lid}/send", headers=h).status_code == 409
-    assert client.post(f"/api/discharge-letters/{lid}/sign", json={"confirmed": True, "second_factor": "123456"},
+    assert client.post(f"/api/discharge-letters/{lid}/sign", json=sign_body(client, h, lid, priv, kid),
                        headers=h).status_code == 422
     client.put(f"/api/discharge-letters/{lid}/sections/empfehlungen",
                json={"text": "Kardiologische Kontrolle in 6 Wochen.", "reason": "ergänzt"}, headers=h)
     letter = client.get(f"/api/discharge-letters/{lid}", headers=h).json()
     assert letter["missing_required"] == [] and letter["edit_history"][0]["reason"] == "ergänzt"
-    assert client.post(f"/api/discharge-letters/{lid}/sign", json={"confirmed": True, "second_factor": "12"},
+    assert client.post(f"/api/discharge-letters/{lid}/sign", json=sign_body(client, h, lid, priv, kid, tamper=True),
                        headers=h).status_code == 401
-    signed = client.post(f"/api/discharge-letters/{lid}/sign", json={"confirmed": True, "second_factor": "123456"},
-                         headers=h).json()
+    body = sign_body(client, h, lid, priv, kid)
+    signed = client.post(f"/api/discharge-letters/{lid}/sign", json=body, headers=h).json()
     assert signed["status"] == "signed" and signed["signed_by"] == "Dr. Anna Huber"
+    assert signed["signature"]["method"].startswith("simulated security key")
+    # a challenge works once only
+    assert client.post(f"/api/discharge-letters/{lid}/sign", json=body, headers=h).status_code == 409
     assert client.put(f"/api/discharge-letters/{lid}/sections/brieftext", json={"text": "x"}, headers=h).status_code == 409
     assert client.post(f"/api/discharge-letters/{lid}/send", headers=h).status_code == 200
     v2 = client.post(f"/api/discharge-letters/{lid}/correct", headers=h).json()

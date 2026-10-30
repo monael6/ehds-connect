@@ -14,12 +14,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from . import auth, catalogue, state
-from .auth import FOREIGN_DOCTOR, HDAB, HOSPITAL, INTERESTED, PATIENT
+from .auth import FOREIGN_DOCTOR, HDAB, HOSPITAL, HOSPITAL_IT, INTERESTED, PATIENT
 from .config import settings
 from .datastore import get_store
 from .engine import permit, spe
-from .engine.pipeline import applicant_view, evaluate
-from .primary import crossborder, letters, summary
+from .engine.pipeline import applicant_status_view, applicant_view, evaluate
+from .primary import crossborder, letters, signature, summary
 
 DEMO_HOSPITAL = "Klinikum West"
 
@@ -48,17 +48,64 @@ def health():
 @app.get("/api/auth/accounts")
 def accounts():
     """Demo accounts for the sign-in screen (no passwords)."""
-    return state.query("SELECT id, name, role, organisation, data_holder, sign_in_method FROM users ORDER BY role, id")
+    rows = state.query("SELECT * FROM users WHERE status = 'active' AND id LIKE 'u-%' ORDER BY role, id")
+    demo = {u["id"] for u in auth.DEMO_USERS}
+    return [auth.public(r) for r in rows if r["id"] in demo]
 
 
 class LoginIn(BaseModel):
-    user_id: str = Field(examples=["u-novak"], description="u-novak (HDAB), u-weiss (researcher), u-huber (hospital), "
-                                                         "u-muster (patient), u-rossi (doctor in Italy), u-public")
+    user_id: str | None = Field(None, examples=["u-novak"],
+                                description="Demo shortcut: u-novak (HDAB), u-weiss (applicant), u-huber (senior doctor), "
+                                            "u-berger (doctor), u-gruber (hospital IT admin), u-muster (patient), "
+                                            "u-rossi (doctor in Italy), u-public")
+    email: str | None = None
+    password: str | None = None
 
 
 @app.post("/api/auth/login")
 def login(body: LoginIn):
+    if body.email:
+        return auth.login_password(body.email, body.password or "")
+    if not body.user_id:
+        raise HTTPException(422, "Enter email and password")
     return auth.login(body.user_id)
+
+
+@app.get("/api/auth/registration-options")
+def registration_options():
+    """Categories and roles for the registration form."""
+    return [
+        {"category": "healthcare", "label": "Healthcare", "description": "Hospital staff",
+         "roles": [{"id": auth.SENIOR, "label": "Senior Doctor"}, {"id": auth.DOCTOR, "label": "Doctor"},
+                   {"id": auth.IT_ADMIN, "label": "IT Admin"}], "needs_activation": True,
+         "hospitals": get_store().data_holders()},
+        {"category": "institute", "label": "Institute", "description": "Health Data Access Body",
+         "roles": [{"id": "hdab_staff", "label": "HDAB Staff"}], "needs_activation": False},
+        {"category": "applicant", "label": "Researcher / Applicant",
+         "description": "You submit data requests and receive results",
+         "roles": [{"id": "applicant", "label": "Applicant"}], "needs_activation": False},
+    ]
+
+
+class RegisterIn(BaseModel):
+    name: str
+    email: str
+    password: str
+    category: str = Field(examples=["applicant"])
+    role: str = Field(examples=["applicant"])
+    organisation: str = ""
+    hospital: str | None = None
+
+
+@app.post("/api/auth/register")
+def register(body: RegisterIn):
+    hospital = None
+    if body.category == "healthcare":
+        holders = get_store().data_holders()
+        hospital = body.hospital if body.hospital in holders else (DEMO_HOSPITAL if DEMO_HOSPITAL in holders else None)
+        if not hospital:
+            raise HTTPException(422, "Choose your hospital")
+    return auth.register(body.name, body.email, body.password, body.category, body.role, body.organisation, hospital)
 
 
 @app.post("/api/auth/logout")
@@ -70,7 +117,7 @@ def logout(user: dict = Depends(auth.current_user)):
 
 @app.get("/api/me")
 def me(user: dict = Depends(auth.current_user)):
-    return {"user": {k: v for k, v in user.items() if k != "token"}, "areas": sorted(auth.ROLE_AREAS[user["role"]])}
+    return {"user": auth.public(user), "areas": sorted(auth.ROLE_AREAS[user["role"]])}
 
 
 # ------------------------------------------------------------------ secondary use
@@ -102,6 +149,8 @@ def evaluate_request(request: dict = Body(..., examples=[{"id": "R01"}]), view: 
     if not request.get("definitions") and not request.get("purpose"):
         raise HTTPException(422, "A request needs at least a purpose and definitions")
     result = evaluate(request, get_store(), user)
+    if user and user["role"] == INTERESTED:
+        return applicant_status_view(result, "submitted", None)
     staff = (user and user["role"] == HDAB and view != "applicant") or (user is None and view == "staff")
     return result if staff else applicant_view(result)
 
@@ -109,7 +158,7 @@ def evaluate_request(request: dict = Body(..., examples=[{"id": "R01"}]), view: 
 @app.get("/api/requests")
 def list_requests(user: dict = Depends(auth.require(HDAB, INTERESTED))):
     rows = state.query("SELECT request_id, submitted_by, applicant, purpose, requested_as, decision, articles, status, "
-                       "created_at, updated_at FROM decisions ORDER BY created_at DESC")
+                       "staff_note, created_at, updated_at FROM decisions ORDER BY created_at DESC")
     if user["role"] == INTERESTED:
         rows = [r for r in rows if r["submitted_by"] == user["id"]]
     for r in rows:
@@ -132,7 +181,7 @@ def get_request(rid: str, user: dict = Depends(auth.require(HDAB, INTERESTED))):
     if user["role"] == INTERESTED:
         if row["submitted_by"] != user["id"]:
             raise HTTPException(403, "You can only see your own requests.")
-        return {**applicant_view(row["result"]), "status": row["status"], "staff_note": row["staff_note"]}
+        return applicant_status_view(row["result"], row["status"], row["staff_note"])
     return {**row["result"], "status": row["status"], "staff_note": row["staff_note"]}
 
 
@@ -148,6 +197,18 @@ def confirm_decision(rid: str, body: StaffAction, user: dict = Depends(auth.requ
                   (body.note, state.now(), rid))
         state.audit(user, "secondary", "decision_confirmed", request_id=rid, outcome="confirmed", details={"note": body.note}, conn=c)
     return {"request_id": rid, "status": "confirmed"}
+
+
+@app.post("/api/requests/{rid}/reject")
+def reject_request(rid: str, body: StaffAction, user: dict = Depends(auth.require(HDAB))):
+    _decision(rid)
+    if not (body.note or "").strip():
+        raise HTTPException(422, "Give the applicant a reason for the rejection")
+    with state.tx() as c:
+        c.execute("UPDATE decisions SET status='rejected', staff_note=?, updated_at=? WHERE request_id=?",
+                  (body.note, state.now(), rid))
+        state.audit(user, "secondary", "request_rejected", request_id=rid, outcome="rejected", details={"note": body.note}, conn=c)
+    return {"request_id": rid, "status": "rejected"}
 
 
 @app.post("/api/requests/{rid}/ask-info")
@@ -380,23 +441,36 @@ def edit_section(lid: str, key: str, body: SectionIn, user: dict = Depends(auth.
 
 class SignIn(BaseModel):
     confirmed: bool
-    second_factor: str
+    key_id: str
+    challenge: str
+    assertion: dict | None = Field(None, description="WebAuthn assertion (PublicKeyCredential JSON) for a hardware key")
+    signature: str | None = Field(None, description="base64url P-256 signature (r||s) over the challenge, simulated key")
+
+
+@app.post("/api/discharge-letters/{lid}/sign/challenge")
+def sign_challenge(lid: str, user: dict = Depends(auth.require_release)):
+    letter = letters.get(lid)
+    _own_patient(letter["patient_id"], user)
+    if letter["status"] != "draft":
+        raise HTTPException(409, f"Letter is already {letter['status']}")
+    return signature.sign_challenge(user, lid)
 
 
 @app.post("/api/discharge-letters/{lid}/sign")
-def sign_letter(lid: str, body: SignIn, user: dict = Depends(auth.require(HOSPITAL))):
+def sign_letter(lid: str, body: SignIn, user: dict = Depends(auth.require_release)):
     _own_patient(letters.get(lid)["patient_id"], user)
-    return letters.sign(lid, body.confirmed, body.second_factor, user)
+    return letters.sign(lid, body.confirmed, user, lambda: signature.verify(
+        user, lid, body.key_id, body.challenge, assertion=body.assertion, signature=body.signature))
 
 
 @app.post("/api/discharge-letters/{lid}/correct")
-def correct_letter(lid: str, user: dict = Depends(auth.require(HOSPITAL))):
+def correct_letter(lid: str, user: dict = Depends(auth.require_release)):
     _own_patient(letters.get(lid)["patient_id"], user)
     return letters.correct(lid, user)
 
 
 @app.post("/api/discharge-letters/{lid}/send")
-def send_letter(lid: str, user: dict = Depends(auth.require(HOSPITAL))):
+def send_letter(lid: str, user: dict = Depends(auth.require_release)):
     _own_patient(letters.get(lid)["patient_id"], user)
     return letters.send(lid, user)
 
@@ -453,3 +527,144 @@ def cross_border(body: CrossBorderIn, user: dict = Depends(auth.require(FOREIGN_
                                        identity={"document_type": body.document_type},
                                        identity_checked=body.identity_checked, patient_agrees=body.patient_agrees,
                                        emergency=body.emergency, reason=body.reason, lang=body.lang)
+
+
+# ------------------------------------------------------------------ security keys (digital signature)
+@app.get("/api/security-keys")
+def my_keys(user: dict = Depends(auth.require(HOSPITAL))):
+    return signature.keys(user["id"])
+
+
+class KeyOptionsIn(BaseModel):
+    recovery_code: str | None = None
+
+
+@app.post("/api/security-keys/register/options")
+def key_options(body: KeyOptionsIn, user: dict = Depends(auth.require(HOSPITAL))):
+    return signature.registration_options(user, body.recovery_code)
+
+
+class KeyIn(BaseModel):
+    kind: str = Field(examples=["webauthn", "software"])
+    label: str | None = None
+    challenge: str
+    credential: dict | None = None
+    public_key: str | None = Field(None, description="software key: base64url SPKI (DER) P-256 public key")
+    signature: str | None = Field(None, description="software key: signature over the challenge (proof of possession)")
+    recovery_code: str | None = None
+
+
+@app.post("/api/security-keys")
+def add_key(body: KeyIn, user: dict = Depends(auth.require(HOSPITAL))):
+    return signature.register(user, body.kind, body.label, body.challenge, credential=body.credential,
+                              public_key=body.public_key, signature=body.signature, recovery_code=body.recovery_code)
+
+
+@app.post("/api/security-keys/{kid}/lost")
+def key_lost(kid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    return signature.report_lost(user, kid)
+
+
+# ------------------------------------------------------------------ hospital staff & permissions
+def _staff_row(u: dict) -> dict:
+    return {**auth.public(u), "keys": signature.keys(u["id"]) if u["role"] == HOSPITAL else []}
+
+
+def _colleague(uid: str, user: dict) -> dict:
+    target = state.one("SELECT * FROM users WHERE id = ? AND role IN (?, ?)", (uid, HOSPITAL, HOSPITAL_IT))
+    if not target or target["organisation"] != user["organisation"]:
+        raise HTTPException(404, "No such staff member in your hospital")
+    return target
+
+
+@app.get("/api/hospital/staff")
+def hospital_staff(user: dict = Depends(auth.require(HOSPITAL_IT, HOSPITAL))):
+    """IT admins see everyone in their hospital; senior doctors see their colleagues to grant permissions."""
+    if user["role"] == HOSPITAL and user.get("hospital_role") != auth.SENIOR:
+        raise HTTPException(403, "Only senior doctors and IT admins can see the staff list.")
+    rows = state.query("SELECT * FROM users WHERE role IN (?, ?) AND organisation = ? ORDER BY status DESC, name",
+                       (HOSPITAL, HOSPITAL_IT, user["organisation"]))
+    if user["role"] == HOSPITAL:
+        rows = [r for r in rows if r["role"] == HOSPITAL and r["status"] == "active"]
+    return [_staff_row(r) for r in rows]
+
+
+@app.post("/api/admin/users/{uid}/activate")
+def activate_user(uid: str, user: dict = Depends(auth.require(HOSPITAL_IT))):
+    target = _colleague(uid, user)
+    with state.tx() as c:
+        c.execute("UPDATE users SET status='active' WHERE id=?", (uid,))
+        state.audit(user, "admin", "account_activated", outcome="active", details={"user": uid}, conn=c)
+    return _staff_row({**target, "status": "active"})
+
+
+class RoleIn(BaseModel):
+    hospital_role: str = Field(examples=["doctor"])
+
+
+@app.put("/api/admin/users/{uid}/role")
+def set_role(uid: str, body: RoleIn, user: dict = Depends(auth.require(HOSPITAL_IT))):
+    if body.hospital_role not in auth.HOSPITAL_ROLES:
+        raise HTTPException(422, "Unknown hospital role")
+    if uid == user["id"]:
+        raise HTTPException(409, "You cannot change your own role.")
+    target = _colleague(uid, user)
+    system_role = HOSPITAL_IT if body.hospital_role == auth.IT_ADMIN else HOSPITAL
+    with state.tx() as c:
+        c.execute("UPDATE users SET role=?, hospital_role=? WHERE id=?", (system_role, body.hospital_role, uid))
+        if body.hospital_role != auth.DOCTOR:
+            c.execute("DELETE FROM permissions WHERE user_id=? AND permission=?", (uid, auth.RELEASE_LETTERS))
+        state.audit(user, "admin", "role_changed", outcome=body.hospital_role,
+                    details={"user": uid, "from": target.get("hospital_role")}, conn=c)
+    return _staff_row(state.one("SELECT * FROM users WHERE id = ?", (uid,)))
+
+
+@app.post("/api/hospital/staff/{uid}/release-permission")
+def grant_release(uid: str, user: dict = Depends(auth.require_senior)):
+    target = _colleague(uid, user)
+    if target["role"] != HOSPITAL or target.get("hospital_role") != auth.DOCTOR or target["status"] != "active":
+        raise HTTPException(409, "Release permission can only be granted to active doctors.")
+    with state.tx() as c:
+        c.execute("INSERT OR REPLACE INTO permissions (user_id,permission,granted_by,granted_by_name,granted_at) "
+                  "VALUES (?,?,?,?,?)", (uid, auth.RELEASE_LETTERS, user["id"], user["name"], state.now()))
+        state.audit(user, "admin", "release_permission_granted", outcome="granted", details={"user": uid}, conn=c)
+    return _staff_row(target)
+
+
+@app.delete("/api/hospital/staff/{uid}/release-permission")
+def revoke_release(uid: str, user: dict = Depends(auth.require(HOSPITAL_IT, HOSPITAL))):
+    if user["role"] == HOSPITAL and user.get("hospital_role") != auth.SENIOR:
+        raise HTTPException(403, "Only senior doctors and IT admins can revoke release permissions.")
+    target = _colleague(uid, user)
+    with state.tx() as c:
+        c.execute("DELETE FROM permissions WHERE user_id=? AND permission=?", (uid, auth.RELEASE_LETTERS))
+        state.audit(user, "admin", "release_permission_revoked", outcome="revoked", details={"user": uid}, conn=c)
+    return _staff_row(target)
+
+
+@app.get("/api/hospital/staff/{uid}/permission-history")
+def permission_history(uid: str, user: dict = Depends(auth.require(HOSPITAL_IT))):
+    _colleague(uid, user)
+    rows = state.audit_rows(area="admin", limit=500) + state.audit_rows(area="auth", limit=500)
+    return sorted([r for r in rows if r["details"].get("user") == uid or r["details"].get("for_user") == uid
+                   or r["details"].get("owner") == uid], key=lambda r: r["id"], reverse=True)
+
+
+@app.post("/api/admin/users/{uid}/keys/{kid}/lost")
+def admin_key_lost(uid: str, kid: str, user: dict = Depends(auth.require(HOSPITAL_IT))):
+    _colleague(uid, user)
+    return signature.report_lost(user, kid, owner_id=uid)
+
+
+class RecoveryIn(BaseModel):
+    identity_checked: bool = Field(description="IT admin confirms the doctor's photo ID was checked in person")
+
+
+@app.post("/api/admin/users/{uid}/recovery-code")
+def recovery_code(uid: str, body: RecoveryIn, user: dict = Depends(auth.require(HOSPITAL_IT))):
+    target = _colleague(uid, user)
+    if not body.identity_checked:
+        raise HTTPException(422, "Check the doctor's photo ID in person before issuing a recovery code.")
+    if target["role"] != HOSPITAL:
+        raise HTTPException(409, "Only doctors sign with a security key.")
+    return signature.issue_recovery_code(user, uid)
