@@ -88,7 +88,7 @@ def checklist(request: dict, decision: Decision) -> list[dict]:
 def eligibility(answers: dict) -> dict:
     """Wizard for interested parties: what could they apply for?"""
     purpose = str(answers.get("purpose", ""))
-    from .decision import find_prohibited
+    from .decision import explains_stats_not_enough, find_prohibited
     bad = find_prohibited(purpose)
     if bad or answers.get("purpose_code") == "prohibited":
         return {"result": "not_eligible", "reason": "Prohibited purpose (Art. 54): " + (bad[0]["purpose"] if bad else "selected")}
@@ -101,6 +101,10 @@ def eligibility(answers: dict) -> dict:
         missing = [k for k in ("qualified", "safeguards", "ethics") if not answers.get(k)]
         if not why:
             return {"result": "statistics", "reason": "Without a reason why statistics are not enough you can apply for statistics (Art. 66, 69)."}
+        if not explains_stats_not_enough(why):
+            # Same test as the decision on a real application, so the wizard never promises more than it gives.
+            return {"result": "statistics", "reason": "Your reason does not say why statistics are not enough (for example record-level "
+                                                      "data or training a model), so you can apply for statistics (Art. 66, 69)."}
         if missing:
             return {"result": "not_eligible", "reason": "For records you need: " + ", ".join(missing) + " (Art. 68)."}
         return {"result": "spe", "reason": "You can apply for access in a secure processing environment (Art. 68, 73)."}

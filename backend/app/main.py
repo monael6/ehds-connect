@@ -245,7 +245,7 @@ def eligibility(answers: dict = Body(...)):
 @app.get("/api/provisions")
 def provisions(user: dict = Depends(auth.require(HOSPITAL))):
     rows = state.query("""SELECT p.request_id, p.status, p.provided_at, p.provided_by, d.applicant, d.purpose, d.decision,
-                          d.result FROM provisions p JOIN decisions d USING (request_id)
+                          d.created_at AS decided_at, d.result FROM provisions p JOIN decisions d USING (request_id)
                           WHERE p.data_holder = ? AND d.decision != 'REJECT' ORDER BY d.created_at DESC""",
                        (user["data_holder"],))
     store = get_store()
@@ -438,6 +438,13 @@ class CrossBorderIn(BaseModel):
     emergency: bool = False
     reason: str | None = None
     lang: str = "it"
+
+
+@app.post("/api/cross-border/check")
+def cross_border_check(body: CrossBorderIn, user: dict = Depends(auth.require(FOREIGN_DOCTOR, HOSPITAL))):
+    """Access decision (rules 1–5) without releasing any data."""
+    return crossborder.check_access(get_store(), user, body.patient_id, identity_checked=body.identity_checked,
+                                    patient_agrees=body.patient_agrees, emergency=body.emergency, reason=body.reason)
 
 
 @app.post("/api/cross-border/patient-summary")
