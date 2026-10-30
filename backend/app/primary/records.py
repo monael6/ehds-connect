@@ -115,19 +115,71 @@ def checks(rec: dict) -> list[dict]:
         "unconfirmed": "Reported in the documents (unconfirmed)",
     }
     checks = []
-    for item in record.get("must_not_include", []):
-        if ai_record:
-            label = ai_labels.get(item.get("reason"), "Mentioned in the documents")
-            item_text = (item.get("text") or "").rstrip(" .")
-            text = f"{label}: {item_text}. Please review the sources."
-        else:
-            text = f"{item['text']}: mentioned in the source documents, not included in this summary. Please review the sources."
-        checks.append({"text": text, "source": sources(rec, item.get("sources", []))})
     if ai_record:
+        groups = {}
+        for item in record.get("must_not_include", []):
+            label = ai_labels.get(item.get("reason"), "Mentioned in the documents")
+            item_text = str(item.get("text") or "").strip()
+            prefix = None
+            statement = item_text
+            if ": " in item_text:
+                candidate, remainder = item_text.split(": ", 1)
+                if candidate and len(candidate.split()) <= 4 and not any(char.isdigit() for char in candidate):
+                    prefix = candidate.strip()
+                    statement = remainder.strip()
+
+            label_words = label.split(" (", 1)[0].split()
+            duplicate_heads = [label, *(
+                " ".join(label_words[:length])
+                for length in range(len(label_words), 1, -1)
+            )]
+            for heading in duplicate_heads:
+                if statement.casefold().startswith(f"{heading.casefold()}:"):
+                    statement = statement[len(heading) + 1:].lstrip()
+                    break
+            if prefix and prefix.casefold() == "family history":
+                prefix = None
+            statement = statement.rstrip(" .")
+
+            key = (item.get("reason"), statement.casefold().rstrip(" ."))
+            group = groups.setdefault(key, {
+                "label": label,
+                "statement": statement,
+                "prefixes": [],
+                "prefix_keys": set(),
+                "sources": [],
+                "source_ids": set(),
+            })
+            if prefix and prefix.casefold() not in group["prefix_keys"]:
+                group["prefixes"].append(prefix)
+                group["prefix_keys"].add(prefix.casefold())
+            for source_id in item.get("sources") or []:
+                if source_id not in group["source_ids"]:
+                    group["sources"].append(source_id)
+                    group["source_ids"].add(source_id)
+
+        for group in groups.values():
+            context = f" ({', '.join(group['prefixes'])})" if group["prefixes"] else ""
+            text = f"{group['label']}: {group['statement']}{context}. Please review the sources."
+            checks.append({"text": text, "source": sources(rec, group["sources"])})
+    else:
+        for item in record.get("must_not_include", []):
+            text = f"{item['text']}: mentioned in the source documents, not included in this summary. Please review the sources."
+
+            checks.append({"text": text, "source": sources(rec, item.get("sources", []))})
+    if ai_record:
+        wording_groups = {}
+        for item in record.get("wording_checks", []):
+            text = str(item.get("text") or "")
+            group = wording_groups.setdefault(text, {"sources": [], "source_ids": set()})
+            for source_id in item.get("sources") or []:
+                if source_id not in group["source_ids"]:
+                    group["sources"].append(source_id)
+                    group["source_ids"].add(source_id)
         checks.extend({
-            "text": f'Check the AI wording against the source: "{item["text"]}". Please review the sources.',
-            "source": sources(rec, item.get("sources", [])),
-        } for item in record.get("wording_checks", []))
+            "text": f'Check the AI wording against the source: "{text}". Please review the sources.',
+            "source": sources(rec, group["sources"]),
+        } for text, group in wording_groups.items())
     checks.extend({"text": f"{x['text']}: the AI could not find this statement word-for-word in the source documents. Please review the sources.",
                    "source": sources(rec, x.get("sources", []))}
                   for x in record.get("unverified", []))

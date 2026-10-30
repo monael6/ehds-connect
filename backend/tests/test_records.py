@@ -59,6 +59,112 @@ def test_ai_checks_trim_trailing_periods_before_joining():
     )
 
 
+def test_ai_excluded_items_group_by_statement_and_keep_sources():
+    source_ids = [f"P001-D00{i}" for i in range(1, 5)]
+    prefixes = [
+        "Ambulance report",
+        "Referral note",
+        "Admission note",
+        "Anesthesia protocol",
+    ]
+    rec = {
+        "record": {
+            "unverified": [],
+            "must_not_include": [
+                {
+                    "text": f"{prefix}: no known allergies{'.' if index % 2 == 0 else ''}",
+                    "reason": "negated",
+                    "sources": [source_id],
+                }
+                for index, (prefix, source_id) in enumerate(zip(prefixes, source_ids))
+            ],
+        },
+        "documents": [
+            {"id": source_ids[0], "typ": "Ambulanzbefund"},
+            {"id": source_ids[1], "typ": "Zuweisung"},
+            {"id": source_ids[2], "typ": "Aufnahmebefund"},
+            {"id": source_ids[3], "typ": "Anaesthesieprotokoll"},
+        ],
+    }
+
+    checks = records.checks(rec)
+
+    assert len(checks) == 1
+    assert checks[0]["text"] == (
+        "Negative statement in the documents: no known allergies "
+        "(Ambulance report, Referral note, Admission note, Anesthesia protocol). "
+        "Please review the sources."
+    )
+    assert checks[0]["source"] == (
+        "P001-D001 Outpatient report; P001-D002 Referral; "
+        "P001-D003 Admission report; P001-D004 Anaesthesia record"
+    )
+
+
+def test_ai_checks_remove_duplicate_family_history_and_preserve_digit_prefix():
+    rec = {
+        "record": {
+            "unverified": [],
+            "must_not_include": [
+                {
+                    "text": "Family history: mother with asthma",
+                    "reason": "family_history",
+                    "sources": ["P001-D001"],
+                },
+                {
+                    "text": "Admission note: Family history: mother with asthma.",
+                    "reason": "family_history",
+                    "sources": ["P001-D002"],
+                },
+                {
+                    "text": "Chest X-ray 12.03: opacity not seen",
+                    "reason": "negated",
+                    "sources": ["P001-D003"],
+                },
+            ],
+            "wording_checks": [
+                {"text": "The lesion is likely benign", "sources": ["P001-D001"]},
+                {"text": "The lesion is likely benign", "sources": ["P001-D002"]},
+            ],
+        },
+        "documents": [
+            {"id": "P001-D001", "typ": "Vorbefund"},
+            {"id": "P001-D002", "typ": "Aufnahmebefund"},
+            {"id": "P001-D003", "typ": "Radiologiebefund"},
+        ],
+    }
+
+    checks = records.checks(rec)
+
+    assert checks[0]["text"] == (
+        "Family history: mother with asthma (Admission note). Please review the sources."
+    )
+    assert checks[0]["source"] == (
+        "P001-D001 Previous report; P001-D002 Admission report"
+    )
+    assert checks[1]["text"] == (
+        "Negative statement in the documents: Chest X-ray 12.03: opacity not seen. "
+        "Please review the sources."
+    )
+    assert checks[2]["text"] == (
+        'Check the AI wording against the source: "The lesion is likely benign". '
+        "Please review the sources."
+    )
+    assert checks[2]["source"] == "P001-D001 Previous report; P001-D002 Admission report"
+
+
+def test_reference_checks_keep_original_wording():
+    rec = {
+        "record": {"must_not_include": [{"text": "No known allergies", "sources": ["P001-D001"]}]},
+        "documents": [{"id": "P001-D001", "typ": "Aufnahmebefund"}],
+    }
+
+    assert records.checks(rec) == [{
+        "text": "No known allergies: mentioned in the source documents, not included in this summary. Please review the sources.",
+        "source": "P001-D001 Admission report",
+    }]
+
+
 def test_bundle_patients_listed_with_names_for_their_hospital(client):
     rows = client.get("/api/patients", headers=h(client, "u-huber")).json()
     named = {r["patient_id"]: r["name"] for r in rows if r["name"]}

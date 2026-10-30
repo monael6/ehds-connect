@@ -221,8 +221,8 @@ def test_negated_key_results_become_review_checks():
         "Negative statement in the documents: No pulmonary embolism. Please review the sources."
     )
     assert checks[1]["text"] == (
-        "Negative statement in the documents: MRT liver: Cavernous hemangioma, "
-        "no evidence of liver metastasis. Please review the sources."
+        "Negative statement in the documents: Cavernous hemangioma, "
+        "no evidence of liver metastasis (MRT liver). Please review the sources."
     )
     assert checks[2]["text"] == "Negative statement in the documents: Liver metastasis. Please review the sources."
 
