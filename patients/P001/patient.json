@@ -1,0 +1,9 @@
+{
+  "patient_id": "P001",
+  "vorname": "Hermine",
+  "nachname": "Bruckner",
+  "geburtsdatum": "1952-04-17",
+  "geschlecht": "weiblich",
+  "fiktive_versicherungsnummer": "FAKE-7241-170452",
+  "wohnort_bundesland": "Niederösterreich"
+}

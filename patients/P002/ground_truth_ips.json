@@ -1,0 +1,189 @@
+{
+  "patient_id": "P002",
+  "problems_active": [
+    {
+      "text": "NSTEMI (Hinterwandischämie) bei proximaler LAD-Stenose",
+      "icd10": "I21.4",
+      "snomed": null,
+      "onset": "2024-10-14",
+      "sources": ["P002-D006", "P002-D009", "P002-D015"]
+    },
+    {
+      "text": "KHK 2-Gefäß (LAD kritisch, RCA mittelgradig), Zustand nach PCI",
+      "icd10": "I25.10",
+      "snomed": null,
+      "onset": "2024-10-14",
+      "sources": ["P002-D009", "P002-D015"]
+    },
+    {
+      "text": "Leicht eingeschränkte LV-Funktion (EF 45%) nach NSTEMI",
+      "icd10": "I50.1",
+      "snomed": null,
+      "onset": "2024-10-15",
+      "sources": ["P002-D011", "P002-D015"]
+    },
+    {
+      "text": "Typ-2-Diabetes mellitus",
+      "icd10": "E11",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P002-D001", "P002-D004", "P002-D015"]
+    },
+    {
+      "text": "Arterielle Hypertonie",
+      "icd10": "I10",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P002-D001", "P002-D004", "P002-D015"]
+    },
+    {
+      "text": "Dyslipidämie",
+      "icd10": "E78.5",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P002-D001", "P002-D005", "P002-D015"]
+    },
+    {
+      "text": "Nikotinabusus (aktiver Raucher, Entwöhnung begonnen)",
+      "icd10": "F17.2",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P002-D001", "P002-D004", "P002-D015"]
+    }
+  ],
+  "past_history": [],
+  "allergies_intolerances": [
+    {
+      "substance": "Jodhaltiges Kontrastmittel (Iod-KM)",
+      "reaction": "Flush, Dyspnoe (Grad I–II nach Ring/Messmer, pseudoallergische Reaktion)",
+      "criticality": "low",
+      "verification": "unconfirmed",
+      "sources": ["P002-D007", "P002-D008", "P002-D015"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Acetylsalicylsäure (ASS)",
+      "atc": "B01AC06",
+      "dose": "100mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P002-D002", "P002-D009", "P002-D015"]
+    },
+    {
+      "active_ingredient": "Ticagrelor",
+      "atc": "B01AC24",
+      "dose": "90mg 1-0-1",
+      "status": "new",
+      "sources": ["P002-D009", "P002-D014", "P002-D015"]
+    },
+    {
+      "active_ingredient": "Atorvastatin",
+      "atc": "C10AA05",
+      "dose": "80mg 0-0-1",
+      "status": "new",
+      "sources": ["P002-D010", "P002-D014", "P002-D015"]
+    },
+    {
+      "active_ingredient": "Ramipril",
+      "atc": "C09AA05",
+      "dose": "5mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P002-D001", "P002-D004", "P002-D015"]
+    },
+    {
+      "active_ingredient": "Metformin",
+      "atc": "A10BA02",
+      "dose": "1000mg 1-0-1",
+      "status": "unchanged",
+      "sources": ["P002-D001", "P002-D012", "P002-D013", "P002-D015"]
+    }
+  ],
+  "medication_stopped_during_stay": [
+    {
+      "active_ingredient": "Simvastatin",
+      "atc": "C10AA01",
+      "reason": "Ersetzt durch Atorvastatin 80mg (Hochdosisstatin nach ACS, leitliniengerechte Umstellung)",
+      "sources": ["P002-D006", "P002-D010", "P002-D014"]
+    },
+    {
+      "active_ingredient": "Heparin (unfraktioniert, i.v.)",
+      "atc": "B01AB01",
+      "reason": "Gestoppt nach abgeschlossener PCI",
+      "sources": ["P002-D008", "P002-D009", "P002-D014"]
+    },
+    {
+      "active_ingredient": "Metformin (temporäre Pause)",
+      "atc": "A10BA02",
+      "reason": "Pause periinterventionell wegen KM-Gabe (Kontrastmittel-Nephropathie-Prophylaxe), nach 48h wieder aufgenommen",
+      "sources": ["P002-D006", "P002-D012", "P002-D013"]
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Koronarangiographie und PCI mit Implantation eines DES in den proximalen RIVA (LAD)",
+      "date": "2024-10-14",
+      "sources": ["P002-D009"]
+    },
+    {
+      "text": "Echokardiographie: EF 45%, Hypokinese Hinterwand",
+      "date": "2024-10-15",
+      "sources": ["P002-D011"]
+    },
+    {
+      "text": "Belastungs-EKG (positiv, ST-Senkung bei 100W)",
+      "date": "2022-03-05",
+      "sources": ["P002-D002"]
+    }
+  ],
+  "medical_devices_implants": [
+    {
+      "text": "Drug-eluting Stent (DES) in proximalem RIVA/LAD: Biotronik Orsiro Mission 3,0×18mm, Sirolimus-beschichtet",
+      "since": "2024-10-14",
+      "sources": ["P002-D009", "P002-D015"]
+    }
+  ],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "Troponin T hs (Peak nach NSTEMI)",
+      "value": "5.420 ng/l",
+      "date": "2024-10-16",
+      "sources": ["P002-D012"]
+    },
+    {
+      "text": "LV-EF (Echo nach NSTEMI)",
+      "value": "45% (leicht eingeschränkt)",
+      "date": "2024-10-15",
+      "sources": ["P002-D011"]
+    },
+    {
+      "text": "HbA1c bei Aufnahme",
+      "value": "8,6%",
+      "date": "2024-10-14",
+      "sources": ["P002-D005"]
+    },
+    {
+      "text": "LDL-Cholesterin bei Aufnahme (vor Statin)",
+      "value": "4,0 mmol/l",
+      "date": "2024-10-14",
+      "sources": ["P002-D005"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "STEMI Hinterwand",
+      "reason": "ruled out – Erstdiagnose durch Hausärztin, nach OA-Nachbeurteilung als NSTEMI reklassifiziert",
+      "sources": ["P002-D003", "P002-D004", "P002-D006", "P002-D015"]
+    },
+    {
+      "text": "Herzstolpern / paroxysmale Palpitationen in der Vorgeschichte",
+      "reason": "unconfirmed – nur von Patient berichtet, nie EKG-dokumentiert oder klinisch bestätigt",
+      "sources": ["P002-D013"]
+    },
+    {
+      "text": "Familienanamnese: Vater mit Myokardinfarkt",
+      "reason": "family history – nicht die eigene Erkrankung des Patienten",
+      "sources": ["P002-D001", "P002-D002"]
+    }
+  ]
+}

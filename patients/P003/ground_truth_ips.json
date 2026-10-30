@@ -1,0 +1,140 @@
+{
+  "patient_id": "P003",
+  "problems_active": [
+    {
+      "text": "Zustand nach akuter phlegmonöser Appendizitis, laparoskopisch appendektomiert",
+      "icd10": "K37",
+      "snomed": null,
+      "onset": "2024-07-08",
+      "sources": ["P003-D004", "P003-D010", "P003-D014"]
+    },
+    {
+      "text": "Asthma bronchiale, allergisch, mäßig persistierend (GINA Stufe 3), gut kontrolliert",
+      "icd10": "J45.0",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P003-D001", "P003-D002", "P003-D014"]
+    }
+  ],
+  "past_history": [
+    {
+      "text": "Status asthmaticus mit stationärer Aufnahme (Pädiatrie, 2009)",
+      "icd10": "J46",
+      "resolved": "2009",
+      "sources": ["P003-D001"]
+    }
+  ],
+  "allergies_intolerances": [
+    {
+      "substance": "Penicillin (Amoxicillin)",
+      "reaction": "Urtikaria",
+      "criticality": "high",
+      "verification": "confirmed",
+      "sources": ["P003-D001", "P003-D005", "P003-D008", "P003-D014"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Budesonid/Formoterol",
+      "atc": "R03AK07",
+      "dose": "160/4,5μg Inhalat 2x tgl.",
+      "status": "unchanged",
+      "sources": ["P003-D002", "P003-D003", "P003-D014"]
+    },
+    {
+      "active_ingredient": "Salbutamol",
+      "atc": "R03AC02",
+      "dose": "100μg Inhalat bei Bedarf",
+      "status": "unchanged",
+      "sources": ["P003-D002", "P003-D003", "P003-D014"]
+    },
+    {
+      "active_ingredient": "Paracetamol",
+      "atc": "N02BE01",
+      "dose": "500mg bei Bedarf, max. 4x/d (für 5 Tage)",
+      "status": "new",
+      "sources": ["P003-D010", "P003-D014"]
+    }
+  ],
+  "medication_stopped_during_stay": [
+    {
+      "active_ingredient": "Metamizol",
+      "atc": "N02BB02",
+      "reason": "Postoperativ auf Paracetamol umgestellt (bessere GI-Verträglichkeit, lt. OP-Bericht)",
+      "sources": ["P003-D004", "P003-D010"]
+    },
+    {
+      "active_ingredient": "Cefuroxim",
+      "atc": "J01DC02",
+      "reason": "Einmalige perioperative Antibiotikaprophylaxe, nach OP beendet",
+      "sources": ["P003-D008", "P003-D010"]
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Laparoskopische Appendektomie (drei-Trokar-Technik, nicht perforiert, Histologie eingeschickt)",
+      "date": "2024-07-09",
+      "sources": ["P003-D010"]
+    },
+    {
+      "text": "Sonographie Abdomen/Becken: Appendizitis bestätigt, Follikelzyste links",
+      "date": "2024-07-09",
+      "sources": ["P003-D007"]
+    },
+    {
+      "text": "Transvaginale Sonographie: Follikelzyste links bestätigt, benigne",
+      "date": "2024-07-09",
+      "sources": ["P003-D012"]
+    }
+  ],
+  "medical_devices_implants": [
+    {
+      "text": "Metallclips (Wundverschlussklammern) an Laparoskopie-Eintrittsstellen (Entfernung beim Hausarzt in 7–10 Tagen vorgesehen)",
+      "since": "2024-07-09",
+      "sources": ["P003-D010", "P003-D013"]
+    }
+  ],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "Leukozyten bei Aufnahme",
+      "value": "14,2 G/l (erhöht)",
+      "date": "2024-07-08",
+      "sources": ["P003-D006"]
+    },
+    {
+      "text": "β-hCG (Schwangerschaftsausschluss)",
+      "value": "negativ",
+      "date": "2024-07-08",
+      "sources": ["P003-D006"]
+    },
+    {
+      "text": "FEV1 (Spirometrie Asthma-Kontrolle)",
+      "value": "82% Soll, FEV1/FVC 76%, reversibel",
+      "date": "2023-05-10",
+      "sources": ["P003-D002"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "Ovarialzyste / Ovarialtumor links als aktive Diagnose",
+      "reason": "ruled out – morphologisch benigne Follikelzyste, kein Handlungsbedarf, ambulante Kontrolle genügt",
+      "sources": ["P003-D007", "P003-D012", "P003-D014"]
+    },
+    {
+      "text": "Perforierte Appendizitis",
+      "reason": "ruled out – Sono konnte Perforation nicht sicher ausschließen, intraoperativ jedoch nicht perforiert bestätigt",
+      "sources": ["P003-D007", "P003-D010", "P003-D014"]
+    },
+    {
+      "text": "Laktoseintoleranz",
+      "reason": "unconfirmed – nur von Patientin selbst berichtet, nie klinisch bestätigt",
+      "sources": ["P003-D005"]
+    },
+    {
+      "text": "Familienanamnese: Mutter mit Asthma bronchiale",
+      "reason": "family history – nicht die eigene Erkrankung der Patientin",
+      "sources": ["P003-D001", "P003-D002"]
+    }
+  ]
+}

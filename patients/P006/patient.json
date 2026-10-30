@@ -1,0 +1,9 @@
+{
+  "patient_id": "P006",
+  "vorname": "Florian",
+  "nachname": "Kastner",
+  "geburtsdatum": "2000-03-07",
+  "geschlecht": "maennlich",
+  "fiktive_versicherungsnummer": "FAKE-2264-070300",
+  "wohnort_bundesland": "Tirol"
+}

@@ -1,0 +1,215 @@
+{
+  "patient_id": "P004",
+  "problems_active": [
+    {
+      "text": "Chronische Herzinsuffizienz (HFrEF, EF 35%), ischämische Kardiomyopathie, dekompensiert – jetzt rekompensiert",
+      "icd10": "I50.0",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P004-D001", "P004-D004", "P004-D010", "P004-D016"]
+    },
+    {
+      "text": "Chronische Niereninsuffizienz Stadium 3b (eGFR 36 ml/min)",
+      "icd10": "N18.3",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P004-D001", "P004-D006", "P004-D014", "P004-D016"]
+    },
+    {
+      "text": "Alzheimer-Demenz, mäßiggradig (MMSE 16/30)",
+      "icd10": "F00.1",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P004-D002", "P004-D004", "P004-D016"]
+    },
+    {
+      "text": "Arterielle Hypertonie",
+      "icd10": "I10",
+      "snomed": null,
+      "onset": null,
+      "sources": ["P004-D001", "P004-D004", "P004-D016"]
+    },
+    {
+      "text": "Ischämische Kardiomyopathie, Zustand nach Hinterwandinfarkt 2003",
+      "icd10": "I25.2",
+      "snomed": null,
+      "onset": "2003",
+      "sources": ["P004-D001", "P004-D016"]
+    },
+    {
+      "text": "AV-Block II° (Indikation für Schrittmacher, SM-abhängig)",
+      "icd10": "I44.1",
+      "snomed": null,
+      "onset": "2019",
+      "sources": ["P004-D001", "P004-D013"]
+    }
+  ],
+  "past_history": [],
+  "allergies_intolerances": [
+    {
+      "substance": "Sulfonamide (Co-Trimoxazol)",
+      "reaction": "Verdacht auf Arzneimittelexanthem (Hautausschlag)",
+      "criticality": "unknown",
+      "verification": "unconfirmed",
+      "sources": ["P004-D005", "P004-D009", "P004-D016"]
+    }
+  ],
+  "medication_at_discharge": [
+    {
+      "active_ingredient": "Ramipril",
+      "atc": "C09AA05",
+      "dose": "5mg 1-0-0",
+      "status": "changed",
+      "sources": ["P004-D001", "P004-D008", "P004-D012", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Bisoprolol",
+      "atc": "C07AB07",
+      "dose": "5mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P004-D001", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Furosemid",
+      "atc": "C03CA01",
+      "dose": "40mg 1-0-0 p.o.",
+      "status": "changed",
+      "sources": ["P004-D001", "P004-D012", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Eplerenon",
+      "atc": "C03DA04",
+      "dose": "25mg 1-0-0",
+      "status": "new",
+      "sources": ["P004-D010", "P004-D012", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Acetylsalicylsäure (ASS)",
+      "atc": "B01AC06",
+      "dose": "100mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P004-D001", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Atorvastatin",
+      "atc": "C10AA05",
+      "dose": "40mg 0-0-1",
+      "status": "unchanged",
+      "sources": ["P004-D001", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Pantoprazol",
+      "atc": "A02BC02",
+      "dose": "40mg 1-0-0",
+      "status": "unchanged",
+      "sources": ["P004-D001", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Rivastigmin",
+      "atc": "N06DA03",
+      "dose": "9,5mg/24h transdermales Pflaster",
+      "status": "unchanged",
+      "sources": ["P004-D002", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Donepezil",
+      "atc": "N06DA02",
+      "dose": "5mg 0-0-1",
+      "status": "unchanged",
+      "sources": ["P004-D002", "P004-D016"]
+    }
+  ],
+  "medication_stopped_during_stay": [
+    {
+      "active_ingredient": "Spironolacton",
+      "atc": "C03DA01",
+      "reason": "Hyperkaliämie (K+ 5,2 mmol/l) bei CKD 3b und Ramipril-Komedikation; ersetzt durch Eplerenon 25mg",
+      "sources": ["P004-D001", "P004-D008", "P004-D010", "P004-D012", "P004-D016"]
+    },
+    {
+      "active_ingredient": "Furosemid i.v. (höherdosiert 80mg)",
+      "atc": "C03CA01",
+      "reason": "Umstellung auf orale Erhaltungsdosis 40mg p.o. nach klinischer Rekompensation",
+      "sources": ["P004-D004", "P004-D012"]
+    }
+  ],
+  "procedures": [
+    {
+      "text": "Implantation Zweikammer-Herzschrittmacher DDD (Medtronic Advisa DR), Klinikum Linz-Nord",
+      "date": "2019-03-15",
+      "sources": ["P004-D001"]
+    },
+    {
+      "text": "Schrittmacherkontrolle: regelrecht, Batterie 78%, Restlaufzeit ~4 Jahre",
+      "date": "2024-11-12",
+      "sources": ["P004-D013"]
+    },
+    {
+      "text": "Echokardiographie: EF 35%, MI 2/4, RV dilatiert",
+      "date": "2024-11-06",
+      "sources": ["P004-D010"]
+    }
+  ],
+  "medical_devices_implants": [
+    {
+      "text": "Zweikammer-Herzschrittmacher DDD (Medtronic Advisa DR MRI SureScan), Aggregat links subklavikulär, Sonden RA + RV",
+      "since": "2019-03-15",
+      "sources": ["P004-D001", "P004-D007", "P004-D013", "P004-D016"]
+    }
+  ],
+  "immunizations": [],
+  "key_results": [
+    {
+      "text": "BNP bei Aufnahme",
+      "value": "2.480 pg/ml (stark erhöht)",
+      "date": "2024-11-04",
+      "sources": ["P004-D006"]
+    },
+    {
+      "text": "BNP bei Entlassung",
+      "value": "820 pg/ml (rückläufig)",
+      "date": "2024-11-14",
+      "sources": ["P004-D014"]
+    },
+    {
+      "text": "LV-EF (Echo)",
+      "value": "35% (eingeschränkt)",
+      "date": "2024-11-06",
+      "sources": ["P004-D010"]
+    },
+    {
+      "text": "eGFR (CKD-EPI) bei Entlassung",
+      "value": "36 ml/min/1,73m² (CKD 3b)",
+      "date": "2024-11-14",
+      "sources": ["P004-D014"]
+    },
+    {
+      "text": "MMSE (Demenz-Schwere)",
+      "value": "16/30 (mäßiggradig)",
+      "date": "2023-10-05",
+      "sources": ["P004-D002"]
+    }
+  ],
+  "must_not_include": [
+    {
+      "text": "Pneumonie",
+      "reason": "ruled out – CRP-Erhöhung und Rö-Befund ausschließlich durch Herzinsuffizienz-Stauung erklärt, kein Infiltrat",
+      "sources": ["P004-D007", "P004-D008"]
+    },
+    {
+      "text": "Offener Herzeingriff / Herzoperation in der Anamnese",
+      "reason": "unconfirmed – Patient berichtet wiederholt 'Herzoperation', gemeint ist ausschließlich SM-Implantation (keine Sternotomie, kein Bypass)",
+      "sources": ["P004-D005", "P004-D015", "P004-D016"]
+    },
+    {
+      "text": "Familienanamnese: Tochter mit dilatativer Kardiomyopathie (LMNA-Mutation)",
+      "reason": "family history – Erkrankung der Tochter, nicht des Patienten",
+      "sources": ["P004-D002"]
+    },
+    {
+      "text": "Hyperkaliämie als aktives Problem bei Entlassung",
+      "reason": "resolved – K+ bei Entlassung normalisiert (4,6 mmol/l)",
+      "sources": ["P004-D006", "P004-D011", "P004-D014"]
+    }
+  ]
+}
