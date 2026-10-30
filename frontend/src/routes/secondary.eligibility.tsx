@@ -1,0 +1,28 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ELIGIBILITY_PURPOSES } from "@/mockData";
+import { eligibility, type EligibilityInput } from "@/lib/role-rules";
+import { useDemoSession } from "@/lib/demo-session";
+import { useAppState } from "@/lib/app-state";
+import { ApplicationForm } from "@/components/secondary/application";
+import { pageHead } from "@/lib/page-head";
+export const Route = createFileRoute("/secondary/eligibility")({ head: () => pageHead("Can I get access?", "Check preliminary eligibility under EHDS Art. 53, 54, 66 and 68 and start an application."), component: Eligibility });
+function Eligibility() {
+  const { user, log } = useDemoSession(); const { setApplications } = useAppState(); const navigate = useNavigate();
+  const [step, setStep] = useState(1); const [result, setResult] = useState(false); const [form, setForm] = useState(false);
+  const [a, setA] = useState<EligibilityInput>({ purpose: "", records: false, justification: "", qualified: false, safeguards: false, ethics: "pending" }); const outcome = eligibility(a);
+  const update = (v: Partial<EligibilityInput>) => { setA((s) => ({ ...s, ...v })); setResult(false); };
+  return <div className="max-w-3xl space-y-6"><h1 className="text-2xl font-semibold">Can I get access?</h1><p className="text-sm text-muted-foreground">Art. 68 · Step {step} of 3</p>
+    {step === 1 && <section className="space-y-5 border-y py-5"><h2 className="font-semibold">Purpose and requested data</h2><label className="block space-y-2 text-sm">Purpose<Select value={a.purpose} onValueChange={(purpose) => update({ purpose })}><SelectTrigger><SelectValue placeholder="Choose a purpose" /></SelectTrigger><SelectContent>{ELIGIBILITY_PURPOSES.map((p) => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}</SelectContent></Select></label>{["insurance","advertising","employment","weapons"].includes(a.purpose) && <p role="alert" className="text-sm text-destructive">Not allowed – this purpose is prohibited under Art. 54.</p>}<fieldset className="space-y-3"><legend className="mb-2 text-sm">What do you need?</legend><div className="flex gap-2"><Button variant={!a.records ? "default" : "outline"} onClick={() => update({ records: false })}>Statistics</Button><Button variant={a.records ? "default" : "outline"} onClick={() => update({ records: true })}>Records in a secure environment</Button></div></fieldset>{a.records && <label className="block space-y-2 text-sm">Why are anonymous statistics not enough?<Textarea value={a.justification} onChange={(e) => update({ justification: e.target.value })} /></label>}</section>}
+    {step === 2 && <section className="space-y-5 border-y py-5"><h2 className="font-semibold">Qualification and safeguards</h2><label className="flex items-start gap-3 text-sm"><Checkbox checked={a.qualified} onCheckedChange={(v) => update({ qualified: v === true })} />I can document my qualification for the proposed research or permitted purpose.</label><label className="flex items-start gap-3 text-sm"><Checkbox checked={a.safeguards} onCheckedChange={(v) => update({ safeguards: v === true })} />I can document safeguards, data minimisation and secure processing.</label></section>}
+    {step === 3 && <section className="space-y-5 border-y py-5"><h2 className="font-semibold">Ethics review</h2><Select value={a.ethics} onValueChange={(ethics) => update({ ethics: ethics as EligibilityInput["ethics"] })}><SelectTrigger aria-label="Ethics review"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="pending">Required – pending</SelectItem><SelectItem value="approved">Approved</SelectItem><SelectItem value="not-needed">Not required for this purpose</SelectItem></SelectContent></Select><Button onClick={() => { setResult(true); log("Eligibility check", outcome.label, { area: "secondary" }); }}>Check eligibility</Button></section>}
+    <div className="flex gap-2">{step > 1 && <Button variant="outline" onClick={() => setStep(step - 1)}>Back</Button>}{step < 3 && <Button disabled={step === 1 && !a.purpose} onClick={() => setStep(step + 1)}>Continue</Button>}</div>
+    {result && <section className={`space-y-3 border-l-4 p-4 ${outcome.allowed ? "border-success bg-success-soft" : "border-destructive bg-destructive-soft"}`}><h2 className="font-semibold">{outcome.label}</h2><p className="text-xs text-muted-foreground">Preliminary self-check, not a permit. The HDAB verifies evidence and legal basis.</p>{outcome.allowed && <Button disabled={user?.role === "visitor"} onClick={() => setForm(true)}>Start an application</Button>}{user?.role === "visitor" && <p className="text-sm">Sign in as a researcher to apply.</p>}</section>}
+    <Dialog open={form} onOpenChange={setForm}><DialogContent className="max-h-[85vh] overflow-y-auto"><DialogHeader><DialogTitle>Start an application</DialogTitle><DialogDescription>{user?.name} · {user?.organisation}</DialogDescription></DialogHeader><ApplicationForm initial={{ purpose: ELIGIBILITY_PURPOSES.find((p) => p.value === a.purpose)?.label ?? a.purpose, records: a.records, justification: a.justification }} onSubmitted={(ev) => { if (user) setApplications((s) => ({ ...s, [user.id]: [ev, ...(s[user.id] ?? [])] })); setForm(false); navigate({ to: "/secondary" }); }} /></DialogContent></Dialog>
+  </div>;
+}

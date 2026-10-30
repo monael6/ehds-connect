@@ -1,0 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
+import { getPublicUses } from "@/api";
+import { pageHead } from "@/lib/page-head";
+import { Provenance } from "@/components/provenance";
+export const Route = createFileRoute("/secondary/register")({ head: () => pageHead("Public register of approved data uses", "Public organisations, purposes and approval status, without patient counts or results."), component: Register });
+function Register() { const { data } = useSuspenseQuery(queryOptions({ queryKey: ["public-register"], queryFn: getPublicUses })); return <div className="space-y-6"><h1 className="text-2xl font-semibold">Public register of approved data uses</h1><div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b text-left text-xs text-muted-foreground">{["Date", "Applicant organisation", "Purpose", "Type", "Status"].map((s) => <th key={s} className="px-3 py-3 font-medium">{s}</th>)}</tr></thead><tbody>{data.data.map((p, i) => <tr key={i} className="border-b align-top"><td className="whitespace-nowrap px-3 py-4">{p.date}</td><td className="px-3 py-4">{p.organisation}</td><td className="px-3 py-4">{p.purpose}</td><td className="px-3 py-4">{p.type}</td><td className="px-3 py-4 text-success">{p.status}</td></tr>)}</tbody></table></div><Provenance source={`${data.source} · public HDAB register`} /></div>; }
