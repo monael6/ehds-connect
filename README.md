@@ -6,6 +6,14 @@
 
 It shows how health data can support individual patient care and medical research at the same time, while keeping privacy, transparency, and access control as first-class concerns.
 
+## Demo video
+
+<a href="https://www.youtube.com/watch?v=0BjEBm2xxrA" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.youtube.com/vi/0BjEBm2xxrA/maxresdefault.jpg" alt="EHDS Connect demo video" width="100%" />
+</a>
+
+> Watch the project demo: [EHDS Connect — Clinical AI Hackathon Vienna 2026](https://www.youtube.com/watch?v=0BjEBm2xxrA)
+
 ---
 
 ## What it does
@@ -26,7 +34,7 @@ EHDS Connect covers two dimensions of the European Health Data Space.
 - HDAB staff inbox: review, approve, reject, request more information
 
 **AI Patient Summary (P001–P006 only)**  
-Clinical documents are pseudonymised and sent to OpenAI (`gpt-4o` by default). The model lists key points with source references and draws no conclusions. Output is a draft until a doctor explicitly approves it. The 20,000-patient research dataset is never sent to an LLM.
+Clinical documents are pseudonymised and sent to OpenAI (`gpt-4o` by default). The model lists key points with source references and draws no conclusions. Output is a draft until a doctor explicitly approves it.
 
 ---
 
@@ -140,7 +148,7 @@ FastAPI enforces every rule below. The UI only shows or hides buttons.
 
 ## Discharge letter signing
 
-The six-digit PIN is replaced by a digital signature. The backend issues a one-time challenge bound to the letter; the doctor signs it with a **FIDO2/WebAuthn** key (NFC hospital badge, USB/NFC security key, or Touch ID). Only public keys are stored server-side.
+The six-digit PIN is replaced by a digital signature. The backend issues a one-time challenge bound to the letter; the doctor signs it with a **FIDO2/WebAuthn** key (NFC hospital badge, USB/NFC software key, or a browser-based demo credential).
 
 For the demo, a clearly-labelled **simulated P-256 key** (WebCrypto, lives only in the current browser tab) is available.
 
@@ -162,7 +170,7 @@ For the demo, a clearly-labelled **simulated P-256 key** (WebCrypto, lives only 
 | Consistency across 3 runs | 10 / 10 | 10 / 10 |
 | Slowest response | 0.07 s | < 60 s |
 
-Nine additional jury-style requests (`backend/tests/jury/`) cover `primary_icd10` filters, grouping by `data_holder` / sex / region, threshold on latest measurement, custom age bands, emergency visits, a marketing rejection, and a second SPE. Verified against hand-written SQL in `tests/test_jury.py`.
+Nine additional jury-style requests (`backend/tests/jury/`) cover `primary_icd10` filters, grouping by `data_holder` / sex / region, threshold on latest measurement, custom age bands, emergency vs outpatient admissions, and a synthetic patient under EU/ID challenge. The evaluator also checks for matching `test` vs `control` groups and for small-cell suppression before publication.
 
 ---
 
@@ -193,7 +201,7 @@ SQLite: users / roles / sessions, decisions, discharge letters + versions, audit
 |---|---|---|
 | Data loader | `backend/app/datastore.py` | Loads 5 CSVs into DuckDB: `raw` (as-is), `kis` (primary-use canonical), `hdab` (opted-out removed). Column names fuzzy-mapped via `ALIASES`. |
 | Decision engine | `backend/app/engine/decision.py` | Checks prohibited purposes (Art. 54 a–e) first, then eligibility, then approves or rejects with article citations and quoted sentences. |
-| Request parser | `backend/app/engine/parser.py` | Reads per-request definitions (ICD-10, ATC, LOINC, sex, age bands, encounter type, active medication, latest measurement). Builds the subject and one metric per `Report per …:` line. |
+| Request parser | `backend/app/engine/parser.py` | Reads per-request definitions (ICD-10, ATC, LOINC, sex, age bands, encounter type, active medication, latest measurement). Builds the subject and grouping logic. |
 | SQL generator | `backend/app/engine/query.py` | Template SQL with bound parameters on the `hdab` schema. Every group shown even if empty. |
 | Small-cell rule | `backend/app/engine/smallcell.py` | Counts < 10 → `<10`; percentages / means with n < 10 → `suppressed`. One decimal, `ROUND_HALF_UP`. |
 | SPE | `backend/app/engine/spe.py` | One DuckDB file per approved application in `var/spe/`. Downloads always 403. Analysis returns aggregates only. |
@@ -207,7 +215,7 @@ SQLite: users / roles / sessions, decisions, discharge letters + versions, audit
 
 - **DuckDB** for analysis — reads CSVs directly, milliseconds for 20,000 patients, one file per SPE.
 - **SQLite** for mutable state — transactions, no server needed.
-- **No LLM for research data** — the decision engine, parser, SQL, and numbers are deterministic Python + SQL. Results are identical across runs. The 20,000-patient dataset never leaves the app.
+- **No LLM for research data** — the decision engine, parser, SQL, and numbers are deterministic Python + SQL. Results are identical across runs. The 20,000-patient dataset never leaves the app.  
 - **Production would use:** PostgreSQL for state, a FHIR server for primary use, a dedicated analytical store for the HDAB.
 
 ---
@@ -229,7 +237,7 @@ SQLite: users / roles / sessions, decisions, discharge letters + versions, audit
 
 ## Known limitations
 
-- **Parser coverage:** understands the definition style of the 10 Track-3 requests. Requests written very differently are answered with the parts the parser recognises; unrecognised definitions appear in `spec.notes` in the staff view.
-- **Research data gaps:** the Track-3 dataset has no allergy, dose, or progress-note fields — discharge letters for those 20,000 patients mark those sections as missing. P001–P006 have full document bundles.
-- **Simulated integrations:** ELGA, MyHealth@EU / NCPeH, and ID Austria are simulated. WebAuthn signing works with software keys in the browser; no real NFC/USB hardware has been tested against this build.
+- **Parser coverage:** understands the definition style of the 10 Track-3 requests. Requests written very differently are answered with the parts the parser recognises; unrecognised definitions are left blank or answered with a conservative fallback.
+- **Research data gaps:** the Track-3 dataset has no allergy, dose, or progress-note fields — discharge letters for those 20,000 patients mark those sections as missing. P001–P006 have full data for demo scenarios.
+- **Simulated integrations:** ELGA, MyHealth@EU / NCPeH, and ID Austria are simulated. WebAuthn signing works with software keys in the browser; no real NFC/USB hardware has been tested against the app.
 - **AI summary is a draft:** the LLM output can vary between runs and must be approved by a clinician before it is treated as authoritative.
