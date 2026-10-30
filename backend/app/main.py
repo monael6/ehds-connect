@@ -19,7 +19,7 @@ from .config import settings
 from .datastore import get_store
 from .engine import permit, spe
 from .engine.pipeline import applicant_status_view, applicant_view, evaluate
-from .primary import crossborder, letters, records, signature, summary
+from .primary import crossborder, ips_pipeline, letters, records, signature, summary
 
 DEMO_HOSPITAL = "Klinikum West"
 
@@ -406,6 +406,30 @@ def patient_documents(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
     docs = records.documents(rec) if rec else []
     state.audit(user, "primary", "patient_documents_viewed", patient_id=pid, outcome=str(len(docs)))
     return {"patient_id": pid, "name": records.name(rec) if rec else None, "documents": docs}
+
+
+@app.post("/api/patients/{pid}/ips-pipeline", status_code=201)
+def run_patient_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    _own_patient(pid, user)
+    return ips_pipeline.run_pipeline(pid, user)
+
+
+@app.get("/api/patients/{pid}/ips-pipeline")
+def get_patient_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    _own_patient(pid, user)
+    row = ips_pipeline._latest_draft(pid)
+    if not row or row["status"] not in ("draft", "approved"):
+        raise HTTPException(404, "No pipeline draft found. POST to this endpoint to generate one.")
+    return ips_pipeline._parse_draft(row)
+
+
+@app.post("/api/patients/{pid}/ips-pipeline/approve")
+def approve_patient_ips_pipeline(pid: str, user: dict = Depends(auth.require(HOSPITAL))):
+    _own_patient(pid, user)
+    row = ips_pipeline._latest_draft(pid)
+    if not row or row["status"] not in ("draft", "approved"):
+        raise HTTPException(404, "No pipeline draft found for this patient.")
+    return ips_pipeline.approve_draft(row["id"], user)
 
 
 @app.get("/api/patients/{pid}/ips")

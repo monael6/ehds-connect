@@ -151,7 +151,16 @@ export interface SummaryDto {
   allergies?: { items: { code?: string | null; label?: string | null; severity?: string | null; reaction?: string | null; source?: string }[] };
   devices?: { label: string; since?: string | null; source?: string }[];
   procedures?: { label: string; date?: string | null; source?: string }[];
-  results?: { code: string; label: string; value: number; unit?: string | null; date?: string | null }[];
+  results?: { code: string; label: string; value: number | string | null; unit?: string | null; date?: string | null }[];
+  generated?: {
+    by: "ai" | "reference";
+    model?: string | null;
+    at?: string | null;
+    status?: "draft" | "approved" | null;
+    approved_by?: string | null;
+    approved_at?: string | null;
+    eval?: Record<string, number>;
+  };
   checks?: { text: string; source: string }[];
 }
 /** Implants and procedures from a patient's documents; codes are local keys for the term lookup. */

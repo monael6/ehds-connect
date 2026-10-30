@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from ..config import settings
 from ..datastore import DataStore
-from . import records
+from . import ips_pipeline, records
 from . import terminology as T
 
 
@@ -42,7 +42,10 @@ def build(store: DataStore, pid: str, lang: str = "en", sections: set[str] | Non
         return None
     rec = records.get(pid)
     if rec:
-        return _from_record(p, rec, lang, sections)
+        rec, generated = ips_pipeline.record_with_latest_draft(rec)
+        out = _from_record(p, rec, lang, sections)
+        out["generated"] = generated
+        return out
     ref = settings.reference_date
     cond = store.sql("SELECT code, description, date FROM kis.conditions WHERE patient_id = ? ORDER BY date", [pid])
     meds = store.sql("""SELECT code, description, date, end_date FROM kis.medications WHERE patient_id = ?
@@ -99,8 +102,9 @@ def _from_record(p: dict, rec: dict, lang: str, sections: set[str] | None) -> di
     """Patient Summary for a record bundle: every entry names the documents it was taken from."""
     r, src = rec["record"], lambda x: records.sources(rec, x.get("sources", []))
     want = sections or {"problems", "medications", "allergies", "results"}
-    problems = [{"code": x["icd10"], "system": "ICD-10", "label": x["text"], "since": x.get("onset"), "source": src(x)}
-                for x in r.get("problems_active", []) if x.get("icd10")]
+    problems = [{"code": x.get("icd10") or f"{p['patient_id']}-problem-{i}", "system": "ICD-10",
+                 "label": x["text"], "since": x.get("onset"), "source": src(x)}
+                for i, x in enumerate(r.get("problems_active", []))]
     medications = [{"code": m["atc"], "system": "ATC", "label": m["active_ingredient"], "since": None, "dose": m.get("dose"),
                     "status": m.get("status"), "source": src(m)} for m in r.get("medication_at_discharge", []) if m.get("atc")]
     allergies = [{"code": f"{p['patient_id']}-A{i + 1}",

@@ -63,7 +63,7 @@ export interface Patient {
   medications: { code: string; dose: Tr; anticoagulant?: boolean; source?: string }[];
   allergies: { code: string; severity: "high" | "moderate"; reaction?: string; source?: string }[];
   implants: { code: string; source?: string }[];
-  measurements: { code: string; value: number; unit: string; date: string }[];
+  measurements: { code: string; value: number | string | null; unit: string; date: string }[];
   /** Emergency information as selected by the backend (critical medication and conditions). */
   emergency?: { type: string; text: string; code?: string }[];
   /** Points the documents mention but the summary does not take over; the doctor decides. */

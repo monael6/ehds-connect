@@ -74,6 +74,10 @@ uvicorn app.main:app --port 8000
 - Metrics on the 10 requests: `python scripts/evaluate.py`
 - Tests: `python -m pytest -q`
 
+## AI Patient Summary for document bundles
+
+For synthetic patients P001–P006, clinicians can generate the Patient Summary and a new discharge-letter draft from the clinical documents. Configure `OPENAI_API_KEY` and optionally `OPENAI_MODEL` in `backend/.env` or the repository-root `.env`; both files are Git-ignored, and existing environment variables take precedence. The original German documents are pseudonymised before being sent to OpenAI. Generated summaries remain drafts until a clinician reviews and approves them.
+
 Quick check without signing in (works for new requests too):
 
 ```bash

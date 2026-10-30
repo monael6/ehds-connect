@@ -17,7 +17,7 @@ from fastapi import HTTPException
 
 from .. import state
 from ..datastore import DataStore
-from . import records
+from . import ips_pipeline, records
 from . import terminology as T
 
 NO_DATA = "No data in the KIS – please complete"
@@ -51,6 +51,7 @@ def _section(key: str, items: list[dict] | None = None, text: str = "") -> dict:
 def draft_from_kis(store: DataStore, pid: str, encounter_id: str | None = None) -> dict:
     rec = records.get(pid)
     if rec and rec["stay"]:
+        rec, _ = ips_pipeline.record_with_latest_draft(rec)
         return draft_from_record(store, rec)
     stays = store.sql("""SELECT * FROM kis.encounters WHERE patient_id = ? AND type = 'inpatient'
                          AND (? IS NULL OR encounter_id = ?) ORDER BY start_date DESC""", [pid, encounter_id, encounter_id])

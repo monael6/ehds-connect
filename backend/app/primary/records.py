@@ -106,8 +106,14 @@ def documents(rec: dict) -> list[dict]:
 
 def checks(rec: dict) -> list[dict]:
     """Statements the documents mention but the record does not take over; the doctor decides."""
-    return [{"text": f"{x['text']}: mentioned in the source documents, not included in this summary. Please review the sources.", "source": sources(rec, x.get("sources", []))}
-            for x in rec["record"].get("must_not_include", [])]
+    record = rec["record"]
+    checks = [{"text": f"{x['text']}: mentioned in the source documents, not included in this summary. Please review the sources.",
+               "source": sources(rec, x.get("sources", []))}
+              for x in record.get("must_not_include", [])]
+    checks.extend({"text": f"{x['text']}: the AI could not find this statement word-for-word in the source documents. Please review the sources.",
+                   "source": sources(rec, x.get("sources", []))}
+                  for x in record.get("unverified", []))
+    return checks
 
 
 def add_to_kis(store: DataStore, hospital: str, reference_date: str) -> int:

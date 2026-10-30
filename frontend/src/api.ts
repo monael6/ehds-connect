@@ -137,6 +137,32 @@ export interface PatientDocument { id: string; date: string; type: string; speci
 export const getPatientDocuments = (id: string) =>
   live<{ documents: PatientDocument[] }, PatientDocument[]>(`/api/patients/${encodeURIComponent(id)}/documents`, (d) => d.documents, []);
 
+export interface IpsPipelineDraftDto {
+  id: string;
+  patient_id: string;
+  status: "draft" | "approved";
+  intermediate: Record<string, unknown> | null;
+  summary_md: string | null;
+  eval_report: Record<string, number> | null;
+  created_at: string;
+  approved_by: string | null;
+  approved_at: string | null;
+}
+
+/** Pipeline calls are strict backend operations; generation has no client timeout. */
+export async function getIpsPipeline(id: string): Promise<IpsPipelineDraftDto | null> {
+  try {
+    return await strict<IpsPipelineDraftDto>(`/api/patients/${encodeURIComponent(id)}/ips-pipeline`);
+  } catch (error) {
+    if ((error as { status?: number }).status === 404) return null;
+    throw error;
+  }
+}
+export const runIpsPipeline = (id: string) =>
+  strict<IpsPipelineDraftDto>(`/api/patients/${encodeURIComponent(id)}/ips-pipeline`, { method: "POST" }, null);
+export const approveIpsPipeline = (id: string) =>
+  strict<IpsPipelineDraftDto>(`/api/patients/${encodeURIComponent(id)}/ips-pipeline/approve`, { method: "POST" });
+
 /** GET /api/audit-log — served from in-app state in this demo */
 export async function getAuditLog(local: AccessEntry[]) {
   return local;
@@ -270,10 +296,16 @@ export interface TrackRequest { id: string; applicant: { name: string; organisat
 export const submitTrackRequest = (r: TrackRequest) => strict<RequestDetail>("/api/requests/evaluate", { method: "POST", body: JSON.stringify(r), signal: AbortSignal.timeout(30000) });
 
 /** Calls FastAPI without a synthetic fallback: account, permission and signature actions must never be simulated. */
-export async function strict<T>(path: string, init?: RequestInit): Promise<T> {
+export async function strict<T>(path: string, init?: RequestInit, timeoutMs: number | null = 5000): Promise<T> {
   await session;
   let response: Response;
-  try { response = await fetch(`${API_BASE}${path}`, { ...init, headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...init?.headers }, signal: init?.signal ?? AbortSignal.timeout(5000) }); }
+  const requestInit: RequestInit = {
+    ...init,
+    headers: { "Content-Type": "application/json", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...init?.headers },
+  };
+  if (init?.signal) requestInit.signal = init.signal;
+  else if (timeoutMs !== null) requestInit.signal = AbortSignal.timeout(timeoutMs);
+  try { response = await fetch(`${API_BASE}${path}`, requestInit); }
   catch { throw new Error("The backend is not reachable. Start it with: uvicorn app.main:app --port 8000"); }
   if (!response.ok) {
     let detail: unknown = null; try { detail = ((await response.json()) as { detail?: unknown }).detail; } catch { /* no body */ }
