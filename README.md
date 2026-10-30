@@ -95,6 +95,28 @@ Open http://localhost:8080 and pick a demo account on the start page: Huber (hos
 
 The cross-border walkthrough (Primary use → Cross-border) acts as Frau M. in her portal (`u-muster`) and as the doctor in Italy (`u-rossi`).
 
+## Roles, digital signatures and request review
+
+| Category | Role | Can do |
+|---|---|---|
+| Healthcare | Senior Doctor | Write, sign and release discharge letters to ELGA and the GP; authorise doctors to release |
+| Healthcare | Doctor | Write and edit letters; sign and release only when a senior doctor has authorised them |
+| Healthcare | IT Admin | Activate accounts, assign roles, revoke permissions, block lost keys, issue recovery codes. No patient data |
+| Institute | HDAB Staff | Review applicant requests: approve, reject or ask for more information |
+| Researcher / Applicant | Applicant | Submit requests with the guided wizard (Art. 53, 54, 67, 69); see results only after approval |
+
+FastAPI enforces every rule above. The UI only hides buttons.
+
+Demo accounts (password `demo1234`): `anna.huber@klinikum-west.at` (Senior Doctor), `markus.berger@klinikum-west.at` (Doctor), `thomas.gruber@klinikum-west.at` (IT Admin), `petra.novak@hdab.gv.at` (HDAB Staff), `lena.weiss@uni-graz.at` (Applicant). New hospital accounts stay pending until the IT Admin activates them.
+
+**Signing discharge letters.** The six-digit code is replaced by a digital signature. The backend issues a one-time challenge bound to the letter, and the doctor signs it with a FIDO2/WebAuthn key: an NFC hospital badge, a USB/NFC security key or Touch ID. Only public keys are stored. Without hardware, a clearly labelled simulated P-256 key (WebCrypto, kept in the browser tab's memory only) can be used for the demo.
+
+**If the key is lost:**
+1. Report it lost. The key is blocked immediately.
+2. Sign with a backup key registered earlier.
+3. With no backup key, the IT Admin checks the doctor's photo ID in person and issues a one-time recovery code. It is valid for 24 hours and registers exactly one new key.
+4. Until then, a senior doctor signs.
+
 ## Metric results (10 official requests, 3 runs each)
 
 | Metric | Result | Target |
