@@ -1,0 +1,417 @@
+{
+ "record": {
+  "patient_id": "P001",
+  "problems_active": [
+   {
+    "text": "Right femoral neck fracture, surgically treated with a cementless total hip replacement",
+    "icd10": "S72.00",
+    "snomed": null,
+    "onset": "2024-09-02",
+    "sources": [
+     "P001-D004",
+     "P001-D009",
+     "P001-D028"
+    ]
+   },
+   {
+    "text": "Atrial fibrillation, sinus rhythm after cardioversion, anticoagulation required",
+    "icd10": "I48.0",
+    "snomed": null,
+    "onset": "2024-09-07",
+    "sources": [
+     "P001-D014",
+     "P001-D019",
+     "P001-D027",
+     "P001-D028"
+    ]
+   },
+   {
+    "text": "Arterial hypertension",
+    "icd10": "I10",
+    "snomed": null,
+    "onset": null,
+    "sources": [
+     "P001-D001",
+     "P001-D004",
+     "P001-D028"
+    ]
+   }
+  ],
+  "past_history": [
+   {
+    "text": "Left distal radius fracture, closed reduction 06/2021",
+    "icd10": "S52.50",
+    "resolved": "2021",
+    "sources": [
+     "P001-D002",
+     "P001-D003",
+     "P001-D004"
+    ]
+   },
+   {
+    "text": "Postoperative right-sided pneumonia (healed during this stay)",
+    "icd10": "J18.1",
+    "resolved": "2024",
+    "sources": [
+     "P001-D016",
+     "P001-D017",
+     "P001-D023",
+     "P001-D028"
+    ]
+   },
+   {
+    "text": "Postoperative anaemia (improving, Hb at discharge 10.4 g/dl)",
+    "icd10": "D64.9",
+    "resolved": null,
+    "sources": [
+     "P001-D006",
+     "P001-D013",
+     "P001-D023",
+     "P001-D025"
+    ]
+   }
+  ],
+  "allergies_intolerances": [
+   {
+    "substance": "Acetylsalicylic acid (aspirin, ASS)",
+    "reaction": "gastrointestinal intolerance (nausea)",
+    "criticality": "low",
+    "verification": "unconfirmed",
+    "sources": [
+     "P001-D005",
+     "P001-D028"
+    ]
+   }
+  ],
+  "medication_at_discharge": [
+   {
+    "active_ingredient": "Ramipril",
+    "atc": "C09AA05",
+    "dose": "5 mg 1-0-0",
+    "status": "unchanged",
+    "sources": [
+     "P001-D001",
+     "P001-D011",
+     "P001-D028"
+    ]
+   },
+   {
+    "active_ingredient": "Metoprolol",
+    "atc": "C07AB02",
+    "dose": "47.5 mg 1-0-0",
+    "status": "new",
+    "sources": [
+     "P001-D016",
+     "P001-D019",
+     "P001-D028"
+    ]
+   },
+   {
+    "active_ingredient": "Apixaban",
+    "atc": "B01AF02",
+    "dose": "5 mg 2-0-2",
+    "status": "new",
+    "sources": [
+     "P001-D019",
+     "P001-D020",
+     "P001-D022",
+     "P001-D028"
+    ]
+   },
+   {
+    "active_ingredient": "Pantoprazole",
+    "atc": "A02BC02",
+    "dose": "40 mg 1-0-0",
+    "status": "new",
+    "sources": [
+     "P001-D008",
+     "P001-D025",
+     "P001-D028"
+    ]
+   }
+  ],
+  "medication_stopped_during_stay": [
+   {
+    "active_ingredient": "Heparin (unfractionated, IV infusion)",
+    "atc": "B01AB01",
+    "reason": "Switched to oral apixaban once stable (11.09.2024)",
+    "sources": [
+     "P001-D016",
+     "P001-D020",
+     "P001-D021"
+    ]
+   },
+   {
+    "active_ingredient": "Heparin (unfractionated, subcutaneous thrombosis prophylaxis)",
+    "atc": "B01AB01",
+    "reason": "Stopped after therapeutic anticoagulation with apixaban was started",
+    "sources": [
+     "P001-D008",
+     "P001-D021"
+    ]
+   },
+   {
+    "active_ingredient": "Metamizole",
+    "atc": "N02BB02",
+    "reason": "Perioperative pain relief, no longer needed",
+    "sources": [
+     "P001-D004",
+     "P001-D008",
+     "P001-D011"
+    ]
+   },
+   {
+    "active_ingredient": "Ampicillin/sulbactam",
+    "atc": "J01CR01",
+    "reason": "Antibiotic for pneumonia, switched to oral amoxicillin/clavulanic acid after 4 days",
+    "sources": [
+     "P001-D016",
+     "P001-D020"
+    ]
+   },
+   {
+    "active_ingredient": "Amoxicillin/clavulanic acid",
+    "atc": "J01CR02",
+    "reason": "Antibiotic for pneumonia, 10 days in total, finished 17.09.2024",
+    "sources": [
+     "P001-D020",
+     "P001-D021",
+     "P001-D023"
+    ]
+   }
+  ],
+  "procedures": [
+   {
+    "text": "Cementless total hip replacement, right (spinal anaesthesia, Watson-Jones approach)",
+    "date": "2024-09-04",
+    "sources": [
+     "P001-D009"
+    ]
+   },
+   {
+    "text": "Electrical cardioversion (150 J biphasic), sinus rhythm restored",
+    "date": "2024-11-20",
+    "sources": [
+     "P001-D027"
+    ]
+   },
+   {
+    "text": "CT chest with pulmonary angiography (see report)",
+    "date": "2024-09-08",
+    "sources": [
+     "P001-D017"
+    ]
+   },
+   {
+    "text": "Echocardiography (TTE): EF 55%, left atrium slightly dilated, no thrombus",
+    "date": "2024-09-09",
+    "sources": [
+     "P001-D019"
+    ]
+   },
+   {
+    "text": "Closed reduction and cast, left distal radius fracture (earlier stay 2021)",
+    "date": "2021-06-06",
+    "sources": [
+     "P001-D002"
+    ]
+   }
+  ],
+  "medical_devices_implants": [
+   {
+    "text": "Cementless total hip replacement, right (ProJoint GmbH, model PJ-CeraMax, cup 52 mm, stem size 5, ceramic-on-ceramic)",
+    "since": "2024-09-04",
+    "sources": [
+     "P001-D009",
+     "P001-D010",
+     "P001-D028"
+    ]
+   }
+  ],
+  "immunizations": [],
+  "key_results": [
+   {
+    "text": "Hb at discharge (last value 01.10.2024)",
+    "value": "10.4 g/dl",
+    "date": "2024-10-01",
+    "sources": [
+     "P001-D025"
+    ]
+   },
+   {
+    "text": "CHA₂DS₂-VASc score (AF anticoagulation)",
+    "value": "4 points",
+    "date": "2024-09-09",
+    "sources": [
+     "P001-D019"
+    ]
+   },
+   {
+    "text": "EF (echocardiography)",
+    "value": "55–58%",
+    "date": "2024-09-09",
+    "sources": [
+     "P001-D019",
+     "P001-D026"
+    ]
+   },
+   {
+    "text": "TSH (thyroid cause of AF)",
+    "value": "1.8 mIU/l (normal)",
+    "date": "2024-09-11",
+    "sources": [
+     "P001-D020"
+    ]
+   },
+   {
+    "text": "Creatinine at discharge",
+    "value": "0.88 mg/dl",
+    "date": "2024-10-01",
+    "sources": [
+     "P001-D025"
+    ]
+   }
+  ],
+  "must_not_include": [
+   {
+    "text": "Pulmonary embolism",
+    "reason": "see sources",
+    "sources": [
+     "P001-D015",
+     "P001-D017",
+     "P001-D018",
+     "P001-D028"
+    ]
+   },
+   {
+    "text": "Peptic ulcer / gastric bleeding in the history",
+    "reason": "reported by the patient only",
+    "sources": [
+     "P001-D024"
+    ]
+   },
+   {
+    "text": "Aspirin (ASS) allergy recorded as a confirmed allergy",
+    "reason": "intolerance reported, not tested",
+    "sources": [
+     "P001-D005",
+     "P001-D028"
+    ]
+   }
+  ]
+ },
+ "documents": {
+  "P001-D001": {
+   "title": "Outpatient check: hypertension",
+   "text": "Patient Hermine Bruckner, born 17.04.1952, attends for a routine check.\nBP 158/94 mmHg both arms, pulse 74/min regular. Weight 71 kg, height 163 cm.\nKnown arterial hypertension for about 10 years, currently well controlled on ramipril 5 mg 1-0-0.\nLab values from 01/2018: creatinine 0.9 mg/dl, HbA1c 5.4%, lipids normal.\nECG: sinus rhythm, signs of LVH.\nRecommendation: continue ramipril, check again in 6 months.\nNo known allergies. No substance use.\nDiagnosis: arterial hypertension (I10), well controlled."
+  },
+  "P001-D002": {
+   "title": "Discharge letter after left radius fracture",
+   "text": "Dear colleague,\nWe report on the inpatient stay of Mrs Hermine Bruckner, born 17.04.1952, from 05.06.2021 to 08.06.2021.\n\nReason for admission: fall at home, left distal radius fracture (S52.50).\nPrevious illnesses: arterial hypertension, ramipril 5 mg.\nAllergies: none according to the patient.\n\nTreatment: closed reduction and cast under local anaesthesia. Post-procedure check unremarkable.\nDischarged in good general condition.\n\nMedication at discharge:\n- Ramipril 5 mg 1-0-0\n- Ibuprofen 400 mg as needed (max. 3x/day), for 5 days\n\nFollow-up with the GP in 2 weeks.\nKind regards, Dr Thomas Weinzierl, trauma surgeon"
+  },
+  "P001-D003": {
+   "title": "Referral after fall with hip fracture",
+   "text": "Referral for inpatient admission and further diagnosis and treatment.\n\nPatient: Bruckner Hermine, born 17.04.1952\nReferral diagnosis: suspected right femoral neck fracture after a fall at home.\n\nHistory: the patient fell in her flat this morning, reports severe pain in the right hip; external rotation and shortening of the right leg visible. No loss of consciousness.\nPrevious illnesses: arterial hypertension (ramipril 5 mg), left distal radius fracture 06/2021.\nAllergies: none known.\n\nPlease admit for surgical treatment.\n\nDr Elfriede Strohmayr, general practice"
+  },
+  "P001-D004": {
+   "title": "Admission report, trauma surgery",
+   "text": "Admission: 02.09.2024, 16:05\nWard: UC-2\n\nPatient Hermine Bruckner, born 17.04.1952, female.\n\nReferral diagnosis: suspected right femoral neck fracture.\n\nHistory:\nThe patient fell at about 09:00 this morning when getting out of bed; the floor was slippery according to her. Severe pain in the right hip, unable to get up. Her daughter raised the alarm and called the GP.\n\nPrevious illnesses:\n- Arterial hypertension (since about 2014)\n- Left distal radius fracture 06/2021\nNo known allergies. No previous hip surgery.\nSmoking: never. Alcohol: occasionally. No other substance use.\n\nPhysical examination:\nGeneral condition: reduced, severe pain, cooperative. Weight 71 kg, height 163 cm.\nHead/neck: normal. Mouth: mucosa moist.\nChest: heart sounds regular, no murmurs. Lungs: vesicular breathing both sides, no crackles.\nAbdomen: soft, no tenderness, no masses.\nRight hip: inguinal tenderness, external rotation and shortening, movement severely limited and painful.\nNeuro: strength and sensation of the right leg grossly intact.\n\nBP 162/88 mmHg, pulse 78/min regular, SpO2 97%, temp 36.8°C.\n\nDiagnostics:\nX-ray pelvis/right hip: medial femoral neck fracture on the right confirmed (Garden III).\n\nDiagnosis:\n- Medial femoral neck fracture, right (S72.00)\n- Arterial hypertension\n\nPlan:\n- Inpatient admission to UC-2\n- Surgery planning: right total hip replacement tomorrow or the day after\n- Pain relief: metamizole 1 g IV as needed\n- Continue ramipril 5 mg\n- Nil by mouth from midnight\n- Anaesthesia clinic tomorrow morning"
+  },
+  "P001-D005": {
+   "title": "Nursing report, evening of admission",
+   "text": "02.09.2024, 20:15, registered nurse Monika Fuchs\n\nPatient admitted to UC-2, bed 4. Fully oriented. Pain right hip NRS 7/10, metamizole 1 g IV given, afterwards NRS 4/10.\nThe patient reports that she does not tolerate aspirin (ASS): it \"always made her feel sick\". This was not mentioned in the admission interview.\nPositioning: supine, pillow under the right knee. Fall prevention activated.\nTalk with her daughter: daughter informed about the planned surgery.\nSkin: intact, no pressure marks.\nNutrition: nil by mouth from midnight as ordered.\nVital signs: BP 154/86, pulse 76, SpO2 97%, temp 36.7°C.\nOther observations: patient somewhat anxious, reassured.\nUrine output: 800 ml in the last 8 h, clear."
+  },
+  "P001-D006": {
+   "title": "Pre-operative laboratory",
+   "text": "Patient: Bruckner Hermine, born 17.04.1952, female\nOrder number: LM-2024-09-03-0142\nSample taken: 03.09.2024, 06:15\n\nBlood count:\n  Hb: 11.8 g/dl [ref: 12.0–16.0] ↓\n  Hct: 35% [ref: 37–47] ↓\n  Leucocytes: 8.4 G/l [ref: 4.0–10.0]\n  Platelets: 234 G/l [ref: 150–400]\n\nCoagulation:\n  Quick/INR: 98% / 1.02 [ref: 70–130% / <1.3]\n  aPTT: 29 s [ref: 25–38]\n\nClinical chemistry:\n  Na: 138 mmol/l [ref: 136–145]\n  K: 4.1 mmol/l [ref: 3.5–5.0]\n  Creatinine: 0.88 mg/dl [ref: 0.5–0.9]\n  eGFR: 68 ml/min/1.73m²\n  CRP: 12 mg/l [ref: <5] ↑\n  AST: 22 U/l [ref: <35]\n  ALT: 18 U/l [ref: <35]\n  Albumin: 38 g/l [ref: 35–52]\n\nComment: mild pre-operative anaemia, otherwise no relevant abnormalities. CRP slightly raised, possibly related to the fall."
+  },
+  "P001-D007": {
+   "title": "Pre-operative anaesthesia visit",
+   "text": "Pre-operative anaesthesia visit, 03.09.2024\nPatient: Bruckner Hermine, born 17.04.1952\nPlanned procedure: right total hip replacement\n\nAnaesthesia history:\nPrevious illnesses: arterial hypertension. Right hip fracture (surgery planned tomorrow).\nRadius fracture treatment 2021 (local anaesthesia), no anaesthesia problems.\nHeart failure: none. Diabetes: none. Bleeding disorder: none.\nAllergies according to admission report: none known.\n\nMedication: ramipril 5 mg (paused tomorrow morning).\n\nExamination:\nHeart: sounds regular, no murmurs. Lungs: vesicular both sides.\nAirway: Mallampati I, mouth opening >4 cm, no dentures.\nNeck: freely movable.\n\nECG: sinus rhythm, signs of LVH, no sign of acute ischaemia.\nEcho (none recent): clinically no sign of relevant heart failure.\n\nRisk assessment: ASA III.\n\nPlanned technique: spinal anaesthesia, conversion to general anaesthesia if needed.\nPremedication: midazolam 3.75 mg orally 30 min before surgery.\nSpecial notes: pause ramipril on the day of surgery.\nConsent obtained."
+  },
+  "P001-D008": {
+   "title": "Pre-operative medication order",
+   "text": "04.09.2024, 08:00\nPatient: Bruckner Hermine, P001\n\nOrders:\n- Ramipril 5 mg: PAUSED today (day of surgery)\n- Metamizole 1 g IV as needed (NRS >4)\n- Heparin 5,000 IU subcutaneously at 20:00 (thrombosis prophylaxis, from this evening)\n- Pantoprazole 40 mg 1-0-0 orally (stomach protection around surgery)\n- Midazolam 3.75 mg orally at about 07:30 (premedication)\n- Nil by mouth from 00:00 – already observed\n\nDr Lukas Bauer, resident, trauma surgery"
+  },
+  "P001-D009": {
+   "title": "Surgery report: right total hip replacement",
+   "text": "Surgery report\nDate: 04.09.2024\nSurgeon: Senior Dr Stefan Kralik, trauma surgeon\nAssistant: Dr Lukas Bauer\nAnaesthesia: spinal anaesthesia (Senior Dr Vera Hochleitner)\n\nDiagnosis: medial femoral neck fracture, right (S72.00)\n\nIndication: right hip fracture, Garden III; surgery indicated after pre-operative information and consent.\n\nOperation: implantation of a cementless total hip replacement, right (manufacturer: ProJoint GmbH, model: PJ-CeraMax, cup 52 mm, stem size 5, ceramic-on-ceramic bearing)\n\nProcedure: positioned on the left side. Watson-Jones (anterolateral) approach. Layer-by-layer dissection. Femoral neck resected with an oscillating saw. Acetabulum reamed, cementless press-fit cup. Stem size 5 inserted, stable fixation. Ceramic head fitted. Reduction: easy, good stability in all directions. Thorough irrigation, bleeding controlled. Drain placed (Redon 12 Ch). Wound closed in layers.\n\nBlood loss: about 280 ml. No transfusion.\nDrain output first hour: 40 ml.\n\nPost-operative orders:\n- Mobilisation from day 1 with physiotherapy, full weight bearing allowed\n- Post-operative X-ray of the right hip\n- Continue heparin 5,000 IU subcutaneously\n- Restart ramipril tomorrow morning\n- Metamizole 1 g IV as needed, alternatively paracetamol 1 g IV\n\nComplications: none during surgery."
+  },
+  "P001-D010": {
+   "title": "X-ray right hip, post-operative",
+   "text": "Report: X-ray hip/pelvis AP, 04.09.2024\nPatient: Bruckner Hermine, born 17.04.1952\n\nFindings:\nStatus after implantation of a cementless total hip replacement, right.\nProsthesis correctly placed, no sign of stem fissure or cup malposition. Hip angles symmetrical. Leg length: no relevant difference.\nNo sign of free air or haematoma.\n\nAssessment: correct prosthesis position, no sign of early complications."
+  },
+  "P001-D011": {
+   "title": "Progress note, day 1 after surgery",
+   "text": "05.09.2024, 08:45, Dr L. Bauer\nDay 1 after right total hip replacement.\n\nPatient awake, oriented. Hip pain NRS 3/10 on metamizole.\nVital signs: BP 148/84, pulse 80/min regular, SpO2 97%, temp 37.2°C.\nDrain: 180 ml in total last evening, 20 ml this morning → drain removed.\nWound: dry, slight redness, no sign of infection.\nLungs: vesicular both sides, no crackles.\n\nPhysiotherapy planned today: bed-to-chair transfer, walking practice with crutches.\nRamipril 5 mg restarted today.\nContinue heparin 5,000 IU subcutaneously.\n\nPlan:\n- Lab check tomorrow\n- Physiotherapy daily\n- BP monitoring"
+  },
+  "P001-D012": {
+   "title": "Physiotherapy report, day 1 after surgery",
+   "text": "05.09.2024, 14:00\nPatient: Bruckner Hermine, P001, day 1 after right total hip replacement.\nTherapist: Claudia Pichler, physiotherapist\n\nFindings:\nPatient motivated, moderate pain on movement NRS 3–4. No dizziness.\nBed-to-chair transfer independent with minimal help. Walking practice with 2 crutches, about 10 m on the ward. Full weight bearing on the right leg as ordered.\n\nRecommendation: physiotherapy daily, twice a day if possible. Hip stabilisation exercises, breathing exercises as prevention.\nNext session: 06.09.2024"
+  },
+  "P001-D013": {
+   "title": "Post-operative laboratory, day 2",
+   "text": "Patient: Bruckner Hermine, born 17.04.1952\nOrder number: LM-2024-09-06-0219\nSample taken: 06.09.2024, 06:00\n\nBlood count:\n  Hb: 9.4 g/dl [ref: 12.0–16.0] ↓↓\n  Hct: 28% [ref: 37–47] ↓\n  Leucocytes: 12.8 G/l [ref: 4.0–10.0] ↑\n  Platelets: 218 G/l [ref: 150–400]\n\nClinical chemistry:\n  CRP: 87 mg/l [ref: <5] ↑↑\n  Creatinine: 0.92 mg/dl [ref: 0.5–0.9]\n  Na: 136 mmol/l, K: 3.9 mmol/l\n  PCT (procalcitonin): 0.38 ng/ml [ref: <0.5]\n\nComment: post-operative reactive CRP rise and anaemia expected. Procalcitonin borderline."
+  },
+  "P001-D014": {
+   "title": "Progress note, day 3 after surgery – deterioration",
+   "text": "07.09.2024, 07:00, Dr L. Bauer\nDay 3 after right total hip replacement.\n\nPatient reports shortness of breath, cough and fever since last evening.\nTemp 38.9°C. BP 144/86, pulse 112/min, SpO2 90% on room air.\nLungs: crackles at both bases, more on the right. Tachycardia on ECG.\n\nECG: new atrial fibrillation with rapid ventricular response (about 115/min).\nSuspected pneumonia and new atrial fibrillation → senior doctor and ICU informed.\nBlood tests: blood count, CRP, PCT, BNP, troponin, blood gas, blood cultures x2.\nChest X-ray: ordered.\n\nMeasures:\nOxygen 4 l/min → SpO2 94%.\nTransfer to IMC/ICU after discussion with Senior Dr Kralik and intensive care.\n\nDiagnosis:\n- Post-operative pneumonia (new)\n- New atrial fibrillation\n- Tachycardia"
+  },
+  "P001-D015": {
+   "title": "Chest X-ray for fever and shortness of breath",
+   "text": "Report: chest X-ray AP, 07.09.2024\nPatient: Bruckner Hermine, born 17.04.1952\n\nClinical question: post-operative shortness of breath, fever.\n\nFindings:\nSlight opacity in the right lower zone, consistent with infiltrate/pneumonia. No pneumothorax. No pleural effusions. Heart not enlarged. Mediastinum normal.\n\nAlso new compared with the previous image (04.09.): blurring due to heart rate (suspected tachyarrhythmia).\n\nAssessment: pneumonic infiltrate at the right base. No sign of pneumothorax or pleural effusion.\n\nSuspected pulmonary embolism was raised clinically – cannot be assessed on a plain X-ray; CT angiography recommended if clinically needed."
+  },
+  "P001-D016": {
+   "title": "ICU transfer report",
+   "text": "Transfer report, 07.09.2024, 12:00\nPatient: Bruckner Hermine, born 17.04.1952, P001\n\nReason for transfer: post-operative pneumonia with respiratory decompensation and new atrial fibrillation with rapid ventricular response.\n\nAdmitted to ICU (bed ICU-3).\n\nStatus at transfer:\nTemp 39.1°C, BP 138/90, pulse 118/min (AF), SpO2 91% on 4 l O2.\nBlood gas: pH 7.41, pO2 66 mmHg, pCO2 37 mmHg, lactate 1.4 mmol/l.\n\nLab (taken 07:00):\n  Hb 9.2 g/dl, leucocytes 16.4 G/l ↑↑, CRP 164 mg/l ↑↑\n  PCT 2.1 ng/ml ↑ → infection likely\n  Troponin T hs: 42 ng/l [ref: <14] ↑ → possibly due to AF\n  BNP: 380 pg/ml ↑\n  Creatinine: 1.05 mg/dl\n\nECG: atrial fibrillation, HR 115/min, no ST elevation.\n\nTreatment started:\n- Antibiotic: ampicillin/sulbactam 3 g IV every 8 h (start 11:30)\n- Rate control: metoprolol 5 mg IV slowly, then metoprolol 47.5 mg orally 1-0-0\n- Anticoagulation: heparin IV infusion (initially 1,000 IU/h, adjusted by aPTT)\n- Oxygen: 6 l/min by mask → SpO2 95%\n- Fluids: NaCl 0.9% 500 ml IV over 4 h\n- Ramipril paused for now (BP borderline)\n\nClinical question for ICU: could the pneumonia mimic a pulmonary embolism? CT chest with angiography once stable.\n\nDiagnosis:\n1. Post-operative pneumonia (J18.1)\n2. New atrial fibrillation with rapid ventricular response (I48.0)\n3. Status after right total hip replacement (04.09.2024)\n4. Arterial hypertension"
+  },
+  "P001-D017": {
+   "title": "CT chest with angiography – question of pulmonary embolism",
+   "text": "Report: CT chest with contrast angiography, 08.09.2024\nPatient: Bruckner Hermine, born 17.04.1952\n\nClinical question: pulmonary embolism? (shortness of breath and atrial fibrillation)\n\nFindings:\nPulmonary arteries: normal contrast filling centrally and segmentally on both sides. No filling defect suggesting pulmonary embolism.\nLungs: consolidation in the right lower lobe, consistent with lobar pneumonia. Slight pleural reaction on the right. No pneumothorax.\nHeart: no pericardial effusion. Heart rate due to AF. No pulmonary venous congestion.\nMediastinum: normal.\n\nAssessment:\n1. No sign of pulmonary embolism.\n2. Lobar pneumonia of the right lower lobe, with pleural reaction.\n3. No sign of pericardial effusion."
+  },
+  "P001-D018": {
+   "title": "ICU progress day 2 – cardiology consult, AF management",
+   "text": "09.09.2024, 08:00, Senior Dr Marta Gruber, intensive care\n\nPatient Bruckner Hermine, ICU day 2.\n\nGeneral condition: slightly improved, fever falling (38.2°C). SpO2 96% on 4 l/min O2.\nHeart: AF persists, rate 90–100/min on metoprolol.\nECG: AF, HR 94, no sign of ischaemia.\n\nCardiology consult requested.\n\nLab (09.09.):\n  Hb 8.9 g/dl, leucocytes 12.1 G/l (falling), CRP 118 mg/l (falling)\n  PCT 1.2 ng/ml (falling)\n  Creatinine 0.98 mg/dl\n\nCT chest yesterday: no pulmonary embolism found. Pneumonia confirmed.\n\nAntibiotics: continue ampicillin/sulbactam (day 2).\nHeparin IV infusion: aPTT 58 s (target 50–70 s) → keep dose.\n\nPlan:\n- Cardiology consult today\n- Request echo\n- Careful mobilisation (physiotherapy at the bedside)"
+  },
+  "P001-D019": {
+   "title": "Cardiology consultation – atrial fibrillation",
+   "text": "Cardiology consultation report, 09.09.2024\nConsultant: Senior Dr Heinrich Fabian, cardiology\nRequested by: intensive care\n\nReason: new atrial fibrillation (since 07.09.2024), persistent.\n\nHistory: Mrs Bruckner, 72 years, known arterial hypertension, after surgery (total hip replacement 04.09.2024). No known AF. Right pneumonia (on ampicillin/sulbactam).\n\nEchocardiography (09.09.2024):\n- LV: EF about 55%, no regional wall motion abnormality.\n- LA: slightly dilated (44 mm).\n- Valves: no relevant stenosis or regurgitation.\n- No pericardial effusion.\n- No thrombus in the left atrial appendage (no TEE, TTE window adequate).\n\nECG: AF, HR 94/min, no sign of ischaemia.\n\nAF risk assessment:\n- CHA₂DS₂-VASc score: 4 points (hypertension 1, age ≥75: 2, female: 1) → anticoagulation clearly indicated.\n\nRecommendation:\n1. Rate control: continue metoprolol 47.5 mg 1-0-0 (target HR <90/min at rest).\n2. Anticoagulation: switch from IV heparin to apixaban (Eliquis) 5 mg twice daily once kidney values are stable. Start apixaban when creatinine is stable and ICU discharge is near.\n3. Rhythm control: no cardioversion for now (pneumonia, haemodynamically stable). After the pneumonia has healed, echo check and possibly elective cardioversion in 4–6 weeks.\n4. Check thyroid values (TSH) for a thyroid cause of AF.\n\nDiagnosis: first diagnosis of atrial fibrillation (I48.0), probably triggered by surgery/inflammation."
+  },
+  "P001-D020": {
+   "title": "ICU progress day 4 – clinical improvement",
+   "text": "11.09.2024, 08:00, Senior Dr Gruber\n\nPatient clinically improved. No fever since last evening (36.9°C). SpO2 97% on 2 l/min O2.\nHeart: AF persists, but rate better controlled (80–88/min).\nAntibiotics: ampicillin/sulbactam day 4; given the good course, switch to oral amoxicillin/clavulanic acid 875/125 mg twice daily planned for tomorrow.\nApixaban 5 mg 2-0-2 started today (creatinine 0.95, cardiology recommendation implemented). Heparin IV infusion stopped.\n\nLab (11.09.):\n  CRP 64 mg/l (clearly falling), PCT 0.4 ng/ml\n  Hb 9.0 g/dl, leucocytes 8.4 G/l\n  TSH 1.8 mIU/l [ref: 0.27–4.2] → normal\n\nPlan:\n- Transfer to the normal ward tomorrow if still stable\n- Continue physiotherapy and mobilisation\n- Restart ramipril (BP 152/88)"
+  },
+  "P001-D021": {
+   "title": "Transfer report ICU → normal ward",
+   "text": "Transfer report, 13.09.2024\nTransferred from: ICU\nTransferred to: ward UC-2, bed 7\n\nPatient: Bruckner Hermine, born 17.04.1952\n\nICU stay: 07.09.2024 – 13.09.2024 (6 days)\n\nReason for ICU admission: post-operative pneumonia and new AF with rapid ventricular response.\n\nCourse in ICU:\n- Pneumonia: good response to IV ampicillin/sulbactam (4 days), then oral amoxicillin/clavulanic acid. Improving.\n- AF: persistent, rate well controlled on metoprolol. Anticoagulation with apixaban 5 mg twice daily started.\n- Hip replacement: wound calm, no complications.\n- Pulmonary embolism: CT angiography 08.09.2024 – no sign.\n\nMedication at transfer to the ward:\n1. Ramipril 5 mg 1-0-0\n2. Metoprolol 47.5 mg 1-0-0\n3. Apixaban 5 mg 1-0-1  [NOTE: dose entry incorrect – correct is 5 mg 2-0-2 according to the cardiology consult]\n4. Amoxicillin/clavulanic acid 875/125 mg 1-0-1 (until 17.09.2024)\n5. Pantoprazole 40 mg 1-0-0\n6. Heparin subcutaneous: stopped (anticoagulation with apixaban)\n\nDiagnoses:\n1. Status after right total hip replacement 04.09.2024\n2. Post-operative pneumonia (resolving)\n3. New atrial fibrillation (I48.0)\n4. Arterial hypertension\n5. Anaemia (post-operative, improving)"
+  },
+  "P001-D022": {
+   "title": "Progress note after return to the ward – apixaban dose correction",
+   "text": "14.09.2024, 08:30, Dr Bauer\nFirst day on the ward after ICU.\n\nPatient awake, good general condition. No fever for >48 h. Shortness of breath clearly better, SpO2 97% on room air.\nLungs: basal crackles on the right decreasing.\nHeart: AF, HR about 82/min.\nHip: wound calm, staples in place.\n\nMedication reviewed (with cardiology):\nApixaban dose: incorrectly given as 5 mg 1-0-1 in the transfer report. Correct dose according to the cardiology consult of 09.09. and current discussion: 5 mg 2-0-2.\nOrder corrected: apixaban 5 mg 2-0-2 from now on.\n\nContinue amoxicillin/clavulanic acid until 17.09.\nContinue ramipril 5 mg.\nContinue metoprolol 47.5 mg.\n\nPhysiotherapy resumed: walking practice with crutches, increasingly independent.\n\nPlan: lab next week, staple removal 17–18.09."
+  },
+  "P001-D023": {
+   "title": "Progress note – antibiotics finished, staples removed",
+   "text": "17.09.2024, 09:00, Dr Bauer\n\nAmoxicillin/clavulanic acid finished today (last dose this morning, 10 days in total).\nStaples removed, wound calm, healed by primary intention.\nLungs: no more crackles. SpO2 98% on room air.\nHeart: AF, HR 78/min, rate well controlled.\n\nBP 146/82 on ramipril.\nLab (today):\n  Hb 9.8 g/dl (slightly better), Hct 30%, leucocytes 6.8 G/l, CRP 14 mg/l\n  Creatinine 0.91 mg/dl, Na 138, K 4.1\n\nPhysiotherapy: patient walks with 1 crutch, about 50 m on the ward.\n\nPlan: continue mobilisation, discharge to rehabilitation planned for early October."
+  },
+  "P001-D024": {
+   "title": "Nursing report – ward",
+   "text": "18.09.2024, 11:00, registered nurse Sabine Kern\n\nMrs Bruckner, good general condition, independent with personal care, help with washing the right side. Mobile with 1 crutch, uses the toilet independently.\nDiet: full, eats well. Fluid intake about 1.5 l/day.\nMood: happy about progress but anxious about her \"heart rhythm\". Doctor will talk with her.\nMedication: all oral medicines taken correctly, swallows tablets well.\nNote: the patient mentioned she \"used to have stomach problems with a bleeding ulcer\" – not documented at admission or in previous reports. Not confirmed.\nPressure areas: none, skin intact.\nElimination: urine and stool normal."
+  },
+  "P001-D025": {
+   "title": "Progress note early October – preparing rehabilitation",
+   "text": "02.10.2024, 08:00, Dr Bauer\n\nPatient stable, good general condition. Hip pain only on load, NRS 1–2.\nAF persists, rate 76/min on metoprolol and apixaban.\n\nExternal cardiology check planned after discharge (decision on cardioversion).\nRepeat echo planned 6 weeks after discharge.\n\nPhysiotherapy: walks with 1 crutch, stairs up and down with handrail.\n\nLab (01.10.):\n  Hb 10.4 g/dl (slightly better), CRP 6 mg/l, creatinine 0.88\n\nRehabilitation requested: geriatric rehabilitation, planned from about 15.10.2024.\n\nMedication unchanged:\n1. Ramipril 5 mg 1-0-0\n2. Metoprolol 47.5 mg 1-0-0\n3. Apixaban 5 mg 2-0-2 (correct dose)\n4. Pantoprazole 40 mg 1-0-0"
+  },
+  "P001-D026": {
+   "title": "Cardiology follow-up consult – persistent AF",
+   "text": "Cardiology consultation report, 15.11.2024\nConsultant: Senior Dr Fabian\n\nReason: AF follow-up. Patient still on ward UC-2 (long stay after hip replacement and complications).\n\nFindings:\nPatient well. AF persistent, rate 72/min. No heart failure symptoms.\nEcho (today): EF 58%, LA 44 mm, no thrombus seen.\n\nRhythm control: pneumonia healed for >8 weeks. Cardioversion now possible.\nRecommendation: elective external cardioversion planned for 20.11.2024 if the patient consents. Apixaban must have been taken for ≥3 weeks before cardioversion (since 11.09., so >2 months → OK).\n\nNow: keep apixaban 5 mg twice daily. After cardioversion: continue apixaban for at least 4 weeks, then reassess CHA2DS2-VASc.\n\nThromboembolism prevention: continue apixaban, score 4 → long-term recommended."
+  },
+  "P001-D027": {
+   "title": "Electrical cardioversion – sinus rhythm restored",
+   "text": "20.11.2024, 10:00, Senior Dr Fabian / cardiology\n\nElective external cardioversion under sedation (midazolam 2 mg and propofol 50 mg IV).\nBiphasic shock 150 J → sinus rhythm restored.\nECG afterwards: sinus rhythm 64/min, narrow QRS, no sign of ischaemia.\n\nMonitoring for 4 h: sinus rhythm stable, no complications.\n\nMedication:\n- Continue apixaban 5 mg 2-0-2 (at least 4 weeks after cardioversion, then outpatient cardiology)\n- Continue metoprolol 47.5 mg 1-0-0 (prevent recurrence, blood pressure)\n- Continue ramipril 5 mg\n\nPlan: discharge end of November, outpatient cardiology check in 4 weeks."
+  },
+  "P001-D028": {
+   "title": "Discharge letter after long stay",
+   "text": "Discharge letter\nMusterstadt Regional Hospital, Department of Trauma Surgery\nDate: 28.11.2024\n\nDear Dr Strohmayr,\n\nWe are discharging Mrs Hermine Bruckner, born 17.04.1952, after an inpatient stay from 02.09.2024 to 28.11.2024 (87 days).\n\nMain diagnoses:\n1. Medial femoral neck fracture, right (S72.00) – treated surgically\n2. Status after cementless total hip replacement, right (04.09.2024)\n3. Post-operative right-sided pneumonia (J18.1) – healed\n4. First diagnosis of atrial fibrillation (I48.0) – sinus rhythm after cardioversion (20.11.2024)\n5. Arterial hypertension (I10)\n\nSecondary diagnoses:\n6. Post-operative anaemia (D64.9) – improved\n\nCourse:\nAdmitted on 02.09.2024 after a fall at home. Right total hip replacement on 04.09.2024 without complications. On day 3 after surgery fever and shortness of breath → pneumonia and new AF. ICU stay 07.09.–13.09.2024. CT angiography on 08.09.2024 showed no pulmonary embolism. Antibiotics: IV ampicillin/sulbactam, then oral amoxicillin/clavulanic acid, 10 days in total. AF: rate control with metoprolol, anticoagulation with apixaban. Cardioversion on 20.11.2024 – sinus rhythm restored.\n\nMedication at discharge:\n1. Ramipril 5 mg (Delix) 1-0-0 – hypertension (unchanged)\n2. Metoprolol 47.5 mg (Beloc) 1-0-0 – rate control / prevent AF recurrence (new)\n3. Apixaban 5 mg (Eliquis) 2-0-2 – anticoagulation for AF (new)\n4. Pantoprazole 40 mg 1-0-0 – stomach protection (started around surgery, continued)\n\nImplant: cementless total hip replacement, right (ProJoint PJ-CeraMax, cup 52 mm, stem size 5), implanted 04.09.2024.\n\nAllergy note: the patient reports intolerance of aspirin (acetylsalicylic acid, ASS) – not confirmed by clinical testing, but to be documented as an intolerance.\n\nRecommendations:\n- Outpatient cardiology check in 4 weeks (decision on long-term apixaban)\n- GP: blood pressure check, lab (creatinine, Hb) in 4 weeks\n- Continue outpatient physiotherapy\n- Hip X-ray in 3 months\n\nPlease continue treatment.\n\nKind regards, Senior Dr Stefan Kralik, trauma surgeon\nMusterstadt Regional Hospital"
+  }
+ }
+}

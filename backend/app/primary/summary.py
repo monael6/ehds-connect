@@ -130,6 +130,7 @@ def _from_record(p: dict, rec: dict, lang: str, sections: set[str] | None) -> di
                          for x in r.get("past_history", [])],
         "procedures": [{"label": x["text"], "date": x.get("date"), "source": src(x)} for x in r.get("procedures", [])],
         "devices": [{"label": x["text"], "since": x.get("since"), "source": src(x)} for x in r.get("medical_devices_implants", [])],
+        "checks": records.checks(rec),
     }
     if "problems" in want:
         out["problems"] = problems

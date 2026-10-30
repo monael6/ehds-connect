@@ -92,7 +92,7 @@ def test_discharge_letter_workflow(client):
     kid = key.json()["id"]
     letter = client.post("/api/discharge-letters", json={"patient_id": "p-4cfd3cf1"}, headers=h).json()
     lid = letter["id"]
-    assert "Weitere empfohlene Maßnahmen" in letter["missing_required"]
+    assert "Further recommendations" in letter["missing_required"]
     assert client.post(f"/api/discharge-letters/{lid}/send", headers=h).status_code == 409
     assert client.post(f"/api/discharge-letters/{lid}/sign", json=sign_body(client, h, lid, priv, kid),
                        headers=h).status_code == 422

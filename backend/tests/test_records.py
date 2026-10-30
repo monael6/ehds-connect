@@ -32,7 +32,9 @@ def test_summary_from_documents_keeps_traps(client):
     s = client.get("/api/patients/P001/summary?lang=en", headers=h(client, "u-huber")).json()
     assert [a["verification"] for a in s["allergies"]["items"]] == ["unconfirmed"]
     labels = " ".join(p["label"] for p in s["problems"])
-    assert "Lungenembolie" not in labels
+    assert "embolism" not in labels.lower() and "Lungenembolie" not in labels
+    assert any("P001-D015" in c["source"] for c in s["checks"])
+    assert not any("ruled out" in c["text"] for c in s["checks"])
     assert "B01AB01" not in {m["code"] for m in s["medications"]}  # heparin was stopped
     assert all(p["source"].startswith("P001-D") for p in s["problems"])
 
@@ -41,8 +43,8 @@ def test_letter_draft_from_documents(client):
     letter = client.post("/api/discharge-letters", json={"patient_id": "P001"}, headers=h(client, "u-berger")).json()
     sec = {s["key"]: s for s in letter["content"]["sections"]}
     assert letter["content"]["header"]["stay"]["from"] == "2024-09-02"
-    assert any("Ramipril 5mg" in i["text"] for i in sec["medikation"]["items"])
-    assert any("abgesetzt" in i["text"] for i in sec["medikation"]["items"])
+    assert any("Ramipril 5 mg" in i["text"] for i in sec["medikation"]["items"])
+    assert any("stopped during the stay" in i["text"] for i in sec["medikation"]["items"])
     assert sec["allergien"]["items"] and sec["empfehlungen"]["empty"]
 
 

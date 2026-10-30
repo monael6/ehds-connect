@@ -24,19 +24,19 @@ NO_DATA = "No data in the KIS – please complete"
 
 # (key, ELGA heading, required)
 SECTIONS = [
-    ("brieftext", "Brieftext", False),
-    ("aufnahmegrund", "Aufnahmegrund", True),
-    ("diagnosen", "Diagnose bei Entlassung", True),
-    ("massnahmen", "Durchgeführte Maßnahmen", False),
-    ("medikation", "Empfohlene Medikation", True),
-    ("empfehlungen", "Weitere empfohlene Maßnahmen", True),
-    ("zusammenfassung", "Zusammenfassung des Aufenthalts", False),
-    ("allergien", "Allergien, Unverträglichkeiten und Risiken", False),
-    ("befunde", "Erhobene Befunde", False),
-    ("anamnese", "Anamnese", False),
-    ("fruehere", "Frühere Erkrankungen", False),
-    ("medikation_einweisung", "Medikation bei Einweisung", False),
-    ("bemerkungen", "Abschließende Bemerkungen", False),
+    ("brieftext", "Letter text", False),
+    ("aufnahmegrund", "Reason for admission", True),
+    ("diagnosen", "Diagnoses at discharge", True),
+    ("massnahmen", "Treatment provided", False),
+    ("medikation", "Recommended medication", True),
+    ("empfehlungen", "Further recommendations", True),
+    ("zusammenfassung", "Summary of the stay", False),
+    ("allergien", "Allergies, intolerances and risks", False),
+    ("befunde", "Findings", False),
+    ("anamnese", "History", False),
+    ("fruehere", "Previous illnesses", False),
+    ("medikation_einweisung", "Medication on admission", False),
+    ("bemerkungen", "Notes for the doctor", False),
 ]
 REQUIRED = [k for k, _, r in SECTIONS if r]
 
@@ -69,13 +69,13 @@ def draft_from_kis(store: DataStore, pid: str, encounter_id: str | None = None) 
     main = stay["primary_icd10"]
     diag = []
     if main:
-        diag.append({"role": "Hauptdiagnose", "code": main, "system": "ICD-10", "text": T.label(main, "de"),
-                     "source": f"{src}: Aufenthalt {stay['encounter_id']}, Hauptdiagnose"})
+        diag.append({"role": "Main diagnosis", "code": main, "system": "ICD-10", "text": T.label(main, "en"),
+                     "source": f"{src}: stay {stay['encounter_id']}, main diagnosis"})
     for c in cond:
         if c["code"] != main:
-            diag.append({"role": "Nebendiagnose", "code": c["code"], "system": "ICD-10",
-                         "text": T.label(c["code"], "de", c["description"]),
-                         "source": f"{src}: Diagnose seit {c['date']}"})
+            diag.append({"role": "Secondary diagnosis", "code": c["code"], "system": "ICD-10",
+                         "text": T.label(c["code"], "en", c["description"]),
+                         "source": f"{src}: diagnosis since {c['date']}"})
 
     def status(m: dict) -> str:
         if m["end_date"] and m["end_date"] <= end:
@@ -84,24 +84,24 @@ def draft_from_kis(store: DataStore, pid: str, encounter_id: str | None = None) 
             return "new"
         return "unchanged"
 
-    rec = [{"code": m["code"], "system": "ATC", "text": T.label(m["code"], "de", m["description"]), "dose": None,
-            "status": status(m), "source": f"{src}: Verordnung {m['date']}"}
+    rec = [{"code": m["code"], "system": "ATC", "text": T.label(m["code"], "en", m["description"]), "dose": None,
+            "status": status(m), "source": f"{src}: prescribed {m['date']}"}
            for m in meds if m["date"] <= end and status(m) != "stopped"]
-    stopped = [{"code": m["code"], "system": "ATC", "text": T.label(m["code"], "de", m["description"]), "status": "stopped",
-                "source": f"{src}: beendet {m['end_date']}"} for m in meds if m["date"] <= end and status(m) == "stopped"]
-    on_admission = [{"code": m["code"], "system": "ATC", "text": T.label(m["code"], "de", m["description"]),
-                     "source": f"{src}: Verordnung {m['date']}"} for m in meds if m["date"] < stay["start_date"]
+    stopped = [{"code": m["code"], "system": "ATC", "text": f"{T.label(m['code'], 'en', m['description'])} (stopped)", "status": "stopped",
+                "source": f"{src}: stopped {m['end_date']}"} for m in meds if m["date"] <= end and status(m) == "stopped"]
+    on_admission = [{"code": m["code"], "system": "ATC", "text": T.label(m["code"], "en", m["description"]),
+                     "source": f"{src}: prescribed {m['date']}"} for m in meds if m["date"] < stay["start_date"]
                     and (m["end_date"] is None or m["end_date"] >= stay["start_date"])]
-    findings = [{"code": o["code"], "system": "LOINC", "text": T.label(o["code"], "de", o["description"]),
+    findings = [{"code": o["code"], "system": "LOINC", "text": T.label(o["code"], "en", o["description"]),
                  "value": o["value"], "unit": o["unit"], "date": str(o["date"]),
-                 "abnormal": _abnormal(o["code"], o["value"]), "source": f"{src}: Messung {o['date']}"} for o in obs]
-    earlier = [d for d in diag if d["role"] == "Nebendiagnose"]
+                 "abnormal": _abnormal(o["code"], o["value"]), "source": f"{src}: measured {o['date']}"} for o in obs]
+    earlier = [d for d in diag if d["role"] == "Secondary diagnosis"]
 
-    reason = [{"text": f"Stationäre Aufnahme am {stay['start_date']} mit Hauptdiagnose {T.label(main, 'de')} ({main}).",
-               "source": f"{src}: Aufenthalt {stay['encounter_id']}"}] if main else []
-    summary = [{"text": f"Stationärer Aufenthalt vom {stay['start_date']} bis {stay['end_date']} "
-                        f"({stay['length_of_stay']:.0f} Tage) im {stay['data_holder']}.",
-                "source": f"{src}: Aufenthalt {stay['encounter_id']}"}]
+    reason = [{"text": f"Admitted on {stay['start_date']} with main diagnosis {T.label(main, 'en')} ({main}).",
+               "source": f"{src}: stay {stay['encounter_id']}"}] if main else []
+    summary = [{"text": f"Inpatient stay from {stay['start_date']} to {stay['end_date']} "
+                        f"({stay['length_of_stay']:.0f} days) at {stay['data_holder']}.",
+                "source": f"{src}: stay {stay['encounter_id']}"}]
     sections = [
         _section("brieftext"),
         _section("aufnahmegrund", reason),
@@ -134,19 +134,19 @@ def draft_from_record(store: DataStore, rec: dict) -> dict:
     src = lambda x: records.sources(rec, x.get("sources", []))  # noqa: E731
     adm = next(d for d in rec["documents"] if d["id"] == stay["admission_doc"])
     problems = r.get("problems_active", [])
-    diag = [{"role": "Hauptdiagnose" if i == 0 else "Nebendiagnose", "code": x.get("icd10"), "system": "ICD-10", "text": x["text"],
+    diag = [{"role": "Main diagnosis" if i == 0 else "Secondary diagnosis", "code": x.get("icd10"), "system": "ICD-10", "text": x["text"],
              "source": src(x)} for i, x in enumerate(problems)]
     meds = r.get("medication_at_discharge", [])
     rec_meds = [{"code": m.get("atc"), "system": "ATC", "text": f"{m['active_ingredient']} {m.get('dose') or ''}".strip(),
                  "dose": m.get("dose"), "status": m.get("status"), "source": src(m)} for m in meds]
-    stopped = [{"code": m.get("atc"), "system": "ATC", "text": f"{m['active_ingredient']}: abgesetzt ({m.get('reason') or 'während des Aufenthalts'})",
+    stopped = [{"code": m.get("atc"), "system": "ATC", "text": f"{m['active_ingredient']}: stopped during the stay ({m.get('reason') or 'see sources'})",
                 "status": "stopped", "source": src(m)} for m in r.get("medication_stopped_during_stay", [])]
     on_admission = [{"code": m.get("atc"), "system": "ATC", "text": m["active_ingredient"], "source": src(m)}
                     for m in meds if m.get("status") in ("unchanged", "changed")]
     procedures = [{"text": f"{x.get('date') or ''} {x['text']}".strip(), "source": src(x)} for x in r.get("procedures", [])]
-    devices = [{"text": f"Implantat/Medizinprodukt: {x['text']}", "source": src(x)} for x in r.get("medical_devices_implants", [])]
+    devices = [{"text": f"Implant / medical device: {x['text']}", "source": src(x)} for x in r.get("medical_devices_implants", [])]
     allergies = [{"text": f"{a['substance']}: {a.get('reaction') or ''}"
-                          + (" (unbestätigt)" if a.get("verification") == "unconfirmed" else ""), "source": src(a)}
+                          + (" (unconfirmed)" if a.get("verification") == "unconfirmed" else ""), "source": src(a)}
                  for a in r.get("allergies_intolerances", [])]
     findings = [{"text": f"{k['text']}: {k['value']}", "value": k["value"], "unit": None, "date": k.get("date"), "abnormal": False,
                  "source": src(k)} for k in r.get("key_results", [])]
@@ -154,27 +154,27 @@ def draft_from_record(store: DataStore, rec: dict) -> dict:
     days = (date.fromisoformat(stay["end_date"]) - date.fromisoformat(stay["start_date"])).days
     sections = [
         _section("brieftext"),
-        _section("aufnahmegrund", [{"text": f"Stationäre Aufnahme am {stay['start_date']}: {adm['titel']}.",
+        _section("aufnahmegrund", [{"text": f"Admitted on {stay['start_date']}: {adm['titel']}.",
                                     "source": records.sources(rec, [adm["id"]])}]),
         _section("diagnosen", diag),
         _section("massnahmen", procedures),
         _section("medikation", rec_meds + stopped),
         _section("empfehlungen"),
-        _section("zusammenfassung", [{"text": f"Stationärer Aufenthalt vom {stay['start_date']} bis {stay['end_date']} ({days} Tage), "
+        _section("zusammenfassung", [{"text": f"Inpatient stay from {stay['start_date']} to {stay['end_date']} ({days} days), "
                                               f"{stay['department']}.", "source": records.sources(rec, [adm["id"]])}]),
         _section("allergien", allergies),
         _section("befunde", findings),
         _section("anamnese"),
         _section("fruehere", earlier),
         _section("medikation_einweisung", on_admission),
-        _section("bemerkungen", devices),
+        _section("bemerkungen", devices + records.checks(rec)),
     ]
     return {
         "header": {"patient_id": pid, "patient_name": records.name(rec), "sex": p["sex"], "birth_date": str(p["birth_date"]),
                    "stay": {"encounter_id": stay["encounter_id"], "from": stay["start_date"], "to": stay["end_date"]},
                    "hospital": p["data_holder"], "author": None, "signing_physician": None, "contact_person": None},
         "sections": sections,
-        "not_written_by_system": ["only statements found in the patient's documents", "ruled-out diagnoses are left out",
+        "not_written_by_system": ["only statements found in the patient's documents", "no diagnoses made by the system: unclear points are listed for the doctor",
                                   "recommendations are written by the doctor"],
     }
 
