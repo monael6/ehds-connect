@@ -50,7 +50,21 @@ function EItem({ icon: Icon, label, value, code }: { icon: typeof Pill; label: s
   );
 }
 
+const CRITICAL: Record<string, Record<Lang, string>> = {
+  medication: { en: "Critical medication", de: "Kritische Medikation", it: "Farmaco critico" },
+  condition: { en: "Critical condition", de: "Kritische Erkrankung", it: "Condizione critica" },
+};
+
 export function EmergencyPanel({ p, lang, showCodes = true }: { p: Patient; lang: Lang; showCodes?: boolean }) {
+  // Emergency information selected by the backend, when the summary came from FastAPI.
+  if (p.emergency?.length) return (
+    <div className="rounded-2xl border-2 border-destructive/40 bg-destructive-soft p-5" role="alert">
+      <div className="flex items-center gap-2 font-semibold text-destructive"><AlertTriangle className="h-5 w-5" />{UI.emergency[lang]}</div>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        {p.emergency.map((e) => <EItem key={`${e.type}-${e.code ?? e.text}`} icon={e.type === "medication" ? Droplet : AlertTriangle} label={(CRITICAL[e.type] ?? CRITICAL["condition"])?.[lang] ?? ""} value={e.text} code={showCodes && e.code ? `${e.type === "medication" ? "ATC" : "ICD-10"} ${e.code}` : undefined} />)}
+      </div>
+    </div>
+  );
   const anticoag = p.medications.filter((m) => m.anticoagulant);
   const crit = p.allergies.filter((a) => a.severity === "high");
   if (anticoag.length + crit.length + p.implants.length === 0) return null;

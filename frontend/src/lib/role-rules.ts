@@ -14,8 +14,9 @@ export interface EligibilityInput {
   purpose: string; records: boolean; justification: string; qualified: boolean;
   safeguards: boolean; ethics: "approved" | "not-needed" | "pending";
 }
+export const PROHIBITED_PURPOSES = ["insurance", "advertising", "employment", "weapons"];
 export function eligibility(a: EligibilityInput) {
-  if (["insurance", "advertising", "employment", "weapons"].includes(a.purpose)) return { allowed: false, label: "Not eligible – this purpose is not allowed (Art. 54)." };
+  if (PROHIBITED_PURPOSES.includes(a.purpose)) return { allowed: false, label: "Not eligible – this purpose is not allowed (Art. 54)." };
   if (!a.purpose) return { allowed: false, label: "Not eligible – select a permitted purpose." };
   if (!a.qualified) return { allowed: false, label: "Not eligible – applicant qualification must be documented." };
   if (!a.safeguards) return { allowed: false, label: "Not eligible – safeguards must be documented." };

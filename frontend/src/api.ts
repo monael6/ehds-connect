@@ -1,21 +1,67 @@
-// Service layer. Each function mirrors a FastAPI endpoint and currently returns mock data.
-// To go live: replace bodies with fetch(`${API_BASE}/api/...`).
-import { PATIENTS, REQUESTS, TERMS, HL7_ORU, HL7_ADT, LETTER, SOURCES, IPS_VERSION, ENCOUNTER, PRIMARY_METRICS, REFERENCE_P00421, ROLE_PATIENTS, ELGA_SECTIONS, HOSPITAL_REQUESTS, HOSPITAL_DATASET, DATASETS, PUBLIC_USES, UNREGISTERED_FACILITIES, METRICS, type Lang, type Patient, type ResearchRequest, type AccessEntry } from "@/mockData";
+// Service layer. Each function calls the FastAPI backend and maps its answer to the UI's shapes (src/lib/backend-mappers.ts).
+// Synthetic fixtures are used only when the service is unavailable, and are labelled as such.
+import { PATIENTS, REQUESTS, TERMS, HL7_ORU, HL7_ADT, SOURCES, IPS_VERSION, ENCOUNTER, PRIMARY_METRICS, REFERENCE_P00421, ROLE_PATIENTS, ELGA_SECTIONS, HOSPITAL_REQUESTS, HOSPITAL_DATASET, DATASETS, PUBLIC_USES, UNREGISTERED_FACILITIES, METRICS, type Lang, type Patient, type ResearchRequest, type AccessEntry } from "@/mockData";
 import type { ClinicalSection } from "@/lib/letter-rules";
-import { decide, decideAccess, type RuleOutcome, type AccessInput } from "@/lib/rules";
+import { decide, decideAccess, type RuleOutcome, type AccessInput, type AccessOutcome, type PrimaryDecision } from "@/lib/rules";
+import { eligibility, type EligibilityInput } from "@/lib/role-rules";
 import { obxToObservation, segmentLine } from "@/lib/hl7";
 import { releasedPatient } from "@/lib/summary-rules";
 import { createDemoLetterDraft } from "@/lib/letter-draft";
+import {
+  BACKEND_USERS, FOREIGN_DOCTOR_USER, FRAU_M, HOSPITAL, PATIENT_USER, currentLetter, emptyLetter, fromAccess, fromAudit, fromCatalogue, fromDecisionRow, fromEligibility, fromEvaluation,
+  fromFacility, fromLetter, fromMetrics, fromPatientRow, fromPortal, fromProvision, fromRegister, fromSample, fromSummary, patientName, toAccessRequest, toBackendRequest, toConsent, toEligibility,
+  type AccessDto, type AuditDto, type CatalogueDto, type DecisionRowDto, type EligibilityDto, type EligibilityOutcome, type EvaluationDto, type FacilityDto, type HospitalRequest, type LetterDto, type LetterRowDto,
+  type MetricsDto, type PatientRowDto, type PortalDto, type ProvisionDto, type RegisterDto, type SampleDto, type SecondaryMetric, type SummaryDto,
+} from "@/lib/backend-mappers";
 
 export const API_BASE = import.meta.env["VITE_API_BASE"] ?? "http://localhost:8000";
 export interface ApiResult<T> { data: T; source: "FastAPI" | "Synthetic fallback" }
-/** Demo headers identify fixtures only; the FastAPI service must independently authenticate real users. */
-export async function requestApi<T>(path: string, fallback: T, init?: RequestInit): Promise<ApiResult<T>> {
+
+// ---------- Session ----------
+// The preset demo account signs in to the backend as the same person, so FastAPI authorises every call by role.
+let token: string | null = null;
+let session: Promise<void> = Promise.resolve();
+let sessionId = 0;
+const actorTokens = new Map<string, Promise<string | null>>();
+async function login(userId: string): Promise<string | null> {
   try {
-    const response = await fetch(`${API_BASE}${path}`, { ...init, headers: { "Content-Type": "application/json", ...init?.headers }, signal: AbortSignal.timeout(1500) });
+    const response = await fetch(`${API_BASE}/api/auth/login`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ user_id: userId }), signal: AbortSignal.timeout(1500) });
+    return response.ok ? ((await response.json()) as { token: string }).token : null;
+  } catch { return null; }
+}
+export function startApiSession(accountId: string): Promise<void> {
+  const id = ++sessionId; token = null; actorTokens.clear();
+  const user = BACKEND_USERS[accountId];
+  session = user ? login(user).then((t) => { if (id === sessionId) token = t; }) : Promise.resolve();
+  return session;
+}
+export function endApiSession() {
+  const ended = token; sessionId++; token = null; session = Promise.resolve(); actorTokens.clear();
+  if (ended) void fetch(`${API_BASE}/api/auth/logout`, { method: "POST", headers: { Authorization: `Bearer ${ended}` } }).catch(() => undefined);
+}
+/** Token for a person the walkthrough acts for (patient portal, doctor abroad); the backend checks their role as well. */
+function actorToken(userId: string) {
+  let t = actorTokens.get(userId);
+  if (!t) { t = login(userId); actorTokens.set(userId, t); void t.then((v) => { if (!v) actorTokens.delete(userId); }); }
+  return t;
+}
+async function reason(response: Response) {
+  try {
+    const detail = ((await response.json()) as { detail?: unknown }).detail;
+    const text = typeof detail === "string" ? detail : (detail as { message?: string } | undefined)?.message;
+    return text ? ` (${text})` : "";
+  } catch { return ""; }
+}
+
+/** Demo headers identify fixtures only; the FastAPI service must independently authenticate real users. */
+export async function requestApi<T>(path: string, fallback: T, init?: RequestInit, as?: string): Promise<ApiResult<T>> {
+  try {
+    await session;
+    const auth = as ? await actorToken(as) : token;
+    const response = await fetch(`${API_BASE}${path}`, { ...init, headers: { "Content-Type": "application/json", ...(auth ? { Authorization: `Bearer ${auth}` } : {}), ...init?.headers }, signal: init?.signal ?? AbortSignal.timeout(1500) });
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) throw new Error("Access refused by the data service.");
-      if (init?.method && init.method !== "GET") throw new Error("The data service rejected this action. No changes were saved.");
+      if (init?.method && init.method !== "GET") throw new Error(`The data service rejected this action. No changes were saved.${await reason(response)}`);
       throw new TypeError("Data service unavailable");
     }
     return { data: await response.json() as T, source: "FastAPI" };
@@ -24,22 +70,38 @@ export async function requestApi<T>(path: string, fallback: T, init?: RequestIni
     return { data: fallback, source: "Synthetic fallback" };
   }
 }
+const UNAVAILABLE = Symbol("unavailable");
+/** Calls FastAPI and maps its answer; the synthetic fixture is used only when the service is unavailable. */
+async function live<D, T>(path: string, map: (dto: D) => T, fallback: T, init?: RequestInit, as?: string): Promise<ApiResult<T>> {
+  const res = await requestApi<D | typeof UNAVAILABLE>(path, UNAVAILABLE, init, as);
+  return res.data === UNAVAILABLE ? { data: fallback, source: "Synthetic fallback" } : { data: map(res.data as D), source: "FastAPI" };
+}
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+export interface ResultTable { columns: { key: string; label: string }[]; rows: { group: string; cells: (number | string | null)[] }[] }
 export interface Evaluation extends RuleOutcome {
   request: ResearchRequest;
+  // Only in answers from FastAPI:
+  explanation?: Partial<Record<Lang, string>>;
+  table?: ResultTable;
+  spe?: { id: string; patients: number | string; recordTypes: string[]; idsKept: boolean };
+  checklist?: { label: string; status: "pass" | "fail" | "pending"; reason: string }[];
+  optedOutExcluded?: number;
+  status?: string;
 }
 
 /** POST /api/requests/evaluate */
 export async function evaluateRequest(req: ResearchRequest): Promise<Evaluation> {
-  return (await requestApi("/api/requests/evaluate", { ...decide(req), request: req }, { method: "POST", body: JSON.stringify(req) })).data;
+  return (await live<EvaluationDto, Evaluation>("/api/requests/evaluate", (d) => fromEvaluation(d, req), { ...decide(req), request: req }, { method: "POST", body: JSON.stringify(toBackendRequest(req)) })).data;
 }
 
-/** GET /api/patients/:id/ips?lang= */
+/** GET /api/patients/:id/summary?lang= — Patient Summary built on demand from the KIS */
 export async function getPatientIps(id: string, lang: Lang = "en") {
   const p = ROLE_PATIENTS.find((x) => x.id === id || x.legacyId === id) ?? PATIENTS.find((x) => x.id === id);
-  if (!p) throw new Error("Patient not found");
-  return (await requestApi(`/api/patients/${encodeURIComponent(id)}/ips?lang=${lang}`, { patient: p, lang, bundle: buildFhirBundle(p, lang) })).data;
+  const base = { name: p?.name ?? patientName(id), crossBorderOptIn: p?.crossBorderOptIn ?? false };
+  const res = await live<SummaryDto, Patient | null>(`/api/patients/${encodeURIComponent(id)}/summary?lang=${lang}`, (s) => fromSummary(s, lang, base), p ?? null);
+  if (!res.data) throw new Error("Patient not found");
+  return { patient: res.data, lang, bundle: buildFhirBundle(res.data, lang), source: res.source };
 }
 
 /** GET /api/audit-log — served from in-app state in this demo */
@@ -47,11 +109,22 @@ export async function getAuditLog(local: AccessEntry[]) {
   return local;
 }
 
-/** POST /api/spe/:id/download — always blocked */
+/** POST /api/spe/:id/download — always refused (403) and logged by the backend */
 export async function downloadSpe(id: string) {
-  await delay(50);
-  return { blocked: true as const, spe: id, message: "Download blocked – data never leaves the secure processing environment. This attempt has been logged." };
+  const blocked = { blocked: true as const, spe: id, message: "Download blocked – data never leaves the secure processing environment. This attempt has been logged." };
+  try {
+    await session;
+    const response = await fetch(`${API_BASE}/api/spe/${encodeURIComponent(id)}/download`, { method: "POST", headers: token ? { Authorization: `Bearer ${token}` } : {}, signal: AbortSignal.timeout(1500) });
+    const body = (await response.json().catch(() => null)) as { detail?: { message?: string } } | null;
+    return { ...blocked, message: body?.detail?.message ?? blocked.message };
+  } catch {
+    await delay(50);
+    return blocked;
+  }
 }
+export interface SpeAnalysis { note: string; cohort_size: number | string; observations?: { code: string; patients: number | string; mean: number | string | null }[] }
+/** GET /api/spe/:id/analysis — aggregate output computed inside the SPE */
+export const getSpeAnalysis = (id: string) => live<SpeAnalysis, SpeAnalysis | null>(`/api/spe/${encodeURIComponent(id)}/analysis`, (d) => d, null);
 
 export const term = (code: string, lang: Lang) => TERMS[code]?.[lang] ?? code;
 
@@ -68,7 +141,7 @@ export function buildFhirBundle(p: Patient, lang: Lang = "en") {
   return { resourceType: "Bundle", type: "document", timestamp: "2026-10-29T12:00:00Z", entry };
 }
 
-export const getRequests = async () => (await requestApi("/api/requests", REQUESTS)).data;
+export const getRequests = async () => (await live<SampleDto[], ResearchRequest[]>("/api/requests/samples", (d) => d.map(fromSample), REQUESTS)).data;
 
 // ---------- Primary use ----------
 
@@ -81,59 +154,98 @@ export async function convertWithEngine(setId = 5) {
   return { obx: segmentLine(HL7_ORU, "OBX", setId), pid: segmentLine(HL7_ORU, "PID"), observation: obxToObservation(HL7_ORU, setId, ENCOUNTER.id) };
 }
 
-/** POST /api/discharge-letter/draft */
+/** POST /api/discharge-letters — draft assembled by the backend from KIS data (no AI) */
 export async function generateDischargeDraft(letter: LetterDocument): Promise<ApiResult<LetterDocument>> {
+  const res = await live<LetterDto, LetterDocument | null>("/api/discharge-letters", fromLetter, null, { method: "POST", body: JSON.stringify({ patient_id: letter.patient }) });
+  if (res.data) return { data: res.data, source: "FastAPI" };
   // No AI-service request: patient-level data must remain inside this synthetic demo.
   await delay(600);
   return { data: createDemoLetterDraft(letter), source: "Synthetic fallback" };
 }
 export const getSource = (id: string) => SOURCES[id];
 
-/** POST /api/patients/:id/ips — on-demand IPS */
+/** GET /api/patients/:id/summary — on-demand IPS */
 export async function generateIps(id: string) {
-  await delay(600);
-  const p = ROLE_PATIENTS.find((p) => p.id === id) ?? PATIENTS.find((p) => p.id === id);
-  if (!p) throw new Error("Patient not found");
-  const response = await requestApi(`/api/patients/${encodeURIComponent(id)}/ips?lang=en`, { patient: p, bundle: buildFhirBundle(p, "en") });
-  return { ...response.data, source: response.source, version: IPS_VERSION };
+  const res = await getPatientIps(id, "en");
+  return { ...res, version: res.source === "FastAPI" ? `Generated ${new Date().toLocaleString("de-AT")} from KIS data` : IPS_VERSION };
 }
 
-/** POST /api/access/evaluate */
+/** POST /api/cross-border/check — access decision for the doctor abroad (rules 1–5); nothing is released yet */
 export const evaluateAccess = (a: AccessInput) => decideAccess(a);
-export const evaluateCrossBorderAccess = (a: AccessInput & { informed?: boolean }) => requestApi("/api/access/evaluate", decideAccess({ ...a, identityChecked: !!a.identityChecked && !!a.informed }), { method: "POST", body: JSON.stringify(a) });
+export const evaluateCrossBorderAccess = (a: AccessInput & { informed?: boolean }) => live<AccessDto, AccessOutcome>("/api/cross-border/check", fromAccess, decideAccess({ ...a, identityChecked: !!a.identityChecked && !!a.informed }), { method: "POST", body: JSON.stringify(toAccessRequest(a)) }, FOREIGN_DOCTOR_USER);
 
 /** GET /api/metrics/primary */
 export const getPrimaryMetrics = async () => (await requestApi("/api/metrics/primary", { metrics: PRIMARY_METRICS, reference: REFERENCE_P00421 })).data;
 
 export interface AuditEvent { id: string; userId: string; who: string; role: string; organisation: string; what: string; when: string; outcome: string; patient?: string; request?: string; area?: string }
-export const writeAudit = async (event: AuditEvent) => { try { return await requestApi("/api/audit", event, { method: "POST", body: JSON.stringify(event) }); } catch { return { data: event, source: "Synthetic fallback" as const }; } };
-export const readAudit = (fallback: AuditEvent[], userId?: string) => requestApi(`/api/audit${userId ? `?user_id=${encodeURIComponent(userId)}` : ""}`, fallback);
-export const getRolePatients = () => requestApi("/api/patients", ROLE_PATIENTS);
+// The backend writes its own audit entry for every API call; demo-session events stay in the browser session.
+export const writeAudit = async (event: AuditEvent): Promise<ApiResult<AuditEvent>> => ({ data: event, source: "Synthetic fallback" });
+/** GET /api/audit (HDAB staff) or /api/audit/mine (own activity) */
+export const readAudit = (fallback: AuditEvent[], userId?: string) => live<AuditDto[], AuditEvent[]>(userId ? "/api/audit/mine" : "/api/audit", (d) => d.map(fromAudit), fallback);
+/** GET /api/patients — the hospital's own patients */
+export const getRolePatients = () => live<PatientRowDto[], typeof ROLE_PATIENTS>("/api/patients", (rows) => rows.map(fromPatientRow), ROLE_PATIENTS);
 export interface LetterEdit { id: string; version: number; who: string; role: string; when: string; section: string; key: string; before: string; after: string; reason: string; snapshot: Record<string, string> }
-export interface LetterDocument { id: string; patient: string; sections: ClinicalSection[]; texts: Record<string, string>; edit_history: LetterEdit[]; version: number; status: "DRAFT" | "SIGNED"; signedAt?: string | undefined; signedBy?: string | undefined; supersedes?: number; generatedAt?: string; generationSource?: "Synthetic fallback" }
-export const getClinicalLetter = (patient: string) => requestApi(`/api/discharge-letters/${encodeURIComponent(patient)}`, { id: patient, patient, sections: patient === "p-4cfd3cf1" ? ELGA_SECTIONS : ELGA_SECTIONS.map((s) => ({ ...s, items: [] })), texts: {}, edit_history: [], version: 1, status: "DRAFT" } as LetterDocument);
-export const saveClinicalSection = (id: string, key: string, texts: string, editor: { name: string; role: string }, reason: string, fallback: LetterDocument) => requestApi(`/api/discharge-letters/${encodeURIComponent(id)}/sections/${encodeURIComponent(key)}`, fallback, { method: "PUT", body: JSON.stringify({ texts, editor, reason }) });
-export const signClinicalLetter = (letter: LetterDocument, editor: { name: string; role: string }, code: string) => requestApi(`/api/discharge-letters/${encodeURIComponent(letter.id)}/sign`, letter, { method: "POST", body: JSON.stringify({ editor, second_factor: code, reviewed: true }) });
-export const correctClinicalLetter = (letter: LetterDocument) => requestApi(`/api/discharge-letters/${encodeURIComponent(letter.id)}/corrections`, letter, { method: "POST", body: JSON.stringify({ version: letter.version }) });
-export const sendClinicalLetter = (letter: LetterDocument) => requestApi(`/api/discharge-letters/${encodeURIComponent(letter.id)}/send`, { sent: true }, { method: "POST", body: JSON.stringify({ version: letter.version, destinations: ["ELGA", "GP"] }) });
-export const getHospitalRequests = () => requestApi("/api/hospitals/klinikum-west/requests", HOSPITAL_REQUESTS);
-export const provideHospitalData = (id: string, date: string) => requestApi(`/api/hospitals/klinikum-west/requests/${encodeURIComponent(id)}/provide`, { providedAt: date }, { method: "POST" });
-export const getHospitalDataset = () => requestApi("/api/hospitals/klinikum-west/dataset", HOSPITAL_DATASET);
-export const updateHospitalDataset = (description: string) => requestApi("/api/hospitals/klinikum-west/dataset", { ...HOSPITAL_DATASET, description }, { method: "PUT", body: JSON.stringify({ description }) });
-export const getCatalogue = () => requestApi("/api/catalog", DATASETS);
-export const getPublicUses = () => requestApi("/api/requests/public-register", PUBLIC_USES);
-export const getUnregisteredFacilities = () => requestApi("/api/catalog/unregistered-facilities", UNREGISTERED_FACILITIES);
-export const getSecondaryMetrics = () => requestApi("/api/metrics/secondary", METRICS);
-export const recordPermitAction = (id: string, action: string, criteria: unknown) => requestApi(`/api/requests/${encodeURIComponent(id)}/decision`, { status: action }, { method: "POST", body: JSON.stringify({ action, criteria }) });
-export const getOwnRequests = (userId: string) => requestApi(`/api/requests/mine?demo_user=${encodeURIComponent(userId)}`, [] as Evaluation[]);
-export const saveCrossBorderConsent = (consent: { crossBorder: boolean; hidden: string[] }, date: string) => requestApi("/api/patients/p-4cfd3cf1/cross-border-consent", { ...consent, since: date }, { method: "PUT", body: JSON.stringify(consent) });
+export interface LetterDocument { id: string; patient: string; sections: ClinicalSection[]; texts: Record<string, string>; edit_history: LetterEdit[]; version: number; status: "DRAFT" | "SIGNED"; signedAt?: string | undefined; signedBy?: string | undefined; supersedes?: number; generatedAt?: string; generationSource?: ApiResult<unknown>["source"]; stay?: string }
+/** GET /api/discharge-letters?patient_id= — the current version, or an empty letter until a draft is created from the KIS */
+export async function getClinicalLetter(patient: string): Promise<ApiResult<LetterDocument>> {
+  const fallback: LetterDocument = { id: patient, patient, sections: patient === FRAU_M ? ELGA_SECTIONS : ELGA_SECTIONS.map((s) => ({ ...s, items: [] })), texts: {}, edit_history: [], version: 1, status: "DRAFT" };
+  const rows = await live<LetterRowDto[], LetterRowDto[] | null>(`/api/discharge-letters?patient_id=${encodeURIComponent(patient)}`, (r) => r, null);
+  if (!rows.data) return { data: fallback, source: "Synthetic fallback" };
+  const current = currentLetter(rows.data);
+  return current ? live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(current.id)}`, fromLetter, fallback) : { data: emptyLetter(patient), source: "FastAPI" };
+}
+/** PUT /api/discharge-letters/:id/sections/:key — the backend stores the edit with its reason */
+export async function saveClinicalSection(id: string, key: string, texts: string, editor: { name: string; role: string }, reason: string, fallback: LetterDocument) {
+  let letterId = id;
+  if (id.startsWith("new:")) {
+    const draft = await generateDischargeDraft(fallback);
+    if (draft.source !== "FastAPI") return { data: fallback, source: draft.source };
+    letterId = draft.data.id;
+  }
+  return live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letterId)}/sections/${encodeURIComponent(key)}`, fromLetter, fallback, { method: "PUT", body: JSON.stringify({ text: texts, reason: reason || null }) });
+}
+/** POST /api/discharge-letters/:id/sign — confirmation and second factor are checked again by the backend */
+export const signClinicalLetter = (letter: LetterDocument, editor: { name: string; role: string }, code: string) => live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/sign`, fromLetter, letter, { method: "POST", body: JSON.stringify({ confirmed: true, second_factor: code }) });
+/** POST /api/discharge-letters/:id/correct — new draft version; the signed one is kept as superseded */
+export const correctClinicalLetter = (letter: LetterDocument) => live<LetterDto, LetterDocument>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/correct`, fromLetter, letter, { method: "POST" });
+/** POST /api/discharge-letters/:id/send — only signed letters; ELGA and the GP are simulated */
+export const sendClinicalLetter = (letter: LetterDocument) => live<unknown, { sent: boolean }>(`/api/discharge-letters/${encodeURIComponent(letter.id)}/send`, () => ({ sent: true }), { sent: true }, { method: "POST" });
+/** GET /api/provisions — approved requests this hospital has to provide data for */
+export const getHospitalRequests = () => live<ProvisionDto[], HospitalRequest[]>("/api/provisions", (rows) => rows.map(fromProvision), HOSPITAL_REQUESTS);
+export const provideHospitalData = (id: string, date: string) => live<{ provided_at: string }, { providedAt: string }>(`/api/provisions/${encodeURIComponent(id)}/provide`, (d) => ({ providedAt: new Date(d.provided_at).toLocaleString("de-AT") }), { providedAt: date }, { method: "POST" });
+/** GET /api/catalogue — this hospital's entry; PUT /api/catalogue/:data_holder updates its description */
+export const getHospitalDataset = () => live<CatalogueDto[], typeof HOSPITAL_DATASET>("/api/catalogue", (d) => { const own = d.find((c) => c.data_holder === HOSPITAL); return own ? { ...HOSPITAL_DATASET, ...fromCatalogue(own) } : HOSPITAL_DATASET; }, HOSPITAL_DATASET);
+export const updateHospitalDataset = (description: string) => live<CatalogueDto, typeof HOSPITAL_DATASET>(`/api/catalogue/${encodeURIComponent(HOSPITAL)}`, (c) => ({ ...HOSPITAL_DATASET, ...fromCatalogue(c) }), { ...HOSPITAL_DATASET, description }, { method: "PUT", body: JSON.stringify({ description }) });
+export const getCatalogue = () => live<CatalogueDto[], typeof DATASETS>("/api/catalogue", (d) => d.map(fromCatalogue), DATASETS);
+export const getPublicUses = () => live<RegisterDto[], typeof PUBLIC_USES>("/api/register", (d) => d.map(fromRegister), PUBLIC_USES);
+export const getUnregisteredFacilities = () => live<FacilityDto[], typeof UNREGISTERED_FACILITIES>("/api/facilities-not-in-catalogue", (d) => d.map(fromFacility), UNREGISTERED_FACILITIES);
+/** GET /api/metrics — the five Track-3 metrics measured on the 10 official requests (computed on first call) */
+export const getSecondaryMetrics = () => live<MetricsDto, SecondaryMetric[]>("/api/metrics", fromMetrics, METRICS, { signal: AbortSignal.timeout(30000) });
+/** POST /api/requests/:id/confirm or /ask-info — HDAB staff action on an automatic decision */
+export const recordPermitAction = (id: string, action: string, criteria: unknown) => requestApi(`/api/requests/${encodeURIComponent(id)}/${action === "confirm" ? "confirm" : "ask-info"}`, { status: action }, { method: "POST", body: JSON.stringify({ note: JSON.stringify(criteria) }) });
+/** GET /api/requests — an applicant sees only their own requests */
+export const getOwnRequests = (userId: string) => live<DecisionRowDto[], Evaluation[]>("/api/requests", (rows) => rows.map(fromDecisionRow), [] as Evaluation[]);
+/** POST /api/eligibility — the backend's preliminary check; the local rules answer only when it is unavailable */
+export const checkEligibility = (a: EligibilityInput, label: string) => live<EligibilityDto, EligibilityOutcome>("/api/eligibility", fromEligibility, { ...eligibility(a), records: a.records }, { method: "POST", body: JSON.stringify(toEligibility(a, label)) });
+/** GET /api/portal/me — as Frau M.: her opt-out status from the KIS and the public register */
+export const getPortal = () => live<PortalDto, ReturnType<typeof fromPortal>>("/api/portal/me", fromPortal, { patient: FRAU_M, optedOut: true, uses: PUBLIC_USES }, undefined, PATIENT_USER);
+/** PUT /api/portal/consent — as Frau M. in her patient portal */
+export const saveCrossBorderConsent = (consent: { crossBorder: boolean; hidden: string[] }, date: string) => live<unknown, { crossBorder: boolean; hidden: string[]; since: string }>("/api/portal/consent", () => ({ ...consent, since: date }), { ...consent, since: date }, { method: "PUT", body: JSON.stringify(toConsent(consent)) }, PATIENT_USER);
 
+/** POST /api/cross-border/patient-summary — as the doctor in Italy; the backend decides again and releases only allowed sections */
 export async function getCrossBorderSummary(input: AccessInput & { informed?: boolean }, lang: Lang, hidden: string[]) {
-  const result = await evaluateCrossBorderAccess(input);
-  if (result.data.decision === "DENY") return null;
-  const patient = ROLE_PATIENTS.find((p) => p.id === "p-4cfd3cf1");
+  const patient = ROLE_PATIENTS.find((p) => p.id === FRAU_M);
   if (!patient) throw new Error("Patient not found");
-  const emergency = result.data.decision === "ALLOW_EMERGENCY";
-  const response = await requestApi("/api/patients/p-4cfd3cf1/cross-border-summary", { patient: releasedPatient(patient, emergency, hidden) }, { method: "POST", body: JSON.stringify({ ...input, lang, hidden, emergency }) });
-  return { patient: releasedPatient(response.data.patient, emergency, hidden), source: response.source, sections: emergency ? ["emergency section"] : ["problems", "medications", "allergies", "implants", "measurements"].filter((s) => !hidden.includes(s)) };
+  const sections = (emergency: boolean, all = ["problems", "medications", "allergies", "measurements"]) => emergency ? ["emergency section"] : all.filter((s) => !hidden.includes(s));
+  const res = await live<{ decision: PrimaryDecision; summary: SummaryDto | null }, { decision: PrimaryDecision; patient: Patient | null } | null>("/api/cross-border/patient-summary",
+    (d) => ({ decision: d.decision, patient: d.summary ? fromSummary(d.summary, lang, { name: patient.name, crossBorderOptIn: true }) : null }), null,
+    { method: "POST", body: JSON.stringify(toAccessRequest(input, lang)) }, FOREIGN_DOCTOR_USER);
+  if (res.data) {
+    const emergency = res.data.decision === "ALLOW_EMERGENCY";
+    return res.data.patient ? { patient: releasedPatient(res.data.patient, emergency, hidden), source: res.source, sections: sections(emergency) } : null;
+  }
+  const result = decideAccess({ ...input, identityChecked: !!input.identityChecked && !!input.informed });
+  if (result.decision === "DENY") return null;
+  const emergency = result.decision === "ALLOW_EMERGENCY";
+  return { patient: releasedPatient(patient, emergency, hidden), source: res.source, sections: sections(emergency, ["problems", "medications", "allergies", "implants", "measurements"]) };
 }

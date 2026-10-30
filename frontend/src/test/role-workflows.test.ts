@@ -52,10 +52,10 @@ describe("Clinical safeguards", () => {
     expect(canSendLetter("SIGNED")).toBe(true);
   });
   it("ID Austria requires eight digits and checked matching identity plus agreement", () => {
-    expect(validPatientIdentity("austria-code", "12345678", "Maria Muster", "1958-03-12", true, true)).toBe(true);
-    expect(validPatientIdentity("austria-code", "1234567", "Maria Muster", "1958-03-12", true, true)).toBe(false);
-    expect(validPatientIdentity("passport", "P123", "Other person", "1958-03-12", true, true)).toBe(false);
-    expect(validPatientIdentity("passport", "P123", "Maria Muster", "1958-03-12", true, false)).toBe(false);
+    expect(validPatientIdentity("austria-code", "12345678", "Maria Muster", "1943-03-17", true, true)).toBe(true);
+    expect(validPatientIdentity("austria-code", "1234567", "Maria Muster", "1943-03-17", true, true)).toBe(false);
+    expect(validPatientIdentity("passport", "P123", "Other person", "1943-03-17", true, true)).toBe(false);
+    expect(validPatientIdentity("passport", "P123", "Maria Muster", "1943-03-17", true, false)).toBe(false);
   });
 });
 describe("Eligibility self-check", () => {

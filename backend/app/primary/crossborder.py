@@ -63,6 +63,19 @@ def decide_access(user: dict, pid: str, *, identity_checked: bool, patient_agree
             "text": f"Access allowed – the patient allowed cross-border access on {str(consent['since'])[:10]}."}
 
 
+def check_access(store: DataStore, user: dict, pid: str, *, identity_checked: bool = False, patient_agrees: bool = False,
+                 emergency: bool = False, reason: str | None = None) -> dict:
+    """The access decision alone, so the UI can show it before anything is released."""
+    p = summary.patient(store, pid)
+    if not p:
+        return {"decision": "DENY", "rule": 5, "text": "Patient not found (NCPeH Austria)."}
+    d = decide_access(user, pid, identity_checked=identity_checked, patient_agrees=patient_agrees, emergency=emergency,
+                      reason=reason, consent=get_consent(pid), patient_holder=p["data_holder"])
+    state.audit(user, "cross_border", "access_checked", patient_id=pid, outcome=d["decision"],
+                details={"rule": d["rule"], "emergency": emergency, "country": user.get("organisation")})
+    return d
+
+
 def request_summary(store: DataStore, user: dict, pid: str, *, identity: dict | None = None, identity_checked: bool = False,
                     patient_agrees: bool = False, emergency: bool = False, reason: str | None = None,
                     lang: str = "it") -> dict:

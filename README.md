@@ -81,6 +81,20 @@ curl -s -X POST localhost:8000/api/requests/evaluate -H 'Content-Type: applicati
 curl -s -X POST localhost:8000/api/requests/evaluate -H 'Content-Type: application/json' -d @requests/R05.json
 ```
 
+## Run the whole app
+
+Start the backend as above, then in a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:8080 and pick a demo account on the start page: Huber (hospital), Novak (HDAB staff), Weiss (researcher) or "Browse without account". Each account signs in to the backend as the same person, so every page reads and writes through FastAPI and the backend checks the role. If the backend is not running, the pages show synthetic fixtures and label them "Synthetic fallback". Another API address can be set with `VITE_API_BASE`.
+
+The cross-border walkthrough (Primary use → Cross-border) acts as Frau M. in her portal (`u-muster`) and as the doctor in Italy (`u-rossi`).
+
 ## Metric results (10 official requests, 3 runs each)
 
 | Metric | Result | Target |
@@ -137,13 +151,13 @@ SQLite: users/roles, decisions, provisions, consents, discharge letters + versio
 | Public | `GET /api/catalogue`, `GET /api/register`, `GET /api/facilities-not-in-catalogue`, `POST /api/eligibility` |
 | Hospital | `GET /api/provisions`, `POST /api/provisions/{id}/provide`, `PUT /api/catalogue/{data_holder}`, `GET /api/patients`, `GET /api/patients/{id}/summary?lang=` |
 | Discharge letter | `POST /api/discharge-letters`, `GET /api/discharge-letters/{id}`, `PUT …/sections/{key}`, `POST …/sign`, `POST …/correct`, `POST …/send` |
-| Patient / abroad | `GET /api/portal/me`, `PUT /api/portal/consent`, `POST /api/cross-border/patient-summary` |
+| Patient / abroad | `GET /api/portal/me`, `PUT /api/portal/consent`, `POST /api/cross-border/check` (decision only), `POST /api/cross-border/patient-summary` |
 | Audit | `GET /api/audit` (HDAB, filters), `GET /api/audit/mine` |
 
 Demo accounts: `u-novak` (HDAB staff), `u-weiss` (researcher), `u-public`, `u-huber` (Klinikum West), `u-muster` (Frau M., patient `p-4cfd3cf1`, opted out of research), `u-rossi` (doctor in Italy, simulated).
 
 ### What works and what does not
 
-- Works: all five metrics on the 10 requests, the jury-style requests above, roles, audit log, SPE with blocked download, discharge-letter workflow, cross-border flow.
+- Works: all five metrics on the 10 requests, the jury-style requests above, roles, audit log, SPE with blocked download, discharge-letter workflow, cross-border flow, and the frontend on top of all of it.
 - Simulated: ELGA, MyHealth@EU / NCPeH, ID Austria and the second factor (any 6 digits).
 - Limits: the parser understands the definition style of the Track-3 requests; a request written very differently is answered with the parts it recognises and lists unrecognised definitions in the staff view (`spec.notes`). The data has no allergies, doses or progress notes, so the letter marks those sections as missing.

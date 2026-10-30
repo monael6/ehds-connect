@@ -100,6 +100,9 @@ def test_cross_border_rules(client):
     assert em["decision"] == "ALLOW_EMERGENCY" and "problems" not in em["summary"] and em["summary"]["emergency"]
     accesses = client.get("/api/portal/accesses", headers=patient).json()
     assert {a["outcome"] for a in accesses} >= {"ALLOW_CROSS_BORDER", "ALLOW_EMERGENCY"}
+    check = client.post("/api/cross-border/check", json=body, headers=rossi).json()
+    assert check["decision"] == "ALLOW_CROSS_BORDER" and check["rule"] == 3 and "summary" not in check
+    assert client.post("/api/cross-border/check", json=body, headers=patient).status_code == 403
 
 
 def test_opted_out_patient_visible_for_treatment_not_research(client, store):
@@ -112,7 +115,7 @@ def test_hospital_inbox_and_provision(client):
     hdab, hosp = login(client, "u-novak"), login(client, "u-huber")
     client.post("/api/requests/evaluate", json={"id": "R05"}, headers=hdab)
     inbox = client.get("/api/provisions", headers=hosp).json()
-    assert inbox and all(i["decision"] != "REJECT" for i in inbox)
+    assert inbox and all(i["decision"] != "REJECT" and i["decided_at"] for i in inbox)
     done = client.post("/api/provisions/R05/provide", headers=hosp).json()
     assert done["status"] == "provided"
 
@@ -123,6 +126,17 @@ def test_public_pages_have_no_numbers(client):
     assert reg and "answer" not in reg[0]
     assert client.get("/api/facilities-not-in-catalogue").json()
     assert client.post("/api/eligibility", json={"purpose": "set insurance premiums for customers"}).json()["result"] == "not_eligible"
+
+
+def test_eligibility_wizard_matches_the_decision(client):
+    """The wizard accepts a reason for records only if the decision on the real application would accept it too."""
+    base = {"purpose": "Scientific health research", "purpose_code": "research", "need": "records",
+            "qualified": True, "safeguards": True, "ethics": True}
+    vague = client.post("/api/eligibility", json={**base, "why_not_statistics": "We need treatment sequences."}).json()
+    assert vague["result"] == "statistics"
+    clear = client.post("/api/eligibility", json={**base, "why_not_statistics": "We train a model on record-level histories."}).json()
+    assert clear["result"] == "spe"
+    assert client.post("/api/eligibility", json={**base, "why_not_statistics": "We train a model.", "ethics": False}).json()["result"] == "not_eligible"
 
 
 def test_docs_page_can_sign_in(client):

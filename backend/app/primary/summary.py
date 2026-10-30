@@ -24,7 +24,10 @@ def search(store: DataStore, text: str = "", data_holder: str | None = None, lim
         params.append(data_holder)
     params.append(limit)
     return store.sql(f"""SELECT p.patient_id, p.sex, year(p.birth_date) AS birth_year, p.age, p.region, p.data_holder,
-                p.opted_out, (SELECT count(*) FROM kis.encounters e WHERE e.patient_id = p.patient_id AND e.type = 'inpatient') AS stays
+                p.opted_out, (SELECT count(*) FROM kis.encounters e WHERE e.patient_id = p.patient_id AND e.type = 'inpatient') AS stays,
+                (SELECT max(e.start_date) FROM kis.encounters e WHERE e.patient_id = p.patient_id AND e.type = 'inpatient') AS last_stay_from,
+                (SELECT arg_max(e.end_date, e.start_date) FROM kis.encounters e
+                 WHERE e.patient_id = p.patient_id AND e.type = 'inpatient') AS last_stay_to
                 FROM kis.patients p WHERE {' AND '.join(where)}
                 ORDER BY (p.patient_id = 'p-4cfd3cf1') DESC, stays DESC, p.patient_id LIMIT ?""", params)
 
@@ -57,10 +60,11 @@ def build(store: DataStore, pid: str, lang: str = "en", sections: set[str] | Non
     for m in meds:
         for prefix, text in T.EMERGENCY_ATC.items():
             if m["code"].startswith(prefix):
-                emergency.append({"type": "medication", "text": f"{T.label(m['code'], lang, m['description'])}: {text.get(lang, text['en'])}"})
+                emergency.append({"type": "medication", "code": m["code"],
+                                  "text": f"{T.label(m['code'], lang, m['description'])}: {text.get(lang, text['en'])}"})
     for c in cond:
         if c["code"].startswith(T.EMERGENCY_ICD):
-            emergency.append({"type": "condition", "text": T.label(c["code"], lang, c["description"])})
+            emergency.append({"type": "condition", "code": c["code"], "text": T.label(c["code"], lang, c["description"])})
 
     out = {
         "patient": {"id": pid, "sex": p["sex"], "birth_date": str(p["birth_date"]), "age": p["age"], "region": p["region"],
