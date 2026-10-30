@@ -33,6 +33,12 @@ _NEGATED_RESULT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _NEGATED_RESULT_DETAIL = "finding as described in the report; see the source document"
+_AI_WORDING_PATTERN = re.compile(
+    r"\b(?:rul(?:ed|ing|es)?\s+out|exclud(?:ed|es|ing)|unrelated|incorrect(?:ly)?|"
+    r"(?:un)?likely|probabl[ey]|suggest(?:s|ed|ive)?|consistent\s+with|"
+    r"confirm(?:s|ed)?|ausgeschlossen)\b",
+    re.IGNORECASE,
+)
 
 
 # ── Schema extension for state.sqlite ───────────────────────────────────────
@@ -210,38 +216,67 @@ def to_record(intermediate: Any) -> dict:
         else:
             key_results.append(item)
 
+    problems_active = _mapped(included.problems_active, {
+        "text": "text", "icd10": "icd10_suggested", "snomed": "snomed_suggested",
+        "onset": "onset", "sources": "source_ids",
+    })
+    past_history = _mapped(included.past_history, {
+        "text": "text", "icd10": "icd10_suggested", "resolved": "resolved", "sources": "source_ids",
+    })
+    allergies = _mapped(included.allergies_intolerances, {
+        "substance": "substance", "reaction": "reaction", "criticality": "criticality",
+        "verification": "verification", "sources": "source_ids",
+    })
+    medications_stopped = _mapped_medications(included.medication_stopped, {
+        "active_ingredient": "active_ingredient", "atc": "atc_suggested", "reason": "reason",
+        "sources": "source_ids",
+    })
+    procedures = _mapped(included.procedures, {
+        "text": "text", "date": "date", "sources": "source_ids",
+    })
+    devices = _mapped(included.medical_devices, {
+        "text": "text", "since": "since", "sources": "source_ids",
+    })
+
+    wording_checks = []
+
+    def check_wording(item: dict, field: str) -> None:
+        text = item.get(field)
+        if text is not None and _AI_WORDING_PATTERN.search(str(text)):
+            wording_checks.append({"text": str(text), "sources": item.get("sources") or []})
+
+    for items, field in (
+        (problems_active, "text"),
+        (past_history, "text"),
+        (allergies, "reaction"),
+        (medications_stopped, "reason"),
+        (procedures, "text"),
+        (devices, "text"),
+        (key_results, "text"),
+        (key_results, "value"),
+        (excluded, "text"),
+    ):
+        for item in items:
+            check_wording(item, field)
+
     return {
-        "problems_active": _mapped(included.problems_active, {
-            "text": "text", "icd10": "icd10_suggested", "snomed": "snomed_suggested",
-            "onset": "onset", "sources": "source_ids",
-        }),
-        "past_history": _mapped(included.past_history, {
-            "text": "text", "icd10": "icd10_suggested", "resolved": "resolved", "sources": "source_ids",
-        }),
-        "allergies_intolerances": _mapped(included.allergies_intolerances, {
-            "substance": "substance", "reaction": "reaction", "criticality": "criticality",
-            "verification": "verification", "sources": "source_ids",
-        }),
+        "problems_active": problems_active,
+        "past_history": past_history,
+        "allergies_intolerances": allergies,
         "medication_at_discharge": _mapped_medications(included.medication_at_discharge, {
             "active_ingredient": "active_ingredient", "atc": "atc_suggested", "dose": "dose",
             "status": "status", "sources": "source_ids",
         }),
-        "medication_stopped_during_stay": _mapped_medications(included.medication_stopped, {
-            "active_ingredient": "active_ingredient", "atc": "atc_suggested", "reason": "reason",
-            "sources": "source_ids",
-        }),
-        "procedures": _mapped(included.procedures, {
-            "text": "text", "date": "date", "sources": "source_ids",
-        }),
-        "medical_devices_implants": _mapped(included.medical_devices, {
-            "text": "text", "since": "since", "sources": "source_ids",
-        }),
+        "medication_stopped_during_stay": medications_stopped,
+        "procedures": procedures,
+        "medical_devices_implants": devices,
         "immunizations": _mapped(included.immunizations, {
             "vaccine": "vaccine", "date": "date", "sources": "source_ids",
         }),
         "key_results": key_results,
         "must_not_include": excluded,
         "unverified": unverified,
+        "wording_checks": wording_checks,
     }
 
 

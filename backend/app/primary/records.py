@@ -112,7 +112,7 @@ def checks(rec: dict) -> list[dict]:
         "negated": "Negative statement in the documents",
         "ruled_out": "Suspicion discussed in the documents",
         "family_history": "Family history",
-        "unconfirmed": "Reported, not confirmed in the documents",
+        "unconfirmed": "Reported in the documents (unconfirmed)",
     }
     checks = []
     for item in record.get("must_not_include", []):
@@ -123,6 +123,11 @@ def checks(rec: dict) -> list[dict]:
         else:
             text = f"{item['text']}: mentioned in the source documents, not included in this summary. Please review the sources."
         checks.append({"text": text, "source": sources(rec, item.get("sources", []))})
+    if ai_record:
+        checks.extend({
+            "text": f'Check the AI wording against the source: "{item["text"]}". Please review the sources.',
+            "source": sources(rec, item.get("sources", [])),
+        } for item in record.get("wording_checks", []))
     checks.extend({"text": f"{x['text']}: the AI could not find this statement word-for-word in the source documents. Please review the sources.",
                    "source": sources(rec, x.get("sources", []))}
                   for x in record.get("unverified", []))

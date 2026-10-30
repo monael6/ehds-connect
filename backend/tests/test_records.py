@@ -33,6 +33,12 @@ def test_ai_checks_trim_trailing_periods_before_joining():
                     "reason": "family_history",
                     "sources": ["P001-D005"],
                 },
+                {
+                    "text": "Patient-reported allergy.",
+                    "detail": None,
+                    "reason": "unconfirmed",
+                    "sources": ["P001-D005"],
+                },
                 {"text": "A previous test.  ", "sources": ["P001-D005"]},
             ],
         },
@@ -46,6 +52,9 @@ def test_ai_checks_trim_trailing_periods_before_joining():
     )
     assert checks[1]["text"] == "Family history: Asthma in mother. Please review the sources."
     assert checks[2]["text"] == (
+        "Reported in the documents (unconfirmed): Patient-reported allergy. Please review the sources."
+    )
+    assert checks[3]["text"] == (
         "Mentioned in the documents: A previous test. Please review the sources."
     )
 

@@ -20,6 +20,7 @@ from app import state
 from app.primary import ips_pipeline, records
 from pipeline.models import (
     ActiveProblem,
+    AllergyIntolerance,
     ExcludedItem,
     ExclusionReason,
     ExtractionIntermediate,
@@ -224,6 +225,64 @@ def test_negated_key_results_become_review_checks():
         "no evidence of liver metastasis. Please review the sources."
     )
     assert checks[2]["text"] == "Negative statement in the documents: Liver metastasis. Please review the sources."
+
+
+def test_interpretive_ai_wording_is_flagged_without_moving_items():
+    source = ["P001-D007"]
+    excluded_text = "The ultrasound and surgery confirmed appendicitis, ruling out other causes"
+    intermediate = ExtractionIntermediate(
+        patient_token="PT-test",
+        extraction_model="mock-model",
+        extraction_timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        included=IncludedSection(
+            problems_active=[
+                ActiveProblem(text="Arterial hypertension", source_ids=source, quote_verified=True),
+            ],
+            allergies_intolerances=[
+                AllergyIntolerance(
+                    substance="Penicillin",
+                    reaction="Mild rash, unconfirmed",
+                    verification="unconfirmed",
+                    source_ids=source,
+                    quote_verified=True,
+                ),
+            ],
+            key_results=[
+                KeyResult(text="Liver lesion likely benign", source_ids=source, quote_verified=True),
+            ],
+        ),
+        excluded=[
+            ExcludedItem(
+                text=excluded_text,
+                reason=ExclusionReason.ruled_out,
+                detail=None,
+                source_ids=source,
+                quote_verified=True,
+            ),
+        ],
+    )
+
+    record = ips_pipeline.to_record(intermediate)
+
+    assert [item["text"] for item in record["problems_active"]] == ["Arterial hypertension"]
+    assert record["allergies_intolerances"][0]["verification"] == "unconfirmed"
+    assert record["key_results"][0]["text"] == "Liver lesion likely benign"
+    assert {item["text"] for item in record["wording_checks"]} == {
+        excluded_text,
+        "Liver lesion likely benign",
+    }
+    checks = records.checks({"record": record, "documents": [{"id": "P001-D007", "typ": "Aufnahmebefund"}]})
+    check_texts = [item["text"] for item in checks]
+    assert (
+        f'Check the AI wording against the source: "{excluded_text}". Please review the sources.'
+        in check_texts
+    )
+    assert (
+        'Check the AI wording against the source: "Liver lesion likely benign". Please review the sources.'
+        in check_texts
+    )
+    assert not any("Arterial hypertension" in text for text in check_texts)
+    assert not any("Mild rash, unconfirmed" in text for text in check_texts)
 
 
 def test_evaluation_accepts_english_reference_record():

@@ -148,7 +148,7 @@ export function IpsOnDemand({ patient }: { patient: Patient }) {
                   {busy ? "Reading the documents… this takes up to a minute." : pipelineQuery.isLoading ? "Checking for an AI draft…" : "Generate from documents (AI)"}
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground">Documents are pseudonymised before they are sent to OpenAI. The doctor reviews and approves the result.</p>
+              <p className="text-xs text-muted-foreground">The AI only lists key points from the documents, each with its source. It draws no conclusions; the doctor reviews and decides. Documents are pseudonymised before they are sent to OpenAI.</p>
             </>
           )}
         </section>
