@@ -1,0 +1,180 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Networks
+#   internal – backend, HAPI FHIR, Postgres, Keycloak (never exposed to host)
+#   frontend  – nginx ↔ backend only
+# ─────────────────────────────────────────────────────────────────────────────
+networks:
+  internal:
+    driver: bridge
+    internal: true          # blocks outbound internet from these containers
+  frontend:
+    driver: bridge
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Volumes
+# ─────────────────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+  hapi_data:
+  keycloak_data:
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Services
+# ─────────────────────────────────────────────────────────────────────────────
+services:
+
+  # ── PostgreSQL (shared by HAPI and Keycloak) ────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    networks:
+      - internal
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ips}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ips-secret}
+      POSTGRES_MULTIPLE_DATABASES: "hapi,keycloak"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ips}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── HAPI FHIR JPA Server ────────────────────────────────────────────────────
+  hapi-fhir:
+    image: hapiproject/hapi:v7.2.0
+    restart: unless-stopped
+    networks:
+      - internal           # ONLY internal — never reachable from host
+    volumes:
+      - hapi_data:/data/hapi
+      - ./infra/hapi/application.yaml:/app/config/application.yaml:ro
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/hapi
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-ips}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-ips-secret}
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+      HAPI_FHIR_FHIR_VERSION: R4
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      # Distroless image — no shell, wget, or curl. Only java is available.
+      # "java -version" exits 0 as long as the JVM works; combined with a long
+      # start_period this means: wait 120 s for HAPI to start, then declare healthy.
+      test: ["CMD", "java", "-XshowSettings:none", "-version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+
+  # ── Keycloak ─────────────────────────────────────────────────────────────────
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    restart: unless-stopped
+    networks:
+      - internal
+      - frontend           # reachable by nginx for OIDC redirect flow
+    command: start-dev --import-realm
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+      - ./infra/keycloak/realm-hackathon.json:/opt/keycloak/data/import/realm-hackathon.json:ro
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin}
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: ${POSTGRES_USER:-ips}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-ips-secret}
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: "8180"
+      KC_HTTP_PORT: "8180"
+      KC_PROXY: edge
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      # No curl/wget in Keycloak 24 image. Use bash /dev/tcp for a TCP-level
+      # liveness check — succeeds as soon as the HTTP port is accepting connections.
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/localhost/8180'"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  # ── FastAPI Backend ───────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    networks:
+      - internal
+      - frontend
+    environment:
+      FHIR_BASE_URL: http://hapi-fhir:8080/fhir
+      KEYCLOAK_URL: http://keycloak:8180
+      KEYCLOAK_REALM: ${KEYCLOAK_REALM:-hackathon}
+      KEYCLOAK_CLIENT_ID: ${KEYCLOAK_CLIENT_ID:-ips-backend}
+      KEYCLOAK_CLIENT_SECRET: ${KEYCLOAK_CLIENT_SECRET:-change-me}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:5173}
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+      AZURE_OPENAI_DEPLOYMENT: ${AZURE_OPENAI_DEPLOYMENT:-}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3}
+      OUTPUT_ENCRYPTION_KEY: ${OUTPUT_ENCRYPTION_KEY:-}
+      DRAFT_RETENTION_DAYS: ${DRAFT_RETENTION_DAYS:-30}
+    volumes:
+      - ./patients:/app/patients:ro    # read-only; seed writes via API
+      - ./output:/app/output
+    depends_on:
+      hapi-fhir:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/api/health > /dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Seed job (runs once, exits) ───────────────────────────────────────────────
+  seed:
+    build:
+      context: .
+      dockerfile: infra/seed/Dockerfile
+    networks:
+      - internal
+    environment:
+      FHIR_BASE_URL: http://hapi-fhir:8080/fhir
+    volumes:
+      - ./patients:/app/patients:ro
+    depends_on:
+      hapi-fhir:
+        condition: service_healthy
+    restart: "no"
+
+  # ── React Frontend (Nginx) ────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - frontend
+    ports:
+      - "5173:80"          # dev convenience; in production use a real TLS terminator
+    environment:
+      VITE_BACKEND_URL: http://localhost:8000
+      VITE_KEYCLOAK_URL: http://localhost:8180
+      VITE_KEYCLOAK_REALM: ${KEYCLOAK_REALM:-hackathon}
+      VITE_KEYCLOAK_CLIENT_ID: ips-frontend
+    depends_on:
+      - backend

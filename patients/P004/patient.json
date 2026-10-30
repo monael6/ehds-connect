@@ -1,0 +1,9 @@
+{
+  "patient_id": "P004",
+  "vorname": "Rudolf",
+  "nachname": "Hofer",
+  "geburtsdatum": "1941-08-30",
+  "geschlecht": "maennlich",
+  "fiktive_versicherungsnummer": "FAKE-1183-300841",
+  "wohnort_bundesland": "Oberösterreich"
+}

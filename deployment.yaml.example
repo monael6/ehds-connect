@@ -1,0 +1,71 @@
+# deployment.yaml.example
+#
+# Copy this file to deployment.yaml and fill in all required fields BEFORE
+# running the pipeline in 'pseudonymized' or 'real' mode.
+#
+# This file documents the GDPR Art. 9 compliance basis required to process
+# special-category health data.  The pipeline's data-protection gate (Step 1)
+# reads this file and refuses to proceed if any mandatory field is missing,
+# false, or set to a placeholder value such as "TODO" or "FILL_IN".
+#
+# See docs/DATA_PROTECTION.md for detailed guidance on each field.
+#
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Mandatory for modes: pseudonymized, real ──────────────────────────────────
+
+# Art. 6 + Art. 9(2)(h) or (j) legal basis for processing health data.
+# Accepted values: "Art. 9(2)(h) – health care" | "Art. 9(2)(j) – research"
+# | "explicit_consent_Art9_2_a" | <other documented basis>
+legal_basis_documented: "TODO"
+
+# A Data Processing Agreement (DPA) with the AI/LLM provider has been signed
+# per Art. 28 GDPR.  Set to true only after the agreement is in place.
+data_processing_agreement_art28: false
+
+# All processing happens within the EU/EEA or on on-premises infrastructure.
+# Set to true only when the LLM endpoint and storage are EU/EEA or on-prem.
+processing_location_eu_or_onpremises: false
+
+# The LLM provider has confirmed in writing that submitted prompts and
+# responses will NOT be used for model training.
+no_training_on_submitted_data: false
+
+# Data retention is limited to the minimum necessary period.
+# Describe your retention policy briefly (e.g. "30 days, then deletion").
+limited_data_retention: "FILL_IN"
+
+# A Data Protection Impact Assessment (DPIA) has been completed per Art. 35.
+# Reference the DPIA document ID or date here.
+dpia_art35_completed: "FILL_IN"
+
+# Name and role of the person responsible for this deployment (data controller
+# or their designated representative).
+responsible_person: "FILL_IN"
+
+# ── Mandatory ONLY for mode: real ─────────────────────────────────────────────
+
+# Processing REAL, non-pseudonymized patient data requires an explicit
+# additional approval by the responsible person documented here.
+# Set to true only after written approval has been obtained.
+real_patient_data_explicitly_approved: false
+
+# ── Optional / informational ──────────────────────────────────────────────────
+
+# Name or URL of the AI / LLM service provider.
+llm_provider: "FILL_IN"
+
+# Name of the hospital or institution.
+institution: "FILL_IN"
+
+# Software version of this pipeline.
+pipeline_version: "0.1.0"
+
+# Contact e-mail for the data-protection officer (DPO).
+dpo_contact: "FILL_IN"
+
+# Date this file was last reviewed (ISO 8601).
+last_reviewed: "FILL_IN"
+
+# Free-text notes (optional).
+notes: ""

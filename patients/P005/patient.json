@@ -1,0 +1,9 @@
+{
+  "patient_id": "P005",
+  "vorname": "Monika",
+  "nachname": "Steinbauer",
+  "geburtsdatum": "1966-09-11",
+  "geschlecht": "weiblich",
+  "fiktive_versicherungsnummer": "FAKE-4409-110966",
+  "wohnort_bundesland": "Salzburg"
+}

@@ -426,3 +426,19 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# -- Project-specific ignores ------------------------------------------------
+
+# Real secrets — never commit
+.env
+deployment.yaml
+
+# Pipeline outputs (may contain patient data)
+output/
+
+# Frontend build artifacts
+frontend/dist/
+frontend/node_modules/
+
+# Local dev overrides
+frontend/.env.local

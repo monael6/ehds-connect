@@ -1,0 +1,116 @@
+{
+  "realm": "hackathon",
+  "displayName": "IPS Hackathon",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 300,
+  "clients": [
+    {
+      "clientId": "ips-backend",
+      "name": "IPS Backend Service",
+      "enabled": true,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "change-me",
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": false,
+      "publicClient": false,
+      "bearerOnly": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false
+    },
+    {
+      "clientId": "ips-frontend",
+      "name": "IPS Frontend (SPA)",
+      "enabled": true,
+      "publicClient": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:5173/*",
+        "http://localhost:3000/*"
+      ],
+      "webOrigins": [
+        "http://localhost:5173",
+        "http://localhost:3000"
+      ],
+      "protocol": "openid-connect",
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    }
+  ],
+  "roles": {
+    "realm": [
+      { "name": "clinician", "description": "Licensed clinician who may review and approve IPS documents" }
+    ]
+  },
+  "users": [
+    {
+      "username": "dr.mueller",
+      "email": "mueller@demo.klinik.at",
+      "firstName": "Elisabeth",
+      "lastName": "Müller",
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo1234", "temporary": false }],
+      "realmRoles": ["clinician"],
+      "attributes": {
+        "fhir_practitioner_id": ["practitioner-mueller"]
+      }
+    },
+    {
+      "username": "dr.wagner",
+      "email": "wagner@demo.klinik.at",
+      "firstName": "Thomas",
+      "lastName": "Wagner",
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo1234", "temporary": false }],
+      "realmRoles": ["clinician"],
+      "attributes": {
+        "fhir_practitioner_id": ["practitioner-wagner"]
+      }
+    },
+    {
+      "username": "dr.bauer",
+      "email": "bauer@demo.klinik.at",
+      "firstName": "Lukas",
+      "lastName": "Bauer",
+      "enabled": true,
+      "credentials": [{ "type": "password", "value": "demo1234", "temporary": false }],
+      "realmRoles": ["clinician"],
+      "attributes": {
+        "fhir_practitioner_id": ["practitioner-bauer"]
+      }
+    }
+  ],
+  "clientScopes": [
+    {
+      "name": "practitioner",
+      "protocol": "openid-connect",
+      "attributes": { "include.in.token.scope": "true" },
+      "protocolMappers": [
+        {
+          "name": "fhir-practitioner-id",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "config": {
+            "user.attribute": "fhir_practitioner_id",
+            "claim.name": "fhir_practitioner_id",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "defaultDefaultClientScopes": ["web-origins", "roles", "profile", "email", "practitioner"]
+}

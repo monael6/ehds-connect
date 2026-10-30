@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driverClassName: ${SPRING_DATASOURCE_DRIVERCLASSNAME}
+  jpa:
+    properties:
+      hibernate:
+        dialect: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT}
+
+hapi:
+  fhir:
+    fhir_version: R4
+    # Enforce strict validation on write
+    server:
+      default_encoding: JSON
+    # Do NOT expose the FHIR endpoint beyond the internal network
+    # (enforced by Docker network config, not HAPI itself)
+    cors:
+      allow_Credentials: false
+      allowed_origin:
+        - ""    # empty = no CORS headers; backend is the only caller
+    validation:
+      requests_enabled: true
+      responses_enabled: false    # performance: validate writes only
+    bulk_export_enabled: false
+    allow_multiple_delete: false
+    allow_external_references: false
+    narrative_enabled: false      # no HTML narratives (smaller payloads)
