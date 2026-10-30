@@ -12,6 +12,7 @@ Endpoints added to main.py:
 from __future__ import annotations
 
 import json
+import sys
 import uuid
 from pathlib import Path
 from typing import Any
@@ -47,6 +48,12 @@ if "ips_drafts" not in state.SCHEMA:
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
+
+# pipeline/ lives at the repo root, next to patients/; uvicorn runs from backend/.
+_REPO_ROOT = str(records.PATIENTS_DIR.parent)
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
+
 
 def _patients_dir() -> Path:
     """Directory containing per-patient document bundles (patients/P00X/)."""
