@@ -430,3 +430,9 @@ FodyWeavers.xsd
 # EHDS Connect backend
 .venv/
 backend/var/
+
+# Bob agent workspace
+.bob/
+
+# Local test scripts
+test.ps1

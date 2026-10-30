@@ -2,198 +2,234 @@
 
 ### One Health Data Space. Three Pathways.
 
-**EHDS Connect** is a healthcare platform developed for the **Clinical AI Hackathon Vienna 2026**, focusing on Track 3: *European Health Data Space (EHDS)*.
+**EHDS Connect** is a full-stack demo platform built for the **Clinical AI Hackathon Vienna 2026 — Track 3: European Health Data Space (EHDS)**.
 
-Our project explores how health data can support both individual patient care and medical research while maintaining privacy, transparency, and responsible data access.
-
-## Our Vision
-
-Health data should be accessible when it is needed, protected when it matters, and useful beyond institutional and national borders.
-
-EHDS Connect brings together two fundamental dimensions of the European Health Data Space:
-
-- **Primary Use:** Supporting healthcare professionals with structured patient information for national and cross-border treatment.
-- **Secondary Use:** Enabling responsible health research through controlled data access, transparent approval processes, and privacy-preserving analysis.
-
-Our vision is to demonstrate how these two dimensions can coexist within one connected healthcare ecosystem.
-
-## What We Are Building
-
-EHDS Connect consists of three interconnected pathways.
-
-### 1. Secondary Use – Research & Health Data Access
-
-Our core hackathon challenge focuses on supporting Health Data Access Bodies (HDABs) in evaluating requests for the secondary use of health data.
-
-The research portal is designed to:
-
-- Accept and process research applications.
-- Evaluate requests against defined EHDS rules.
-- Provide transparent, explainable access decisions.
-- Support privacy-preserving statistical analysis.
-- Respect patient opt-outs and data protection requirements.
-- Demonstrate controlled access through a simulated Secure Processing Environment (SPE).
-
-### 2. Primary Use – National Patient Care
-
-The national patient care portal demonstrates how structured health information can support healthcare professionals within Austria.
-
-It focuses on patient summaries, relevant medical information, and clinical documentation.
-
-### 3. Primary Use – Cross-Border Patient Care
-
-The cross-border care portal explores how essential patient information can remain understandable and accessible when a patient receives medical treatment in another European country.
-
-Through multilingual patient summaries and emergency-oriented views, the platform demonstrates the potential of interoperable healthcare across borders.
-
-## Our Demonstration: One Patient, Three Pathways
-
-To connect these scenarios, we follow a synthetic patient, **Frau M.**, through different healthcare situations.
-
-In Vienna, her medical information supports clinical care. During an emergency in Italy, essential information can be presented to healthcare professionals in another language.
-
-At the same time, her decision to opt out of secondary data use is respected, ensuring that her records are excluded from research processing.
-
-**One patient. Three pathways. One connected European Health Data Space.**
+It shows how health data can support individual patient care and medical research at the same time, while keeping privacy, transparency, and access control as first-class concerns.
 
 ---
 
+## What it does
 
-## Run the backend
+EHDS Connect covers two dimensions of the European Health Data Space.
 
-Requires Python 3.10+. The Track-3 data (`data/`, `requests/`) is in `backend/`.
+**Primary use — patient care**
+- Hospital patient list and structured KIS records for six synthetic patients (P001–P006)
+- On-demand Patient Summary in DE / EN / IT, generated from coded data with source references
+- Discharge letter workflow: write → sign with a FIDO2/WebAuthn key → release to ELGA and GP
+- Cross-border access with consent, identity check, and emergency fallback — all logged and visible to the patient
+
+**Secondary use — health data research**
+- Guided request wizard for applicants (Art. 53, 54, 67, 69 EHDS)
+- Deterministic decision engine: prohibited-purpose check → eligibility → rule-based approve/reject with article citations
+- Statistics pipeline: SQL over the opted-out-removed `hdab` schema, small-cell suppression (< 10 → `<10`)
+- Secure Processing Environment (SPE): per-application DuckDB file, downloads always 403, analysis returns aggregates only
+- HDAB staff inbox: review, approve, reject, request more information
+
+**AI Patient Summary (P001–P006 only)**  
+Clinical documents are pseudonymised and sent to OpenAI (`gpt-4o` by default). The model lists key points with source references and draws no conclusions. Output is a draft until a doctor explicitly approves it. The 20,000-patient research dataset is never sent to an LLM.
+
+---
+
+## Project layout
+
+```
+backend/      FastAPI + DuckDB + SQLite (Python 3.10+)
+frontend/     React 19 + TanStack Router + Vite (Bun)
+patients/     Synthetic patient bundles P001–P006 (documents + ground truth IPS)
+pipeline/     LLM-based IPS / discharge-summary pipeline (standalone)
+terminology/  Code lists used by the parser (ICD-10, ATC, LOINC)
+tests/        Root-level integration tests (jury-style requests)
+```
+
+---
+
+## Quick start
+
+### Backend
+
+Requires Python 3.10+.
 
 ```bash
 cd backend
-python3 -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS / Linux
+source .venv/bin/activate
+
 pip install -r requirements.txt
 uvicorn app.main:app --port 8000
 ```
 
-- API docs: http://localhost:8000/docs
-- Metrics on the 10 requests: `python scripts/evaluate.py`
-- Tests: `python -m pytest -q`
+- Interactive API docs: http://localhost:8000/docs
+- Run the 10 official metric requests: `python scripts/evaluate.py`
+- Tests: `pytest -q`
 
-## AI Patient Summary for document bundles
+### Frontend
 
-For synthetic patients P001–P006, clinicians can generate the Patient Summary and a new discharge-letter draft from the clinical documents. Configure `OPENAI_API_KEY` and optionally `OPENAI_MODEL` in `backend/.env` or the repository-root `.env`; both files are Git-ignored, and existing environment variables take precedence. The original German documents are pseudonymised before being sent to OpenAI. Generated summaries remain drafts until a clinician reviews and approves them.
-
-Quick check without signing in (works for new requests too):
-
-```bash
-curl -s -X POST localhost:8000/api/requests/evaluate -H 'Content-Type: application/json' -d '{"id":"R01"}'
-curl -s -X POST localhost:8000/api/requests/evaluate -H 'Content-Type: application/json' -d @requests/R05.json
-```
-
-## Run the whole app
-
-Start the backend as above, then in a second terminal:
+Requires [Bun](https://bun.sh).
 
 ```bash
 cd frontend
-npm install
-npm run dev
+bun install
+bun run dev        # http://localhost:8080
 ```
 
-Open http://localhost:8080 and pick a demo account on the start page: Huber (hospital), Novak (HDAB staff), Weiss (researcher) or "Browse without account". Each account signs in to the backend as the same person, so every page reads and writes through FastAPI and the backend checks the role. If the backend is not running, the pages show synthetic fixtures and label them "Synthetic fallback". Another API address can be set with `VITE_API_BASE`.
+> **Note:** `npm install && npm run dev` also works if you don't have Bun.
 
-The cross-border walkthrough (Primary use → Cross-border) acts as Frau M. in her portal (`u-muster`) and as the doctor in Italy (`u-rossi`).
+---
 
-## Roles, digital signatures and request review
+## Demo accounts
 
-| Category | Role | Can do |
+All passwords are `demo1234`. Sign in at http://localhost:8080.
+
+| User ID | Email | Role |
 |---|---|---|
-| Healthcare | Senior Doctor | Write, sign and release discharge letters to ELGA and the GP; authorise doctors to release |
-| Healthcare | Doctor | Write and edit letters; sign and release only when a senior doctor has authorised them |
-| Healthcare | IT Admin | Activate accounts, assign roles, revoke permissions, block lost keys, issue recovery codes. No patient data |
-| Institute | HDAB Staff | Review applicant requests: approve, reject or ask for more information |
-| Researcher / Applicant | Applicant | Submit requests with the guided wizard (Art. 53, 54, 67, 69); see results only after approval |
+| `u-huber` | anna.huber@klinikum-west.at | Senior Doctor |
+| `u-berger` | markus.berger@klinikum-west.at | Doctor |
+| `u-gruber` | thomas.gruber@klinikum-west.at | Hospital IT Admin |
+| `u-novak` | petra.novak@hdab.gv.at | HDAB Staff |
+| `u-weiss` | lena.weiss@uni-graz.at | Researcher / Applicant |
+| `u-muster` | — | Patient portal (Frau M., opted out of research) |
+| `u-rossi` | — | Foreign doctor in Italy (cross-border, simulated) |
 
-FastAPI enforces every rule above. The UI only hides buttons.
+New hospital accounts stay pending until the IT Admin activates them.  
+If the backend is not running, pages show synthetic fixtures labelled **"Synthetic fallback"**.
 
-Demo accounts (password `demo1234`): `anna.huber@klinikum-west.at` (Senior Doctor), `markus.berger@klinikum-west.at` (Doctor), `thomas.gruber@klinikum-west.at` (IT Admin), `petra.novak@hdab.gv.at` (HDAB Staff), `lena.weiss@uni-graz.at` (Applicant). New hospital accounts stay pending until the IT Admin activates them.
+---
 
-**Signing discharge letters.** The six-digit code is replaced by a digital signature. The backend issues a one-time challenge bound to the letter, and the doctor signs it with a FIDO2/WebAuthn key: an NFC hospital badge, a USB/NFC security key or Touch ID. Only public keys are stored. Without hardware, a clearly labelled simulated P-256 key (WebCrypto, kept in the browser tab's memory only) can be used for the demo.
+## Environment variables
 
-**If the key is lost:**
-1. Report it lost. The key is blocked immediately.
-2. Sign with a backup key registered earlier.
-3. With no backup key, the IT Admin checks the doctor's photo ID in person and issues a one-time recovery code. It is valid for 24 hours and registers exactly one new key.
-4. Until then, a senior doctor signs.
+### Backend
 
-## Metric results (10 official requests, 3 runs each)
+| Variable | Default | Description |
+|---|---|---|
+| `EHDS_DATA_DIR` | `backend/data` | Track-3 CSV dataset |
+| `EHDS_VAR_DIR` | `backend/var` | SQLite state + SPE files |
+| `EHDS_REQUESTS_DIR` | `backend/requests` | Request JSON files |
+| `EHDS_REFERENCE_DATE` | `2025-12-31` | Used for age and active-medication calculations |
+| `ANTHROPIC_API_KEY` | _(unset)_ | Enables the Anthropic LLM path in the backend engine |
+| `EHDS_LLM` | `1` | Set to `0` to force-disable LLM even when the key is set |
+| `OPENAI_API_KEY` | _(unset)_ | Used by the AI Patient Summary pipeline |
+| `OPENAI_MODEL` | `gpt-4o` | Model for the pipeline (also supports Azure OpenAI and Ollama via `LLM_PROVIDER`) |
+
+Create `backend/.env` or `.env` at the repo root (both are Git-ignored). Existing environment variables take precedence.
+
+### Frontend
+
+| Variable | Default |
+|---|---|
+| `VITE_API_BASE` | `http://localhost:8000` |
+
+---
+
+## Roles and access control
+
+FastAPI enforces every rule below. The UI only shows or hides buttons.
+
+| Category | Role | Permissions |
+|---|---|---|
+| Healthcare | Senior Doctor | Write, sign, and release discharge letters; authorise other doctors to release |
+| Healthcare | Doctor | Write and edit letters; sign and release only when authorised by a senior doctor |
+| Healthcare | IT Admin | Manage accounts, assign roles, revoke permissions, block lost keys, issue recovery codes — no patient data |
+| Institute | HDAB Staff | Review applicant requests: approve, reject, or request more information |
+| Researcher | Applicant | Submit requests via guided wizard; see results only after approval |
+| Patient | Patient portal | View own records, set research opt-out, see cross-border access log |
+
+---
+
+## Discharge letter signing
+
+The six-digit PIN is replaced by a digital signature. The backend issues a one-time challenge bound to the letter; the doctor signs it with a **FIDO2/WebAuthn** key (NFC hospital badge, USB/NFC security key, or Touch ID). Only public keys are stored server-side.
+
+For the demo, a clearly-labelled **simulated P-256 key** (WebCrypto, lives only in the current browser tab) is available.
+
+**Lost key procedure:**
+1. Report the key lost — it is blocked immediately.
+2. Sign with a previously registered backup key.
+3. If no backup key exists, the IT Admin verifies the doctor's photo ID in person and issues a one-time recovery code (valid 24 h, registers exactly one new key).
+4. Until recovery is complete, a senior doctor countersigns.
+
+---
+
+## Metric results (10 official Track-3 requests, 3 runs each)
 
 | Metric | Result | Target |
 |---|---|---|
-| Correct decisions | 10 of 10 | 10 of 10 |
-| Correct numbers | 6 of 6 | 6 of 6 |
+| Correct decisions | 10 / 10 | 10 / 10 |
+| Correct numbers | 6 / 6 | 6 / 6 |
 | Privacy leaks | 0 | 0 |
-| Consistency over 3 runs | 10 of 10 | 10 of 10 |
-| Slowest answer | 0.07 s (R05, creates the SPE) | under 60 s |
+| Consistency across 3 runs | 10 / 10 | 10 / 10 |
+| Slowest response | 0.07 s | < 60 s |
 
-Nine additional jury-style requests (`backend/tests/jury/`) filter inpatient stays by `primary_icd10`, group by `data_holder`, by sex and region, use thresholds on the latest measurement, custom age bands, emergency visits, a marketing rejection and a second SPE. Their numbers are checked against independently hand-written SQL in `tests/test_jury.py`.
+Nine additional jury-style requests (`backend/tests/jury/`) cover `primary_icd10` filters, grouping by `data_holder` / sex / region, threshold on latest measurement, custom age bands, emergency visits, a marketing rejection, and a second SPE. Verified against hand-written SQL in `tests/test_jury.py`.
 
-## Technical architecture
+---
+
+## Architecture
 
 ```
-request JSON ──► Decision engine ──► REJECT (Art. 54) ─────────────────────────────► answer + reasons (EN/DE/IT)
+Request JSON ──► Decision engine ──► REJECT (Art. 54) ──────────────────────► answer + reasons
                  (rules, Art. 54/53/66/68/69/73)
                         │ approve
                         ▼
-                 Request parser ──► Spec (criteria, groups, metrics) ──► SQL generator ──► DuckDB "hdab" schema
-                 (definitions → ICD-10/ATC/LOINC,                                          (opted-out removed)
-                  code lists in the data)                                                       │
-                        │                                                        statistics ◄───┤───► SPE file
-                        ▼                                                     (small-cell rule)     (cohort + requested
-                 Art. 68 checklist, term mapping, SQL ──► staff view                                  record types, no download)
+                 Request parser ──► Spec (criteria, groups, metrics)
+                 (definitions → ICD-10/ATC/LOINC,
+                  code lists in terminology/)
+                        │
+                        ▼
+                 SQL generator ──► DuckDB "hdab" schema
+                 (bound parameters)   (opted-out patients removed)
+                        │
+                        ├──► statistics (small-cell rule: < 10 → suppressed)
+                        └──► SPE file (cohort + named record types, no download)
 
-SQLite: users/roles, decisions, provisions, consents, discharge letters + versions, audit log
+SQLite: users / roles / sessions, decisions, discharge letters + versions, audit log
 ```
+
+### Key components
 
 | Component | File | What it does |
 |---|---|---|
-| Data loader | `app/datastore.py` | Loads the 5 CSVs into DuckDB with three schemas like the real EHDS: `raw` (files), `kis` (clinical view for treatment), `hdab` (secondary-use copy without the 839 opted-out patients). Ages are 2025 minus birth year (data README). |
-| Decision engine | `app/engine/decision.py` | The required order: prohibited purpose (Art. 54 letters a–e: insurance pricing, employment, marketing, re-identification, harmful products) → `health data request` → access application that explains why statistics are not enough → other access application. Cites articles and quotes the sentences it used as evidence. |
-| Request parser | `app/engine/parser.py` | Reads each request's own definitions (`Name = ICD-10 code starting with …`, `ATC …`, `LOINC …`, `sex 'female'`, `encounter with type …`, `primary_icd10 …`, age bands, active-medication rule, `Use the latest …`, `A / B × 100`). Builds the subject from the question and one metric per item of the `Report per …:` line; "of them", "their" and "that share" refer to the previous item. Undefined terms are mapped through the code lists in the data and a small synonym list. Nothing is written per request. |
-| SQL generator + small-cell rule | `app/engine/query.py`, `app/engine/smallcell.py` | Template SQL with bound parameters on the `hdab` schema. Every requested group is shown, even empty ones. Counts < 10 → `<10`; percentages with numerator or denominator < 10 and means of < 10 patients → `suppressed`; one decimal, halves up (`Decimal.ROUND_HALF_UP`). |
-| Secure processing environment | `app/engine/spe.py` | One DuckDB file per approved application (`var/spe/SPE-R05.duckdb`) with only the cohort and the named record types (R05: conditions, medications, HbA1c only), patient IDs kept. Downloads always return 403 and are logged; analysis returns aggregates only. |
-| Permit checklist | `app/engine/permit.py` | Art. 68 criteria per decision (allowed purpose, not prohibited, necessary and proportionate, why anonymised data is not enough, qualification, safeguards, ethics, legal basis) as yes / no / to be checked by staff. Also the eligibility wizard for interested parties. |
-| App state | `app/state.py` | SQLite (transactions, one file): users and sessions, decisions, provisions by hospitals, consents, discharge letters with versions and edit history, audit log. |
-| Roles | `app/auth.py` | Demo accounts, bearer token, role checked on every endpoint: hospital (primary use + data-provision inbox), HDAB staff (all requests, staff view, audit), interested party (own requests, public catalogue/register), patient (portal), foreign doctor (cross-border, simulated). |
-| Primary use | `app/primary/` | Patient Summary on demand in DE/EN/IT from the codes (not free translation), emergency strip; discharge letter in the ELGA section order with a source per statement, "No data in the KIS" instead of invented content, versioned edits, signing with a FIDO2/WebAuthn security key, blocked while required sections are empty, read-only after signing, corrections as new versions, sending only when signed; cross-border access rules with consent, identity check and emergency access, all logged and visible to the patient. |
-| Evaluation | `scripts/evaluate.py` | Runs the 10 requests 3 times, compares with `expected.json` (layout-independent), checks for leaks (patient IDs, counts < 10, unsuppressed values, opted-out patients) and measures time. |
+| Data loader | `backend/app/datastore.py` | Loads 5 CSVs into DuckDB: `raw` (as-is), `kis` (primary-use canonical), `hdab` (opted-out removed). Column names fuzzy-mapped via `ALIASES`. |
+| Decision engine | `backend/app/engine/decision.py` | Checks prohibited purposes (Art. 54 a–e) first, then eligibility, then approves or rejects with article citations and quoted sentences. |
+| Request parser | `backend/app/engine/parser.py` | Reads per-request definitions (ICD-10, ATC, LOINC, sex, age bands, encounter type, active medication, latest measurement). Builds the subject and one metric per `Report per …:` line. |
+| SQL generator | `backend/app/engine/query.py` | Template SQL with bound parameters on the `hdab` schema. Every group shown even if empty. |
+| Small-cell rule | `backend/app/engine/smallcell.py` | Counts < 10 → `<10`; percentages / means with n < 10 → `suppressed`. One decimal, `ROUND_HALF_UP`. |
+| SPE | `backend/app/engine/spe.py` | One DuckDB file per approved application in `var/spe/`. Downloads always 403. Analysis returns aggregates only. |
+| Permit checklist | `backend/app/engine/permit.py` | Art. 68 criteria (allowed purpose, necessity, proportionality, qualification, safeguards, ethics, legal basis) for staff view. |
+| App state | `backend/app/state.py` | SQLite transactions: users, sessions, decisions, provisions, consents, discharge letters + versions, audit log. |
+| Auth | `backend/app/auth.py` | Bearer token, role enforced on every endpoint. |
+| Primary use | `backend/app/primary/` | Patient Summary on demand, discharge letter workflow, cross-border access rules. |
+| Evaluation | `backend/scripts/evaluate.py` | Runs 10 requests × 3, compares with `expected.json`, checks for leaks, measures time. |
 
-**Models and services:** decisions, mapping, SQL and numbers on the research data use no model: they are deterministic Python and SQL, so results are identical across runs and the research data never leaves the app. The only model is OpenAI `gpt-4o` (configurable via `LLM_PROVIDER` / `OPENAI_MODEL`; Azure OpenAI and local Ollama are supported by `pipeline/llm_client.py`), used for the hospital AI Patient Summary of the synthetic P001–P006 document bundles after pseudonymisation. Its output is a draft until a doctor approves it.
+### Technology choices
 
-**Database choice:** DuckDB for analysis (reads the CSVs directly, milliseconds for 20,000 patients, one file per SPE). SQLite for state that changes (transactions, no server). In production: PostgreSQL for state, a FHIR server for primary use, a separate analytical store for the HDAB.
+- **DuckDB** for analysis — reads CSVs directly, milliseconds for 20,000 patients, one file per SPE.
+- **SQLite** for mutable state — transactions, no server needed.
+- **No LLM for research data** — the decision engine, parser, SQL, and numbers are deterministic Python + SQL. Results are identical across runs. The 20,000-patient dataset never leaves the app.
+- **Production would use:** PostgreSQL for state, a FHIR server for primary use, a dedicated analytical store for the HDAB.
 
-### Main endpoints
+---
 
-| Area | Endpoint |
+## API reference (main endpoints)
+
+| Area | Endpoints |
 |---|---|
-| Sign in | `GET /api/auth/accounts`, `POST /api/auth/login {user_id}`, `GET /api/me` |
-| HDAB | `POST /api/requests/evaluate`, `GET /api/requests`, `GET /api/requests/{id}`, `POST /api/requests/{id}/confirm`, `POST /api/requests/{id}/ask-info`, `GET /api/requests/samples`, `GET /api/metrics` |
+| Auth | `GET /api/auth/accounts`, `POST /api/auth/login`, `GET /api/me` |
+| HDAB | `POST /api/requests/evaluate`, `GET /api/requests`, `GET /api/requests/{id}`, `POST /api/requests/{id}/confirm`, `POST /api/requests/{id}/ask-info`, `GET /api/metrics` |
 | SPE | `GET /api/spe/{id}`, `GET /api/spe/{id}/analysis`, `POST /api/spe/{id}/download` (always 403) |
-| Public | `GET /api/catalogue`, `GET /api/register`, `GET /api/facilities-not-in-catalogue`, `POST /api/eligibility` |
-| Hospital | `GET /api/provisions`, `POST /api/provisions/{id}/provide`, `PUT /api/catalogue/{data_holder}`, `GET /api/patients`, `GET /api/patients/{id}/summary?lang=` |
+| Public | `GET /api/catalogue`, `GET /api/register`, `POST /api/eligibility` |
+| Hospital | `GET /api/patients`, `GET /api/patients/{id}/summary?lang=`, `GET /api/patients/{id}/documents` |
 | Discharge letter | `POST /api/discharge-letters`, `GET /api/discharge-letters/{id}`, `PUT …/sections/{key}`, `POST …/sign`, `POST …/correct`, `POST …/send` |
-| Patient / abroad | `GET /api/portal/me`, `PUT /api/portal/consent`, `POST /api/cross-border/check` (decision only), `POST /api/cross-border/patient-summary` |
-| Audit | `GET /api/audit` (HDAB, filters), `GET /api/audit/mine` |
+| Patient / cross-border | `GET /api/portal/me`, `PUT /api/portal/consent`, `POST /api/cross-border/check`, `POST /api/cross-border/patient-summary` |
+| Audit | `GET /api/audit`, `GET /api/audit/mine` |
 
-Demo accounts: `u-novak` (HDAB staff), `u-weiss` (researcher), `u-public`, `u-huber` (Klinikum West), `u-muster` (Frau M., patient `p-4cfd3cf1`, opted out of research), `u-rossi` (doctor in Italy, simulated).
+---
 
-### What works and what does not
+## Known limitations
 
-- Works: all five metrics on the 10 requests, the jury-style requests above, roles, audit log, SPE with blocked download, discharge-letter workflow, cross-border flow, and the frontend on top of all of it.
-- Simulated: ELGA, MyHealth@EU / NCPeH and ID Austria. Letter signing uses WebAuthn security keys (NFC badge, USB key, Touch ID); the demo offers a clearly labelled simulated key, and no real NFC/USB key has been tested.
-- AI Patient Summary (P001–P006 only): the documents are pseudonymised before they are sent to OpenAI (gpt-4o by default). The AI lists key points with their source and draws no conclusions; the output can differ between runs, so it stays a draft until a doctor approves it. The FHIR validator step is skipped unless `validator_cli.jar` is present. The research dataset (20,000 patients) is never sent to an LLM.
-- Limits: the parser understands the definition style of the Track-3 requests; a request written very differently is answered with the parts it recognises and lists unrecognised definitions in the staff view (`spec.notes`). The Track-3 research data has no allergies, doses or progress notes, so letters for those patients mark the sections as missing; P001–P006 have full document bundles.
-
-## Patient records (P001–P006)
-
-`patients/Pxxx/` holds six synthetic patients with their clinical documents (`documents.json`) and the structured record taken from them (`ground_truth_ips.json`). At startup the backend adds them as patients of the demo hospital (Klinikum West) in the KIS view only, so they never reach secondary-use statistics and the Track 3 metrics are unchanged.
-
-- Hospital care → patient list shows them by name (e.g. Hermine Bruckner, P001).
-- **Documents** tab: every clinical document, newest first (`GET /api/patients/{pid}/documents`, clinicians only).
-- **Discharge letter** and **Patient Summary** are filled from the record; each entry names its source documents (e.g. `P001-D028 Entlassungsbrief`). Ruled-out diagnoses are left out, unconfirmed allergies are marked, stopped medication is listed as stopped. Recommendations stay for the doctor to write.
-- Another folder can be used with `EHDS_PATIENTS_DIR`.
+- **Parser coverage:** understands the definition style of the 10 Track-3 requests. Requests written very differently are answered with the parts the parser recognises; unrecognised definitions appear in `spec.notes` in the staff view.
+- **Research data gaps:** the Track-3 dataset has no allergy, dose, or progress-note fields — discharge letters for those 20,000 patients mark those sections as missing. P001–P006 have full document bundles.
+- **Simulated integrations:** ELGA, MyHealth@EU / NCPeH, and ID Austria are simulated. WebAuthn signing works with software keys in the browser; no real NFC/USB hardware has been tested against this build.
+- **AI summary is a draft:** the LLM output can vary between runs and must be approved by a clinician before it is treated as authoritative.
